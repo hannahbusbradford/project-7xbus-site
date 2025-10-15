@@ -6,9 +6,7 @@
   <title>PROJECT 7xBUS — Mission</title>
   <meta name="description" content="Project 7xBUS — A decade of research, new mathematics, and a portfolio of businesses funding a counter‑engine to restore American purchasing power." />
   <style>
-    :root{
-      --bg:#000;--panel:#0b0b0b;--ink:#e9e9e9;--muted:#bdbdbd;--line:#1a1a1a;--accent:#00f5ff;--gold:#d3af37;
-    }
+    :root{ --bg:#000; --panel:#0b0b0b; --ink:#e9e9e9; --muted:#bdbdbd; --line:#1a1a1a; --accent:#00f5ff; --gold:#d3af37; }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden}
@@ -21,15 +19,35 @@
     .lead{color:var(--muted);margin-top:1.5rem;font-size:1.2rem}
 
     /* SECTIONS */
-    section{max-width:1040px;margin:0 auto;padding:4rem 1.25rem;border-top:1px solid var(--line)}
+    section{max-width:1100px;margin:0 auto;padding:4rem 1.25rem;border-top:1px solid var(--line)}
     h2{font-size:clamp(1.4rem,2.8vw,2.25rem);margin-bottom:1rem}
     p{color:#d9d9d9;margin:.85rem 0}
     .quote{border-left:4px solid var(--accent);padding:1rem 1rem 1rem 1.25rem;margin:1rem 0;color:#cfcfcf;font-style:italic;background:#0d0d0d;border-radius:8px}
+
+    /* CARDS / PILLARS */
+    .pillars{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1rem}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem}
+    .card h3{font-size:1rem;text-transform:uppercase;letter-spacing:.12em;color:#eaeaea}
+    .card p{margin:.6rem 0;color:#cfcfcf}
+    @media(min-width:900px){.pillars{grid-template-columns:repeat(3,1fr)}}
 
     /* FIGURE */
     figure{margin:2rem 0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem}
     figure img{max-width:100%;display:block;border-radius:10px}
     figcaption{color:#bdbdbd;font-size:.95rem;margin-top:.5rem;text-align:center}
+
+    /* TIMELINE & COUNTDOWNS */
+    .countdowns{display:grid;gap:1rem;margin-top:1rem}
+    .counter{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
+    .small{color:#bdbdbd;font-size:.95rem}
+    .timeline{margin-top:1.5rem;display:grid;gap:1rem}
+    .milestone{display:grid;grid-template-columns:120px 1fr;gap:1rem;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem}
+    .milestone time{font-weight:700;color:var(--gold)}
+    .tag{display:inline-block;padding:.15rem .5rem;border:1px solid var(--line);border-radius:999px;font-size:.8rem;color:#bfbfbf;margin-left:.4rem}
+
+    /* LIST */
+    ul.clean{list-style:none;padding:0;margin:.5rem 0}
+    ul.clean li{padding:.35rem 0;color:#d9d9d9}
 
     /* CTA BUTTON */
     .cta{padding:4rem 1.25rem;text-align:center}
@@ -59,7 +77,7 @@
     </div>
   </header>
 
-  <!-- WHAT IT IS (mysterious, proof‑based) -->
+  <!-- WHAT IT IS (mystery, proof‑based) -->
   <section id="what-it-is">
     <h2>What It Is</h2>
     <p>
@@ -102,8 +120,50 @@
     </p>
   </section>
 
+  <!-- HOW WE'RE FUNDING THE MISSION -->
+  <section id="funding">
+    <h2>How We’re Funding the Mission</h2>
+    <p>
+      We launch high‑impact, high‑margin businesses across sectors. Each is engineered to break a norm, tell a story, and redirect capital into the engine. It’s capitalism, repurposed as reconstruction.
+    </p>
+    <div class="pillars">
+      <div class="card"><h3>Beauty & Scent</h3><p>Rosehill Cosmetics; Petals & Potions (candles & fragrance). Science‑backed formulas, cinematics, and community‑first rollouts.</p></div>
+      <div class="card"><h3>Tools & Craft</h3><p>El‑Inky Fingers (pen brand) and House of the Rubies (ruby manufacturing & jewelry) — objects with story, built to last.</p></div>
+      <div class="card"><h3>Flavor & Innovation</h3><p>ThunderCheeks™ (chewing gum) — resurrecting extinct fruit profiles and pioneering yeast‑based flavors unavailable anywhere else.</p></div>
+      <div class="card"><h3>Systems & Mobility</h3><p>Matar (automated trading), BussReck (engine repair with SaaS), Shomer Cybersecurity (browser‑layer AI), and more — one new business per quarter.</p></div>
+    </div>
+  </section>
+
+  <!-- ROLLOUT TIMELINE + COUNTDOWNS -->
+  <section id="rollout">
+    <h2>Rollout — One Business Per Quarter</h2>
+    <p class="small">Live cadence with countdowns. Dates reflect the current plan; subject to refinement as partners lock.</p>
+    <div class="countdowns" id="countdowns"></div>
+    <div class="timeline">
+      <article class="milestone"><time>Q4 2025</time><div><strong>Petals & Potions</strong> — Candle & fragrance division launch. <span class="tag">Now</span></div></article>
+      <article class="milestone"><time>Q1 2026</time><div><strong>Rosehill Cosmetics</strong> — Biotech skincare + custom formulation SaaS.</div></article>
+      <article class="milestone"><time>Q3 2026</time><div><strong>El‑Inky Fingers</strong> — Writing instruments for founders & makers.</div></article>
+      <article class="milestone"><time>Q4 2026</time><div><strong>House of the Rubies</strong> — In‑house ruby manufacturing & jewelry. <br/><strong>ThunderCheeks™</strong> — Chewing gum made from extinct and yeast‑novel fruit flavors.</div></article>
+      <article class="milestone"><time>Q1 2027</time><div><strong>PureHundreds</strong> — Covenant‑rooted apparel line.</div></article>
+      <article class="milestone"><time>Q2 2027</time><div><strong>BussReck</strong> — Engine repair network with SaaS integration.</div></article>
+    </div>
+  </section>
+
+  <!-- EXTENDED PORTFOLIO -->
+  <section id="portfolio">
+    <h2>Extended Portfolio</h2>
+    <ul class="clean">
+      <li>• <strong>ThunderCheeks™</strong> — Chewing gum made from extinct fruit and yeast‑based novel flavors.</li>
+      <li>• <strong>Shomer Cybersecurity</strong> — Browser‑layer AI that catches threats in real time.</li>
+      <li>• <strong>Matar</strong> — Automated trading systems using unreleased variance frameworks.</li>
+      <li>• <strong>Project 7xBUS Core</strong> — The engine that funds the reset.</li>
+      <li>• <strong>America’s First AI Bee Farm</strong> — Smart agriculture & ecosystem stewardship.</li>
+      <li>• …and a new business each quarter, sequenced for impact.</li>
+    </ul>
+  </section>
+
   <!-- INVESTOR CONTACT / COMPLIANCE -->
-  <section style="padding:2rem 1.25rem;text-align:center;border-top:1px solid #1b1b1b;">
+  <section id="contact" style="padding:2rem 1.25rem;text-align:center;border-top:1px solid #1b1b1b;">
     <p style="color:#bdbdbd;font-size:0.95rem;max-width:760px;margin:0 auto;">
       If you're an accredited investor, fund allocator, or interested in the <strong>Project 7xBUS Trading Model</strong> for funding partnerships, email
       <a href="mailto:funds@project7xbus.com" style="color:#00f5ff;text-decoration:none;">funds@project7xbus.com</a>.
@@ -121,5 +181,40 @@
   <footer>
     © 2025 Project 7xBUS. We don’t want their seats. We’re building new rooms.
   </footer>
+
+  <script>
+    // Countdown targets (rough quarter start dates)
+    const events = [
+      { label: 'Petals & Potions — Live', date: '2025-12-01T00:00:00' },
+      { label: 'Rosehill Cosmetics — Q1 2026', date: '2026-03-01T00:00:00' },
+      { label: 'El‑Inky Fingers — Q3 2026', date: '2026-09-01T00:00:00' },
+      { label: 'House of the Rubies & ThunderCheeks — Q4 2026', date: '2026-12-01T00:00:00' },
+      { label: 'PureHundreds — Q1 2027', date: '2027-03-01T00:00:00' },
+      { label: 'BussReck — Q2 2027', date: '2027-06-01T00:00:00' }
+    ];
+    const wrap = document.getElementById('countdowns');
+    const fmt = n => n.toString().padStart(2,'0');
+    function render(){
+      if(!wrap) return;
+      wrap.innerHTML = '';
+      const now = new Date();
+      events.forEach(ev=>{
+        const t = new Date(ev.date) - now;
+        let html;
+        if(t <= 0){
+          html = `<div class="counter"><strong>${ev.label}</strong><span class="small">Status: Live / In progress</span></div>`;
+        } else {
+          const d = Math.floor(t/86400000);
+          const h = Math.floor((t%86400000)/3600000);
+          const m = Math.floor((t%3600000)/60000);
+          const s = Math.floor((t%60000)/1000);
+          html = `<div class="counter"><strong>${ev.label}</strong><span class="small">${fmt(d)}d : ${fmt(h)}h : ${fmt(m)}m : ${fmt(s)}s</span></div>`;
+        }
+        wrap.insertAdjacentHTML('beforeend', html);
+      });
+    }
+    render();
+    setInterval(render, 1000);
+  </script>
 </body>
 </html>
