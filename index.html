@@ -96,7 +96,7 @@
       border-radius:8px;
     }
 
-    /* WHAT IT IS – tighten that triple heading visually */
+    /* WHAT IT IS – triple heading block */
     #what-it-is{
       position:relative;
     }
@@ -124,13 +124,6 @@
     }
     #what-it-is h2 + h1{
       margin-top:.75rem;
-    }
-
-    /* Optional card-style wrap for that manifesto block */
-    #what-it-is h2:nth-of-type(2),
-    #what-it-is h1,
-    #what-it-is h2:nth-of-type(3){
-      display:block;
     }
     #what-it-is .manifesto-block{
       margin-top:1.75rem;
@@ -165,26 +158,6 @@
     }
     @media(min-width:900px){
       .pillars{grid-template-columns:repeat(3,1fr)}
-    }
-
-    /* FIGURE */
-    figure{
-      margin:2rem 0;
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:1rem;
-    }
-    figure img{
-      max-width:100%;
-      display:block;
-      border-radius:10px;
-    }
-    figcaption{
-      color:#bdbdbd;
-      font-size:.95rem;
-      margin-top:.5rem;
-      text-align:center;
     }
 
     /* TIMELINE & COUNTDOWNS */
@@ -324,7 +297,6 @@
       This is not speculation. It’s reconstruction built from raw code and persistence — discoveries that go beyond finance and data, and <strong>rewrite how we should interpret our reality.</strong>
     </p>
 
-    <!-- purely visual wrapper; text unchanged -->
     <div class="manifesto-block">
       <h2> We want to challenge the institutions that have consolidated power and think they're untouchable</h2>
       <h1>For example - the ones that are charging small businesses 5% transaction fees, the ones that are hyperinflating shipping costs to unsustainable levels</h1>
@@ -336,28 +308,64 @@
   <section id="funding">
     <h2>How We’re Funding the Mission</h2>
     <p>
-      We launch high-impact, high-margin businesses across sectors. Each is engineered to break a norm, tell a story, and redirect capital into the engine. It’s capitalism, repurposed as reconstruction.
+      We launch high-impact, high-margin businesses across sectors. Each is engineered
+      to break a norm, tell a story, and redirect capital into the engine.
+      It’s capitalism, repurposed as reconstruction.
     </p>
     <div class="pillars">
-      <div class="card"><h3>Beauty & Scent</h3><p>Rosehill Cosmetics; Petals & Potions (candles & fragrance). Science-backed formulas, cinematics, and community-first rollouts.</p></div>
-      <div class="card"><h3>Tools & Craft</h3><p>El-Inky Fingers (pen brand) and House of the Rubies (ruby manufacturing & jewelry) — objects with story, built to last.</p></div>
-      <div class="card"><h3>Flavor & Innovation</h3><p>ThunderCheeks™ (chewing gum) — resurrecting extinct fruit profiles and pioneering yeast-based flavors unavailable anywhere else.</p></div>
-      <div class="card"><h3>Systems & Mobility</h3><p>Matar (automated trading), BussReck (engine repair with SaaS), Shomer Cybersecurity (browser-layer AI), and more — one new business per quarter.</p></div>
+      <div class="card">
+        <h3>Beauty & Scent</h3>
+        <p>Rosehill Cosmetics; Petals & Potions (candles & fragrance). Science-backed formulas, cinematics, and community-first rollouts.</p>
+      </div>
+      <div class="card">
+        <h3>Tools & Craft</h3>
+        <p>El-Inky Fingers — a clear glass pen with clear ink that turns black as it hits the page — and House of the Rubies, combining auctioned stones with in-house lab-grown rubies we make ourselves. Objects with story, built to last.</p>
+      </div>
+      <div class="card">
+        <h3>Flavor & Innovation</h3>
+        <p>ThunderCheeks™ — chewing gum built on wild-yeast flavor development, creating entirely new flavor families and resurrecting extinct fruit profiles.</p>
+      </div>
+      <div class="card">
+        <h3>Systems, Shipping & Mobility</h3>
+        <p>Ale — an OBD-II diagnostic and 5G-connected platform that gives real-time updates on your car’s health and uses machine learning to predict failures before they hit — plus engine rebuild and shipping infrastructure designed to drop national shipping costs by up to 50%.</p>
+      </div>
     </div>
   </section>
 
   <!-- ROLLOUT TIMELINE + COUNTDOWNS -->
   <section id="rollout">
     <h2>Rollout — One Business Per Quarter</h2>
-    <p class="small">Live cadence with countdowns. Dates reflect the current plan; subject to refinement as partners lock.</p>
+    <p class="small">Live cadence with countdowns. Dates reflect the current plan; subject to refinement as partners lock and underwriting finalizes.</p>
     <div class="countdowns" id="countdowns"></div>
     <div class="timeline">
-      <article class="milestone"><time>Q4 2025</time><div><strong>Petals & Potions</strong> — Candle & fragrance division launch. <span class="tag">Now</span></div></article>
-      <article class="milestone"><time>Q1 2026</time><div><strong>Rosehill Cosmetics</strong> — Biotech skincare + custom formulation SaaS.</div></article>
-      <article class="milestone"><time>Q3 2026</time><div><strong>El-Inky Fingers</strong> — Writing instruments for founders & makers.</div></article>
-      <article class="milestone"><time>Q4 2026</time><div><strong>House of the Rubies</strong> — In-house ruby manufacturing & jewelry. <br/><strong>ThunderCheeks™</strong> — Chewing gum made from extinct and yeast-novel fruit flavors.</div></article>
-      <article class="milestone"><time>Q1 2027</time><div><strong>PureHundreds</strong> — Covenant-rooted apparel line.</div></article>
-      <article class="milestone"><time>Q2 2027</time><div><strong>BussReck</strong> — Engine repair network with SaaS integration.</div></article>
+      <article class="milestone">
+        <time>Q4 2025</time>
+        <div><strong>Petals & Potions</strong> — Candle & fragrance division launch. <span class="tag">Now</span></div>
+      </article>
+      <article class="milestone">
+        <time>Q1 2026</time>
+        <div><strong>Rosehill Cosmetics</strong> — Biotech skincare + custom formulation SaaS.</div>
+      </article>
+      <article class="milestone">
+        <time>Q3 2026</time>
+        <div><strong>El-Inky Fingers</strong> — Writing instruments for founders & makers.</div>
+      </article>
+      <article class="milestone">
+        <time>Q4 2026</time>
+        <div>
+          <strong>House of the Rubies</strong> — In-house ruby manufacturing & jewelry from auctioned and lab-grown stones.
+          <br/>
+          <strong>ThunderCheeks™</strong> — Chewing gum made from extinct and wild-yeast novel fruit flavors.
+        </div>
+      </article>
+      <article class="milestone">
+        <time>Q1 2027</time>
+        <div><strong>PureHundreds</strong> — Covenant-rooted apparel line, backed by a 600-acre USDA-supported farm turning fiber into cloth.</div>
+      </article>
+      <article class="milestone">
+        <time>Q2 2027</time>
+        <div><strong>Ale</strong> — Vehicle diagnostics and OBD-II platform with predictive maintenance, 5G connectivity, and engineered PIDs built for our ecosystem.</div>
+      </article>
     </div>
   </section>
 
@@ -365,12 +373,15 @@
   <section id="portfolio">
     <h2>Extended Portfolio</h2>
     <ul class="clean">
-      <li>• <strong>ThunderCheeks™</strong> — Chewing gum made from extinct fruit and yeast-based novel flavors.</li>
-      <li>• <strong>Shomer Cybersecurity</strong> — Browser-layer AI that catches threats in real time.</li>
-      <li>• <strong>Matar</strong> — Automated trading systems using unreleased variance frameworks.</li>
-      <li>• <strong>Project 7xBUS Core</strong> — The engine that funds the reset.</li>
-      <li>• <strong>America’s First AI Bee Farm</strong> — Smart agriculture & ecosystem stewardship.</li>
-      <li>• …and a new business each quarter, sequenced for impact.</li>
+      <li>• <strong>ThunderCheeks™</strong> — Chewing gum made from wild-yeast flavor systems and extinct fruit profiles.</li>
+      <li>• <strong>El-Inky Fingers</strong> — Clear glass pens with clear ink that turns black as it hits the page.</li>
+      <li>• <strong>House of the Rubies</strong> — Auctioned rubies and in-house lab-grown stones we manufacture ourselves.</li>
+      <li>• <strong>PureHundreds</strong> — Apparel line rooted in covenant, backed by ~600 acres under USDA underwriting, turning fiber to cloth.</li>
+      <li>• <strong>Ale</strong> — Diagnostic + OBD-II platform delivering real-time car health and ML-driven failure prediction over 5G, with custom PIDs engineered for our stack.</li>
+      <li>• <strong>Chemical Manufacturing & Wells</strong> — Brake cleaner, OH⁻/H₂O₂, and related lines, powered by our own chemical manufacturing footprint and oil wells.</li>
+      <li>• <strong>America’s First AI Bee Farm</strong> — Smart agriculture & ecosystem stewardship, integrating pollinators with desert restoration and crop systems.</li>
+      <li>• <strong>The 7th World</strong> (working title) — A cinematic, series-style walk through delusion, built so viewers can understand how delusions form as they’re braided with real-world facts.</li>
+      <li>• …and a new build each quarter, sequenced for impact and for counter-engineering monetary consolidation.</li>
     </ul>
   </section>
 
@@ -402,7 +413,7 @@
       { label: 'El-Inky Fingers — Q3 2026', date: '2026-09-01T00:00:00' },
       { label: 'House of the Rubies & ThunderCheeks — Q4 2026', date: '2026-12-01T00:00:00' },
       { label: 'PureHundreds — Q1 2027', date: '2027-03-01T00:00:00' },
-      { label: 'BussReck — Q2 2027', date: '2027-06-01T00:00:00' }
+      { label: 'Ale — Q2 2027', date: '2027-06-01T00:00:00' }
     ];
     const wrap = document.getElementById('countdowns');
     const fmt = n => n.toString().padStart(2,'0');
