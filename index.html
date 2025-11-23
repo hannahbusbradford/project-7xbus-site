@@ -4,58 +4,285 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PROJECT 7xBUS — Mission</title>
-  <meta name="description" content="Project 7xBUS — A decade of research, new mathematics, and a portfolio of businesses funding a counter‑engine to restore American purchasing power." />
+  <meta name="description" content="Project 7xBUS — A decade of research, new mathematics, and a portfolio of businesses funding a counter-engine to restore American purchasing power." />
   <style>
-    :root{ --bg:#000; --panel:#0b0b0b; --ink:#e9e9e9; --muted:#bdbdbd; --line:#1a1a1a; --accent:#00f5ff; --gold:#d3af37; }
+    :root{
+      --bg:#000;
+      --panel:#0b0b0b;
+      --ink:#e9e9e9;
+      --muted:#bdbdbd;
+      --line:#1a1a1a;
+      --accent:#00f5ff;
+      --gold:#d3af37;
+    }
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden}
+    html,body{height:100%;scroll-behavior:smooth}
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.7;
+      overflow-x:hidden;
+    }
 
     /* HERO */
-    header{position:relative;min-height:100dvh;display:grid;place-items:center;text-align:center;padding:4rem 1.25rem}
-    .hero-bg{position:absolute;inset:0;background:radial-gradient(1200px 600px at 50% 10%,#111 25%,transparent 60%),url('flag-bg.jpg') center/cover no-repeat;opacity:.16;z-index:-1}
-    .hero-panel{background:rgba(0,0,0,.55);backdrop-filter:blur(6px);border:1px solid #111;box-shadow:0 20px 60px rgba(0,0,0,.55);border-radius:14px;padding:2rem 1.5rem;max-width:900px;margin:auto}
-    h1{font-size:clamp(2.2rem,5vw,3.75rem);letter-spacing:.08em;text-transform:uppercase}
-    .lead{color:var(--muted);margin-top:1.5rem;font-size:1.2rem}
+    header{
+      position:relative;
+      min-height:100dvh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:4rem 1.25rem;
+    }
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(1200px 600px at 50% 5%,#141414 0%,transparent 55%),
+        radial-gradient(900px 900px at 0% 100%,#050505 0%,transparent 60%),
+        radial-gradient(900px 900px at 100% 100%,#050505 0%,transparent 60%),
+        url('flag-bg.jpg') center/cover no-repeat;
+      opacity:.18;
+      z-index:-1;
+    }
+    .hero-panel{
+      background:linear-gradient(135deg,rgba(0,0,0,.85),rgba(10,10,10,.9));
+      backdrop-filter:blur(8px);
+      border:1px solid #161616;
+      box-shadow:0 26px 80px rgba(0,0,0,.75);
+      border-radius:22px;
+      padding:2.75rem 1.9rem;
+      max-width:920px;
+      margin:auto;
+    }
+    h1{
+      font-size:clamp(2.4rem,5vw,3.8rem);
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin-bottom:1.25rem;
+    }
+    .lead{
+      color:var(--muted);
+      margin-top:0;
+      font-size:1.08rem;
+      max-width:52rem;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .lead br{line-height:2}
 
     /* SECTIONS */
-    section{max-width:1100px;margin:0 auto;padding:4rem 1.25rem;border-top:1px solid var(--line)}
-    h2{font-size:clamp(1.4rem,2.8vw,2.25rem);margin-bottom:1rem}
-    p{color:#d9d9d9;margin:.85rem 0}
-    .quote{border-left:4px solid var(--accent);padding:1rem 1rem 1rem 1.25rem;margin:1rem 0;color:#cfcfcf;font-style:italic;background:#0d0d0d;border-radius:8px}
+    section{
+      max-width:1040px;
+      margin:0 auto;
+      padding:4rem 1.25rem;
+      border-top:1px solid var(--line);
+    }
+    h2{
+      font-size:clamp(1.4rem,2.5vw,2.1rem);
+      margin-bottom:1rem;
+    }
+    p{
+      color:#d9d9d9;
+      margin:.85rem 0;
+    }
+    .quote{
+      border-left:4px solid var(--accent);
+      padding:1rem 1rem 1rem 1.25rem;
+      margin:1rem 0;
+      color:#cfcfcf;
+      font-style:italic;
+      background:#0d0d0d;
+      border-radius:8px;
+    }
+
+    /* WHAT IT IS – tighten that triple heading visually */
+    #what-it-is{
+      position:relative;
+    }
+    #what-it-is h2:first-of-type{
+      margin-bottom:1.25rem;
+    }
+    #what-it-is h2:nth-of-type(2),
+    #what-it-is h2:nth-of-type(3){
+      font-size:1.1rem;
+      font-weight:500;
+      color:#e5e5e5;
+      text-transform:none;
+      letter-spacing:.02em;
+      margin-top:1.75rem;
+      text-align:center;
+    }
+    #what-it-is h1{
+      font-size:1.3rem;
+      font-weight:600;
+      line-height:1.6;
+      color:#f5f5f5;
+      margin:.6rem auto;
+      max-width:850px;
+      text-align:center;
+    }
+    #what-it-is h2 + h1{
+      margin-top:.75rem;
+    }
+
+    /* Optional card-style wrap for that manifesto block */
+    #what-it-is h2:nth-of-type(2),
+    #what-it-is h1,
+    #what-it-is h2:nth-of-type(3){
+      display:block;
+    }
+    #what-it-is .manifesto-block{
+      margin-top:1.75rem;
+      background:radial-gradient(circle at top,#111 0%,#050505 55%);
+      border-radius:16px;
+      border:1px solid #202020;
+      padding:1.5rem 1.3rem;
+    }
 
     /* CARDS / PILLARS */
-    .pillars{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1rem}
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem}
-    .card h3{font-size:1rem;text-transform:uppercase;letter-spacing:.12em;color:#eaeaea}
-    .card p{margin:.6rem 0;color:#cfcfcf}
-    @media(min-width:900px){.pillars{grid-template-columns:repeat(3,1fr)}}
+    .pillars{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:1rem;
+      margin-top:1rem;
+    }
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:1rem;
+    }
+    .card h3{
+      font-size:1rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:#eaeaea;
+    }
+    .card p{
+      margin:.6rem 0;
+      color:#cfcfcf;
+    }
+    @media(min-width:900px){
+      .pillars{grid-template-columns:repeat(3,1fr)}
+    }
 
     /* FIGURE */
-    figure{margin:2rem 0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem}
-    figure img{max-width:100%;display:block;border-radius:10px}
-    figcaption{color:#bdbdbd;font-size:.95rem;margin-top:.5rem;text-align:center}
+    figure{
+      margin:2rem 0;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:1rem;
+    }
+    figure img{
+      max-width:100%;
+      display:block;
+      border-radius:10px;
+    }
+    figcaption{
+      color:#bdbdbd;
+      font-size:.95rem;
+      margin-top:.5rem;
+      text-align:center;
+    }
 
     /* TIMELINE & COUNTDOWNS */
-    .countdowns{display:grid;gap:1rem;margin-top:1rem}
-    .counter{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
-    .small{color:#bdbdbd;font-size:.95rem}
-    .timeline{margin-top:1.5rem;display:grid;gap:1rem}
-    .milestone{display:grid;grid-template-columns:120px 1fr;gap:1rem;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem}
-    .milestone time{font-weight:700;color:var(--gold)}
-    .tag{display:inline-block;padding:.15rem .5rem;border:1px solid var(--line);border-radius:999px;font-size:.8rem;color:#bfbfbf;margin-left:.4rem}
+    .countdowns{
+      display:grid;
+      gap:1rem;
+      margin-top:1rem;
+    }
+    .counter{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:1rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:.75rem;
+    }
+    .small{
+      color:#bdbdbd;
+      font-size:.95rem;
+    }
+    .timeline{
+      margin-top:1.5rem;
+      display:grid;
+      gap:1rem;
+    }
+    .milestone{
+      display:grid;
+      grid-template-columns:120px 1fr;
+      gap:1rem;
+      align-items:start;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:1rem;
+    }
+    .milestone time{
+      font-weight:700;
+      color:var(--gold);
+    }
+    .tag{
+      display:inline-block;
+      padding:.15rem .5rem;
+      border:1px solid var(--line);
+      border-radius:999px;
+      font-size:.8rem;
+      color:#bfbfbf;
+      margin-left:.4rem;
+    }
 
     /* LIST */
-    ul.clean{list-style:none;padding:0;margin:.5rem 0}
-    ul.clean li{padding:.35rem 0;color:#d9d9d9}
+    ul.clean{
+      list-style:none;
+      padding:0;
+      margin:.5rem 0;
+    }
+    ul.clean li{
+      padding:.35rem 0;
+      color:#d9d9d9;
+    }
 
     /* CTA BUTTON */
-    .cta{padding:4rem 1.25rem;text-align:center}
-    .btn{display:inline-block;background:var(--accent);color:#000;text-decoration:none;padding:.9rem 1.2rem;font-weight:700;border-radius:10px;transition:filter .2s}
-    .btn:hover{filter:brightness(.9)}
+    .cta{
+      padding:4rem 1.25rem;
+      text-align:center;
+    }
+    .btn{
+      display:inline-block;
+      background:var(--accent);
+      color:#000;
+      text-decoration:none;
+      padding:.9rem 1.2rem;
+      font-weight:700;
+      border-radius:10px;
+      transition:filter .2s,transform .12s;
+    }
+    .btn:hover{
+      filter:brightness(.9);
+      transform:translateY(-1px);
+    }
 
     /* FOOTER */
-    footer{padding:3rem 1.25rem;text-align:center;color:#8a8a8a;background:#070707;border-top:1px solid var(--line)}
+    footer{
+      padding:3rem 1.25rem;
+      text-align:center;
+      color:#8a8a8a;
+      background:#070707;
+      border-top:1px solid var(--line);
+      font-size:.9rem;
+    }
+
+    @media (min-width:768px){
+      .hero-panel{padding:3.25rem 3rem;}
+      .lead{font-size:1.12rem;}
+      section{padding:4.5rem 1.5rem;}
+    }
   </style>
 </head>
 <body>
@@ -87,31 +314,35 @@
   </div>
 </header>
 
-  <!-- WHAT IT IS (mystery, proof‑based) -->
+  <!-- WHAT IT IS (mystery, proof-based) -->
   <section id="what-it-is">
     <h2>What It Is</h2>
     <p>
-      <strong>Project 7xBUS</strong> is the culmination of ten years of continuous research — night and day, through live testing, coding, and real‑world validation. It represents genuine mathematical breakthroughs — new frameworks with verifiable proofs that expand the limits of what human logic and computation were thought to be capable of.
+      <strong>Project 7xBUS</strong> is the culmination of ten years of continuous research — night and day, through live testing, coding, and real-world validation. It represents genuine mathematical breakthroughs — new frameworks with verifiable proofs that expand the limits of what human logic and computation were thought to be capable of.
     </p>
     <p>
       This is not speculation. It’s reconstruction built from raw code and persistence — discoveries that go beyond finance and data, and <strong>rewrite how we should interpret our reality.</strong>
     </p>
-     <h2> We want to challenge the institutions that have consolidated power and think they're untouchable</h2> <h1>For example - the ones that are charging small businesses 5% transaction fees, the ones that are hyperinflating shipping costs to unsustainable levels</h1> <h2> --yeah--- we are not putting up with that, and we have the tools now to say something about it</h2>
-  </section>
 
- 
+    <!-- purely visual wrapper; text unchanged -->
+    <div class="manifesto-block">
+      <h2> We want to challenge the institutions that have consolidated power and think they're untouchable</h2>
+      <h1>For example - the ones that are charging small businesses 5% transaction fees, the ones that are hyperinflating shipping costs to unsustainable levels</h1>
+      <h2> --yeah--- we are not putting up with that, and we have the tools now to say something about it</h2>
+    </div>
+  </section>
 
   <!-- HOW WE'RE FUNDING THE MISSION -->
   <section id="funding">
     <h2>How We’re Funding the Mission</h2>
     <p>
-      We launch high‑impact, high‑margin businesses across sectors. Each is engineered to break a norm, tell a story, and redirect capital into the engine. It’s capitalism, repurposed as reconstruction.
+      We launch high-impact, high-margin businesses across sectors. Each is engineered to break a norm, tell a story, and redirect capital into the engine. It’s capitalism, repurposed as reconstruction.
     </p>
     <div class="pillars">
-      <div class="card"><h3>Beauty & Scent</h3><p>Rosehill Cosmetics; Petals & Potions (candles & fragrance). Science‑backed formulas, cinematics, and community‑first rollouts.</p></div>
-      <div class="card"><h3>Tools & Craft</h3><p>El‑Inky Fingers (pen brand) and House of the Rubies (ruby manufacturing & jewelry) — objects with story, built to last.</p></div>
-      <div class="card"><h3>Flavor & Innovation</h3><p>ThunderCheeks™ (chewing gum) — resurrecting extinct fruit profiles and pioneering yeast‑based flavors unavailable anywhere else.</p></div>
-      <div class="card"><h3>Systems & Mobility</h3><p>Matar (automated trading), BussReck (engine repair with SaaS), Shomer Cybersecurity (browser‑layer AI), and more — one new business per quarter.</p></div>
+      <div class="card"><h3>Beauty & Scent</h3><p>Rosehill Cosmetics; Petals & Potions (candles & fragrance). Science-backed formulas, cinematics, and community-first rollouts.</p></div>
+      <div class="card"><h3>Tools & Craft</h3><p>El-Inky Fingers (pen brand) and House of the Rubies (ruby manufacturing & jewelry) — objects with story, built to last.</p></div>
+      <div class="card"><h3>Flavor & Innovation</h3><p>ThunderCheeks™ (chewing gum) — resurrecting extinct fruit profiles and pioneering yeast-based flavors unavailable anywhere else.</p></div>
+      <div class="card"><h3>Systems & Mobility</h3><p>Matar (automated trading), BussReck (engine repair with SaaS), Shomer Cybersecurity (browser-layer AI), and more — one new business per quarter.</p></div>
     </div>
   </section>
 
@@ -123,9 +354,9 @@
     <div class="timeline">
       <article class="milestone"><time>Q4 2025</time><div><strong>Petals & Potions</strong> — Candle & fragrance division launch. <span class="tag">Now</span></div></article>
       <article class="milestone"><time>Q1 2026</time><div><strong>Rosehill Cosmetics</strong> — Biotech skincare + custom formulation SaaS.</div></article>
-      <article class="milestone"><time>Q3 2026</time><div><strong>El‑Inky Fingers</strong> — Writing instruments for founders & makers.</div></article>
-      <article class="milestone"><time>Q4 2026</time><div><strong>House of the Rubies</strong> — In‑house ruby manufacturing & jewelry. <br/><strong>ThunderCheeks™</strong> — Chewing gum made from extinct and yeast‑novel fruit flavors.</div></article>
-      <article class="milestone"><time>Q1 2027</time><div><strong>PureHundreds</strong> — Covenant‑rooted apparel line.</div></article>
+      <article class="milestone"><time>Q3 2026</time><div><strong>El-Inky Fingers</strong> — Writing instruments for founders & makers.</div></article>
+      <article class="milestone"><time>Q4 2026</time><div><strong>House of the Rubies</strong> — In-house ruby manufacturing & jewelry. <br/><strong>ThunderCheeks™</strong> — Chewing gum made from extinct and yeast-novel fruit flavors.</div></article>
+      <article class="milestone"><time>Q1 2027</time><div><strong>PureHundreds</strong> — Covenant-rooted apparel line.</div></article>
       <article class="milestone"><time>Q2 2027</time><div><strong>BussReck</strong> — Engine repair network with SaaS integration.</div></article>
     </div>
   </section>
@@ -134,8 +365,8 @@
   <section id="portfolio">
     <h2>Extended Portfolio</h2>
     <ul class="clean">
-      <li>• <strong>ThunderCheeks™</strong> — Chewing gum made from extinct fruit and yeast‑based novel flavors.</li>
-      <li>• <strong>Shomer Cybersecurity</strong> — Browser‑layer AI that catches threats in real time.</li>
+      <li>• <strong>ThunderCheeks™</strong> — Chewing gum made from extinct fruit and yeast-based novel flavors.</li>
+      <li>• <strong>Shomer Cybersecurity</strong> — Browser-layer AI that catches threats in real time.</li>
       <li>• <strong>Matar</strong> — Automated trading systems using unreleased variance frameworks.</li>
       <li>• <strong>Project 7xBUS Core</strong> — The engine that funds the reset.</li>
       <li>• <strong>America’s First AI Bee Farm</strong> — Smart agriculture & ecosystem stewardship.</li>
@@ -149,7 +380,7 @@
       If you're an accredited investor, fund allocator, or interested in the <strong>Project 7xBUS Trading Model</strong> for funding partnerships, email
       <a href="mailto:funds@project7xbus.com" style="color:#00f5ff;text-decoration:none;">funds@project7xbus.com</a>.
       A <strong>Securities Packet</strong> is available on request, outlining structure, instruments, and the proprietary mathematical edge we’re introducing to modern markets.
-      All securities instruments are managed by professionals holding appropriate <strong>FINRA‑certified licenses</strong> and can be verified via
+      All securities instruments are managed by professionals holding appropriate <strong>FINRA-certified licenses</strong> and can be verified via
       <a href="https://brokercheck.finra.org" target="_blank" rel="noopener noreferrer" style="color:#00f5ff;text-decoration:none;">FINRA BrokerCheck</a>.
     </p>
   </section>
@@ -168,7 +399,7 @@
     const events = [
       { label: 'Petals & Potions — Live', date: '2025-12-01T00:00:00' },
       { label: 'Rosehill Cosmetics — Q1 2026', date: '2026-03-01T00:00:00' },
-      { label: 'El‑Inky Fingers — Q3 2026', date: '2026-09-01T00:00:00' },
+      { label: 'El-Inky Fingers — Q3 2026', date: '2026-09-01T00:00:00' },
       { label: 'House of the Rubies & ThunderCheeks — Q4 2026', date: '2026-12-01T00:00:00' },
       { label: 'PureHundreds — Q1 2027', date: '2027-03-01T00:00:00' },
       { label: 'BussReck — Q2 2027', date: '2027-06-01T00:00:00' }
