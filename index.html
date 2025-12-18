@@ -25,6 +25,79 @@
       overflow-x:hidden;
     }
 
+    /* ==========================
+       GLOBAL SCROLLING WATERMARK
+       ========================== */
+    .scroll-watermark{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      overflow:hidden;
+      opacity:1;
+    }
+
+    /* storm/bleed that lives behind everything */
+    .scroll-bleed{
+      position:absolute;
+      inset:-35%;
+      filter: blur(34px) saturate(1.35) contrast(1.12);
+      background:
+        radial-gradient(700px 500px at 18% 18%, rgba(160,0,0,.62) 0%, rgba(160,0,0,0) 66%),
+        radial-gradient(900px 650px at 82% 25%, rgba(120,0,0,.55) 0%, rgba(120,0,0,0) 68%),
+        radial-gradient(1100px 800px at 50% 115%, rgba(90,0,0,.52) 0%, rgba(90,0,0,0) 66%),
+        radial-gradient(1200px 900px at 50% 40%, rgba(0,245,255,.14) 0%, rgba(0,245,255,0) 60%);
+      opacity:.22;
+      animation: bleedPulse 12s ease-in-out infinite;
+      transform:translateY(0);
+    }
+    @keyframes bleedPulse{
+      0%   { opacity:.05; transform:scale(1.02) translateY(18px); }
+      20%  { opacity:.35; transform:scale(1.06) translateY(0); }
+      45%  { opacity:.14; transform:scale(1.03) translateY(-10px); }
+      70%  { opacity:.30; transform:scale(1.07) translateY(8px); }
+      100% { opacity:.05; transform:scale(1.02) translateY(18px); }
+    }
+
+    /* watermark text container (we move this with scroll) */
+    .watermark-text{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      filter: blur(3.2px);
+      mix-blend-mode:multiply;
+      transform:translate3d(0,0,0);
+    }
+
+    /* smaller + more readable + still huge */
+    .watermark-text .phrase{
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.26em;              /* smaller spacing */
+      font-size:clamp(4.5rem, 12vw, 14rem); /* ✅ smaller size */
+      line-height:1.05;
+      color:rgba(160,0,0,.72);
+      opacity:0;
+      animation: ghostReveal 16s ease-in-out infinite;
+      animation-delay: 5.5s; /* ✅ later reveal */
+      padding:0 8vw;
+      max-width:1400px;
+    }
+
+    @keyframes ghostReveal{
+      0%   { opacity:0;   transform:scale(1.06); }
+      20%  { opacity:.58; }
+      55%  { opacity:.40; }
+      78%  { opacity:.22; }
+      92%  { opacity:.12; }
+      100% { opacity:0;   transform:scale(1.03); }
+    }
+
+    /* Keep ALL real content above watermark */
+    header, section, footer{position:relative; z-index:1;}
+
     /* HERO */
     header{
       position:relative;
@@ -34,9 +107,8 @@
       text-align:center;
       padding:4rem 1.25rem 3rem;
       overflow:hidden;
-      isolation:isolate; /* ensures layering works predictably */
+      isolation:isolate;
     }
-
     .hero-bg{
       position:absolute;
       inset:0;
@@ -48,70 +120,9 @@
       z-index:0;
     }
 
-    /* ======================
-       STORM / BLEED LAYER
-    ====================== */
-    .bleed{
-      position:absolute;
-      inset:-30%;
-      z-index:1;
-      pointer-events:none;
-      filter: blur(30px) saturate(1.35) contrast(1.1);
-      background:
-        radial-gradient(700px 500px at 20% 20%, rgba(160,0,0,.60) 0%, rgba(160,0,0,0) 65%),
-        radial-gradient(800px 600px at 80% 30%, rgba(120,0,0,.52) 0%, rgba(120,0,0,0) 68%),
-        radial-gradient(1000px 800px at 50% 110%, rgba(90,0,0,.48) 0%, rgba(90,0,0,0) 65%),
-        radial-gradient(1200px 900px at 50% 40%, rgba(0,245,255,.14) 0%, rgba(0,245,255,0) 60%);
-      opacity:.30;
-      animation: bleedPulse 10s ease-in-out infinite;
-    }
-
-    @keyframes bleedPulse{
-      0%   { opacity:.06; transform:scale(1.03) translateY(22px); }
-      20%  { opacity:.55; transform:scale(1.10) translateY(0); }
-      45%  { opacity:.20; transform:scale(1.04) translateY(-12px); }
-      70%  { opacity:.48; transform:scale(1.12) translateY(8px); }
-      100% { opacity:.06; transform:scale(1.03) translateY(22px); }
-    }
-
-    /* ======================
-       GHOST TEXT FROM BLACK
-    ====================== */
-    .blood-text{
-      position:absolute;
-      inset:0;
-      z-index:2; /* above bleed, below panel */
-      pointer-events:none;
-      display:grid;
-      place-items:center;
-      text-align:center;
-      filter: blur(4.5px);
-      mix-blend-mode:multiply; /* if it ever feels too dark, delete this line */
-    }
-
-    .blood-text span{
-      font-weight:900;
-      letter-spacing:.48em;
-      text-transform:uppercase;
-      font-size:clamp(4.5rem,16vw,18rem);
-      color:rgba(90,0,0,.45);
-      opacity:0;
-      animation: ghostReveal 14s ease-in-out infinite;
-      animation-delay: 4.5s; /* ✅ delayed reveal */
-    }
-
-    @keyframes ghostReveal{
-      0%   { opacity:0;   transform:scale(1.08); }
-      18%  { opacity:.55; }
-      45%  { opacity:.42; }
-      70%  { opacity:.30; }
-      90%  { opacity:.12; }
-      100% { opacity:0;   transform:scale(1.04); }
-    }
-
     .hero-panel{
       position:relative;
-      z-index:3;
+      z-index:2;
       background:linear-gradient(135deg,rgba(0,0,0,.9),rgba(10,10,10,.95));
       backdrop-filter:blur(10px);
       border:1px solid #161616;
@@ -121,7 +132,6 @@
       max-width:960px;
       margin:auto;
     }
-
     .eyebrow{
       font-size:.8rem;
       letter-spacing:.16em;
@@ -249,7 +259,6 @@
       letter-spacing:.02em;
       color:#f3f3f3;
     }
-
     .manifesto-callout-bottom{
       margin-top:.7rem;
       font-size:.98rem;
@@ -374,19 +383,32 @@
       border-top:1px solid var(--line);
       font-size:.9rem;
     }
+
+    /* reduce effects on phones */
+    @media (max-width:560px){
+      .watermark-text{filter: blur(2.2px);}
+      .watermark-text .phrase{letter-spacing:.18em;}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .scroll-bleed{animation:none;}
+      .watermark-text .phrase{animation:none; opacity:.18;}
+    }
   </style>
 </head>
 <body>
 
+  <!-- GLOBAL WATERMARK (moves with scrolling) -->
+  <div class="scroll-watermark" aria-hidden="true">
+    <div class="scroll-bleed" id="bleed"></div>
+    <div class="watermark-text" id="wm">
+      <div class="phrase" id="wmPhrase">WHAT YOU NEVER SAW COMING</div>
+    </div>
+  </div>
+
   <!-- HERO -->
   <header>
     <div class="hero-bg"></div>
-    <div class="bleed"></div>
-
-    <!-- Ghost text emerging from black -->
-    <div class="blood-text" aria-hidden="true">
-      <span>WHAT YOU NEVER SAW COMING</span>
-    </div>
 
     <div class="hero-panel">
       <div class="eyebrow">Project Overview</div>
@@ -574,6 +596,7 @@
   </footer>
 
   <script>
+    // countdowns (unchanged)
     const events = [
       { label: 'Petals & Potions — Live', date: '2025-12-01T00:00:00' },
       { label: 'Rosehill Cosmetics — Q1 2026', date: '2026-03-01T00:00:00' },
@@ -584,7 +607,7 @@
     ];
     const wrap = document.getElementById('countdowns');
     const fmt = n => n.toString().padStart(2,'0');
-    function render(){
+    function renderCountdowns(){
       if(!wrap) return;
       wrap.innerHTML = '';
       const now = new Date();
@@ -603,8 +626,24 @@
         wrap.insertAdjacentHTML('beforeend', html);
       });
     }
-    render();
-    setInterval(render, 1000);
+    renderCountdowns();
+    setInterval(renderCountdowns, 1000);
+
+    // ✅ Make the watermark "scroll with us" (parallax)
+    const wm = document.getElementById('wm');
+    const bleed = document.getElementById('bleed');
+
+    function parallax(){
+      const y = window.scrollY || 0;
+
+      // watermark text drifts slowly
+      wm.style.transform = `translate3d(0, ${y * 0.12}px, 0)`;
+
+      // bleed drifts even slower for depth
+      bleed.style.transform = `translate3d(0, ${y * 0.05}px, 0)`;
+    }
+    parallax();
+    window.addEventListener('scroll', parallax, { passive:true });
   </script>
 </body>
 </html>
