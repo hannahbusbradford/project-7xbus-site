@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PROJECT 7xBUS — The New Epoch of Statistics</title>
   <meta name="description" content="Project 7xBUS — A new epoch of statistics, new mathematics, and real-world systems built from structural laws that classical models cannot detect." />
+
   <style>
     :root{
       --bg:#000;
@@ -49,7 +50,7 @@
         radial-gradient(1200px 900px at 50% 40%, rgba(0,245,255,.14) 0%, rgba(0,245,255,0) 60%);
       opacity:.22;
       animation: bleedPulse 12s ease-in-out infinite;
-      transform:translateY(0);
+      transform:translate3d(0,0,0);
     }
     @keyframes bleedPulse{
       0%   { opacity:.05; transform:scale(1.02) translateY(18px); }
@@ -69,36 +70,52 @@
       filter: blur(3.2px);
       mix-blend-mode:multiply;
       transform:translate3d(0,0,0);
+      will-change:transform;
     }
 
-    /* smaller + more readable + still huge */
+    /* centered + not “too big” + delayed reveal */
     .watermark-text .phrase{
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:.26em;              /* smaller spacing */
-      font-size:clamp(4.5rem, 12vw, 14rem); /* ✅ smaller size */
+
+      /* ✅ keep it centered, prevent weird drift */
+      display:block;
+      margin:0 auto;
+      width:min(1400px, 92vw);
+      text-align:center;
+
+      /* ✅ controlled “spread” */
+      letter-spacing:clamp(.20em, 1.1vw, .65em);
+
+      /* ✅ controlled size */
+      font-size:clamp(2.4rem, 5.4vw, 7.6rem);
       line-height:1.05;
+
       color:rgba(160,0,0,.72);
       opacity:0;
+
       animation: ghostReveal 16s ease-in-out infinite;
-      animation-delay: 5.5s; /* ✅ later reveal */
-      padding:0 8vw;
-      max-width:1400px;
+      animation-delay: 7.25s; /* ✅ later reveal (you wanted delay) */
+
+      padding:0 3vw;
+      user-select:none;
     }
 
     @keyframes ghostReveal{
       0%   { opacity:0;   transform:scale(1.06); }
-      20%  { opacity:.58; }
-      55%  { opacity:.40; }
-      78%  { opacity:.22; }
-      92%  { opacity:.12; }
+      20%  { opacity:.62; }
+      55%  { opacity:.44; }
+      78%  { opacity:.26; }
+      92%  { opacity:.14; }
       100% { opacity:0;   transform:scale(1.03); }
     }
 
     /* Keep ALL real content above watermark */
     header, section, footer{position:relative; z-index:1;}
 
-    /* HERO */
+    /* ==========================
+       HERO
+       ========================== */
     header{
       position:relative;
       min-height:100dvh;
@@ -129,9 +146,13 @@
       box-shadow:0 26px 80px rgba(0,0,0,.75);
       border-radius:22px;
       padding:3.1rem 2.3rem 2.5rem;
+
+      /* ✅ this is the “master width” */
       max-width:960px;
+      width:100%;
       margin:auto;
     }
+
     .eyebrow{
       font-size:.8rem;
       letter-spacing:.16em;
@@ -188,10 +209,14 @@
       background:rgba(255,255,255,0.02);
     }
 
-    /* GENERIC SECTION SHELL */
+    /* ==========================
+       SECTIONS — FIXED ALIGNMENT
+       (this removes the “weird left line”)
+       ========================== */
     section{
-      max-width:1100px;
-      margin:0 auto;
+      max-width:960px;      /* ✅ match hero width */
+      width:100%;
+      margin:0 auto;        /* ✅ hard center */
       padding:4rem 1.25rem;
       border-top:1px solid var(--line);
     }
@@ -201,18 +226,19 @@
       .hero-definition,.lead{font-size:1.06rem;}
     }
 
-    /* WHAT IT IS + WHY BLOCKS */
-    #what-it-is{max-width:880px;}
+    /* WHAT IT IS */
     #what-it-is h2{
       font-size:clamp(1.7rem,3vw,2.2rem);
       margin-bottom:1.25rem;
     }
     #what-it-is p{
-      max-width:820px;
+      /* ✅ let it breathe + align with hero */
+      max-width:none;
       color:#d6d6d6;
       font-size:1.02rem;
       margin:.85rem 0;
     }
+
     .why-grid{
       margin-top:2rem;
       display:grid;
@@ -266,7 +292,7 @@
       color:#f5f5f5;
     }
 
-    /* PILLARS / BUSINESSES */
+    /* PILLARS */
     .pillars{
       display:grid;
       grid-template-columns:1fr;
@@ -354,7 +380,7 @@
       color:#d9d9d9;
     }
 
-    /* CTA BUTTON */
+    /* CTA */
     .cta{
       padding:4rem 1.25rem;
       text-align:center;
@@ -396,6 +422,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- GLOBAL WATERMARK (moves with scrolling) -->
@@ -590,10 +617,15 @@
       Join the Signal — Stay Invisible, Strike Loud
     </a>
   </section>
-
+<section style="height:120vh; background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.85)); border-top:0;"></section>
   <footer>
     © 2025 Project 7xBUS. We don’t want their seats. We’re building new rooms.
   </footer>
+
+
+
+
+
 
   <script>
     // countdowns (unchanged)
@@ -607,6 +639,7 @@
     ];
     const wrap = document.getElementById('countdowns');
     const fmt = n => n.toString().padStart(2,'0');
+
     function renderCountdowns(){
       if(!wrap) return;
       wrap.innerHTML = '';
@@ -629,18 +662,14 @@
     renderCountdowns();
     setInterval(renderCountdowns, 1000);
 
-    // ✅ Make the watermark "scroll with us" (parallax)
+    // ✅ watermark “scroll with us” (parallax)
     const wm = document.getElementById('wm');
     const bleed = document.getElementById('bleed');
 
     function parallax(){
       const y = window.scrollY || 0;
-
-      // watermark text drifts slowly
-      wm.style.transform = `translate3d(0, ${y * 0.12}px, 0)`;
-
-      // bleed drifts even slower for depth
-      bleed.style.transform = `translate3d(0, ${y * 0.05}px, 0)`;
+      wm.style.transform = `translate3d(0, ${y * 0.10}px, 0)`;
+      bleed.style.transform = `translate3d(0, ${y * 0.045}px, 0)`;
     }
     parallax();
     window.addEventListener('scroll', parallax, { passive:true });
