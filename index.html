@@ -359,6 +359,42 @@
       font-weight:700;
       color:var(--gold);
     }
+
+    /* ✅ PREMIUM LOGOS (700% better) */
+    .milestone .row{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .milestone .logo-wrap{
+      width:64px;
+      height:64px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.08);
+      display:grid;
+      place-items:center;
+      flex-shrink:0;
+      overflow:hidden;
+    }
+    .milestone .logo{
+      width:52px;
+      height:52px;
+      object-fit:contain;
+      display:block;
+      opacity:1;
+      filter:saturate(1.1) contrast(1.05);
+      pointer-events:none;
+    }
+    @media (max-width:560px){
+      .milestone{grid-template-columns:92px 1fr;}
+      .milestone .logo-wrap{width:54px;height:54px;border-radius:12px;}
+      .milestone .logo{width:44px;height:44px;}
+    }
+
     .tag{
       display:inline-block;
       padding:.15rem .5rem;
@@ -367,21 +403,6 @@
       font-size:.8rem;
       color:#bfbfbf;
       margin-left:.4rem;
-    }
-
-    /* === Rollout logos (surgical add-on) === */
-    .milestone .row{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .milestone .logo{
-      height:26px;
-      width:auto;
-      opacity:.85;
-      filter:saturate(.9) contrast(.95);
-      flex-shrink:0;
-      pointer-events:none;
     }
 
     /* LIST */
@@ -567,50 +588,49 @@
     <h2>Rollout — One Build Per Quarter</h2>
     <p class="small">Live cadence with countdowns. Dates reflect the current plan; subject to refinement as partners lock and underwriting finalizes.</p>
     <div class="countdowns" id="countdowns"></div>
+
     <div class="timeline">
       <article class="milestone">
         <time>Q4 2025</time>
         <div class="row">
-          <img class="logo" src="./PetalsPotions.png" alt="Petals &amp; Potions">
           <div><strong>Petals &amp; Potions</strong> — Candle &amp; fragrance division launch. <span class="tag">Now</span></div>
         </div>
       </article>
+
       <article class="milestone">
         <time>Q1 2026</time>
         <div class="row">
-          <img class="logo" src="./Rosehill.png" alt="Rosehill Cosmetics">
+          <div class="logo-wrap"><img class="logo" src="./Rosehill.png" alt="Rosehill Cosmetics"></div>
           <div><strong>Rosehill Cosmetics</strong> — Biotech skincare + custom formulation SaaS.</div>
         </div>
       </article>
+
       <article class="milestone">
         <time>Q3 2026</time>
         <div class="row">
-          <img class="logo" src="./ElInky.PNG" alt="El-Inky Fingers">
+          <div class="logo-wrap"><img class="logo" src="./ElInky.PNG" alt="El-Inky Fingers"></div>
           <div><strong>El-Inky Fingers</strong> — Writing instruments for founders &amp; makers.</div>
         </div>
       </article>
+
       <article class="milestone">
         <time>Q4 2026</time>
         <div>
-          <div class="row">
-            <img class="logo" src="./HouseOfTheRubies.png" alt="House of the Rubies">
-            <div>
-              <strong>House of the Rubies</strong> — In-house ruby manufacturing &amp; jewelry from auctioned and lab-grown stones.
-            </div>
+          <div class="row" style="margin-bottom:.8rem;">
+            <div><strong>House of the Rubies</strong> — In-house ruby manufacturing &amp; jewelry from auctioned and lab-grown stones.</div>
           </div>
-          <br/>
           <div class="row">
-            <img class="logo" src="./ThunderCheeks.PNG" alt="ThunderCheeks">
-            <div>
-              <strong>ThunderCheeks™</strong> — Chewing gum made from extinct and wild-yeast novel fruit flavors.
-            </div>
+            <div class="logo-wrap"><img class="logo" src="./ThunderCheeks.PNG" alt="ThunderCheeks"></div>
+            <div><strong>ThunderCheeks™</strong> — Chewing gum made from extinct and wild-yeast novel fruit flavors.</div>
           </div>
         </div>
       </article>
+
       <article class="milestone">
         <time>Q1 2027</time>
         <div><strong>PureHundreds</strong> — Covenant-rooted apparel line, backed by ~600 acres under USDA support, turning fiber to cloth.</div>
       </article>
+
       <article class="milestone">
         <time>Q2 2027</time>
         <div><strong>Ale</strong> — Vehicle diagnostics and OBD-II platform with predictive maintenance, 5G connectivity, and engineered PIDs built for our ecosystem.</div>
