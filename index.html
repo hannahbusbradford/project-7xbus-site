@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PROJECT 7xBUS — The New Epoch of Statistics</title>
   <meta name="description" content="Project 7xBUS — A new epoch of statistics, new mathematics, and real-world systems built from structural laws that classical models cannot detect." />
+
   <style>
     :root{
       --bg:#000;
@@ -15,8 +16,10 @@
       --accent:#00f5ff;
       --gold:#d3af37;
     }
+
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;scroll-behavior:smooth}
+
     body{
       font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
       background:var(--bg);
@@ -25,7 +28,9 @@
       overflow-x:hidden;
     }
 
-    /* HERO */
+    /* =========================
+       HERO
+    ========================= */
     header{
       position:relative;
       min-height:100dvh;
@@ -33,7 +38,9 @@
       place-items:center;
       text-align:center;
       padding:4rem 1.25rem 3rem;
+      overflow:hidden;
     }
+
     .hero-bg{
       position:absolute;
       inset:0;
@@ -42,10 +49,66 @@
         radial-gradient(900px 900px at 0% 100%,#050505 0%,transparent 60%),
         radial-gradient(900px 900px at 100% 100%,#050505 0%,transparent 60%);
       opacity:.16;
-      z-index:-1;
+      z-index:-3;
     }
+
+    /* =========================
+       BLEED EFFECT (THE STORM)
+    ========================= */
+    .bleed{
+      position:absolute;
+      inset:-20%;
+      z-index:-2;
+      pointer-events:none;
+      filter: blur(20px) contrast(1.25) saturate(1.3);
+      mix-blend-mode: screen;
+      opacity:0;
+      background:
+        radial-gradient(560px 420px at 22% 18%, rgba(160,0,0,.55) 0%, rgba(160,0,0,0) 62%),
+        radial-gradient(700px 520px at 78% 26%, rgba(120,0,0,.45) 0%, rgba(120,0,0,0) 64%),
+        radial-gradient(900px 700px at 50% 105%, rgba(90,0,0,.35) 0%, rgba(90,0,0,0) 62%),
+        radial-gradient(1200px 900px at 50% 40%, rgba(0,245,255,.10) 0%, rgba(0,245,255,0) 60%);
+      animation: bleedPulse 8.5s ease-in-out infinite;
+    }
+
+    .bleed::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      opacity:.25;
+      background:
+        radial-gradient(2px 22px at 14% 32%, rgba(160,0,0,.4) 0%, rgba(160,0,0,0) 70%),
+        radial-gradient(2px 26px at 22% 46%, rgba(160,0,0,.3) 0%, rgba(160,0,0,0) 72%),
+        radial-gradient(2px 18px at 78% 38%, rgba(140,0,0,.28) 0%, rgba(140,0,0,0) 70%),
+        radial-gradient(2px 30px at 68% 54%, rgba(140,0,0,.25) 0%, rgba(140,0,0,0) 72%);
+      filter: blur(1px);
+      animation: bleedDrift 9s ease-in-out infinite;
+    }
+
+    @keyframes bleedPulse{
+      0%   { opacity:0;   transform:scale(1.02) translateY(10px); }
+      18%  { opacity:.45; transform:scale(1.06) translateY(0); }
+      42%  { opacity:.18; transform:scale(1.03) translateY(-4px); }
+      68%  { opacity:.38; transform:scale(1.07) translateY(2px); }
+      100% { opacity:0;   transform:scale(1.02) translateY(10px); }
+    }
+
+    @keyframes bleedDrift{
+      0%   { opacity:.12; transform:translateY(6px); }
+      40%  { opacity:.24; transform:translateY(0); }
+      75%  { opacity:.18; transform:translateY(4px); }
+      100% { opacity:.12; transform:translateY(6px); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .bleed, .bleed::after{ animation:none; opacity:.2; }
+    }
+
+    /* =========================
+       HERO PANEL
+    ========================= */
     .hero-panel{
-      background:linear-gradient(135deg,rgba(0,0,0,.9),rgba(10,10,10,.95));
+      background:linear-gradient(135deg,rgba(0,0,0,.92),rgba(10,10,10,.97));
       backdrop-filter:blur(10px);
       border:1px solid #161616;
       box-shadow:0 26px 80px rgba(0,0,0,.75);
@@ -53,7 +116,9 @@
       padding:3.1rem 2.3rem 2.5rem;
       max-width:960px;
       margin:auto;
+      z-index:1;
     }
+
     .eyebrow{
       font-size:.8rem;
       letter-spacing:.16em;
@@ -61,19 +126,21 @@
       color:var(--muted);
       margin-bottom:.6rem;
     }
+
     h1{
       font-size:clamp(2.4rem,5vw,3.8rem);
       letter-spacing:.14em;
       text-transform:uppercase;
       margin-bottom:.35rem;
     }
+
     .hero-one-liner{
       margin-top:.25rem;
       margin-bottom:1.3rem;
       color:#eaeaea;
       font-size:1.15rem;
-      letter-spacing:.01em;
     }
+
     .hero-definition{
       font-size:1.02rem;
       color:#e4e4e4;
@@ -81,15 +148,7 @@
       margin:0 auto 1.1rem;
     }
     .hero-definition strong{color:var(--accent);}
-    .lead{
-      color:var(--muted);
-      margin-top:.6rem;
-      font-size:1.02rem;
-      max-width:52rem;
-      margin-left:auto;
-      margin-right:auto;
-    }
-    .lead br{line-height:2}
+
     .hero-twofront{
       font-size:1rem;
       color:#cfcfcf;
@@ -99,6 +158,16 @@
       margin-right:auto;
       line-height:1.65;
     }
+
+    .lead{
+      color:var(--muted);
+      margin-top:.8rem;
+      font-size:1.02rem;
+      max-width:52rem;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
     .plain-bar{
       margin-top:1.6rem;
       padding:.75rem 1.2rem;
@@ -110,444 +179,53 @@
       background:rgba(255,255,255,0.02);
     }
 
-    /* GENERIC SECTION SHELL */
-    section{
-      max-width:1100px;
-      margin:0 auto;
-      padding:4rem 1.25rem;
-      border-top:1px solid var(--line);
-    }
-    @media (min-width:768px){
-      section{padding:4.5rem 1.5rem;}
-      .hero-panel{padding:3.3rem 3rem 2.8rem;}
-      .hero-definition,.lead{font-size:1.06rem;}
-    }
-
-    /* WHAT IT IS + WHY BLOCKS */
-    #what-it-is{max-width:880px;}
-    #what-it-is h2{
-      font-size:clamp(1.7rem,3vw,2.2rem);
-      margin-bottom:1.25rem;
-    }
-    #what-it-is p{
-      max-width:820px;
-      color:#d6d6d6;
-      font-size:1.02rem;
-      margin:.85rem 0;
-    }
-    .why-grid{
-      margin-top:2rem;
-      display:grid;
-      gap:1.1rem;
-    }
-    .why-card{
-      background:#050505;
-      border-radius:14px;
-      border:1px solid #222;
-      padding:1.1rem 1.2rem;
-    }
-    .why-card h3{
-      font-size:.95rem;
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      color:#eaeaea;
-      margin-bottom:.4rem;
-    }
-    .why-card p{font-size:.95rem;color:#d0d0d0;margin:.3rem 0;}
-    @media(min-width:900px){
-      .why-grid{grid-template-columns:repeat(3,1fr);}
-    }
-
-    .manifesto-block{
-      margin-top:2.5rem;
-      background:radial-gradient(circle at top,#111 0%,#050505 55%);
-      border-radius:16px;
-      border:1px solid #202020;
-      padding:1.7rem 1.4rem 1.5rem;
-      text-align:center;
-    }
-    .manifesto-block h2{
-      font-size:1.1rem;
-      margin-bottom:.6rem;
-      text-transform:none;
-    }
-    .manifesto-block h1{
-      font-size:1.25rem;
-      margin:.4rem auto .8rem;
-      max-width:820px;
-    }
-    .manifesto-block h2,
-    .manifesto-block h1{
-      letter-spacing:.02em;
-      color:#f3f3f3;
-    }
-
-    /* new manifesto callout lines */
-    .manifesto-callout-top{
-      margin-top:1.3rem;
-      font-weight:700;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      font-size:.85rem;
-      color:#cfcfcf;
-    }
-    .manifesto-callout-mid{
-      margin-top:.45rem;
-      font-size:.95rem;
-      color:#dcdcdc;
-      max-width:820px;
-      margin-left:auto;
-      margin-right:auto;
-    }
-    .manifesto-callout-bottom{
-      margin-top:.7rem;
-      font-size:.98rem;
-      font-weight:600;
-      color:#f5f5f5;
-    }
-
-    /* PILLARS / BUSINESSES */
-    .pillars{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:1rem;
-      margin-top:1rem;
-    }
-    .card{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:1rem;
-    }
-    .card h3{
-      font-size:1rem;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:#eaeaea;
-    }
-    .card p{
-      margin:.6rem 0;
-      color:#cfcfcf;
-    }
-    @media(min-width:900px){
-      .pillars{grid-template-columns:repeat(3,1fr);}
-    }
-
-    /* TIMELINE & COUNTDOWNS */
-    .countdowns{
-      display:grid;
-      gap:1rem;
-      margin-top:1rem;
-    }
-    .counter{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:1rem;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:.75rem;
-    }
-    .small{
-      color:#bdbdbd;
-      font-size:.95rem;
-    }
-    .timeline{
-      margin-top:1.5rem;
-      display:grid;
-      gap:1rem;
-    }
-    .milestone{
-      display:grid;
-      grid-template-columns:120px 1fr;
-      gap:1rem;
-      align-items:start;
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:1rem;
-    }
-    .milestone time{
-      font-weight:700;
-      color:var(--gold);
-    }
-    .tag{
-      display:inline-block;
-      padding:.15rem .5rem;
-      border:1px solid var(--line);
-      border-radius:999px;
-      font-size:.8rem;
-      color:#bfbfbf;
-      margin-left:.4rem;
-    }
-
-    /* LIST */
-    ul.clean{
-      list-style:none;
-      padding:0;
-      margin:.5rem 0;
-    }
-    ul.clean li{
-      padding:.35rem 0;
-      color:#d9d9d9;
-    }
-
-    /* CTA BUTTON */
-    .cta{
-      padding:4rem 1.25rem;
-      text-align:center;
-    }
-    .btn{
-      display:inline-block;
-      background:var(--accent);
-      color:#000;
-      text-decoration:none;
-      padding:.9rem 1.2rem;
-      font-weight:700;
-      border-radius:10px;
-      transition:filter .2s,transform .12s;
-    }
-    .btn:hover{
-      filter:brightness(.9);
-      transform:translateY(-1px);
-    }
-
-    /* FOOTER */
     footer{
       padding:3rem 1.25rem;
       text-align:center;
       color:#8a8a8a;
       background:#070707;
-      border-top:1px solid var(--line);
+      border-top:1px solid #1b1b1b;
       font-size:.9rem;
     }
   </style>
 </head>
+
 <body>
 
-  <!-- HERO -->
-  <header>
-    <div class="hero-bg"></div>
-    <div class="hero-panel">
-      <div class="eyebrow">Project Overview</div>
-      <h1>PROJECT 7xBUS</h1>
+<header>
+  <div class="hero-bg"></div>
+  <div class="bleed"></div>
 
-      <p class="hero-one-liner">
-        We develop new mathematics — and build real-world systems on top of it.
-      </p>
+  <div class="hero-panel">
+    <div class="eyebrow">Project Overview</div>
+    <h1>PROJECT 7xBUS</h1>
 
-      <p class="hero-definition">
-        <strong>Project 7xBUS is the new epoch of statistics</strong> — redefining what data prediction is capable of by uncovering structural laws in nature that traditional models never categorized or measured.
-      </p>
-
-      <p class="hero-twofront">
-        The same mathematical edge we developed for financial systems is now being deployed into physics, chemistry, engineering, and infrastructure — revealing structural behavior inside entropy and motion that classical science was never built to see.  
-        This lets us build technologies and businesses from laws that standard models treat as noise — so we compete on two fronts: <strong>Wall Street</strong> and the <strong>industrial world.</strong>
-      </p>
-
-      <p class="lead">
-        Project 7xBUS is the development of new branches of mathematics —
-        frameworks that surpass what’s known to be possible in data prediction
-        and market technology.
-        <br><br>
-        It is the war cry for those trapped under systems built to keep them powerless.
-        <br><br>
-        We have everything Wall Street has — and more. That’s the point.
-        <br><br>
-        If you’re a market maker or volatility hedge fund —
-        we are your new #1 competition.
-      </p>
-
-      <div class="plain-bar">
-        In simple terms: a new math engine powering markets, science, and real-world systems built to lower costs and challenge consolidation.
-      </div>
-    </div>
-  </header>
-
-  <!-- WHAT IT IS -->
-  <section id="what-it-is">
-    <h2>What It Is</h2>
-    <p>
-      <strong>Project 7xBUS</strong> is the culmination of ten years of continuous research — night and day, through live testing, coding, and real-world validation. It represents genuine mathematical breakthroughs — new frameworks with verifiable proofs that expand the limits of what human logic and computation were thought to be capable of.
-    </p>
-    <p>
-      Modern statistics is powerful, but it carries structural biases: it was built to model randomness, not structure. That means it often misclassifies structural behavior as noise — making many predictions functionally misaligned with how real systems actually move.
-    </p>
-    <p>
-      We’re not replacing classical statistics; we’re revealing what it cannot see. Project 7xBUS exposes structural laws inside motion and entropy, and then builds tools, trading models, and technologies on top of those laws.
-    </p>
-    <p>
-      This is not speculation. It’s reconstruction built from raw code and persistence — discoveries that go beyond finance and data, and <strong>rewrite how we should interpret our reality.</strong>
+    <p class="hero-one-liner">
+      We develop new mathematics — and build real-world systems on top of it.
     </p>
 
-    <div class="why-grid">
-      <div class="why-card">
-        <h3>The work</h3>
-        <p>Ten years of markets, code, and experiments distilled into a single engine instead of scattered ideas.</p>
-      </div>
-      <div class="why-card">
-        <h3>The shift</h3>
-        <p>We focus on structural behavior — the laws underneath the noise — rather than treating everything as randomness and hoping models keep up.</p>
-      </div>
-      <div class="why-card">
-        <h3>The outcome</h3>
-        <p>Prediction and engineering tools that behave differently because they are built on dimensions traditional statistics never measured.</p>
-      </div>
-    </div>
-
-    <div class="manifesto-block">
-      <h2>We want to challenge the institutions that have consolidated power and think they're untouchable</h2>
-      <h1>For example — the ones charging small businesses 5% transaction fees, the ones hyperinflating shipping costs to unsustainable levels.</h1>
-
-      <p class="manifesto-callout-bottom">If you refuse to change, we’ll build what comes next. And guess what? We already are.</p>
-    </div>
-  </section>
-
-  <!-- HOW WE’RE FUNDING THE MISSION -->
-  <section id="funding">
-    <h2>How We’re Funding the Mission</h2>
-    <p>
-      We launch high-impact, high-margin businesses across sectors. Each is engineered
-      to break a norm, tell a story, and redirect capital into the engine.
-      It’s capitalism, repurposed as reconstruction.
+    <p class="hero-definition">
+      <strong>Project 7xBUS is the new epoch of statistics</strong> — redefining what data prediction is capable of by uncovering structural laws in nature that traditional models never categorized or measured.
     </p>
-    <div class="pillars">
-      <div class="card">
-        <h3>Beauty &amp; Scent</h3>
-        <p>Rosehill Cosmetics; Petals &amp; Potions (candles &amp; fragrance). Science-backed formulas, cinematics, and community-first rollouts.</p>
-      </div>
-      <div class="card">
-        <h3>Tools &amp; Craft</h3>
-        <p>El-Inky Fingers — a clear glass pen with clear ink that turns black as it hits the page — and House of the Rubies, combining auctioned stones with in-house lab-grown rubies we make ourselves. Objects with story, built to last.</p>
-      </div>
-      <div class="card">
-        <h3>Flavor &amp; Innovation</h3>
-        <p>ThunderCheeks™ — chewing gum built on wild-yeast flavor development, creating entirely new flavor families and resurrecting extinct fruit profiles.</p>
-      </div>
-      <div class="card">
-        <h3>Systems, Shipping &amp; Mobility</h3>
-        <p>Ale — an OBD-II diagnostic and 5G-connected platform that gives real-time updates on your car’s health and uses machine learning to predict failures before they hit — plus engine rebuild and shipping infrastructure designed to drop national shipping costs by up to 50%.</p>
-      </div>
-      <div class="card">
-        <h3>Farm, Energy &amp; Chemistry</h3>
-        <p>~600 acres under USDA underwriting for PureHundreds fiber-to-cloth production, chemical manufacturing lines including OH⁻/H₂O₂ adjacent products, oil wells, and America’s first AI-driven bee farm for ecosystem and desert restoration.</p>
-      </div>
-      <div class="card">
-        <h3>Media &amp; Narrative</h3>
-        <p>The 7th World (working title) — a cinematic series that walks viewers through delusion built from real facts and lived logic, so people can see how delusions form in real time.</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- ROLLOUT TIMELINE + COUNTDOWNS -->
-  <section id="rollout">
-    <h2>Rollout — One Build Per Quarter</h2>
-    <p class="small">Live cadence with countdowns. Dates reflect the current plan; subject to refinement as partners lock and underwriting finalizes.</p>
-    <div class="countdowns" id="countdowns"></div>
-    <div class="timeline">
-      <article class="milestone">
-        <time>Q4 2025</time>
-        <div><strong>Petals &amp; Potions</strong> — Candle &amp; fragrance division launch. <span class="tag">Now</span></div>
-      </article>
-      <article class="milestone">
-        <time>Q1 2026</time>
-        <div><strong>Rosehill Cosmetics</strong> — Biotech skincare + custom formulation SaaS.</div>
-      </article>
-      <article class="milestone">
-        <time>Q3 2026</time>
-        <div><strong>El-Inky Fingers</strong> — Writing instruments for founders &amp; makers.</div>
-      </article>
-      <article class="milestone">
-        <time>Q4 2026</time>
-        <div>
-          <strong>House of the Rubies</strong> — In-house ruby manufacturing &amp; jewelry from auctioned and lab-grown stones.
-          <br/>
-          <strong>ThunderCheeks™</strong> — Chewing gum made from extinct and wild-yeast novel fruit flavors.
-        </div>
-      </article>
-      <article class="milestone">
-        <time>Q1 2027</time>
-        <div><strong>PureHundreds</strong> — Covenant-rooted apparel line, backed by ~600 acres under USDA support, turning fiber into cloth.</div>
-      </article>
-      <article class="milestone">
-        <time>Q2 2027</time>
-        <div><strong>Ale</strong> — Vehicle diagnostics and OBD-II platform with predictive maintenance, 5G connectivity, and engineered PIDs built for our ecosystem.</div>
-      </article>
-    </div>
-  </section>
-
-  <!-- EXTENDED PORTFOLIO -->
-  <section id="portfolio">
-    <h2>Extended Portfolio</h2>
-    <ul class="clean">
-      <li>• <strong>ThunderCheeks™</strong> — Chewing gum made from wild-yeast flavor systems and extinct fruit profiles.</li>
-      <li>• <strong>El-Inky Fingers</strong> — Clear glass pens with clear ink that turns black as it hits the page.</li>
-      <li>• <strong>House of the Rubies</strong> — Auctioned rubies and in-house lab-grown stones we manufacture ourselves.</li>
-      <li>• <strong>PureHundreds</strong> — Apparel line rooted in covenant, backed by ~600 acres under USDA underwriting, turning fiber to cloth.</li>
-      <li>• <strong>Ale</strong> — Diagnostic + OBD-II platform delivering real-time car health and ML-driven failure prediction over 5G, with custom PIDs engineered for our stack.</li>
-      <li>• <strong>Chemical Manufacturing &amp; Wells</strong> — Chemical lines (including OH⁻/H₂O₂ and brake-cleaner-adjacent products) powered by our own manufacturing footprint and oil wells.</li>
-      <li>• <strong>America’s First AI Bee Farm</strong> — Smart agriculture &amp; ecosystem stewardship, integrating pollinators with desert restoration and crop systems.</li>
-      <li>• <strong>The 7th World</strong> — Cinematic series exploring delusion and reality through factual, lived narratives.</li>
-      <li>• …and a new build each quarter, sequenced for impact and for counter-engineering monetary consolidation.</li>
-    </ul>
-  </section>
-
-  <!-- INVESTOR CONTACT / COMPLIANCE -->
-  <section id="contact" style="padding:2rem 1.25rem;text-align:center;border-top:1px solid #1b1b1b;">
-    <p style="color:#bdbdbd;font-size:0.95rem;max-width:760px;margin:0 auto;">
-      If you're an accredited investor, fund allocator, or interested in the <strong>Project 7xBUS Trading Model</strong> for funding partnerships, email
-      <a href="mailto:funds@project7xbus.com" style="color:#00f5ff;text-decoration:none;">funds@project7xbus.com</a>.
-      A <strong>Securities Packet</strong> is available on request, outlining structure, instruments, and the proprietary mathematical edge we’re introducing to modern markets.
-      All securities instruments are managed by professionals holding appropriate <strong>FINRA-certified licenses</strong> and can be verified via
-      <a href="https://brokercheck.finra.org" target="_blank" rel="noopener noreferrer" style="color:#00f5ff;text-decoration:none;">FINRA BrokerCheck</a>.
+    <p class="hero-twofront">
+      The same mathematical edge we developed for financial systems is now being deployed into physics, chemistry, engineering, and infrastructure — revealing structural behavior inside entropy and motion that classical science was never built to see.
     </p>
-  </section>
 
-  <!-- CTA -->
-  <section class="cta">
-    <a class="btn" href="https://www.instagram.com/project7xbus/" target="_blank" rel="noopener noreferrer">
+    <p class="lead">
+      A data prediction system operating beyond the limits of all known statistical frameworks —
+      designed to outcompete every existing predictive model, including those built by the world’s best minds.
+    </p>
+
+    <div class="plain-bar">
       Join the Signal — Stay Invisible, Strike Loud
-    </a>
-  </section>
+    </div>
+  </div>
+</header>
 
-  <footer>
-    © 2025 Project 7xBUS. We don’t want their seats. We’re building new rooms.
-  </footer>
+<footer>
+  © 2025 Project 7xBUS. We don’t want their seats. We’re building new rooms.
+</footer>
 
-  <script>
-    const events = [
-      { label: 'Petals & Potions — Live', date: '2025-12-01T00:00:00' },
-      { label: 'Rosehill Cosmetics — Q1 2026', date: '2026-03-01T00:00:00' },
-      { label: 'El-Inky Fingers — Q3 2026', date: '2026-09-01T00:00:00' },
-      { label: 'House of the Rubies & ThunderCheeks — Q4 2026', date: '2026-12-01T00:00:00' },
-      { label: 'PureHundreds — Q1 2027', date: '2027-03-01T00:00:00' },
-      { label: 'Ale — Q2 2027', date: '2027-06-01T00:00:00' }
-    ];
-    const wrap = document.getElementById('countdowns');
-    const fmt = n => n.toString().padStart(2,'0');
-    function render(){
-      if(!wrap) return;
-      wrap.innerHTML = '';
-      const now = new Date();
-      events.forEach(ev=>{
-        const t = new Date(ev.date) - now;
-        let html;
-        if(t <= 0){
-          html = `<div class="counter"><strong>${ev.label}</strong><span class="small">Status: Live / In progress</span></div>`;
-        } else {
-          const d = Math.floor(t/86400000);
-          const h = Math.floor((t%86400000)/3600000);
-          const m = Math.floor((t%3600000)/60000);
-          const s = Math.floor((t%60000)/1000);
-          html = `<div class="counter"><strong>${ev.label}</strong><span class="small">${fmt(d)}d : ${fmt(h)}h : ${fmt(m)}m : ${fmt(s)}s</span></div>`;
-        }
-        wrap.insertAdjacentHTML('beforeend', html);
-      });
-    }
-    render();
-    setInterval(render, 1000);
-  </script>
 </body>
 </html>
