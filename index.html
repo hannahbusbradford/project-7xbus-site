@@ -731,23 +731,25 @@ white-space: pre-wrap;
   </div>
 </section>
   <!-- EXTENDED PORTFOLIO -->
-  <section id="portfolio">
-    <h2>Extended Portfolio</h2>
-    <ul class="clean">
-      <li>• <strong>ThunderCheeks™</strong> — Chewing gum made from wild-yeast flavor systems and extinct fruit profiles.</li>
-      <li>• <strong>El-Inky Fingers</strong> — Clear glass pens with clear ink that turns black as it hits the page.</li>
-      <li>• <strong>House of the Rubies</strong> — Auctioned rubies and in-house lab-grown stones we manufacture ourselves.</li>
-      <li>• <strong>PureHundreds</strong> — Apparel line rooted in covenant, backed by ~600 acres under USDA underwriting, turning fiber to cloth.</li>
-      <li>• <strong>Ale</strong> — Diagnostic + OBD-II platform delivering real-time car health and ML-driven failure prediction over 5G, with custom PIDs engineered for our stack.</li>
-      <li>• <strong>Chemical Manufacturing &amp; Wells</strong> — Chemical lines (including OH⁻/H₂O₂ and brake-cleaner-adjacent products) powered by our own manufacturing footprint and oil wells.</li>
-      <li>• <strong>America’s First AI Bee Farm</strong> — Smart agriculture &amp; ecosystem stewardship, integrating pollinators with desert restoration and crop systems.</li>
-      <li>• <strong>The 7th World</strong> — Cinematic series exploring delusion and reality through factual, lived narratives.</li>
-      <li>• …and a new build each quarter, sequenced for impact and for counter-engineering monetary consolidation.</li>
-      <li>• <strong>Cleared</strong> — A logistics-optimized auction site offering radically transparent pricing, capped shipping fees, and real driver payouts. Designed to collapse hidden market inefficiencies and redirect the surplus into community equity.</li>
-      <li>• <strong>10K Hive Bee Farm</strong> — An autonomous, precision-farmed pollination and honey operation. Supports ecosystem health, scalable hive leasing, and custom product sourcing for honey, wax, and fragrance derivatives.</li>
+<!-- EXTENDED PORTFOLIO (DROPDOWN STYLE) -->
+<section id="portfolio">
+  <h2 style="cursor:pointer;" onclick="togglePortfolio()">▶ Extended Portfolio</h2>
+  <ul class="clean" id="portfolioList" style="display:none; transition: all 0.3s ease;">
+    <li>• <strong>ThunderCheeks™</strong> — Chewing gum made from wild-yeast flavor systems and extinct fruit profiles.</li>
+    <li>• <strong>El-Inky Fingers</strong> — Clear glass pens with clear ink that turns black as it hits the page.</li>
+    <li>• <strong>House of the Rubies</strong> — Auctioned rubies and in-house lab-grown stones we manufacture ourselves.</li>
+    <li>• <strong>PureHundreds</strong> — Apparel line rooted in covenant, backed by ~600 acres under USDA underwriting, turning fiber to cloth.</li>
+    <li>• <strong>Ale</strong> — Diagnostic + OBD-II platform delivering real-time car health and ML-driven failure prediction over 5G, with custom PIDs engineered for our stack.</li>
+    <li>• <strong>Chemical Manufacturing &amp; Wells</strong> — Chemical lines (including OH⁻/H₂O₂ and brake-cleaner-adjacent products) powered by our own manufacturing footprint and oil wells.</li>
+    <li>• <strong>America’s First AI Bee Farm</strong> — Smart agriculture &amp; ecosystem stewardship, integrating pollinators with desert restoration and crop systems.</li>
+    <li>• <strong>The 7th World</strong> — Cinematic series exploring delusion and reality through factual, lived narratives.</li>
+    <li>• …and a new build each quarter, sequenced for impact and for counter-engineering monetary consolidation.</li>
+    <li>• <strong>Cleared</strong> — A logistics-optimized auction site offering radically transparent pricing, capped shipping fees, and real driver payouts. Designed to collapse hidden market inefficiencies and redirect the surplus into community equity.</li>
+    <li>• <strong>10K Hive Bee Farm</strong> — An autonomous, precision-farmed pollination and honey operation. Supports ecosystem health, scalable hive leasing, and custom product sourcing for honey, wax, and fragrance derivatives.</li>
+  </ul>
+</section>
 
-    </ul>
-  </section>
+
 
   <!-- INVESTOR CONTACT / COMPLIANCE -->
   <section id="contact" style="padding:2rem 1.25rem;text-align:center;border-top:1px solid #1b1b1b;">
@@ -840,6 +842,19 @@ setTimeout(typeWriter, speed);
 document.addEventListener("DOMContentLoaded", () => {
 setTimeout(typeWriter, 600);
 });
+</script>
+  <script>
+  function togglePortfolio() {
+    const list = document.getElementById('portfolioList');
+    const heading = document.querySelector('#portfolio h2');
+    if (list.style.display === 'none') {
+      list.style.display = 'block';
+      heading.innerHTML = '▼ Extended Portfolio';
+    } else {
+      list.style.display = 'none';
+      heading.innerHTML = '▶ Extended Portfolio';
+    }
+  }
 </script>
 </body>
 </html>
