@@ -19,6 +19,18 @@
   <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
 
+  <!-- VIDEO BG LAYER (NEW, DOES NOT DELETE ANYTHING) -->
+  <style>
+    .bg-video{
+      position:fixed;
+      top:0; left:0;
+      width:100vw;
+      height:100vh;
+      object-fit:cover;
+      z-index:-1;
+    }
+  </style>
+
   <!-- STRUCTURED DATA (CRITICAL FOR GOOGLE) -->
   <script type="application/ld+json">
   {
@@ -116,12 +128,17 @@
   margin:0;
   min-height:100vh;
   font-family:'Open Sans', Arial, sans-serif;
-  background-image:url('seeds.jpg');
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
   background-attachment:fixed;
+  position:relative;
 ">
+
+  <!-- VIDEO BACKGROUND (NEW) -->
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="uri_ifs___V_88-LmUCAd2981LSDSiFg2CtuWhwjMdPaKf7b18VFDA4.mp4" type="video/mp4">
+  </video>
 
 
   <!-- NAV -->
@@ -245,8 +262,3 @@
 
 </body>
 </html>
-
-
-
-
-
