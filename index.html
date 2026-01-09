@@ -571,22 +571,53 @@
   max-width:56ch;
 }
 
-/* Mobile tweaks */
-@media (max-width:560px){
-  #breakthrough-alert .alert-message{font-size:1.05rem;}
+/* ==========================
+   HERO FLIP CARD (AUTONOMOUS)
+   ========================== */
+
+.flip-wrap{
+  perspective: 1400px;
+  margin-top: 2rem;        /* keeps the same spacing your <p> had */
 }
 
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-  #breakthrough-alert,
-  #alert-overlay{scroll-behavior:auto;}
+.flip-card{
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.25s cubic-bezier(.4,.2,.2,1);
 }
 
-.flip-wrap.is-flipped .flip-card{
+/* This is your ORIGINAL #typewriter inline style moved into a class */
+.flip-panel{
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.06), rgba(0, 0, 0, 0.8));
+  border: 1px solid rgba(0, 245, 255, 0.15);
+  padding: 2rem 1.6rem;
+  border-radius: 16px;
+  box-shadow: 0 0 24px rgba(0, 245, 255, 0.07);
+  color: #e5e5e5;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  min-height: 120px;
+  white-space: pre-wrap;
+}
+
+/* faces */
+.flip-face{
+  backface-visibility: hidden;
+}
+
+.flip-back{
+  position: absolute;
+  inset: 0;
   transform: rotateY(180deg);
 }
-@media (hover:hover){
-  .flip-wrap:hover .flip-card{ transform: rotateY(180deg); }
+
+.flip-back strong{
+  color: var(--accent);
+}
+
+/* JS-controlled flip state (KEEP THIS) */
+.flip-wrap.is-flipped .flip-card{
+  transform: rotateY(180deg);
 }
 
 
