@@ -78,16 +78,13 @@
       font-weight:900;
       text-transform:uppercase;
 
-      /* ✅ keep it centered, prevent weird drift */
       display:block;
       margin:0 auto;
       width:min(1400px, 92vw);
       text-align:center;
 
-      /* ✅ controlled “spread” */
       letter-spacing:clamp(.20em, 1.1vw, .65em);
 
-      /* ✅ controlled size */
       font-size:clamp(2.4rem, 5.4vw, 7.6rem);
       line-height:1.05;
 
@@ -95,7 +92,7 @@
       opacity:0;
 
       animation: ghostReveal 16s ease-in-out infinite;
-      animation-delay: 7.25s; /* ✅ later reveal (you wanted delay) */
+      animation-delay: 7.25s;
 
       padding:0 3vw;
       user-select:none;
@@ -146,8 +143,6 @@
       box-shadow:0 26px 80px rgba(0,0,0,.75);
       border-radius:22px;
       padding:3.1rem 2.3rem 2.5rem;
-
-      /* ✅ this is the “master width” */
       max-width:960px;
       width:100%;
       margin:auto;
@@ -189,15 +184,6 @@
       margin-right:auto;
     }
     .lead br{line-height:2}
-    .hero-twofront{
-      font-size:1rem;
-      color:#cfcfcf;
-      margin-top:1.3rem;
-      max-width:50rem;
-      margin-left:auto;
-      margin-right:auto;
-      line-height:1.65;
-    }
     .plain-bar{
       margin-top:1.6rem;
       padding:.75rem 1.2rem;
@@ -211,12 +197,11 @@
 
     /* ==========================
        SECTIONS — FIXED ALIGNMENT
-       (this removes the “weird left line”)
        ========================== */
     section{
-      max-width:960px;      /* ✅ match hero width */
+      max-width:960px;
       width:100%;
-      margin:0 auto;        /* ✅ hard center */
+      margin:0 auto;
       padding:4rem 1.25rem;
       border-top:1px solid var(--line);
     }
@@ -232,7 +217,6 @@
       margin-bottom:1.25rem;
     }
     #what-it-is p{
-      /* ✅ let it breathe + align with hero */
       max-width:none;
       color:#d6d6d6;
       font-size:1.02rem;
@@ -360,7 +344,6 @@
       color:var(--gold);
     }
 
-    /* ✅ PREMIUM LOGOS (700% better) */
     .milestone .row{
       display:flex;
       align-items:center;
@@ -457,194 +440,179 @@
       .watermark-text .phrase{animation:none; opacity:.18;}
     }
 
+    /* ==========================
+       BREAKTHROUGH ALERT (CENTERED MODAL)
+       ========================== */
+    #alert-overlay{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:rgba(0,0,0,.72);
+      z-index:99999;
+      isolation:isolate;
+    }
 
+    #breakthrough-alert{
+      width:min(560px, 92vw);
+      background:linear-gradient(180deg, rgba(12,12,12,.98), rgba(5,5,5,.98));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      box-shadow:0 26px 80px rgba(0,0,0,.75);
+      overflow:hidden;
+      transform:translate3d(0,0,0);
+    }
 
+    #breakthrough-alert .alert-header{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 16px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.02);
+    }
 
+    #breakthrough-alert .alert-dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#ff3b30;
+      box-shadow:0 0 0 6px rgba(255,59,48,.10);
+      flex:0 0 auto;
+    }
 
+    #breakthrough-alert .alert-title{
+      font-weight:800;
+      letter-spacing:.18em;
+      font-size:.82rem;
+      text-transform:uppercase;
+      color:#f0f0f0;
+      flex:1;
+    }
 
+    #breakthrough-alert .alert-close{
+      appearance:none;
+      border:0;
+      background:rgba(255,255,255,.05);
+      color:#d6d6d6;
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      line-height:1;
+      transition:transform .12s ease, filter .2s ease, background .2s ease;
+    }
+    #breakthrough-alert .alert-close:hover{
+      filter:brightness(1.15);
+      background:rgba(255,255,255,.08);
+      transform:translateY(-1px);
+    }
 
+    #breakthrough-alert .alert-body{
+      padding:18px 18px 20px;
+      text-align:center;
+    }
 
+    #breakthrough-alert .alert-date{
+      color:#9a9a9a;
+      font-size:.8rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
 
+    #breakthrough-alert .alert-message{
+      font-size:1.16rem;
+      line-height:1.55;
+      color:#f1f1f1;
+      margin:0 auto 10px;
+      max-width:48ch;
+    }
 
-/* ==========================
-   BREAKTHROUGH ALERT (CENTERED MODAL)
-   ========================== */
-#alert-overlay{
-  position:fixed;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-  background:rgba(0,0,0,.72);
-  z-index:99999;
-  isolation:isolate;
-}
+    #breakthrough-alert .alert-message strong{
+      color:var(--accent);
+    }
 
-#breakthrough-alert{
-  width:min(560px, 92vw);
-  background:linear-gradient(180deg, rgba(12,12,12,.98), rgba(5,5,5,.98));
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:18px;
-  box-shadow:0 26px 80px rgba(0,0,0,.75);
-  overflow:hidden;
-  transform:translate3d(0,0,0);
-}
+    #breakthrough-alert .alert-subtext{
+      font-size:.95rem;
+      line-height:1.55;
+      color:#bdbdbd;
+      margin:0 auto;
+      max-width:56ch;
+    }
 
-#breakthrough-alert .alert-header{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:14px 16px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  background:rgba(255,255,255,.02);
-}
+    /* Mobile tweaks */
+    @media (max-width:560px){
+      #breakthrough-alert .alert-message{font-size:1.05rem;}
+    }
 
-#breakthrough-alert .alert-dot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:#ff3b30;
-  box-shadow:0 0 0 6px rgba(255,59,48,.10);
-  flex:0 0 auto;
-}
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      #breakthrough-alert,
+      #alert-overlay{scroll-behavior:auto;}
+    }
 
-#breakthrough-alert .alert-title{
-  font-weight:800;
-  letter-spacing:.18em;
-  font-size:.82rem;
-  text-transform:uppercase;
-  color:#f0f0f0;
-  flex:1;
-}
+    /* ==========================
+       HERO FLIP CARD (AUTONOMOUS)
+       ========================== */
+    .flip-wrap{
+      perspective: 1400px;
+      margin-top: 2rem; /* replaces the old inline margin-top */
+    }
 
-#breakthrough-alert .alert-close{
-  appearance:none;
-  border:0;
-  background:rgba(255,255,255,.05);
-  color:#d6d6d6;
-  width:34px;
-  height:34px;
-  border-radius:10px;
-  cursor:pointer;
-  display:grid;
-  place-items:center;
-  line-height:1;
-  transition:transform .12s ease, filter .2s ease, background .2s ease;
-}
-#breakthrough-alert .alert-close:hover{
-  filter:brightness(1.15);
-  background:rgba(255,255,255,.08);
-  transform:translateY(-1px);
-}
+    .flip-card{
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1.25s cubic-bezier(.4,.2,.2,1);
+    }
 
-#breakthrough-alert .alert-body{
-  padding:18px 18px 20px;
-  text-align:center;
-}
+    .flip-panel{
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.06), rgba(0, 0, 0, 0.8));
+      border: 1px solid rgba(0, 245, 255, 0.15);
+      padding: 2rem 1.6rem;
+      border-radius: 16px;
+      box-shadow: 0 0 24px rgba(0, 245, 255, 0.07);
+      color: #e5e5e5;
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+      min-height: 120px;
+      white-space: pre-wrap;
+    }
 
-#breakthrough-alert .alert-date{
-  color:#9a9a9a;
-  font-size:.8rem;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  margin-bottom:10px;
-}
+    .flip-face{
+      backface-visibility: hidden;
+    }
 
-#breakthrough-alert .alert-message{
-  font-size:1.16rem;
-  line-height:1.55;
-  color:#f1f1f1;
-  margin:0 auto 10px;
-  max-width:48ch;
-}
+    .flip-back{
+      position: absolute;
+      inset: 0;
+      transform: rotateY(180deg);
+    }
 
-#breakthrough-alert .alert-message strong{
-  color:var(--accent);
-}
+    .flip-back strong{
+      color: var(--accent);
+    }
 
-#breakthrough-alert .alert-subtext{
-  font-size:.95rem;
-  line-height:1.55;
-  color:#bdbdbd;
-  margin:0 auto;
-  max-width:56ch;
-}
-
-/* ==========================
-   HERO FLIP CARD (AUTONOMOUS)
-   ========================== */
-
-.flip-wrap{
-  perspective: 1400px;
-  margin-top: 2rem;        /* keeps the same spacing your <p> had */
-}
-
-.flip-card{
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1.25s cubic-bezier(.4,.2,.2,1);
-}
-
-/* This is your ORIGINAL #typewriter inline style moved into a class */
-.flip-panel{
-  background: linear-gradient(135deg, rgba(0, 245, 255, 0.06), rgba(0, 0, 0, 0.8));
-  border: 1px solid rgba(0, 245, 255, 0.15);
-  padding: 2rem 1.6rem;
-  border-radius: 16px;
-  box-shadow: 0 0 24px rgba(0, 245, 255, 0.07);
-  color: #e5e5e5;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  min-height: 120px;
-  white-space: pre-wrap;
-}
-
-/* faces */
-.flip-face{
-  backface-visibility: hidden;
-}
-
-.flip-back{
-  position: absolute;
-  inset: 0;
-  transform: rotateY(180deg);
-}
-
-.flip-back strong{
-  color: var(--accent);
-}
-
-/* JS-controlled flip state (KEEP THIS) */
-.flip-wrap.is-flipped .flip-card{
-  transform: rotateY(180deg);
-}
-
-
-
-
-
-
-
-    
-
-
-
-    
+    .flip-wrap.is-flipped .flip-card{
+      transform: rotateY(180deg);
+    }
   </style>
 </head>
 
 <body>
 <nav style="background: #0b0b0b; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1a1a1a;">
-  <div style="font-weight: bold; font-size: 1.2rem; color: var(--accent); letter-spacing: 0.08em;">
-    
-  </div>
+  <div style="font-weight: bold; font-size: 1.2rem; color: var(--accent); letter-spacing: 0.08em;"></div>
   <div style="display: flex; gap: 1.2rem;">
     <a href="index.html" style="color: #e9e9e9; text-decoration: none; font-size: 0.95rem;">Home</a>
     <a href="About.html" style="color: #e9e9e9; text-decoration: none; font-size: 0.95rem;">About</a>
     <a href="https://www.instagram.com/project7xbus?igsh=MWE4dXpkODRiNWx4dA==" target="_blank" style="color: #e9e9e9; text-decoration: none; font-size: 0.95rem;">Instagram</a>
   </div>
 </nav>
+
 <!-- BREAKTHROUGH ALERT OVERLAY -->
 <div id="alert-overlay">
   <div id="breakthrough-alert">
@@ -667,13 +635,6 @@
   </div>
 </div>
 
-
-
-
-
-
-  
-  
 <script>
 function dismissBanner() {
   const overlay = document.getElementById("alert-overlay");
@@ -682,7 +643,6 @@ function dismissBanner() {
   try { localStorage.setItem("p7xbus_breakthrough_seen","1"); } catch(e){}
 }
 
-/* Optional: show once per browser */
 document.addEventListener("DOMContentLoaded", () => {
   try {
     const seen = localStorage.getItem("p7xbus_breakthrough_seen");
@@ -693,212 +653,221 @@ document.addEventListener("DOMContentLoaded", () => {
   } catch(e){}
 });
 
-/* Optional: escape key closes modal */
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") dismissBanner();
 });
 </script>
 
+<!-- GLOBAL WATERMARK (moves with scrolling) -->
+<div class="scroll-watermark" aria-hidden="true">
+  <div class="scroll-bleed" id="bleed"></div>
+  <div class="watermark-text" id="wm">
+    <div class="phrase" id="wmPhrase">WHAT YOU NEVER SAW COMING</div>
+  </div>
+</div>
 
+<!-- HERO -->
+<header>
+  <div class="hero-bg"></div>
 
+  <div class="hero-panel">
+    <div class="eyebrow">Project Overview</div>
+    <h1>PROJECT 7xBUS</h1>
 
+    <p class="hero-one-liner">
+      We develop new mathematics — and build real-world systems on top of it.
+    </p>
 
+    <p class="hero-one-liner">
+      What we've built will set the tone for the next era of science and technologies, and any technology now without it - is now irrelevent. Don't believe us? We have the math proofs that connected what no-one else connected
+    </p>
 
-  
+    <p class="hero-definition">
+      <strong>Project 7xBUS is the new epoch of statistics</strong> — redefining what data prediction is capable of by uncovering structural laws in nature that traditional models never categorized or measured.
+    </p>
 
-  
-  <!-- GLOBAL WATERMARK (moves with scrolling) -->
-  <div class="scroll-watermark" aria-hidden="true">
-    <div class="scroll-bleed" id="bleed"></div>
-    <div class="watermark-text" id="wm">
-      <div class="phrase" id="wmPhrase">WHAT YOU NEVER SAW COMING</div>
+    <!-- AUTONOMOUS FLIP CARD (typewriter on front, keys statement on back) -->
+    <div class="flip-wrap" id="flipCard">
+      <div class="flip-card">
+
+        <div class="flip-face flip-front">
+          <p id="typewriter" class="flip-panel"></p>
+        </div>
+
+        <div class="flip-face flip-back">
+          <p class="flip-panel">
+            We want to make it abundantly clear —
+            <strong>we hold the keys to the next era of scientific breakthroughs</strong>
+            by seeing what no one in history has seen before
+            and connecting the dots mathematically.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="lead">
+      Project 7xBUS is the development of new branches of mathematics —
+      frameworks that surpass what’s known to be possible in data prediction
+      and market technology.
+      <br><br>
+      It is the war cry for those trapped under systems built to keep them powerless.
+      <br><br>
+      We have everything Wall Street has — and more. That’s the point.
+      <br><br>
+      If you’re a market maker or volatility hedge fund —
+      we are your new #1 competition.
+    </p>
+
+    <div class="plain-bar">
+      In simple terms: a new math engine powering markets, science, and real-world systems built to lower costs and challenge consolidation.
+    </div>
+  </div>
+</header>
+
+<!-- WHAT IT IS -->
+<section id="what-it-is">
+  <h2>What It Is</h2>
+  <p>
+    <strong>Project 7xBUS</strong> is the culmination of ten years of continuous research — night and day, through live testing, coding, and real-world validation. It represents genuine mathematical breakthroughs — new frameworks with verifiable proofs that expand the limits of what human logic and computation were thought to be capable of.
+  </p>
+  <p>
+    Modern statistics is powerful, but it carries structural biases: it was built to model randomness, not structure. That means it often misclassifies structural behavior as noise — making many predictions functionally misaligned with how real systems actually move.
+  </p>
+  <p>
+    We’re not replacing classical statistics; we’re revealing what it cannot see. Project 7xBUS exposes structural laws inside motion and entropy, and then builds tools, trading models, and technologies on top of those laws.
+  </p>
+  <p>
+    This is not speculation. It’s reconstruction built from raw code and persistence — discoveries that go beyond finance and data, and <strong>rewrite how we should interpret our reality.</strong>
+  </p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <h3>The work</h3>
+      <p>Ten years of markets, code, and experiments distilled into a single engine instead of scattered ideas.</p>
+    </div>
+    <div class="why-card">
+      <h3>The shift</h3>
+      <p>We focus on structural behavior — the laws underneath the noise — rather than treating everything as randomness and hoping models keep up.</p>
+    </div>
+    <div class="why-card">
+      <h3>The outcome</h3>
+      <p>Prediction and engineering tools that behave differently because they are built on dimensions traditional statistics never measured.</p>
     </div>
   </div>
 
-  <!-- HERO -->
-  <header>
-    <div class="hero-bg"></div>
-
-    <div class="hero-panel">
-      <div class="eyebrow">Project Overview</div>
-      <h1>PROJECT 7xBUS</h1>
-
-      <p class="hero-one-liner">
-        We develop new mathematics — and build real-world systems on top of it.
-      </p>
-      
-        <p class="hero-one-liner"> What we've built will set the tone for the next era of science and technologies, and any technology now without it - is now irrelevent. Don't believe us? We have the math proofs that connected what no-one else connected  </p>
-
-      
-      <p class="hero-definition">
-        <strong>Project 7xBUS is the new epoch of statistics</strong> — redefining what data prediction is capable of by uncovering structural laws in nature that traditional models never categorized or measured.
-      </p>
-
-<!-- ✅ Replace this static paragraph -->
-<p id="typewriter" class="flip-panel"></p>
-
-      <p class="lead">
-        Project 7xBUS is the development of new branches of mathematics —
-        frameworks that surpass what’s known to be possible in data prediction
-        and market technology.
-        <br><br>
-        It is the war cry for those trapped under systems built to keep them powerless.
-        <br><br>
-        We have everything Wall Street has — and more. That’s the point.
-        <br><br>
-        If you’re a market maker or volatility hedge fund —
-        we are your new #1 competition.
-      </p>
-
-      <div class="plain-bar">
-        In simple terms: a new math engine powering markets, science, and real-world systems built to lower costs and challenge consolidation.
-      </div>
-    </div>
-  </header>
-
-  <!-- WHAT IT IS -->
-  <section id="what-it-is">
-    <h2>What It Is</h2>
-    <p>
-      <strong>Project 7xBUS</strong> is the culmination of ten years of continuous research — night and day, through live testing, coding, and real-world validation. It represents genuine mathematical breakthroughs — new frameworks with verifiable proofs that expand the limits of what human logic and computation were thought to be capable of.
-    </p>
-    <p>
-      Modern statistics is powerful, but it carries structural biases: it was built to model randomness, not structure. That means it often misclassifies structural behavior as noise — making many predictions functionally misaligned with how real systems actually move.
-    </p>
-    <p>
-      We’re not replacing classical statistics; we’re revealing what it cannot see. Project 7xBUS exposes structural laws inside motion and entropy, and then builds tools, trading models, and technologies on top of those laws.
-    </p>
-    <p>
-      This is not speculation. It’s reconstruction built from raw code and persistence — discoveries that go beyond finance and data, and <strong>rewrite how we should interpret our reality.</strong>
-    </p>
-
-    <div class="why-grid">
-      <div class="why-card">
-        <h3>The work</h3>
-        <p>Ten years of markets, code, and experiments distilled into a single engine instead of scattered ideas.</p>
-      </div>
-      <div class="why-card">
-        <h3>The shift</h3>
-        <p>We focus on structural behavior — the laws underneath the noise — rather than treating everything as randomness and hoping models keep up.</p>
-      </div>
-      <div class="why-card">
-        <h3>The outcome</h3>
-        <p>Prediction and engineering tools that behave differently because they are built on dimensions traditional statistics never measured.</p>
-      </div>
-    </div>
-
-    <div class="manifesto-block">
-      <h2>We want to challenge the institutions that have consolidated power and think they're untouchable</h2>
-      <h1>For example — the ones charging small businesses 5% transaction fees, the ones hyperinflating shipping costs to unsustainable levels.</h1>
-      <p class="manifesto-callout-bottom">If you refuse to change, we’ll build what comes next. And guess what? We already are.</p>
-    </div>
-  </section>
-
-  <!-- HOW WE’RE FUNDING THE MISSION -->
-  <section id="funding">
-    <h2>How We’re Funding the Mission</h2>
-    <p>
-      We launch high-impact, high-margin businesses across sectors. Each is engineered
-      to break a norm, tell a story, and redirect capital into the engine.
-      It’s capitalism, repurposed as reconstruction.
-    </p>
-    <div class="pillars">
-      <div class="card">
-        <h3>Beauty &amp; Scent</h3>
-        <p>Rosehill Cosmetics; Petals &amp; Potions (candles &amp; fragrance). Science-backed formulas, cinematics, and community-first rollouts.</p>
-      </div>
-      <div class="card">
-        <h3>Tools &amp; Craft</h3>
-        <p>El-Inky Fingers — a clear glass pen with clear ink that turns black as it hits the page — and House of the Rubies, combining auctioned stones with in-house lab-grown rubies we make ourselves. Objects with story, built to last.</p>
-      </div>
-      <div class="card">
-        <h3>Flavor &amp; Innovation</h3>
-        <p>ThunderCheeks™ — chewing gum built on wild-yeast flavor development, creating entirely new flavor families and resurrecting extinct fruit profiles.</p>
-      </div>
-      <div class="card">
-        <h3>Systems, Shipping &amp; Mobility</h3>
-        <p>Ale — an OBD-II diagnostic and 5G-connected platform that gives real-time updates on your car’s health and uses machine learning to predict failures before they hit — plus engine rebuild and shipping infrastructure designed to drop national shipping costs by up to 50%.</p>
-      </div>
-      <div class="card">
-        <h3>Farm, Energy &amp; Chemistry</h3>
-        <p>~600 acres under USDA underwriting for PureHundreds fiber-to-cloth production, chemical manufacturing lines including OH⁻/H₂O₂ adjacent products, oil wells, and America’s first AI-driven bee farm for ecosystem and desert restoration.</p>
-      </div>
-      <div class="card">
-        <h3>Media &amp; Narrative</h3>
-        <p>The 7th World (working title) — a cinematic series that walks viewers through delusion built from real facts and lived logic, so people can see how delusions form in real time.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ROLLOUT TIMELINE + COUNTDOWNS -->
-  <section id="rollout">
-    <h2>Rollout — One Build Per Quarter</h2>
-    <p class="small">Live cadence with countdowns. Dates reflect the current plan; subject to refinement as partners lock and underwriting finalizes.</p>
-    <div class="countdowns" id="countdowns"></div>
-
-    <div class="timeline">
-      <article class="milestone">
-        <time>Q4 2025</time>
-        <div class="row">
-          <div><strong>Petals &amp; Potions</strong> — Candle &amp; fragrance division launch. <span class="tag">Now</span></div>
-        </div>
-      </article>
-
-      <article class="milestone">
-        <time>Q1 2026</time>
-        <div class="row">
-          <div class="logo-wrap"><img class="logo" src="./Rosehill.png" alt="Rosehill Cosmetics"></div>
-          <div><strong>Rosehill Cosmetics</strong> — Biotech skincare + custom formulation SaaS.</div>
-        </div>
-      </article>
-
-      <article class="milestone">
-        <time>Q3 2026</time>
-        <div class="row">
-          <div class="logo-wrap"><img class="logo" src="./El-inky.PNG" alt="El-Inky Fingers"></div>
-          <div><strong>El-Inky Fingers</strong> — Writing instruments for founders &amp; makers.</div>
-        </div>
-      </article>
-<article class="milestone">
-  <time>Q3 2026</time>
-  <div class="row">
-    <div><strong>10K Hive Bee Farm</strong> — Fully autonomous, AI-enhanced honey production and pollination network. Anchors regenerative agriculture vertical. Smart-hive infrastructure scalable to >1M hives for U.S. and MENA pollination markets.</div>
+  <div class="manifesto-block">
+    <h2>We want to challenge the institutions that have consolidated power and think they're untouchable</h2>
+    <h1>For example — the ones charging small businesses 5% transaction fees, the ones hyperinflating shipping costs to unsustainable levels.</h1>
+    <p class="manifesto-callout-bottom">If you refuse to change, we’ll build what comes next. And guess what? We already are.</p>
   </div>
-</article>
-      <article class="milestone">
-        <time>Q4 2026</time>
-        <div>
-          <div class="row" style="margin-bottom:.8rem;">
-            <div><strong>House of the Rubies</strong> — In-house ruby manufacturing &amp; jewelry from auctioned and lab-grown stones.</div>
-          </div>
-          <div class="row">
-            <div class="logo-wrap"><img class="logo" src="./ThunderCheeks.PNG" alt="ThunderCheeks"></div>
-            <div><strong>ThunderCheeks™</strong> — Chewing gum made from extinct and wild-yeast novel fruit flavors.</div>
-          </div>
-        </div>
-      </article>
+</section>
 
-      <article class="milestone">
-        <time>Q1 2027</time>
-        <div><strong>PureHundreds</strong> — Covenant-rooted apparel line, backed by ~600 acres under USDA support, turning fiber to cloth.</div>
-      </article>
-
-      <article class="milestone">
-        <time>Q2 2027</time>
-        <div><strong>Ale</strong> — Vehicle diagnostics and OBD-II platform with predictive maintenance, 5G connectivity, and engineered PIDs built for our ecosystem.</div>
-      </article>
-<article class="milestone">
-  <time>Q3 2027</time>
-  <div class="row">
-    <div><strong>Cleared</strong> — A zero-loss auction logistics engine with flat-rate or free shipping, engineered to outcompete legacy auction platforms using structural shipping margins and driver-friendly incentives.</div>
-  </div>
-</article>
-
-      
-      
+<!-- HOW WE’RE FUNDING THE MISSION -->
+<section id="funding">
+  <h2>How We’re Funding the Mission</h2>
+  <p>
+    We launch high-impact, high-margin businesses across sectors. Each is engineered
+    to break a norm, tell a story, and redirect capital into the engine.
+    It’s capitalism, repurposed as reconstruction.
+  </p>
+  <div class="pillars">
+    <div class="card">
+      <h3>Beauty &amp; Scent</h3>
+      <p>Rosehill Cosmetics; Petals &amp; Potions (candles &amp; fragrance). Science-backed formulas, cinematics, and community-first rollouts.</p>
     </div>
-  </section>
-  
+    <div class="card">
+      <h3>Tools &amp; Craft</h3>
+      <p>El-Inky Fingers — a clear glass pen with clear ink that turns black as it hits the page — and House of the Rubies, combining auctioned stones with in-house lab-grown rubies we make ourselves. Objects with story, built to last.</p>
+    </div>
+    <div class="card">
+      <h3>Flavor &amp; Innovation</h3>
+      <p>ThunderCheeks™ — chewing gum built on wild-yeast flavor development, creating entirely new flavor families and resurrecting extinct fruit profiles.</p>
+    </div>
+    <div class="card">
+      <h3>Systems, Shipping &amp; Mobility</h3>
+      <p>Ale — an OBD-II diagnostic and 5G-connected platform that gives real-time updates on your car’s health and uses machine learning to predict failures before they hit — plus engine rebuild and shipping infrastructure designed to drop national shipping costs by up to 50%.</p>
+    </div>
+    <div class="card">
+      <h3>Farm, Energy &amp; Chemistry</h3>
+      <p>~600 acres under USDA underwriting for PureHundreds fiber-to-cloth production, chemical manufacturing lines including OH⁻/H₂O₂ adjacent products, oil wells, and America’s first AI-driven bee farm for ecosystem and desert restoration.</p>
+    </div>
+    <div class="card">
+      <h3>Media &amp; Narrative</h3>
+      <p>The 7th World (working title) — a cinematic series that walks viewers through delusion built from real facts and lived logic, so people can see how delusions form in real time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ROLLOUT TIMELINE + COUNTDOWNS -->
+<section id="rollout">
+  <h2>Rollout — One Build Per Quarter</h2>
+  <p class="small">Live cadence with countdowns. Dates reflect the current plan; subject to refinement as partners lock and underwriting finalizes.</p>
+  <div class="countdowns" id="countdowns"></div>
+
+  <div class="timeline">
+    <article class="milestone">
+      <time>Q4 2025</time>
+      <div class="row">
+        <div><strong>Petals &amp; Potions</strong> — Candle &amp; fragrance division launch. <span class="tag">Now</span></div>
+      </div>
+    </article>
+
+    <article class="milestone">
+      <time>Q1 2026</time>
+      <div class="row">
+        <div class="logo-wrap"><img class="logo" src="./Rosehill.png" alt="Rosehill Cosmetics"></div>
+        <div><strong>Rosehill Cosmetics</strong> — Biotech skincare + custom formulation SaaS.</div>
+      </div>
+    </article>
+
+    <article class="milestone">
+      <time>Q3 2026</time>
+      <div class="row">
+        <div class="logo-wrap"><img class="logo" src="./El-inky.PNG" alt="El-Inky Fingers"></div>
+        <div><strong>El-Inky Fingers</strong> — Writing instruments for founders &amp; makers.</div>
+      </div>
+    </article>
+
+    <article class="milestone">
+      <time>Q3 2026</time>
+      <div class="row">
+        <div><strong>10K Hive Bee Farm</strong> — Fully autonomous, AI-enhanced honey production and pollination network. Anchors regenerative agriculture vertical. Smart-hive infrastructure scalable to &gt;1M hives for U.S. and MENA pollination markets.</div>
+      </div>
+    </article>
+
+    <article class="milestone">
+      <time>Q4 2026</time>
+      <div>
+        <div class="row" style="margin-bottom:.8rem;">
+          <div><strong>House of the Rubies</strong> — In-house ruby manufacturing &amp; jewelry from auctioned and lab-grown stones.</div>
+        </div>
+        <div class="row">
+          <div class="logo-wrap"><img class="logo" src="./ThunderCheeks.PNG" alt="ThunderCheeks"></div>
+          <div><strong>ThunderCheeks™</strong> — Chewing gum made from extinct and wild-yeast novel fruit flavors.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="milestone">
+      <time>Q1 2027</time>
+      <div><strong>PureHundreds</strong> — Covenant-rooted apparel line, backed by ~600 acres under USDA support, turning fiber to cloth.</div>
+    </article>
+
+    <article class="milestone">
+      <time>Q2 2027</time>
+      <div><strong>Ale</strong> — Vehicle diagnostics and OBD-II platform with predictive maintenance, 5G connectivity, and engineered PIDs built for our ecosystem.</div>
+    </article>
+
+    <article class="milestone">
+      <time>Q3 2027</time>
+      <div class="row">
+        <div><strong>Cleared</strong> — A zero-loss auction logistics engine with flat-rate or free shipping, engineered to outcompete legacy auction platforms using structural shipping margins and driver-friendly incentives.</div>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- MONETARY IMPACT + CONTRACT SCALE -->
 <section id="monetary-impact">
   <h2>Monetary Force — Contract Scale by Quarter</h2>
@@ -955,7 +924,7 @@ document.addEventListener("keydown", (e) => {
     </article>
   </div>
 </section>
-  <!-- EXTENDED PORTFOLIO -->
+
 <!-- EXTENDED PORTFOLIO (DROPDOWN STYLE) -->
 <section id="portfolio">
   <h2 style="cursor:pointer;" onclick="togglePortfolio()">▶ Extended Portfolio</h2>
@@ -974,101 +943,112 @@ document.addEventListener("keydown", (e) => {
   </ul>
 </section>
 
+<!-- INVESTOR CONTACT / COMPLIANCE -->
+<section id="contact" style="padding:2rem 1.25rem;text-align:center;border-top:1px solid #1b1b1b;">
+  <p style="color:#bdbdbd;font-size:0.95rem;max-width:760px;margin:0 auto;">
+    Project 7xBUS does not work with hedge funds, private equity firms, sovereign wealth funds, or banks.
+    We are building our own financial infrastructure.
+  </p>
+</section>
 
+<!-- CTA -->
+<section class="cta">
+  <a class="btn" href="https://www.instagram.com/project7xbus/" target="_blank" rel="noopener noreferrer">
+    Join the Signal — Strike Loud
+  </a>
+</section>
 
-  <!-- INVESTOR CONTACT / COMPLIANCE -->
-  <section id="contact" style="padding:2rem 1.25rem;text-align:center;border-top:1px solid #1b1b1b;">
-    <p style="color:#bdbdbd;font-size:0.95rem;max-width:760px;margin:0 auto;">
-     Project 7xBUS does not work with hedge funds, private equity firms, sovereign wealth funds, or banks.
-      We are building our own financial infrastructure.
+<section style="height:120vh; background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.85)); border-top:0;"></section>
 
-    </p>
-  </section>
+<footer>
+  © 2026 Project 7xBUS. We don’t want their seats. We’re building new rooms.
+</footer>
 
-  <!-- CTA -->
-  <section class="cta">
-    <a class="btn" href="https://www.instagram.com/project7xbus/" target="_blank" rel="noopener noreferrer">
-      Join the Signal — Strike Loud
-    </a>
-  </section>
+<script>
+  // countdowns
+  const events = [
+    { label: 'Petals & Potions — Live', date: '2025-12-01T00:00:00' },
+    { label: 'Rosehill Cosmetics — Q1 2026', date: '2026-03-01T00:00:00' },
+    { label: 'El-Inky Fingers — Q3 2026', date: '2026-09-01T00:00:00' },
+    { label: 'House of the Rubies & ThunderCheeks — Q4 2026', date: '2026-12-01T00:00:00' },
+    { label: 'PureHundreds — Q1 2027', date: '2027-03-01T00:00:00' },
+    { label: 'Ale — Q2 2027', date: '2027-06-01T00:00:00' }
+  ];
+  const wrap = document.getElementById('countdowns');
+  const fmt = n => n.toString().padStart(2,'0');
 
-  <section style="height:120vh; background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.85)); border-top:0;"></section>
+  function renderCountdowns(){
+    if(!wrap) return;
+    wrap.innerHTML = '';
+    const now = new Date();
+    events.forEach(ev=>{
+      const t = new Date(ev.date) - now;
+      let html;
+      if(t <= 0){
+        html = `<div class="counter"><strong>${ev.label}</strong><span class="small">Status: Live / In progress</span></div>`;
+      } else {
+        const d = Math.floor(t/86400000);
+        const h = Math.floor((t%86400000)/3600000);
+        const m = Math.floor((t%3600000)/60000);
+        const s = Math.floor((t%60000)/1000);
+        html = `<div class="counter"><strong>${ev.label}</strong><span class="small">${fmt(d)}d : ${fmt(h)}h : ${fmt(m)}m : ${fmt(s)}s</span></div>`;
+      }
+      wrap.insertAdjacentHTML('beforeend', html);
+    });
+  }
+  renderCountdowns();
+  setInterval(renderCountdowns, 1000);
 
-  <footer>
-    © 2026 Project 7xBUS. We don’t want their seats. We’re building new rooms.
-  </footer>
-
-  <script>
-    // countdowns (unchanged)
-    const events = [
-      { label: 'Petals & Potions — Live', date: '2025-12-01T00:00:00' },
-      { label: 'Rosehill Cosmetics — Q1 2026', date: '2026-03-01T00:00:00' },
-      { label: 'El-Inky Fingers — Q3 2026', date: '2026-09-01T00:00:00' },
-      { label: 'House of the Rubies & ThunderCheeks — Q4 2026', date: '2026-12-01T00:00:00' },
-      { label: 'PureHundreds — Q1 2027', date: '2027-03-01T00:00:00' },
-      { label: 'Ale — Q2 2027', date: '2027-06-01T00:00:00' }
-    ];
-    const wrap = document.getElementById('countdowns');
-    const fmt = n => n.toString().padStart(2,'0');
-
-    function renderCountdowns(){
-      if(!wrap) return;
-      wrap.innerHTML = '';
-      const now = new Date();
-      events.forEach(ev=>{
-        const t = new Date(ev.date) - now;
-        let html;
-        if(t <= 0){
-          html = `<div class="counter"><strong>${ev.label}</strong><span class="small">Status: Live / In progress</span></div>`;
-        } else {
-          const d = Math.floor(t/86400000);
-          const h = Math.floor((t%86400000)/3600000);
-          const m = Math.floor((t%3600000)/60000);
-          const s = Math.floor((t%60000)/1000);
-          html = `<div class="counter"><strong>${ev.label}</strong><span class="small">${fmt(d)}d : ${fmt(h)}h : ${fmt(m)}m : ${fmt(s)}s</span></div>`;
-        }
-        wrap.insertAdjacentHTML('beforeend', html);
-      });
-    }
-    renderCountdowns();
-    setInterval(renderCountdowns, 1000);
-
-    // ✅ watermark “scroll with us” (parallax)
-    const wm = document.getElementById('wm');
-    const bleed = document.getElementById('bleed');
-
-    function parallax(){
-      const y = window.scrollY || 0;
-      wm.style.transform = `translate3d(0, ${y * 0.10}px, 0)`;
-      bleed.style.transform = `translate3d(0, ${y * 0.045}px, 0)`;
-    }
-    parallax();
-    window.addEventListener('scroll', parallax, { passive:true });
-  </script>
-  <script>
-const text = `The same mathematical edge we developed for financial systems is now being deployed into physics, chemistry, engineering, and infrastructure — revealing structural behavior inside entropy and motion that classical science was never built to see. This lets us build technologies and businesses from laws that standard models treat as noise — so we compete on two fronts: Wall Street and the industrial world.`;
-
-
-let i = 0;
-const speed = 85;
-
-
-function typeWriter() {
-const el = document.getElementById("typewriter");
-if (!el) return;
-if (i < text.length) {
-el.innerHTML += text.charAt(i);
-i++;
-setTimeout(typeWriter, speed);
-}
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-setTimeout(typeWriter, 600);
-});
+  // watermark parallax
+  const wm = document.getElementById('wm');
+  const bleed = document.getElementById('bleed');
+  function parallax(){
+    const y = window.scrollY || 0;
+    wm.style.transform = `translate3d(0, ${y * 0.10}px, 0)`;
+    bleed.style.transform = `translate3d(0, ${y * 0.045}px, 0)`;
+  }
+  parallax();
+  window.addEventListener('scroll', parallax, { passive:true });
 </script>
-  <script>
+
+<script>
+  // TYPEWRITER + AUTONOMOUS FLIP (synced to completion)
+  const text = `The same mathematical edge we developed for financial systems is now being deployed into physics, chemistry, engineering, and infrastructure — revealing structural behavior inside entropy and motion that classical science was never built to see. This lets us build technologies and businesses from laws that standard models treat as noise — so we compete on two fronts: Wall Street and the industrial world.`;
+
+  let i = 0;
+  const speed = 85;
+
+  function typeWriter() {
+    const el = document.getElementById("typewriter");
+    if (!el) return;
+
+    if (i < text.length) {
+      el.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    } else {
+      // ✅ When typing finishes, flip once (per browser)
+      const flipWrap = document.getElementById("flipCard");
+      if (!flipWrap) return;
+
+      const key = "p7xbus_flip_autoplay_seen";
+      try {
+        if (localStorage.getItem(key) === "1") return;
+      } catch(e){}
+
+      setTimeout(() => flipWrap.classList.add("is-flipped"), 650);
+      setTimeout(() => flipWrap.classList.remove("is-flipped"), 650 + 4500);
+
+      try { localStorage.setItem(key,"1"); } catch(e){}
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(typeWriter, 600);
+  });
+</script>
+
+<script>
   function togglePortfolio() {
     const list = document.getElementById('portfolioList');
     const heading = document.querySelector('#portfolio h2');
@@ -1080,35 +1060,6 @@ setTimeout(typeWriter, 600);
       heading.innerHTML = '▶ Extended Portfolio';
     }
   }
-</script>
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const wrap = document.getElementById("flipCard");
-  if (!wrap) return;
-
-  // ✅ optional: only autoplay once per browser
-  const key = "p7xbus_flip_autoplay_seen";
-  try {
-    if (localStorage.getItem(key) === "1") return;
-  } catch (e) {}
-
-  // timings (tweak these)
-  const flipToBackDelay = 3200;   // wait before flipping to the new statement
-  const backHoldTime    = 4500;   // time to stay on the back statement
-  const flipBackDelay   = flipToBackDelay + backHoldTime;
-
-  // flip to back
-  setTimeout(() => {
-    wrap.classList.add("is-flipped");
-  }, flipToBackDelay);
-
-  // flip back to front
-  setTimeout(() => {
-    wrap.classList.remove("is-flipped");
-  }, flipBackDelay);
-
-  try { localStorage.setItem(key, "1"); } catch (e) {}
-});
 </script>
 </body>
 </html>
