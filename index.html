@@ -1056,5 +1056,34 @@ setTimeout(typeWriter, 600);
     }
   }
 </script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const wrap = document.getElementById("flipCard");
+  if (!wrap) return;
+
+  // ✅ optional: only autoplay once per browser
+  const key = "p7xbus_flip_autoplay_seen";
+  try {
+    if (localStorage.getItem(key) === "1") return;
+  } catch (e) {}
+
+  // timings (tweak these)
+  const flipToBackDelay = 3200;   // wait before flipping to the new statement
+  const backHoldTime    = 4500;   // time to stay on the back statement
+  const flipBackDelay   = flipToBackDelay + backHoldTime;
+
+  // flip to back
+  setTimeout(() => {
+    wrap.classList.add("is-flipped");
+  }, flipToBackDelay);
+
+  // flip back to front
+  setTimeout(() => {
+    wrap.classList.remove("is-flipped");
+  }, flipBackDelay);
+
+  try { localStorage.setItem(key, "1"); } catch (e) {}
+});
+</script>
 </body>
 </html>
