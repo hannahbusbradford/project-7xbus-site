@@ -1126,7 +1126,7 @@
       const rampMs = 4200;
       setTimeout(() => {
         strobe.classList.remove("run");
-        strobe.classList.add("hold", "clickable");
+        strobe.classList.add("hold", "clickable"); setTimeout(()=>strobe.style.display="none", 4000);
         // try { localStorage.setItem(key, "1"); } catch(e){}
       }, rampMs);
 
