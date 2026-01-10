@@ -1108,42 +1108,44 @@
     }
   </script>
 
-  <script>
-    // =========================================================
-    // AUTONOMOUS STROBE -> HOLD READABLE
-    // - starts on page load
-    // - flashes faster and faster, then settles and holds
-    // - optional: click anywhere on overlay to dismiss
-    // =========================================================
-    document.addEventListener("DOMContentLoaded", () => {
-      const strobe = document.getElementById("strobe");
-      if (!strobe) return;
+<script>
+  // =========================================================
+  // AUTONOMOUS STROBE -> HOLD READABLE -> AUTO CLOSE
+  // =========================================================
+  document.addEventListener("DOMContentLoaded", () => {
+    const strobe = document.getElementById("strobe");
+    if (!strobe) return;
 
-      // If you only want this once per browser, uncomment:
-      // const key = "p7xbus_we_are_coming_seen";
-      // try { if (localStorage.getItem(key) === "1") return; } catch(e){}
+    // start strobe
+    strobe.classList.add("run");
 
-      // start
-      strobe.classList.add("run");
+    const rampMs = 4200;   // strobe duration
+    const holdMs = 4000;   // readable hold duration
 
-      // after ramp, hold readable
-      const rampMs = 4200;
+    // after ramp, hold readable
+    setTimeout(() => {
+      strobe.classList.remove("run");
+      strobe.classList.add("hold", "clickable");
+
+      // auto-close after hold
       setTimeout(() => {
-        strobe.classList.remove("run");
-        strobe.classList.add("hold", "clickable");
-        // try { localStorage.setItem(key, "1"); } catch(e){}
-      }, rampMs);
-
-      // click to dismiss (optional)
-      strobe.addEventListener("click", () => {
         strobe.style.display = "none";
-      });
+      }, holdMs);
 
-      // escape to dismiss
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") strobe.style.display = "none";
-      });
+    }, rampMs);
+
+    // click to dismiss (optional, works BEFORE auto-close)
+    strobe.addEventListener("click", () => {
+      strobe.style.display = "none";
     });
-  </script>
+
+    // escape to dismiss
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        strobe.style.display = "none";
+      }
+    });
+  });
+</script>
 </body>
 </html>
