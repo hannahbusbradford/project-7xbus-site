@@ -666,10 +666,14 @@
     }
 
     /* click to dismiss if you want */
-    .strobe-overlay.clickable{
-      pointer-events:auto;
-      cursor:pointer;
-    }
+   .strobe-overlay.clickable{
+  pointer-events:auto;
+  cursor:pointer;
+}
+
+.strobe-overlay:not(.hold){
+  pointer-events:none;
+}
 
     @media (prefers-reduced-motion: reduce){
       .strobe-overlay.run{ animation:none; }
@@ -714,7 +718,7 @@
     <div class="strobe-msg" role="presentation">
       <div class="kicker">PROJECT 7xBUS</div>
       <div class="headline">WE ARE COMING</div>
-      <div class="sub">This isn’t marketing. This is already happening.</div>
+      <div class="sub">This is not a teaser. It’s a warning.</div>
     </div>
   </div>
 
@@ -1126,7 +1130,7 @@
       const rampMs = 4200;
       setTimeout(() => {
         strobe.classList.remove("run");
-        strobe.classList.add("hold", "clickable"); setTimeout(()=>strobe.style.display="none", 4000);
+        strobe.classList.add("hold", "clickable");
         // try { localStorage.setItem(key, "1"); } catch(e){}
       }, rampMs);
 
