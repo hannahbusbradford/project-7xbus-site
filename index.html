@@ -1123,7 +1123,7 @@
       strobe.classList.add("run");
 
       // after ramp, hold readable
-      const rampMs = 100;
+      const rampMs = 2000;
       setTimeout(() => {
         strobe.classList.remove("run");
         strobe.classList.add("hold", "clickable");
@@ -1141,5 +1141,26 @@
       });
     });
   </script>
+  <script>
+  // =========================================================
+  // AUTO-DISMISS HOLD STATE AFTER 2s (SIMULATED CLICK)
+  // =========================================================
+  document.addEventListener("DOMContentLoaded", () => {
+    const strobe = document.getElementById("strobe");
+    if (!strobe) return;
+
+    // when hold state is reached, auto-dismiss after 2s
+    const observer = new MutationObserver(() => {
+      if (strobe.classList.contains("hold")) {
+        setTimeout(() => {
+          strobe.style.display = "none";
+        }, 2000); // 👈 2 seconds
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(strobe, { attributes: true });
+  });
+</script>
 </body>
 </html>
