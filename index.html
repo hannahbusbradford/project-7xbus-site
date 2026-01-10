@@ -666,14 +666,10 @@
     }
 
     /* click to dismiss if you want */
-   .strobe-overlay.clickable{
-  pointer-events:auto;
-  cursor:pointer;
-}
-
-.strobe-overlay:not(.hold){
-  pointer-events:none;
-}
+    .strobe-overlay.clickable{
+      pointer-events:auto;
+      cursor:pointer;
+    }
 
     @media (prefers-reduced-motion: reduce){
       .strobe-overlay.run{ animation:none; }
@@ -718,7 +714,7 @@
     <div class="strobe-msg" role="presentation">
       <div class="kicker">PROJECT 7xBUS</div>
       <div class="headline">WE ARE COMING</div>
-      <div class="sub">This is real life - not marketing</div>
+      <div class="sub">This is not a teaser. It’s a warning.</div>
     </div>
   </div>
 
@@ -1108,50 +1104,42 @@
     }
   </script>
 
-<script>
-  // =========================================================
-  // AUTONOMOUS STROBE -> HOLD READABLE -> AUTO CLOSE
-  // =========================================================
-  document.addEventListener("DOMContentLoaded", () => {
-    const strobe = document.getElementById("strobe");
-    if (!strobe) return;
+  <script>
+    // =========================================================
+    // AUTONOMOUS STROBE -> HOLD READABLE
+    // - starts on page load
+    // - flashes faster and faster, then settles and holds
+    // - optional: click anywhere on overlay to dismiss
+    // =========================================================
+    document.addEventListener("DOMContentLoaded", () => {
+      const strobe = document.getElementById("strobe");
+      if (!strobe) return;
 
-    // 🔒 PREVENT DOUBLE-RUN
-    if (strobe.dataset.started) return;
-    strobe.dataset.started = "1";
+      // If you only want this once per browser, uncomment:
+      // const key = "p7xbus_we_are_coming_seen";
+      // try { if (localStorage.getItem(key) === "1") return; } catch(e){}
 
-    // start strobe
-    strobe.classList.add("run");
+      // start
+      strobe.classList.add("run");
 
-    // MUST match CSS animation duration (4.2s)
-    const rampMs = 4200;
-    const holdMs = 1800;
-
-    setTimeout(() => {
-      strobe.classList.remove("run");
-      strobe.classList.add("hold", "clickable");
-
-      // auto-close after hold
+      // after ramp, hold readable
+      const rampMs = 4200;
       setTimeout(() => {
+        strobe.classList.remove("run");
+        strobe.classList.add("hold", "clickable");
+        // try { localStorage.setItem(key, "1"); } catch(e){}
+      }, rampMs);
+
+      // click to dismiss (optional)
+      strobe.addEventListener("click", () => {
         strobe.style.display = "none";
-      }, holdMs);
+      });
 
-    }, rampMs);
-
-    // click to dismiss
-    strobe.addEventListener("click", () => {
-      strobe.style.display = "none";
+      // escape to dismiss
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") strobe.style.display = "none";
+      });
     });
-
-    // escape to dismiss
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        strobe.style.display = "none";
-      }
-    });
-  });
-</script>
-
-
+  </script>
 </body>
 </html>
