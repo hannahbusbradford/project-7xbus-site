@@ -1116,25 +1116,28 @@
     const strobe = document.getElementById("strobe");
     if (!strobe) return;
 
+    // 🔒 PREVENT DOUBLE-RUN (THIS IS THE FIX)
+    if (strobe.dataset.started) return;
+    strobe.dataset.started = "1";
+
     // start strobe
     strobe.classList.add("run");
 
-    const rampMs = 4200;   // strobe duration
-    const holdMs = 4000;   // readable hold duration
+    const rampMs = 4200;
+    const holdMs = 4000;
 
-    // after ramp, hold readable
     setTimeout(() => {
       strobe.classList.remove("run");
       strobe.classList.add("hold", "clickable");
 
-      // auto-close after hold
+      // auto-close
       setTimeout(() => {
         strobe.style.display = "none";
       }, holdMs);
 
     }, rampMs);
 
-    // click to dismiss (optional, works BEFORE auto-close)
+    // click to dismiss
     strobe.addEventListener("click", () => {
       strobe.style.display = "none";
     });
@@ -1147,5 +1150,6 @@
     });
   });
 </script>
+
 </body>
 </html>
