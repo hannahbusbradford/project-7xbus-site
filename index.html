@@ -1116,21 +1116,22 @@
     const strobe = document.getElementById("strobe");
     if (!strobe) return;
 
-    // 🔒 PREVENT DOUBLE-RUN (THIS IS THE FIX)
+    // 🔒 PREVENT DOUBLE-RUN
     if (strobe.dataset.started) return;
     strobe.dataset.started = "1";
 
     // start strobe
     strobe.classList.add("run");
 
-    const rampMs = 2600;
-const holdMs = 1800;
+    // MUST match CSS animation duration (4.2s)
+    const rampMs = 4200;
+    const holdMs = 1800;
 
     setTimeout(() => {
       strobe.classList.remove("run");
       strobe.classList.add("hold", "clickable");
 
-      // auto-close
+      // auto-close after hold
       setTimeout(() => {
         strobe.style.display = "none";
       }, holdMs);
