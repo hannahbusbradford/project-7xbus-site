@@ -788,6 +788,9 @@
     text-transform: uppercase;
 }
 
+:root{
+  --hero-video-opacity: 0.32; /* 👈 change this anytime (0.0 – 0.6) */
+}
 
 
 
@@ -858,7 +861,34 @@
 
   <!-- HERO -->
   <header>
-    <div class="hero-bg"></div>
+    <div class="hero-bg"><!-- HERO FIRE VIDEO (DIRECT MP4, 20s MAX) -->
+<!-- HERO BACKGROUND VIDEO -->
+<video
+  id="heroFire"
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+  style="
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:1;
+    pointer-events:none;
+
+    opacity: var(--hero-video-opacity);
+    transition: opacity 1.6s ease;
+
+    filter: blur(2px) saturate(1.5) contrast(1.25) brightness(0.85);
+    mix-blend-mode: screen;
+  "
+>
+  <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+</video>
+</div>
 
     <div class="hero-panel">
       <div class="eyebrow">Project Overview</div>
@@ -1312,5 +1342,26 @@
     observer.observe(strobe, { attributes: true });
   });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const video = document.getElementById("heroFire");
+  if (!video) return;
+
+  const stopAfter = 20000; // 👈 change time here (ms)
+
+  setTimeout(() => {
+    video.style.opacity = "0";
+
+    setTimeout(() => {
+      video.pause();
+      video.removeAttribute("src");
+      video.load(); // release GPU memory
+      video.remove();
+    }, 1600);
+  }, stopAfter);
+});
+</script>
+
+
 </body>
 </html>
