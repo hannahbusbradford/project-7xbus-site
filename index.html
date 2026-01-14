@@ -814,36 +814,41 @@
 
     
 /* ==========================
-   MOBILE NAV — STRUCTURED
+   MOBILE NAV — LOCKED GRID
    ========================== */
 @media (max-width: 768px){
 
   nav{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand takeover"
+      "links  links";
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.75rem 1rem;
+    row-gap: 0.6rem;
+    padding: 0.7rem 1rem 0.85rem;
   }
 
   /* BRAND */
   nav > div:nth-child(1){
-    flex: 1 1 auto;
+    grid-area: brand;
+    align-self: center;
   }
 
   /* LINK GROUP */
   nav > div:nth-child(2){
-    order: 3; /* push to second row */
-    width: 100%;
+    grid-area: links;
     display: flex;
     justify-content: center;
     gap: 1.25rem;
-    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid rgba(255,0,0,0.25);
   }
 
   /* TAKEOVER CTA */
   nav > div:nth-child(3){
-    order: 2;
+    grid-area: takeover;
+    justify-self: end;
   }
 
   .nav-link-takeover{
@@ -857,8 +862,31 @@
   }
 }
 
+/* ==========================
+   MOBILE HERO PANEL FIX
+   ========================== */
+@media (max-width: 768px){
 
+  header{
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
 
+  .hero-panel{
+    width: 100%;
+    max-width: 100%;
+    padding: 1.75rem 1.25rem 1.9rem;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden; /* CRITICAL */
+  }
+
+  /* Prevent inner swipe container from forcing width */
+  .s7x-swipe-container{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
 
 
 
