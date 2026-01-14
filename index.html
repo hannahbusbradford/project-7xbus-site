@@ -675,18 +675,63 @@
       .strobe-overlay.run{ animation:none; }
       .strobe-overlay.run .strobe-msg{ animation:none; opacity:1; transform:none; }
     }
+
+/* Warning Flicker Animation */
+@keyframes warningFlicker {
+    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    }
+    20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+        opacity: 0.4;
+        box-shadow: none;
+    }
+}
+
+.nav-link-takeover {
+    color: #ff0000; /* Unapologetic Red [cite: 11] */
+    font-family: 'JetBrains Mono', monospace; 
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid #ff0000;
+    padding: 8px 15px;
+    transition: all 0.3s ease; [cite: 24]
+    text-transform: uppercase;
+    animation: warningFlicker 4s infinite; /* Warning light effect */
+}
+
+.nav-link-takeover:hover {
+    background: #ff0000;
+    color: #000000;
+    animation: none;
+    box-shadow: 0 0 15px #ff0000; [cite: 25]
+}
+
+
+
+
+
   </style>
 </head>
 
 <body>
-  <nav style="background: #0b0b0b; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1a1a1a;">
-    <div style="font-weight: bold; font-size: 1.2rem; color: var(--accent); letter-spacing: 0.08em;"></div>
-    <div style="display: flex; gap: 1.2rem;">
-      <a href="index.html" style="color: #e9e9e9; text-decoration: none; font-size: 0.95rem;">Home</a>
-      <a href="About.html" style="color: #e9e9e9; text-decoration: none; font-size: 0.95rem;">About</a>
-      <a href="https://www.instagram.com/project7xbus?igsh=MWE4dXpkODRiNWx4dA==" target="_blank" style="color: #e9e9e9; text-decoration: none; font-size: 0.95rem;">Instagram</a>
+<nav style="background: #0b0b0b; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff0000;">
+    
+    <div style="font-weight: 900; font-size: 1.2rem; color: #ffffff; letter-spacing: 0.2em; font-family: 'JetBrains Mono', monospace;">
+        <a href="https://project7xbus.com" style="text-decoration: none; color: inherit;">PROJECT_7XBUS</a>
     </div>
-  </nav>
+
+    <div style="display: flex; gap: 1.5rem; align-items: center;">
+        <a href="index.html" style="color: #e9e9e9; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;">Home</a>
+        <a href="About.html" style="color: #e9e9e9; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;">About</a>
+        <a href="https://www.instagram.com/project7xbus" target="_blank" style="color: #e9e9e9; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;">Instagram</a>
+    </div>
+
+    <div>
+        <a href="TheTakeOver.html" class="nav-link-takeover">THE TAKEOVER</a>
+    </div>
+
+</nav>
 
   <!-- BREAKTHROUGH ALERT OVERLAY -->
   <div id="alert-overlay">
