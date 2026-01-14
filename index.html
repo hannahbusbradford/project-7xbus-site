@@ -722,6 +722,73 @@
         text-transform: uppercase;
         letter-spacing: 1px;
     }
+/* SYSTEM 7X: MISSION MANIFESTO SCOPED STYLES */
+.s7x-manifesto-root {
+    border-left: 2px solid #222;
+    padding-left: 35px;
+    margin: 50px 0;
+    position: relative;
+}
+
+.s7x-segment-vanguard {
+    margin-bottom: 45px;
+    position: relative;
+}
+
+.s7x-label-entropy {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #ff0000; /* Unapologetic Red */
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    display: block;
+    margin-bottom: 12px;
+    opacity: 0.8;
+}
+
+.s7x-text-sovereign {
+    font-size: 1.45rem;
+    font-weight: 400;
+    line-height: 1.35;
+    color: #dfdfdf;
+}
+
+.s7x-text-sovereign strong {
+    color: #ffffff;
+    font-weight: 900;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.s7x-alert-hostile {
+    background: linear-gradient(90deg, #0a0a0a 0%, #000000 100%);
+    border: 1px solid #1a1a1a;
+    padding: 35px;
+    margin-top: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.s7x-alert-hostile::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: #ff0000;
+}
+
+.s7x-signal-header {
+    color: #ff0000;
+    font-weight: 900;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: block;
+    letter-spacing: 2px;
+}
+
+
 
 
 
@@ -808,18 +875,33 @@
 
       <p id="typewriter" class="flip-panel"></p>
 
-      <p class="lead">
-        Project 7xBUS is the development of new branches of mathematics —
-        frameworks that surpass what’s known to be possible in data prediction
-        and market technology.
-        <br><br>
-        It is the war cry for those trapped under systems built to keep them powerless.
-        <br><br>
-        We have everything Wall Street has — and more. That’s the point.
-        <br><br>
-        If you’re a market maker or volatility hedge fund —
-        we are your new #1 competition.
-      </p>
+      <div class="s7x-manifesto-root">
+    
+    <div class="s7x-segment-vanguard">
+        <span class="s7x-label-entropy">Framework // Core_Logic</span>
+        <p class="s7x-text-sovereign">
+            Project 7xBUS is the development of <strong>New Branches of Mathematics.</strong> 
+            We engineer frameworks that surpass what is currently known to be possible in data prediction and market technology[cite: 26, 37].
+        </p>
+    </div>
+
+    <div class="s7x-segment-vanguard">
+        <span class="s7x-label-entropy">Protocol // War_Cry</span>
+        <p class="s7x-text-sovereign">
+            It is the sovereign war cry for those trapped under systems built to keep them powerless[cite: 27, 41]. 
+            We have everything Wall Street has—<strong>and more.</strong> That is the point[cite: 28].
+        </p>
+    </div>
+
+    <div class="s7x-alert-hostile">
+        <span class="s7x-signal-header">[!] COMPETITION_THREAT_DETECTION</span>
+        <p class="s7x-text-sovereign" style="font-size: 1.25rem;">
+            If you are a <strong>Market Maker</strong> or a <strong>Volatility Hedge Fund:</strong> 
+            We are your new #1 competition. The glitch is being reclaimed[cite: 29].
+        </p>
+    </div>
+
+</div>
 
       <div class="plain-bar">
         In simple terms: a new math engine powering markets, science, and real-world systems built to lower costs and challenge consolidation.
