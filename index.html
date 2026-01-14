@@ -814,41 +814,36 @@
 
     
 /* ==========================
-   MOBILE NAV — LOCKED GRID
+   MOBILE NAV — STRUCTURED
    ========================== */
 @media (max-width: 768px){
 
   nav{
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "brand takeover"
-      "links  links";
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    row-gap: 0.6rem;
-    padding: 0.7rem 1rem 0.85rem;
+    gap: 0.6rem;
+    padding: 0.75rem 1rem;
   }
 
   /* BRAND */
   nav > div:nth-child(1){
-    grid-area: brand;
-    align-self: center;
+    flex: 1 1 auto;
   }
 
   /* LINK GROUP */
   nav > div:nth-child(2){
-    grid-area: links;
+    order: 3; /* push to second row */
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 1.25rem;
-    padding-top: 0.35rem;
-    border-top: 1px solid rgba(255,0,0,0.25);
+    margin-top: 0.35rem;
   }
 
   /* TAKEOVER CTA */
   nav > div:nth-child(3){
-    grid-area: takeover;
-    justify-self: end;
+    order: 2;
   }
 
   .nav-link-takeover{
@@ -861,6 +856,7 @@
     font-size: 0.75rem;
   }
 }
+
 
 /* ==========================
    MOBILE HERO PANEL FIX
