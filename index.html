@@ -1351,18 +1351,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const video = document.getElementById("heroFire");
   if (!video) return;
 
-  const stopAfter = 20000; // 👈 change time here (ms)
+  let timerStarted = false;
 
-  setTimeout(() => {
-    video.style.opacity = "0";
+  const startTimer = () => {
+    if (timerStarted) return;
+    timerStarted = true;
 
     setTimeout(() => {
-      video.pause();
-      video.removeAttribute("src");
-      video.load(); // release GPU memory
-      video.remove();
-    }, 1600);
-  }, stopAfter);
+      video.style.opacity = "0";
+
+      setTimeout(() => {
+        video.pause();
+        video.removeAttribute("src");
+        video.load(); // release GPU / memory
+        video.remove();
+      }, 1600);
+    }, 20000); // ⏱ 20 seconds
+  };
+
+  // CRITICAL: start timer only after playback begins
+  video.addEventListener("playing", startTimer, { once: true });
 });
 </script>
 
