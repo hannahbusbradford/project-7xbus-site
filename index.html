@@ -798,41 +798,64 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+/* ==========================
+   MOBILE NAV — STRUCTURED
+   ========================== */
 @media (max-width: 768px){
-  header{
-    min-height: 100svh; /* stable viewport height */
+
+  nav{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1rem;
+  }
+
+  /* BRAND */
+  nav > div:nth-child(1){
+    flex: 1 1 auto;
+  }
+
+  /* LINK GROUP */
+  nav > div:nth-child(2){
+    order: 3; /* push to second row */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 0.35rem;
+  }
+
+  /* TAKEOVER CTA */
+  nav > div:nth-child(3){
+    order: 2;
+  }
+
+  .nav-link-takeover{
+    font-size: 0.7rem;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+
+  nav a{
+    font-size: 0.75rem;
   }
 }
-
-
-@media (max-width: 768px){
-  #heroFire{
-    mix-blend-mode: normal;
-    opacity: 0.22; /* compensate */
-  }
-}
-
-
-@media (max-width: 768px){
-  #heroFire{
-    filter: blur(1px) saturate(1.3) contrast(1.15) brightness(0.9);
-  }
-}
-
-
-@media (max-width: 768px){
-  .hero-panel{
-    backdrop-filter: none;
-    background: rgba(0,0,0,0.92);
-  }
-}
-@media (max-width: 480px){
-  #heroFire{
-    display: none;
-  }
-}
-
-
 
 
 
