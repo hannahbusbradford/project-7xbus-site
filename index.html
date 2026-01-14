@@ -863,12 +863,14 @@
   <header>
     <div class="hero-bg"><!-- HERO FIRE VIDEO (DIRECT MP4, 20s MAX) -->
 <!-- HERO BACKGROUND VIDEO -->
+<!-- HERO BACKGROUND VIDEO -->
 <video
   id="heroFire"
   autoplay
   muted
   loop
   playsinline
+  webkit-playsinline
   preload="auto"
   style="
     position:absolute;
@@ -886,8 +888,10 @@
     mix-blend-mode: screen;
   "
 >
-  <source src="Train.mp4" type="video/mp4">
+  <!-- IMPORTANT: relative path + exact case -->
+  <source src="./Train.mp4" type="video/mp4">
 </video>
+
 </div>
 
     <div class="hero-panel">
