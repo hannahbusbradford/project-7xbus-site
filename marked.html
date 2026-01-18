@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7xBUS | MARKED</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-black: #050505;
+            --border-gray: #1A1A1A;
+            --text-muted: #888;
+            --text-light: #E0E0E0;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-light);
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0;
+            padding: 5vw;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header-meta {
+            color: #ff5a5a;
+            font-weight: 800;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h1.main-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #ff5a5a;
+            color: black;
+            padding: 0.2rem 0.6rem;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-top: 1rem;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 4rem 0 1.5rem;
+            border-bottom: 1px solid var(--border-gray);
+            padding-bottom: 0.5rem;
+            display: block;
+        }
+
+        .marked-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2px;
+            background-color: var(--border-gray);
+            border: 2px solid var(--border-gray);
+        }
+
+        .marked-item {
+            background-color: var(--bg-black);
+            padding: 2.5rem;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            color: #ff5a5a;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .entity-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 0 1rem 0;
+            color: #FFF;
+        }
+
+        .entity-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* COLORFUL FRIENDLY TERMINAL */
+
+        .terminal {
+            margin-top: 8rem;
+            padding: 3.5rem;
+            border-radius: 20px;
+            background: linear-gradient(
+                135deg,
+                #2b1055,
+                #1b3b6f,
+                #0f4c5c,
+                #3a5a40,
+                #6a4c93
+            );
+            background-size: 500% 500%;
+            animation: gradientFlow 20s ease infinite;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #terminal-output {
+            white-space: pre-wrap;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: #f4f4f4;
+        }
+
+        .soft-line {
+            opacity: 0.75;
+        }
+
+        .final-line {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-top: 1.2rem;
+            background: linear-gradient(
+                90deg,
+                #ff9a9e,
+                #fad0c4,
+                #fbc2eb,
+                #a1c4fd,
+                #c2e9fb
+            );
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 6s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .glitch-footer {
+            margin-top: 4rem;
+            color: #333;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+
+
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <span class="header-meta">Structural Audit // Project 7xBUS</span>
+    <h1 class="main-title">MARKED</h1>
+    <div class="status-badge">AUTHORITY: VOID</div>
+
+    <span class="section-label">Public Corporations</span>
+
+    <div class="marked-grid">
+        <div class="marked-item">
+            <span class="tag">Extractive Infrastructure</span>
+            <h3 class="entity-name">Apple Inc.</h3>
+            <p class="entity-desc">
+                Closed-loop data ecosystems optimized for permissioned access and interface rent extraction.
+            </p>
+        </div>
+
+        <div class="marked-item">
+            <span class="tag">Extractive Infrastructure</span>
+            <h3 class="entity-name">Mastercard Inc.</h3>
+            <p class="entity-desc">
+                Transaction authority preserved through identity tethering and settlement friction.
+            </p>
+        </div>
+
+        <div class="marked-item">
+            <span class="tag">Labor Abstraction Layer</span>
+            <h3 class="entity-name">Uber Technologies Inc.</h3>
+            <p class="entity-desc">
+                Physical labor compressed into algorithmic yield surfaces.
+            </p>
+        </div>
+
+        <div class="marked-item">
+            <span class="tag">Public Infrastructure Arbitrage</span>
+            <h3 class="entity-name">Via Transportation</h3>
+            <p class="entity-desc">
+                Fragmentation of civic transport into privatized efficiency slices.
+            </p>
+        </div>
+    </div>
+<div style="
+    margin-top:6rem;
+    max-width:900px;
+    font-size:0.85rem;
+    color:#999;
+    border-top:1px solid #222;
+    padding-top:1.5rem;
+">
+    Project 7xBUS does not partner with, accept funding from, or conduct commercial relationships with the entities listed on this page.
+</div>
+    <!-- FRIENDLY COLORFUL ENDING -->
+    <div class="terminal">
+        <div id="terminal-output"></div>
+    </div>
+
+    <div class="glitch-footer">
+        Project 7xBUS // Structural Analysis // Post-Extractive Design
+    </div>
+</div>
+
+<script>
+const lines = [
+  { text: "checking assumptions…", class: "soft-line" },
+  { text: "updating models…", class: "soft-line" },
+  { text: "aligning incentives…", class: "soft-line" },
+  { text: "zooming out a little…", class: "soft-line" },
+  { text: "", class: "" },
+  { text: "status:", class: "soft-line" },
+  { text: "get it together 💛", class: "final-line" }
+];
+
+const output = document.getElementById("terminal-output");
+let i = 0;
+
+function typeNextLine() {
+    if (i >= lines.length) return;
+
+    const span = document.createElement("div");
+    span.className = lines[i].class;
+    output.appendChild(span);
+
+    let j = 0;
+    const text = lines[i].text;
+
+    function typeChar() {
+        if (j < text.length) {
+            span.textContent += text.charAt(j);
+            j++;
+            setTimeout(typeChar, 35);
+        } else {
+            i++;
+            setTimeout(typeNextLine, 500);
+        }
+    }
+
+    typeChar();
+}
+
+setTimeout(() => {
+    output.innerHTML = "";
+    typeNextLine();
+}, 800);
+</script>
+
+</body>
+</html>
