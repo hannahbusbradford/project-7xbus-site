@@ -169,7 +169,60 @@
         }
 
 
+/* ==========================
+   NAV BAR
+   ========================== */
+nav{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:0.9rem 1.4rem;
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.85),
+    rgba(0,0,0,.65)
+  );
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--line);
+}
 
+.nav-brand{
+  font-weight:900;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-size:.85rem;
+  color:var(--ink);
+  text-decoration:none;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:1.4rem;
+}
+
+.nav-links a{
+  font-size:.75rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-decoration:none;
+  transition:color .2s ease, opacity .2s ease;
+}
+
+.nav-links a:hover{
+  color:var(--ink);
+  opacity:.9;
+}
+
+/* Highlight for MARKED */
+.nav-links a.marked{
+  color:var(--accent);
+}
 
 
 
@@ -178,7 +231,16 @@
 </head>
 
 <body>
+<nav>
+  <a href="/" class="nav-brand">Project 7xBUS</a>
 
+  <div class="nav-links">
+    <a href="/#what-it-is">What It Is</a>
+    <a href="/#systems">Systems</a>
+    <a href="/#timeline">Timeline</a>
+    <a href="/marked.html" class="marked">Marked</a>
+  </div>
+</nav>
 <div class="container">
     <span class="header-meta">Structural Audit // Project 7xBUS</span>
     <h1 class="main-title">MARKED</h1>
@@ -285,3 +347,4 @@ setTimeout(() => {
 
 </body>
 </html>
+
