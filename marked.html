@@ -8,9 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&display=swap" rel="stylesheet">
 
 <style>
-/* ==========================
-   ORIGINAL PALETTE (RESTORED)
-   ========================== */
 :root{
   --bg-black:#050505;
   --border-gray:#1A1A1A;
@@ -19,9 +16,7 @@
   --accent:#ff5a5a;
 }
 
-/* ==========================
-   GLOBAL RESET
-   ========================== */
+/* RESET */
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{
@@ -32,7 +27,7 @@ body{
 }
 
 /* ==========================
-   NAV BAR (PALETTE MATCHED)
+   NAV BAR + DROPDOWN
    ========================== */
 nav{
   position:sticky;
@@ -43,11 +38,7 @@ nav{
   justify-content:space-between;
   align-items:center;
   padding:0.9rem 2rem;
-  background:linear-gradient(
-    180deg,
-    rgba(5,5,5,.95),
-    rgba(5,5,5,.75)
-  );
+  background:linear-gradient(180deg, rgba(5,5,5,.95), rgba(5,5,5,.75));
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--border-gray);
 }
@@ -64,6 +55,7 @@ nav{
 .nav-links{
   display:flex;
   gap:1.4rem;
+  align-items:center;
 }
 
 .nav-links a{
@@ -75,7 +67,52 @@ nav{
 }
 
 .nav-links a:hover{color:var(--text-light)}
-.nav-links a.marked{color:var(--accent)}
+
+/* DROPDOWN */
+.nav-dropdown{
+  position:relative;
+}
+
+.nav-trigger{
+  font-size:.7rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  cursor:pointer;
+  user-select:none;
+}
+
+.nav-menu{
+  position:absolute;
+  top:130%;
+  right:0;
+  background:#060606;
+  border:1px solid var(--border-gray);
+  min-width:220px;
+  display:none;
+  flex-direction:column;
+}
+
+.nav-menu a{
+  padding:.75rem 1rem;
+  font-size:.7rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  text-decoration:none;
+  border-bottom:1px solid var(--border-gray);
+}
+
+.nav-menu a:last-child{border-bottom:none}
+.nav-menu a:hover{
+  color:var(--text-light);
+  background:#0b0b0b;
+}
+
+/* show on hover (desktop) */
+.nav-dropdown:hover .nav-menu{
+  display:flex;
+}
 
 /* ==========================
    PAGE LAYOUT
@@ -162,7 +199,7 @@ h1.main-title{
 }
 
 /* ==========================
-   POLICY NOTICE
+   NOTICE
    ========================== */
 .notice{
   margin-top:6rem;
@@ -174,19 +211,14 @@ h1.main-title{
 }
 
 /* ==========================
-   TERMINAL (UNCHANGED)
+   TERMINAL
    ========================== */
 .terminal{
   margin-top:8rem;
   padding:3.5rem;
   border-radius:20px;
   background:linear-gradient(
-    135deg,
-    #2b1055,
-    #1b3b6f,
-    #0f4c5c,
-    #3a5a40,
-    #6a4c93
+    135deg,#2b1055,#1b3b6f,#0f4c5c,#3a5a40,#6a4c93
   );
   background-size:500% 500%;
   animation:gradientFlow 20s ease infinite;
@@ -207,19 +239,11 @@ h1.main-title{
 }
 
 .soft-line{opacity:.75}
-
 .final-line{
   font-size:1.8rem;
   font-weight:800;
   margin-top:1.2rem;
-  background:linear-gradient(
-    90deg,
-    #ff9a9e,
-    #fad0c4,
-    #fbc2eb,
-    #a1c4fd,
-    #c2e9fb
-  );
+  background:linear-gradient(90deg,#ff9a9e,#fad0c4,#fbc2eb,#a1c4fd,#c2e9fb);
   background-size:300% 300%;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -243,12 +267,23 @@ h1.main-title{
 <body>
 
 <nav>
-  <a href="/" class="nav-brand">Project 7xBUS</a>
+  <a href="index.html" class="nav-brand">Project 7xBUS</a>
+
   <div class="nav-links">
-  <a href="index.html" style="color: #e9e9e9; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;">Home</a>
-        <a href="About.html" style="color: #e9e9e9; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;">Mission Statement</a>
-       <a href="marked.html" style="color: #e9e9e9; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;">Marked</a>
-        <a href="https://www.instagram.com/project7xbus" target="_blank" style="color: #e9e9e9; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;">Instagram</a>
+    <a href="index.html">Home</a>
+    <a href="About.html">Mission Statement</a>
+
+    <div class="nav-dropdown">
+      <span class="nav-trigger">Marked ▾</span>
+      <div class="nav-menu">
+        <a href="#public">Public Corporations</a>
+        <a href="#private">Private Entities</a>
+        <a href="#infrastructure">Infrastructure</a>
+        <a href="#archive">Archive</a>
+      </div>
+    </div>
+
+    <a href="https://www.instagram.com/project7xbus" target="_blank">Instagram</a>
   </div>
 </nav>
 
@@ -259,7 +294,7 @@ h1.main-title{
 <h1 class="main-title">MARKED</h1>
 <div class="status-badge">AUTHORITY: VOID</div>
 
-<span class="section-label">Public Corporations</span>
+<span id="public" class="section-label">Public Corporations</span>
 
 <div class="marked-grid">
   <div class="marked-item">
@@ -333,4 +368,3 @@ setTimeout(()=>{output.innerHTML="";typeNext();},800);
 
 </body>
 </html>
-
