@@ -1355,26 +1355,52 @@
     window.addEventListener('scroll', parallax, { passive:true });
   </script>
 
-  <script>
-    // typewriter
-    const text = `The same mathematical edge we developed for financial systems is now being deployed into physics, chemistry, engineering, and infrastructure — revealing structural behavior inside entropy and motion that classical science was never built to see. This lets us build technologies and businesses from laws that standard models treat as noise — so we compete on two fronts: Wall Street and the industrial world.`;
+
+
+
+
+<div id="typewriter" style="font-family: monospace; font-size: 1.5rem; color: #fff; line-height: 1.6;"></div>
+
+<script>
+    // Updated Typewriter Script
+    const text = `THE BREAKTHROUGH. They said it was impossible. We built it anyway. We’ve achieved breakthroughs from fundamental physics all the way to reverse-engineering market structure. We’ve developed a mathematical edge the establishment isn't built to handle. Now, we’re taking it to the main stage by force. Let’s see who wins.`;
+    
     let i = 0;
-    const speed = 85;
+    const speed = 40; // Slightly faster for a more modern, aggressive feel
 
     function typeWriter() {
       const el = document.getElementById("typewriter");
       if (!el) return;
       if (i < text.length) {
+        // Check for specific words to wrap in a span/bold if desired
         el.innerHTML += text.charAt(i);
         i++;
         setTimeout(typeWriter, speed);
       }
     }
-    document.addEventListener("DOMContentLoaded", () => {
-      setTimeout(typeWriter, 600);
-    });
-  </script>
 
+    document.addEventListener("DOMContentLoaded", () => {
+      // Delaying the start slightly for maximum impact
+      setTimeout(typeWriter, 800);
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   <script>
     function togglePortfolio() {
       const list = document.getElementById('portfolioList');
