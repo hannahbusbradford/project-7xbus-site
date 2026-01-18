@@ -1,239 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>7xBUS | MARKED</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7xBUS | MARKED</title>
 
-    <style>
-        :root {
-            --bg-black: #050505;
-            --border-gray: #1A1A1A;
-            --text-muted: #888;
-            --text-light: #E0E0E0;
-        }
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--bg-black);
-            color: var(--text-light);
-            font-family: 'JetBrains Mono', monospace;
-            margin: 0;
-            padding: 5vw;
-            line-height: 1.5;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .header-meta {
-            color: #ff5a5a;
-            font-weight: 800;
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        h1.main-title {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 800;
-            text-transform: uppercase;
-            margin: 0;
-            line-height: 0.9;
-            letter-spacing: -0.05em;
-        }
-
-        .status-badge {
-            display: inline-block;
-            background: #ff5a5a;
-            color: black;
-            padding: 0.2rem 0.6rem;
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-top: 1rem;
-        }
-
-        .section-label {
-            font-size: 0.9rem;
-            letter-spacing: .22em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin: 4rem 0 1.5rem;
-            border-bottom: 1px solid var(--border-gray);
-            padding-bottom: 0.5rem;
-            display: block;
-        }
-
-        .marked-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2px;
-            background-color: var(--border-gray);
-            border: 2px solid var(--border-gray);
-        }
-
-        .marked-item {
-            background-color: var(--bg-black);
-            padding: 2.5rem;
-        }
-
-        .tag {
-            font-size: 0.7rem;
-            color: #ff5a5a;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .entity-name {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 0 0 1rem 0;
-            color: #FFF;
-        }
-
-        .entity-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* COLORFUL FRIENDLY TERMINAL */
-
-        .terminal {
-            margin-top: 8rem;
-            padding: 3.5rem;
-            border-radius: 20px;
-            background: linear-gradient(
-                135deg,
-                #2b1055,
-                #1b3b6f,
-                #0f4c5c,
-                #3a5a40,
-                #6a4c93
-            );
-            background-size: 500% 500%;
-            animation: gradientFlow 20s ease infinite;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-        }
-
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        #terminal-output {
-            white-space: pre-wrap;
-            font-size: 1.25rem;
-            line-height: 1.8;
-            color: #f4f4f4;
-        }
-
-        .soft-line {
-            opacity: 0.75;
-        }
-
-        .final-line {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-top: 1.2rem;
-            background: linear-gradient(
-                90deg,
-                #ff9a9e,
-                #fad0c4,
-                #fbc2eb,
-                #a1c4fd,
-                #c2e9fb
-            );
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 6s linear infinite;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
-        }
-
-        .glitch-footer {
-            margin-top: 4rem;
-            color: #333;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-        }
-
+<style>
+/* ==========================
+   ROOT VARIABLES (UNIFIED)
+   ========================== */
+:root{
+  --bg:#050505;
+  --panel:#0b0b0b;
+  --ink:#e9e9e9;
+  --muted:#888;
+  --line:#1a1a1a;
+  --accent:#ff5a5a;
+}
 
 /* ==========================
-   NAV BAR
+   GLOBAL RESET
+   ========================== */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'JetBrains Mono', monospace;
+  line-height:1.5;
+}
+
+/* ==========================
+   NAV BAR (FIXED)
    ========================== */
 nav{
   position:sticky;
   top:0;
   z-index:1000;
+  width:100%;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:1rem;
-  padding:0.9rem 1.4rem;
+  padding:0.9rem 2rem;
   background:linear-gradient(
     180deg,
-    rgba(0,0,0,.85),
-    rgba(0,0,0,.65)
+    rgba(0,0,0,.9),
+    rgba(0,0,0,.75)
   );
-  backdrop-filter: blur(10px);
+  backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
 
 .nav-brand{
-  font-weight:900;
+  font-weight:800;
   letter-spacing:.22em;
   text-transform:uppercase;
-  font-size:.85rem;
+  font-size:.8rem;
   color:var(--ink);
   text-decoration:none;
 }
 
 .nav-links{
   display:flex;
-  align-items:center;
   gap:1.4rem;
 }
 
 .nav-links a{
-  font-size:.75rem;
+  font-size:.7rem;
   letter-spacing:.14em;
   text-transform:uppercase;
   color:var(--muted);
   text-decoration:none;
-  transition:color .2s ease, opacity .2s ease;
 }
 
-.nav-links a:hover{
-  color:var(--ink);
-  opacity:.9;
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.marked{color:var(--accent)}
+
+/* ==========================
+   PAGE CONTAINER
+   ========================== */
+.page{
+  padding:5vw;
 }
 
-/* Highlight for MARKED */
-.nav-links a.marked{
+.container{
+  max-width:1100px;
+  margin:0 auto;
+}
+
+/* ==========================
+   HEADER
+   ========================== */
+.header-meta{
   color:var(--accent);
+  font-weight:800;
+  letter-spacing:.5em;
+  text-transform:uppercase;
+  font-size:.75rem;
+  margin-bottom:1rem;
+  display:block;
 }
 
+h1.main-title{
+  font-size:clamp(2.5rem,8vw,5rem);
+  font-weight:800;
+  text-transform:uppercase;
+  margin:0;
+  line-height:.9;
+}
 
+.status-badge{
+  display:inline-block;
+  background:var(--accent);
+  color:#000;
+  padding:.25rem .6rem;
+  font-size:1.1rem;
+  font-weight:800;
+  margin-top:1rem;
+}
 
+/* ==========================
+   GRID
+   ========================== */
+.section-label{
+  font-size:.85rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:4rem 0 1.5rem;
+  border-bottom:1px solid var(--line);
+  padding-bottom:.5rem;
+}
 
-    </style>
+.marked-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+
+.marked-item{
+  background:var(--bg);
+  padding:2.3rem;
+}
+
+.tag{
+  font-size:.65rem;
+  color:var(--accent);
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  margin-bottom:1rem;
+  display:block;
+}
+
+.entity-name{
+  font-size:1.4rem;
+  font-weight:800;
+  margin:0 0 .8rem;
+}
+
+.entity-desc{
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+/* ==========================
+   POLICY NOTICE
+   ========================== */
+.notice{
+  margin-top:5rem;
+  max-width:900px;
+  font-size:.8rem;
+  color:#999;
+  border-top:1px solid var(--line);
+  padding-top:1.4rem;
+}
+
+/* ==========================
+   TERMINAL ENDING
+   ========================== */
+.terminal{
+  margin-top:6rem;
+  padding:3rem;
+  border-radius:18px;
+  background:linear-gradient(
+    135deg,
+    #2b1055,
+    #1b3b6f,
+    #0f4c5c,
+    #3a5a40,
+    #6a4c93
+  );
+  background-size:500% 500%;
+  animation:gradientFlow 20s ease infinite;
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+}
+
+@keyframes gradientFlow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+#terminal-output{
+  white-space:pre-wrap;
+  font-size:1.15rem;
+  line-height:1.8;
+}
+
+.soft-line{opacity:.75}
+.final-line{
+  font-size:1.7rem;
+  font-weight:800;
+  margin-top:1rem;
+  background:linear-gradient(
+    90deg,
+    #ff9a9e,
+    #fad0c4,
+    #fbc2eb,
+    #a1c4fd,
+    #c2e9fb
+  );
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shimmer 6s linear infinite;
+}
+
+@keyframes shimmer{
+  0%{background-position:0% 50%}
+  100%{background-position:200% 50%}
+}
+
+.glitch-footer{
+  margin-top:3rem;
+  color:#333;
+  font-size:.7rem;
+  text-transform:uppercase;
+}
+</style>
 </head>
 
 <body>
+
 <nav>
   <a href="/" class="nav-brand">Project 7xBUS</a>
-
   <div class="nav-links">
     <a href="/#what-it-is">What It Is</a>
     <a href="/#systems">Systems</a>
@@ -241,110 +255,85 @@ nav{
     <a href="/marked.html" class="marked">Marked</a>
   </div>
 </nav>
+
+<div class="page">
 <div class="container">
-    <span class="header-meta">Structural Audit // Project 7xBUS</span>
-    <h1 class="main-title">MARKED</h1>
-    <div class="status-badge">AUTHORITY: VOID</div>
 
-    <span class="section-label">Public Corporations</span>
+<span class="header-meta">Structural Audit // Project 7xBUS</span>
+<h1 class="main-title">MARKED</h1>
+<div class="status-badge">AUTHORITY: VOID</div>
 
-    <div class="marked-grid">
-        <div class="marked-item">
-            <span class="tag">Extractive Infrastructure</span>
-            <h3 class="entity-name">Apple Inc.</h3>
-            <p class="entity-desc">
-                Closed-loop data ecosystems optimized for permissioned access and interface rent extraction.
-            </p>
-        </div>
+<span class="section-label">Public Corporations</span>
 
-        <div class="marked-item">
-            <span class="tag">Extractive Infrastructure</span>
-            <h3 class="entity-name">Mastercard Inc.</h3>
-            <p class="entity-desc">
-                Transaction authority preserved through identity tethering and settlement friction.
-            </p>
-        </div>
+<div class="marked-grid">
+  <div class="marked-item">
+    <span class="tag">Extractive Infrastructure</span>
+    <h3 class="entity-name">Apple Inc.</h3>
+    <p class="entity-desc">Closed-loop data ecosystems optimized for permissioned access and interface rent extraction.</p>
+  </div>
 
-        <div class="marked-item">
-            <span class="tag">Labor Abstraction Layer</span>
-            <h3 class="entity-name">Uber Technologies Inc.</h3>
-            <p class="entity-desc">
-                Physical labor compressed into algorithmic yield surfaces.
-            </p>
-        </div>
+  <div class="marked-item">
+    <span class="tag">Extractive Infrastructure</span>
+    <h3 class="entity-name">Mastercard Inc.</h3>
+    <p class="entity-desc">Transaction authority preserved through identity tethering and settlement friction.</p>
+  </div>
 
-        <div class="marked-item">
-            <span class="tag">Public Infrastructure Arbitrage</span>
-            <h3 class="entity-name">Via Transportation</h3>
-            <p class="entity-desc">
-                Fragmentation of civic transport into privatized efficiency slices.
-            </p>
-        </div>
-    </div>
-<div style="
-    margin-top:6rem;
-    max-width:900px;
-    font-size:0.85rem;
-    color:#999;
-    border-top:1px solid #222;
-    padding-top:1.5rem;
-">
-    Project 7xBUS does not partner with, accept funding from, or conduct commercial relationships with the entities listed on this page.
+  <div class="marked-item">
+    <span class="tag">Labor Abstraction Layer</span>
+    <h3 class="entity-name">Uber Technologies Inc.</h3>
+    <p class="entity-desc">Physical labor compressed into algorithmic yield surfaces.</p>
+  </div>
+
+  <div class="marked-item">
+    <span class="tag">Public Infrastructure Arbitrage</span>
+    <h3 class="entity-name">Via Transportation</h3>
+    <p class="entity-desc">Fragmentation of civic transport into privatized efficiency slices.</p>
+  </div>
 </div>
-    <!-- FRIENDLY COLORFUL ENDING -->
-    <div class="terminal">
-        <div id="terminal-output"></div>
-    </div>
 
-    <div class="glitch-footer">
-        Project 7xBUS // Structural Analysis // Post-Extractive Design
-    </div>
+<div class="notice">
+Project 7xBUS does not partner with, accept funding from, or conduct commercial relationships with the entities listed on this page.
+</div>
+
+<div class="terminal">
+  <div id="terminal-output"></div>
+</div>
+
+<div class="glitch-footer">
+Project 7xBUS // Structural Analysis // Post-Extractive Design
+</div>
+
+</div>
 </div>
 
 <script>
-const lines = [
-  { text: "checking assumptions…", class: "soft-line" },
-  { text: "updating models…", class: "soft-line" },
-  { text: "aligning incentives…", class: "soft-line" },
-  { text: "zooming out a little…", class: "soft-line" },
-  { text: "", class: "" },
-  { text: "status:", class: "soft-line" },
-  { text: "get it together 💛", class: "final-line" }
+const lines=[
+{text:"checking assumptions…",class:"soft-line"},
+{text:"updating models…",class:"soft-line"},
+{text:"aligning incentives…",class:"soft-line"},
+{text:"zooming out a little…",class:"soft-line"},
+{text:"",class:""},
+{text:"status:",class:"soft-line"},
+{text:"get it together 💛",class:"final-line"}
 ];
 
-const output = document.getElementById("terminal-output");
-let i = 0;
+const output=document.getElementById("terminal-output");
+let i=0;
 
-function typeNextLine() {
-    if (i >= lines.length) return;
-
-    const span = document.createElement("div");
-    span.className = lines[i].class;
-    output.appendChild(span);
-
-    let j = 0;
-    const text = lines[i].text;
-
-    function typeChar() {
-        if (j < text.length) {
-            span.textContent += text.charAt(j);
-            j++;
-            setTimeout(typeChar, 35);
-        } else {
-            i++;
-            setTimeout(typeNextLine, 500);
-        }
-    }
-
-    typeChar();
+function typeNext(){
+ if(i>=lines.length)return;
+ const d=document.createElement("div");
+ d.className=lines[i].class;
+ output.appendChild(d);
+ let j=0;
+ const t=lines[i].text;
+ (function type(){
+  if(j<t.length){d.textContent+=t[j++];setTimeout(type,35);}
+  else{i++;setTimeout(typeNext,500);}
+ })();
 }
-
-setTimeout(() => {
-    output.innerHTML = "";
-    typeNextLine();
-}, 800);
+setTimeout(()=>{output.innerHTML="";typeNext();},800);
 </script>
 
 </body>
 </html>
-
