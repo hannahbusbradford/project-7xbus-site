@@ -1521,190 +1521,147 @@
   </script>
 </div>
 </section>
-  <!-- HOW WE’RE FUNDING THE MISSION -->
-<div id="P7X_CORE_WRAPPER">
+
+  <section>
+    <div id="P7X_MISSION_STACK">
   <svg style="position:absolute; width:0; height:0;" aria-hidden="true">
-    <filter id="P7X_LIQUID_RED_GLOW">
+    <filter id="P7X_LIQUID_FILTER">
       <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
       <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" />
     </filter>
   </svg>
 
   <style>
-    #P7X_CORE_WRAPPER {
-      --P7X_MAIN_RED: #ff0000;
-      --P7X_DARK_ACCENT: #0a0a0a;
+    #P7X_MISSION_STACK {
+      --P7X_RED: #ff0000;
+      --P7X_BG: #050505;
       max-width: 1100px;
       margin: 40px auto;
       font-family: 'Inter', sans-serif;
+      color: #ccc;
     }
 
-    .P7X_ACCORDION_BOX {
-      background: #050505;
+    .P7X_BOX {
+      background: var(--P7X_BG);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       border-radius: 4px;
-      transition: all 0.4s ease;
+      overflow: hidden;
     }
 
-    /* Trigger Bar */
-    .P7X_CONTROL_BAR {
-      padding: 25px 40px;
+    .P7X_TRIGGER {
+      padding: 30px 40px;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(to right, #0d0d0d, #050505);
+      background: #0a0a0a;
     }
 
-    .P7X_CONTROL_BAR h2 {
+    .P7X_TRIGGER h2 {
       margin: 0;
       font-family: 'Playfair Display', serif;
       font-size: 22px;
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       text-transform: uppercase;
       color: rgba(255,255,255,0.4);
-      transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: 0.5s ease;
     }
 
-    /* The Bulb System */
-    .P7X_UI_BULB {
-      position: relative;
-      filter: url('#P7X_LIQUID_RED_GLOW');
-      width: 45px; height: 45px;
-      display: flex; justify-content: center; align-items: center;
-    }
+    /* Bulb System */
+    .P7X_BULB_UI { position: relative; filter: url('#P7X_LIQUID_FILTER'); width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; }
+    .P7X_CORE_UI { width: 14px; height: 14px; background: #222; border-radius: 50%; z-index: 5; transition: 0.5s; }
+    .P7X_BLOOM_UI { position: absolute; width: 20px; height: 20px; background: var(--P7X_RED); border-radius: 50%; opacity: 0; transform: scale(0.5); transition: 0.6s ease; }
 
-    .P7X_UI_CORE {
-      width: 14px; height: 14px;
-      background: #222;
-      border-radius: 50%;
-      z-index: 5;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
+    /* The Expand Logic */
+    .P7X_GATE { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .P7X_SHELF { overflow: hidden; opacity: 0; transform: translateY(-10px); transition: 0.6s ease; padding: 0 40px; }
 
-    .P7X_UI_BLOOM {
-      position: absolute;
-      width: 20px; height: 20px;
-      background: var(--P7X_MAIN_RED);
-      border-radius: 50%;
-      opacity: 0;
-      transform: scale(0.5);
-      transition: 0.6s ease;
-    }
+    /* Active States */
+    .P7X_BOX.is-p7x-open { border-color: var(--P7X_RED); }
+    .P7X_BOX.is-p7x-open .P7X_GATE { grid-template-rows: 1fr; }
+    .P7X_BOX.is-p7x-open .P7X_SHELF { opacity: 1; transform: translateY(0); padding-bottom: 50px; }
+    .P7X_BOX.is-p7x-open .P7X_TRIGGER h2 { color: #fff; text-shadow: 0 0 15px var(--P7X_RED); }
+    .P7X_BOX.is-p7x-open .P7X_CORE_UI { background: #fff; transform: scale(1.3); }
+    .P7X_BOX.is-p7x-open .P7X_BLOOM_UI { opacity: 1; transform: scale(2.4); filter: blur(3px); }
 
-    /* Animation Logic - GRID FR METHOD */
-    .P7X_SLIDE_GATE {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .P7X_INTERIOR {
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(-15px);
-      transition: all 0.6s ease;
-      padding: 0 40px;
-    }
-
-    /* Active State Assignments */
-    .P7X_ACCORDION_BOX.is-p7x-active { border-color: var(--P7X_MAIN_RED); box-shadow: 0 0 30px rgba(255,0,0,0.05); }
-    .P7X_ACCORDION_BOX.is-p7x-active .P7X_SLIDE_GATE { grid-template-rows: 1fr; }
-    .P7X_ACCORDION_BOX.is-p7x-active .P7X_INTERIOR { opacity: 1; transform: translateY(0); padding-bottom: 50px; transition-delay: 0.2s; }
-    .P7X_ACCORDION_BOX.is-p7x-active .P7X_CONTROL_BAR h2 { color: #fff; letter-spacing: 7px; text-shadow: 0 0 15px var(--P7X_MAIN_RED); }
-    .P7X_ACCORDION_BOX.is-p7x-active .P7X_UI_CORE { background: #fff; transform: scale(1.3); box-shadow: 0 0 15px #fff; }
-    .P7X_ACCORDION_BOX.is-p7x-active .P7X_UI_BLOOM { opacity: 1; transform: scale(2.4); filter: blur(3px); }
-
-    /* Content Layouts */
+    /* Content Styling */
     .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 30px; }
     .card { background: rgba(255,255,255,0.02); padding: 25px; border: 1px solid rgba(255,255,255,0.05); }
-    .card h3 { color: var(--P7X_MAIN_RED); font-size: 13px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
-    .card p { color: #888; font-size: 14px; line-height: 1.7; }
-
-    .milestone { border-left: 1px solid var(--P7X_MAIN_RED); padding: 25px 0 25px 30px; position: relative; }
-    .milestone time { display: block; font-family: 'Playfair Display'; color: #fff; font-size: 20px; margin-bottom: 8px; }
-    .milestone strong { color: #fff; font-weight: 600; }
-    .tag { background: var(--P7X_MAIN_RED); color: #fff; font-size: 9px; padding: 2px 7px; border-radius: 1px; margin-left: 10px; text-transform: uppercase; }
+    .card h3 { color: var(--P7X_RED); font-size: 13px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
     
-    .impact-target { font-family: 'Playfair Display'; font-size: 24px; color: #fff; margin-bottom: 10px; }
+    /* Image Handling */
+    .logo-wrap { height: 45px; display: flex; align-items: center; margin-bottom: 15px; }
+    .logo-img { height: 100%; object-fit: contain; filter: brightness(1.2); }
+
+    .milestone { border-left: 1px solid var(--P7X_RED); padding: 25px 0 25px 30px; position: relative; }
+    .milestone time { display: block; font-family: 'Playfair Display'; color: #fff; font-size: 20px; margin-bottom: 8px; }
+    .tag { background: var(--P7X_RED); color: #fff; font-size: 10px; padding: 2px 8px; margin-left: 10px; border-radius: 1px; }
   </style>
 
-  <div class="P7X_ACCORDION_BOX" id="P7X_S1">
-    <div class="P7X_CONTROL_BAR" onclick="P7X_Toggle_Control('P7X_S1')">
+  <div class="P7X_BOX" id="P7X_B1">
+    <div class="P7X_TRIGGER" onclick="P7X_Toggle('P7X_B1')">
       <h2>Funding the Mission</h2>
-      <div class="P7X_UI_BULB">
-        <div class="P7X_UI_BLOOM"></div>
-        <div class="P7X_UI_CORE"></div>
-      </div>
+      <div class="P7X_BULB_UI"><div class="P7X_BLOOM_UI"></div><div class="P7X_CORE_UI"></div></div>
     </div>
-    <div class="P7X_SLIDE_GATE">
-      <div class="P7X_INTERIOR">
-        <p style="color:#666; margin-top:20px;">Repurposing capitalism as reconstruction. High-impact engines designed to redirect capital.</p>
+    <div class="P7X_GATE">
+      <div class="P7X_SHELF">
         <div class="pillars">
-          <div class="card"><h3>Beauty & Scent</h3><p>Rosehill Cosmetics; Petals & Potions. Science-backed formulas, cinematics, and community-first rollouts.</p></div>
-          <div class="card"><h3>Tools & Craft</h3><p>El-Inky Fingers — glass pen with clear ink; House of the Rubies — in-house lab-grown stones.</p></div>
-          <div class="card"><h3>Flavor & Innovation</h3><p>ThunderCheeks™ — chewing gum using wild-yeast and extinct fruit profiles.</p></div>
-          <div class="card"><h3>Systems & Mobility</h3><p>Ale — 5G vehicle diagnostics; plus infrastructure designed to drop shipping costs by 50%.</p></div>
-          <div class="card"><h3>Farm & Chemistry</h3><p>PureHundreds fiber production; AI-driven bee farm for desert restoration.</p></div>
-          <div class="card"><h3>Media & Narrative</h3><p>The 7th World — a cinematic series exploring how delusions form in real time.</p></div>
+          <div class="card"><h3>Beauty & Scent</h3><p>Rosehill Cosmetics; Petals & Potions (candles & fragrance). Science-backed formulas, cinematics, and community-first rollouts.</p></div>
+          <div class="card"><h3>Tools & Craft</h3><p>El-Inky Fingers — a clear glass pen with clear ink that turns black as it hits the page — and House of the Rubies, combining auctioned stones with in-house lab-grown rubies.</p></div>
+          <div class="card"><h3>Flavor & Innovation</h3><p>ThunderCheeks™ — chewing gum built on wild-yeast flavor development, resurrecting extinct fruit profiles.</p></div>
+          <div class="card"><h3>Systems & Mobility</h3><p>Ale — OBD-II diagnostic and 5G-connected platform; plus infrastructure designed to drop national shipping costs by 50%.</p></div>
+          <div class="card"><h3>Farm & Chemistry</h3><p>PureHundreds fiber production on ~600 acres; chemical manufacturing; and America’s first AI-driven bee farm.</p></div>
+          <div class="card"><h3>Media & Narrative</h3><p>The 7th World — a cinematic series walking viewers through delusions built from real facts and lived logic.</p></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="P7X_ACCORDION_BOX" id="P7X_S2">
-    <div class="P7X_CONTROL_BAR" onclick="P7X_Toggle_Control('P7X_S2')">
+  <div class="P7X_BOX" id="P7X_B2">
+    <div class="P7X_TRIGGER" onclick="P7X_Toggle('P7X_B2')">
       <h2>Rollout Timeline</h2>
-      <div class="P7X_UI_BULB">
-        <div class="P7X_UI_BLOOM"></div>
-        <div class="P7X_UI_CORE"></div>
-      </div>
+      <div class="P7X_BULB_UI"><div class="P7X_BLOOM_UI"></div><div class="P7X_CORE_UI"></div></div>
     </div>
-    <div class="P7X_SLIDE_GATE">
-      <div class="P7X_INTERIOR">
-        <div class="milestone"><time>Q4 2025</time><strong>Petals & Potions</strong> — Candle & fragrance launch. <span class="tag">Active</span></div>
-        <div class="milestone"><time>Q1 2026</time><strong>Rosehill Cosmetics</strong> — Biotech skincare + formulation SaaS.</div>
-        <div class="milestone"><time>Q3 2026</time><strong>El-Inky Fingers & Bee Farm</strong> — Writing instruments + AI-enhanced honey production.</div>
-        <div class="milestone"><time>Q4 2026</time><strong>House of the Rubies & ThunderCheeks™</strong> — Lab-grown jewelry + novel flavor gum.</div>
-        <div class="milestone"><time>2027+</time><strong>PureHundreds, Ale, & Cleared</strong> — Apparel, Vehicle Diagnostics, and Zero-Loss Logistics.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="P7X_ACCORDION_BOX" id="P7X_S3">
-    <div class="P7X_CONTROL_BAR" onclick="P7X_Toggle_Control('P7X_S3')">
-      <h2>Monetary Force</h2>
-      <div class="P7X_UI_BULB">
-        <div class="P7X_UI_BLOOM"></div>
-        <div class="P7X_UI_CORE"></div>
-      </div>
-    </div>
-    <div class="P7X_SLIDE_GATE">
-      <div class="P7X_INTERIOR">
-        <div class="milestone"><time>Q1 2026</time><div class="impact-target">$10K/Day</div><p>Fueled by Rosehill SaaS + market gains (scaling to 25 ES contracts).</p></div>
-        <div class="milestone"><time>Q3 2026</time><div class="impact-target">$25K/Day</div><p>Revenue stack + scale to 75 ES contracts.</p></div>
-        <div class="milestone"><time>Q1 2027</time><div class="impact-target">$100K/Day</div><p>Apparel + chemical sales. 500 contracts in rotation.</p></div>
-        <div class="milestone"><time>2030</time><div class="impact-target">$5M/Day+</div><p>Over 50,000 contracts deployed. Infrastructure re-centered around new structural frameworks.</p></div>
+    <div class="P7X_GATE">
+      <div class="P7X_SHELF">
+        <div class="milestone">
+          <time>Q4 2025</time>
+          <div><strong>Petals & Potions</strong> — Candle & fragrance launch. <span class="tag">ACTIVE</span></div>
+        </div>
+        <div class="milestone">
+          <time>Q1 2026</time>
+          <div class="logo-wrap"><img src="./Rosehill.png" class="logo-img" alt="Rosehill"></div>
+          <div><strong>Rosehill Cosmetics</strong> — Biotech skincare + custom formulation SaaS.</div>
+        </div>
+        <div class="milestone">
+          <time>Q3 2026</time>
+          <div class="logo-wrap"><img src="./El-inky.PNG" class="logo-img" alt="El-Inky"></div>
+          <div><strong>El-Inky Fingers</strong> — Writing instruments for founders & makers.</div>
+        </div>
+        <div class="milestone">
+          <time>Q4 2026</time>
+          <div class="logo-wrap"><img src="./ThunderCheeks.PNG" class="logo-img" alt="ThunderCheeks"></div>
+          <div><strong>ThunderCheeks™</strong> — Gum from extinct fruit flavors.</div>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    /* Unique function name to prevent clashes with other scripts */
-    function P7X_Toggle_Control(sectionId) {
-      const target = document.getElementById(sectionId);
-      
-      // Optional: Close other sections if you want a true accordion
-      // document.querySelectorAll('.P7X_ACCORDION_BOX').forEach(box => {
-      //   if(box.id !== sectionId) box.classList.remove('is-p7x-active');
-      // });
-
-      target.classList.toggle('is-p7x-active');
+    function P7X_Toggle(boxId) {
+      document.getElementById(boxId).classList.toggle('is-p7x-open');
     }
   </script>
 </div>
 
+
+
+
+
+
+    
+  </section>
   <!-- EXTENDED PORTFOLIO (DROPDOWN STYLE) -->
   <section id="portfolio">
     <h2 style="cursor:pointer;" onclick="togglePortfolio()">▶ Extended Portfolio</h2>
