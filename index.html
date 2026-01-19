@@ -1084,12 +1084,17 @@
 
 
 
- 
+
+
+
+
+
+
 
 
 <div id="P7XBUS_UNIQUE_WRAPPER_ROOT">
-  
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=Inter:wght@500&display=swap" rel="stylesheet">
+  
   <svg style="position:absolute;width:0;height:0;pointer-events:none;" aria-hidden="true">
     <defs>
       <filter id="P7XBUS_EXTREME_GOO_FILTER">
@@ -1100,59 +1105,68 @@
   </svg>
 
   <style>
-    /* Scope everything to this specific ID to prevent project "grime" */
     #P7XBUS_UNIQUE_WRAPPER_ROOT {
       --P7X_RED: #ff0000;
       --P7X_BLOOD: #990000;
       --P7X_SPEED: 5s;
       position: relative;
       width: 100%;
-      height: 320px; /* Tighter height to fit your hero panel perfectly */
-      background: transparent; /* Changed to transparent to match your panel gradient */
+      /* FULL PAGE HEIGHT */
+      height: 100vh; 
+      background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      margin: 0 auto;
+      margin: 0;
     }
 
-    .P7X_STAGE { position: relative; perspective: 1200px; display: flex; justify-content: center; align-items: center; width: 100%; }
+    .P7X_STAGE { 
+      position: relative; 
+      perspective: 1200px; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      width: 100%;
+      height: 100%;
+    }
 
-    /* Cinema Light Ray */
+    /* Cinema Light Ray - Increased size for full page */
     .P7X_LIGHT_RAY {
-      position: absolute; width: 300px; height: 1000px;
-      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
-      filter: blur(40px); transform: rotate(25deg); pointer-events: none;
+      position: absolute; width: 600px; height: 200%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+      filter: blur(60px); transform: rotate(25deg); pointer-events: none;
       animation: P7X_FLICKER var(--P7X_SPEED) infinite;
     }
 
     /* Text Elements */
     .P7X_LOGO_HOLDER { position: relative; z-index: 10; text-align: center; }
     .P7X_TOP_LABEL { 
-      font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 10px; 
-      text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; 
+      font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 12px; 
+      text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 12px; 
       animation: P7X_DIM var(--P7X_SPEED) infinite; 
     }
     .P7X_TEXT_STACK { position: relative; }
-    .P7X_GLYPH { font-family: 'Playfair Display', serif; font-size: 78px; letter-spacing: 10px; line-height: 1; }
+    .P7X_GLYPH { font-family: 'Playfair Display', serif; font-size: clamp(50px, 12vw, 120px); letter-spacing: 15px; line-height: 1; }
     .P7X_GLYPH_BASE { color: rgba(255,255,255,0.1); animation: P7X_DIM var(--P7X_SPEED) infinite; }
     
     .P7X_GLYPH_IMPACT {
       position: absolute; inset: 0; color: #fff; z-index: 11; pointer-events: none;
-      -webkit-mask-image: radial-gradient(ellipse 120px 60px at 0% 60%, black 0%, rgba(0,0,0,0.8) 45%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 160px 80px at 0% 60%, black 0%, rgba(0,0,0,0.8) 45%, transparent 70%);
       animation: P7X_MASK_MOVE 6s infinite ease-in-out;
     }
 
     .P7X_RED_X { 
       color: var(--P7X_RED); 
-      text-shadow: 0 0 15px var(--P7X_RED); 
-      display: inline-block; margin: 0 4px;
+      text-shadow: 0 0 25px var(--P7X_RED); 
+      display: inline-block; margin: 0 6px;
     }
 
     /* The Snake */
     .P7X_SNAKE_WRAP { position: absolute; inset: 0; filter: url('#P7XBUS_EXTREME_GOO_FILTER'); z-index: 12; pointer-events: none;}
     .P7X_NODE {
-      position: absolute; top: 50%; left: 50%; width: 35px; height: 35px; border-radius: 50%;
+      position: absolute; top: 50%; left: 50%; width: 45px; height: 45px; border-radius: 50%;
+      margin-top: -22px; margin-left: -22px;
       animation: P7X_WEAVE 6s infinite ease-in-out, P7X_GLOW var(--P7X_SPEED) infinite;
     }
 
@@ -1161,20 +1175,20 @@
     @keyframes P7X_DIM { 0%, 15%, 21%, 23%, 25%, 80%, 100% { opacity: 0.1; } 18%, 22%, 24%, 75% { opacity: 1; } }
     @keyframes P7X_GLOW { 
       0%, 15%, 21%, 23%, 25%, 80%, 100% { background: #000; } 
-      18%, 22%, 24%, 75% { background: var(--P7X_BLOOD); box-shadow: 0 0 20px rgba(255,0,0,0.4); } 
+      18%, 22%, 24%, 75% { background: var(--P7X_BLOOD); box-shadow: 0 0 30px rgba(255,0,0,0.5); } 
     }
     @keyframes P7X_WEAVE { 
-      0% { transform: translate3d(-400px, 0, -100px) scale(0.6); } 
-      50% { transform: translate3d(0, 15px, 200px) scale(1.1); } 
-      100% { transform: translate3d(400px, 0, 0) scale(0.6); } 
+      0% { transform: translate3d(-55vw, -10vh, -150px) scale(0.5); } 
+      50% { transform: translate3d(0, 20vh, 300px) scale(1.2); } 
+      100% { transform: translate3d(55vw, -10vh, -150px) scale(0.5); } 
     }
     @keyframes P7X_MASK_MOVE { 
-      0% { -webkit-mask-position: -40% 0; opacity: 0; } 25%, 75% { opacity: 1; } 50% { -webkit-mask-position: 50% 0; } 100% { -webkit-mask-position: 140% 0; opacity: 0; } 
+      0% { -webkit-mask-position: -50% 0; opacity: 0; } 25%, 75% { opacity: 1; } 50% { -webkit-mask-position: 50% 0; } 100% { -webkit-mask-position: 150% 0; opacity: 0; } 
     }
 
     /* Snake Delay Timing */
-    .P7X_D1 { animation-delay: 0s; } .P7X_D2 { animation-delay: .05s; } .P7X_D3 { animation-delay: .1s; } 
-    .P7X_D4 { animation-delay: .15s; } .P7X_D5 { animation-delay: .2s; } .P7X_D6 { animation-delay: .25s; }
+    .P7X_D1 { animation-delay: 0s; } .P7X_D2 { animation-delay: .06s; } .P7X_D3 { animation-delay: .12s; } 
+    .P7X_D4 { animation-delay: .18s; } .P7X_D5 { animation-delay: .24s; } .P7X_D6 { animation-delay: .3s; }
   </style>
 
   <div class="P7X_STAGE">
@@ -1193,10 +1207,6 @@
     </div>
   </div>
 </div>
-
-
-      
-
 
 
 
