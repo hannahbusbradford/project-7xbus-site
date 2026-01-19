@@ -1522,166 +1522,188 @@
 </div>
 </section>
   <!-- HOW WE’RE FUNDING THE MISSION -->
-  <section id="funding">
-    <h2>How We’re Funding the Mission</h2>
-    <p>
-      We launch high-impact, high-margin businesses across sectors. Each is engineered
-      to break a norm, tell a story, and redirect capital into the engine.
-      It’s capitalism, repurposed as reconstruction.
-    </p>
-    <div class="pillars">
-      <div class="card">
-        <h3>Beauty &amp; Scent</h3>
-        <p>Rosehill Cosmetics; Petals &amp; Potions (candles &amp; fragrance). Science-backed formulas, cinematics, and community-first rollouts.</p>
-      </div>
-      <div class="card">
-        <h3>Tools &amp; Craft</h3>
-        <p>El-Inky Fingers — a clear glass pen with clear ink that turns black as it hits the page — and House of the Rubies, combining auctioned stones with in-house lab-grown rubies we make ourselves. Objects with story, built to last.</p>
-      </div>
-      <div class="card">
-        <h3>Flavor &amp; Innovation</h3>
-        <p>ThunderCheeks™ — chewing gum built on wild-yeast flavor development, creating entirely new flavor families and resurrecting extinct fruit profiles.</p>
-      </div>
-      <div class="card">
-        <h3>Systems, Shipping &amp; Mobility</h3>
-        <p>Ale — an OBD-II diagnostic and 5G-connected platform that gives real-time updates on your car’s health and uses machine learning to predict failures before they hit — plus engine rebuild and shipping infrastructure designed to drop national shipping costs by up to 50%.</p>
-      </div>
-      <div class="card">
-        <h3>Farm, Energy &amp; Chemistry</h3>
-        <p>~600 acres under USDA underwriting for PureHundreds fiber-to-cloth production, chemical manufacturing lines including OH⁻/H₂O₂ adjacent products, oil wells, and America’s first AI-driven bee farm for ecosystem and desert restoration.</p>
-      </div>
-      <div class="card">
-        <h3>Media &amp; Narrative</h3>
-        <p>The 7th World (working title) — a cinematic series that walks viewers through delusion built from real facts and lived logic, so people can see how delusions form in real time.</p>
+<div id="P7X_CORE_WRAPPER">
+  <svg style="position:absolute; width:0; height:0;" aria-hidden="true">
+    <filter id="P7X_LIQUID_RED_GLOW">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" />
+    </filter>
+  </svg>
+
+  <style>
+    #P7X_CORE_WRAPPER {
+      --P7X_MAIN_RED: #ff0000;
+      --P7X_DARK_ACCENT: #0a0a0a;
+      max-width: 1100px;
+      margin: 40px auto;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .P7X_ACCORDION_BOX {
+      background: #050505;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 15px;
+      border-radius: 4px;
+      transition: all 0.4s ease;
+    }
+
+    /* Trigger Bar */
+    .P7X_CONTROL_BAR {
+      padding: 25px 40px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to right, #0d0d0d, #050505);
+    }
+
+    .P7X_CONTROL_BAR h2 {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    /* The Bulb System */
+    .P7X_UI_BULB {
+      position: relative;
+      filter: url('#P7X_LIQUID_RED_GLOW');
+      width: 45px; height: 45px;
+      display: flex; justify-content: center; align-items: center;
+    }
+
+    .P7X_UI_CORE {
+      width: 14px; height: 14px;
+      background: #222;
+      border-radius: 50%;
+      z-index: 5;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .P7X_UI_BLOOM {
+      position: absolute;
+      width: 20px; height: 20px;
+      background: var(--P7X_MAIN_RED);
+      border-radius: 50%;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: 0.6s ease;
+    }
+
+    /* Animation Logic - GRID FR METHOD */
+    .P7X_SLIDE_GATE {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .P7X_INTERIOR {
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-15px);
+      transition: all 0.6s ease;
+      padding: 0 40px;
+    }
+
+    /* Active State Assignments */
+    .P7X_ACCORDION_BOX.is-p7x-active { border-color: var(--P7X_MAIN_RED); box-shadow: 0 0 30px rgba(255,0,0,0.05); }
+    .P7X_ACCORDION_BOX.is-p7x-active .P7X_SLIDE_GATE { grid-template-rows: 1fr; }
+    .P7X_ACCORDION_BOX.is-p7x-active .P7X_INTERIOR { opacity: 1; transform: translateY(0); padding-bottom: 50px; transition-delay: 0.2s; }
+    .P7X_ACCORDION_BOX.is-p7x-active .P7X_CONTROL_BAR h2 { color: #fff; letter-spacing: 7px; text-shadow: 0 0 15px var(--P7X_MAIN_RED); }
+    .P7X_ACCORDION_BOX.is-p7x-active .P7X_UI_CORE { background: #fff; transform: scale(1.3); box-shadow: 0 0 15px #fff; }
+    .P7X_ACCORDION_BOX.is-p7x-active .P7X_UI_BLOOM { opacity: 1; transform: scale(2.4); filter: blur(3px); }
+
+    /* Content Layouts */
+    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 30px; }
+    .card { background: rgba(255,255,255,0.02); padding: 25px; border: 1px solid rgba(255,255,255,0.05); }
+    .card h3 { color: var(--P7X_MAIN_RED); font-size: 13px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+    .card p { color: #888; font-size: 14px; line-height: 1.7; }
+
+    .milestone { border-left: 1px solid var(--P7X_MAIN_RED); padding: 25px 0 25px 30px; position: relative; }
+    .milestone time { display: block; font-family: 'Playfair Display'; color: #fff; font-size: 20px; margin-bottom: 8px; }
+    .milestone strong { color: #fff; font-weight: 600; }
+    .tag { background: var(--P7X_MAIN_RED); color: #fff; font-size: 9px; padding: 2px 7px; border-radius: 1px; margin-left: 10px; text-transform: uppercase; }
+    
+    .impact-target { font-family: 'Playfair Display'; font-size: 24px; color: #fff; margin-bottom: 10px; }
+  </style>
+
+  <div class="P7X_ACCORDION_BOX" id="P7X_S1">
+    <div class="P7X_CONTROL_BAR" onclick="P7X_Toggle_Control('P7X_S1')">
+      <h2>Funding the Mission</h2>
+      <div class="P7X_UI_BULB">
+        <div class="P7X_UI_BLOOM"></div>
+        <div class="P7X_UI_CORE"></div>
       </div>
     </div>
-  </section>
-
-  <!-- ROLLOUT TIMELINE + COUNTDOWNS -->
-  <section id="rollout">
-    <h2>Rollout — One Build Per Quarter</h2>
-    <p class="small">Live cadence with countdowns. Dates reflect the current plan; subject to refinement as partners lock and underwriting finalizes.</p>
-    <div class="countdowns" id="countdowns"></div>
-
-    <div class="timeline">
-      <article class="milestone">
-        <time>Q4 2025</time>
-        <div class="row">
-          <div><strong>Petals &amp; Potions</strong> — Candle &amp; fragrance division launch. <span class="tag">Now</span></div>
+    <div class="P7X_SLIDE_GATE">
+      <div class="P7X_INTERIOR">
+        <p style="color:#666; margin-top:20px;">Repurposing capitalism as reconstruction. High-impact engines designed to redirect capital.</p>
+        <div class="pillars">
+          <div class="card"><h3>Beauty & Scent</h3><p>Rosehill Cosmetics; Petals & Potions. Science-backed formulas, cinematics, and community-first rollouts.</p></div>
+          <div class="card"><h3>Tools & Craft</h3><p>El-Inky Fingers — glass pen with clear ink; House of the Rubies — in-house lab-grown stones.</p></div>
+          <div class="card"><h3>Flavor & Innovation</h3><p>ThunderCheeks™ — chewing gum using wild-yeast and extinct fruit profiles.</p></div>
+          <div class="card"><h3>Systems & Mobility</h3><p>Ale — 5G vehicle diagnostics; plus infrastructure designed to drop shipping costs by 50%.</p></div>
+          <div class="card"><h3>Farm & Chemistry</h3><p>PureHundreds fiber production; AI-driven bee farm for desert restoration.</p></div>
+          <div class="card"><h3>Media & Narrative</h3><p>The 7th World — a cinematic series exploring how delusions form in real time.</p></div>
         </div>
-      </article>
-
-      <article class="milestone">
-        <time>Q1 2026</time>
-        <div class="row">
-          <div class="logo-wrap"><img class="logo" src="./Rosehill.png" alt="Rosehill Cosmetics"></div>
-          <div><strong>Rosehill Cosmetics</strong> — Biotech skincare + custom formulation SaaS.</div>
-        </div>
-      </article>
-
-      <article class="milestone">
-        <time>Q3 2026</time>
-        <div class="row">
-          <div class="logo-wrap"><img class="logo" src="./El-inky.PNG" alt="El-Inky Fingers"></div>
-          <div><strong>El-Inky Fingers</strong> — Writing instruments for founders &amp; makers.</div>
-        </div>
-      </article>
-
-      <article class="milestone">
-        <time>Q3 2026</time>
-        <div class="row">
-          <div><strong>10K Hive Bee Farm</strong> — Fully autonomous, AI-enhanced honey production and pollination network. Anchors regenerative agriculture vertical. Smart-hive infrastructure scalable to &gt;1M hives for U.S. and MENA pollination markets.</div>
-        </div>
-      </article>
-
-      <article class="milestone">
-        <time>Q4 2026</time>
-        <div>
-          <div class="row" style="margin-bottom:.8rem;">
-            <div><strong>House of the Rubies</strong> — In-house ruby manufacturing &amp; jewelry from auctioned and lab-grown stones.</div>
-          </div>
-          <div class="row">
-            <div class="logo-wrap"><img class="logo" src="./ThunderCheeks.PNG" alt="ThunderCheeks"></div>
-            <div><strong>ThunderCheeks™</strong> — Chewing gum made from extinct and wild-yeast novel fruit flavors.</div>
-          </div>
-        </div>
-      </article>
-
-      <article class="milestone">
-        <time>Q1 2027</time>
-        <div><strong>PureHundreds</strong> — Covenant-rooted apparel line, backed by ~600 acres under USDA support, turning fiber to cloth.</div>
-      </article>
-
-      <article class="milestone">
-        <time>Q2 2027</time>
-        <div><strong>Ale</strong> — Vehicle diagnostics and OBD-II platform with predictive maintenance, 5G connectivity, and engineered PIDs built for our ecosystem.</div>
-      </article>
-
-      <article class="milestone">
-        <time>Q3 2027</time>
-        <div class="row">
-          <div><strong>Cleared</strong> — A zero-loss auction logistics engine with flat-rate or free shipping, engineered to outcompete legacy auction platforms using structural shipping margins and driver-friendly incentives.</div>
-        </div>
-      </article>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- MONETARY IMPACT + CONTRACT SCALE -->
-  <section id="monetary-impact">
-    <h2>Monetary Force — Contract Scale by Quarter</h2>
-    <p class="small">Each build isn't just a product. It's a correction. This timeline tracks how economic force compounds across quarters — in daily monetary throughput and declared contract targets.</p>
-
-    <div class="timeline">
-      <article class="milestone">
-        <time>Q1 2026</time>
-        <div class="row">
-          <div><strong>Target: $10K/day liquidity </strong> — Fueled by Rosehill Cosmetics SaaS sales + market gains (live-traded strategy scaling to 25 ES contracts).</div>
-        </div>
-      </article>
-
-      <article class="milestone">
-        <time>Q3 2026</time>
-        <div class="row">
-          <div><strong>Target: $25K/day liquidity</strong> — El-Inky + Bee Farm revenue + ThunderCheeks flavor release + scale to 75 ES contracts.</div>
-        </div>
-      </article>
-
-      <article class="milestone">
-        <time>Q4 2026</time>
-        <div class="row">
-          <div><strong>Target: $50K/day liquidity</strong> — Full productization of House of the Rubies. 200 ES contracts active in futures markets.</div>
-        </div>
-      </article>
-
-      <article class="milestone">
-        <time>Q1 2027</time>
-        <div class="row">
-          <div><strong>Target: $100K/day throughput</strong> — Apparel + chemical sales stack. 500 contracts in rotation. Vehicle diagnostic funnel begins activation.</div>
-        </div>
-      </article>
-
-      <article class="milestone">
-        <time>Q2 2027</time>
-        <div class="row">
-          <div><strong>Target: $250K/day</strong> — OBD-II platform + contract scaling to 1,000 ES. Real-time market impact begins. Feedback loops trigger reinvestment flywheel.</div>
-        </div>
-      </article>
-
-      <article class="milestone">
-        <time>Q4 2027</time>
-        <div class="row">
-          <div><strong>Target: $500K/day+</strong> — Auction platform (Cleared) launches. Monetized routing of shipping inefficiencies. Forecast: 3,000 contracts under rotation by year end.</div>
-        </div>
-      </article>
-
-      <article class="milestone">
-        <time>2030</time>
-        <div class="row">
-          <div><strong>Target: $5M/day+ liquidity</strong> — Over 50,000 contracts deployed. Infrastructure, software, and markets re-centered around new structural frameworks.</div>
-        </div>
-      </article>
+  <div class="P7X_ACCORDION_BOX" id="P7X_S2">
+    <div class="P7X_CONTROL_BAR" onclick="P7X_Toggle_Control('P7X_S2')">
+      <h2>Rollout Timeline</h2>
+      <div class="P7X_UI_BULB">
+        <div class="P7X_UI_BLOOM"></div>
+        <div class="P7X_UI_CORE"></div>
+      </div>
     </div>
-  </section>
+    <div class="P7X_SLIDE_GATE">
+      <div class="P7X_INTERIOR">
+        <div class="milestone"><time>Q4 2025</time><strong>Petals & Potions</strong> — Candle & fragrance launch. <span class="tag">Active</span></div>
+        <div class="milestone"><time>Q1 2026</time><strong>Rosehill Cosmetics</strong> — Biotech skincare + formulation SaaS.</div>
+        <div class="milestone"><time>Q3 2026</time><strong>El-Inky Fingers & Bee Farm</strong> — Writing instruments + AI-enhanced honey production.</div>
+        <div class="milestone"><time>Q4 2026</time><strong>House of the Rubies & ThunderCheeks™</strong> — Lab-grown jewelry + novel flavor gum.</div>
+        <div class="milestone"><time>2027+</time><strong>PureHundreds, Ale, & Cleared</strong> — Apparel, Vehicle Diagnostics, and Zero-Loss Logistics.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="P7X_ACCORDION_BOX" id="P7X_S3">
+    <div class="P7X_CONTROL_BAR" onclick="P7X_Toggle_Control('P7X_S3')">
+      <h2>Monetary Force</h2>
+      <div class="P7X_UI_BULB">
+        <div class="P7X_UI_BLOOM"></div>
+        <div class="P7X_UI_CORE"></div>
+      </div>
+    </div>
+    <div class="P7X_SLIDE_GATE">
+      <div class="P7X_INTERIOR">
+        <div class="milestone"><time>Q1 2026</time><div class="impact-target">$10K/Day</div><p>Fueled by Rosehill SaaS + market gains (scaling to 25 ES contracts).</p></div>
+        <div class="milestone"><time>Q3 2026</time><div class="impact-target">$25K/Day</div><p>Revenue stack + scale to 75 ES contracts.</p></div>
+        <div class="milestone"><time>Q1 2027</time><div class="impact-target">$100K/Day</div><p>Apparel + chemical sales. 500 contracts in rotation.</p></div>
+        <div class="milestone"><time>2030</time><div class="impact-target">$5M/Day+</div><p>Over 50,000 contracts deployed. Infrastructure re-centered around new structural frameworks.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Unique function name to prevent clashes with other scripts */
+    function P7X_Toggle_Control(sectionId) {
+      const target = document.getElementById(sectionId);
+      
+      // Optional: Close other sections if you want a true accordion
+      // document.querySelectorAll('.P7X_ACCORDION_BOX').forEach(box => {
+      //   if(box.id !== sectionId) box.classList.remove('is-p7x-active');
+      // });
+
+      target.classList.toggle('is-p7x-active');
+    }
+  </script>
+</div>
 
   <!-- EXTENDED PORTFOLIO (DROPDOWN STYLE) -->
   <section id="portfolio">
