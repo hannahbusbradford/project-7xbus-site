@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PROJECT 7xBUS — The New Epoch of Statistics</title>
   <meta name="description" content="Project 7xBUS — A new epoch of statistics, new mathematics, and real-world systems built from structural laws that classical models cannot detect." />
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=Inter:wght@500&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg:#000;
@@ -976,7 +976,82 @@
 }
 
 
+#P7XBUS_UNIQUE_WRAPPER_ROOT {
+    --P7X_MAIN_RED: #ff0000;
+    --P7X_DEEP_BLOOD: #990000;
+    --P7X_FLICKER_SPEED: 5s;
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+  }
 
+  /* Structural Classes */
+  .P7XBUS_CINEMA_STAGE { position: relative; perspective: 1200px; display: flex; justify-content: center; align-items: center; }
+  .P7XBUS_CINEMA_LIGHT_RAY {
+    position: absolute; width: 450px; height: 1500px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
+    filter: blur(45px); transform: rotate(25deg); pointer-events: none;
+    animation: P7X_KEYFRAME_FLICKER var(--P7X_FLICKER_SPEED) infinite;
+  }
+
+  /* Logo & Text Styling */
+  .P7XBUS_CINEMA_LOGO_HOLDER { position: relative; z-index: 10; text-align: center; }
+  .P7XBUS_CINEMA_TOP_LABEL { 
+    font-size: 14px; letter-spacing: 8px; text-transform: uppercase; 
+    color: rgba(255,255,255,0.6); margin-bottom: 6px; 
+    animation: P7X_KEYFRAME_DIM var(--P7X_FLICKER_SPEED) infinite; 
+  }
+  .P7XBUS_CINEMA_TEXT_STACK { position: relative; animation: P7X_KEYFRAME_DIM var(--P7X_FLICKER_SPEED) infinite; }
+  .P7XBUS_CINEMA_GLYPH { font-family: 'Playfair Display', serif; font-size: 95px; letter-spacing: 12px; }
+  .P7XBUS_CINEMA_GLYPH_BASE { color: rgba(255,255,255,0.2); }
+  
+  .P7XBUS_CINEMA_GLYPH_IMPACT {
+    position: absolute; inset: 0; color: #fff; z-index: 11; pointer-events: none;
+    text-shadow: 0 0 20px rgba(255,0,0,0.3);
+    -webkit-mask-image: radial-gradient(ellipse 140px 70px at 0% 60%, black 0%, rgba(0,0,0,0.8) 45%, transparent 70%);
+    animation: P7X_KEYFRAME_GOOPRESS 6s infinite ease-in-out;
+  }
+
+  .P7XBUS_CINEMA_RED_X_CORE { 
+    color: var(--P7X_MAIN_RED); 
+    text-shadow: 0 0 15px var(--P7X_MAIN_RED), 0 0 30px rgba(255,0,0,0.4); 
+    filter: brightness(1.3) !important; opacity: 1 !important; 
+    display: inline-block; 
+  }
+
+  /* Snake System */
+  .P7XBUS_CINEMA_SNAKE_SYSTEM { position: absolute; inset: 0; filter: url('#P7XBUS_EXTREME_GOO_FILTER'); z-index: 12; }
+  .P7XBUS_CINEMA_NODE {
+    position: absolute; top: 58%; left: 50%; width: 48px; height: 48px; border-radius: 50%;
+    animation: P7X_KEYFRAME_WEAVE 6s infinite ease-in-out, P7X_KEYFRAME_SNAKE_LIGHT var(--P7X_FLICKER_SPEED) infinite;
+  }
+
+  /* Animation Logic */
+  @keyframes P7X_KEYFRAME_FLICKER { 0%, 15%, 21%, 23%, 25%, 80%, 100% { opacity: 0; } 18%, 22%, 24%, 75% { opacity: 1; } }
+  @keyframes P7X_KEYFRAME_DIM { 
+    0%, 15%, 21%, 23%, 25%, 80%, 100% { opacity: 0.15; filter: blur(1px) brightness(0.5); } 
+    18%, 22%, 24%, 75% { opacity: 1; filter: blur(0px) brightness(1); } 
+  }
+  @keyframes P7X_KEYFRAME_SNAKE_LIGHT { 
+    0%, 15%, 21%, 23%, 25%, 80%, 100% { background: #080000; box-shadow: none; } 
+    18%, 22%, 24%, 75% { background: var(--P7X_DEEP_BLOOD); box-shadow: inset -4px -4px 10px #000, 0 0 25px rgba(255,0,0,0.3); } 
+  }
+  @keyframes P7X_KEYFRAME_WEAVE { 
+    0% { transform: translate3d(-650px, 0, -100px) scale(0.4); } 
+    50% { transform: translate3d(0, 40px, 250px) scale(1.6); } 
+    100% { transform: translate3d(650px, 0, 0) scale(0.4); } 
+  }
+  @keyframes P7X_KEYFRAME_GOOPRESS { 
+    0% { -webkit-mask-position: -40% 0; opacity: 0; } 25%, 75% { opacity: 1; } 50% { -webkit-mask-position: 50% 0; } 100% { -webkit-mask-position: 140% 0; opacity: 0; } 
+  }
+
+  .P7X_S1 { animation-delay: 0s; } .P7X_S2 { animation-delay: .06s; } .P7X_S3 { animation-delay: .12s; } .P7X_S4 { animation-delay: .18s; } .P7X_S5 { animation-delay: .24s; } .P7X_S6 { animation-delay: .30s; }
 
 
 
@@ -1090,33 +1165,58 @@
     <div class="hero-panel">
       <div class="eyebrow">Project Overview</div>
 
-<svg width="520" height="120" viewBox="0 0 520 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Project 7xBUS logo">
-  <style>
-    .serif { font-family: 'Playfair Display', serif; }
-    .small { font-family: 'Inter', system-ui, sans-serif; }
-  </style>
 
-  <!-- PROJECT -->
-  <text x="2" y="22"
-        class="small"
-        font-size="12"
-        font-weight="500"
-        fill="#8E8E8E"
-        letter-spacing="3">
-    PROJECT
-  </text>
 
-  <!-- Main wordmark -->
-  <text x="0" y="78"
-        class="serif"
-        font-size="64"
-        font-weight="400"
-        fill="#FFFFFF"
-        letter-spacing="4">
-    7<tspan fill="#C46A5A">×</tspan>BUS
-  </text>
-</svg>
 
+
+
+
+
+
+      
+
+
+
+<div id="P7XBUS_UNIQUE_WRAPPER_ROOT">
+  <svg style="position:absolute;width:0;height:0;pointer-events:none;" aria-hidden="true">
+    <defs>
+      <filter id="P7XBUS_EXTREME_GOO_FILTER">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="P7X_BLUR" />
+        <feColorMatrix in="P7X_BLUR" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 22 -11" />
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="P7XBUS_CINEMA_STAGE">
+    <div class="P7XBUS_CINEMA_LIGHT_RAY"></div>
+
+    <div class="P7XBUS_CINEMA_LOGO_HOLDER">
+      <div class="P7XBUS_CINEMA_TOP_LABEL">Project</div>
+      <div class="P7XBUS_CINEMA_TEXT_STACK">
+        <div class="P7XBUS_CINEMA_GLYPH P7XBUS_CINEMA_GLYPH_BASE">7<span class="P7XBUS_CINEMA_RED_X_CORE">×</span>BUS</div>
+        <div class="P7XBUS_CINEMA_GLYPH P7XBUS_CINEMA_GLYPH_IMPACT">7<span class="P7XBUS_CINEMA_RED_X_CORE">×</span>BUS</div>
+      </div>
+    </div>
+
+    <div class="P7XBUS_CINEMA_SNAKE_SYSTEM">
+      <div class="P7XBUS_CINEMA_NODE P7X_S1"></div>
+      <div class="P7XBUS_CINEMA_NODE P7X_S2"></div>
+      <div class="P7XBUS_CINEMA_NODE P7X_S3"></div>
+      <div class="P7XBUS_CINEMA_NODE P7X_S4"></div>
+      <div class="P7XBUS_CINEMA_NODE P7X_S5"></div>
+      <div class="P7XBUS_CINEMA_NODE P7X_S6"></div>
+    </div>
+  </div>
+</div>
+
+
+
+      
+
+
+
+
+      
 
 
 
