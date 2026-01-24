@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>7xBUS | MARKED</title>
+<title>7xBUS | VECTORS</title>
 
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&display=swap" rel="stylesheet">
 
@@ -13,7 +13,7 @@
   --border-gray:#1A1A1A;
   --text-muted:#888;
   --text-light:#E0E0E0;
-  --accent:#ff5a5a;
+  --accent:#10b981; /* A positive, vibrant Emerald Green */
 }
 
 /* RESET */
@@ -27,7 +27,7 @@ body{
 }
 
 /* ==========================
-   NAV BAR + DROPDOWN
+   NAV BAR
    ========================== */
 nav{
   position:sticky;
@@ -38,7 +38,7 @@ nav{
   justify-content:space-between;
   align-items:center;
   padding:0.9rem 2rem;
-  background:linear-gradient(180deg, rgba(5,5,5,.95), rgba(5,5,5,.75));
+  background:rgba(5,5,5,.95);
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--border-gray);
 }
@@ -52,66 +52,12 @@ nav{
   text-decoration:none;
 }
 
-.nav-links{
-  display:flex;
-  gap:1.4rem;
-  align-items:center;
-}
-
 .nav-links a{
   font-size:.7rem;
   letter-spacing:.14em;
   text-transform:uppercase;
   color:var(--text-muted);
   text-decoration:none;
-}
-
-.nav-links a:hover{color:var(--text-light)}
-
-/* DROPDOWN */
-.nav-dropdown{
-  position:relative;
-}
-
-.nav-trigger{
-  font-size:.7rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--accent);
-  cursor:pointer;
-  user-select:none;
-}
-
-.nav-menu{
-  position:absolute;
-  top:130%;
-  right:0;
-  background:#060606;
-  border:1px solid var(--border-gray);
-  min-width:220px;
-  display:none;
-  flex-direction:column;
-}
-
-.nav-menu a{
-  padding:.75rem 1rem;
-  font-size:.7rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--text-muted);
-  text-decoration:none;
-  border-bottom:1px solid var(--border-gray);
-}
-
-.nav-menu a:last-child{border-bottom:none}
-.nav-menu a:hover{
-  color:var(--text-light);
-  background:#0b0b0b;
-}
-
-/* show on hover (desktop) */
-.nav-dropdown:hover .nav-menu{
-  display:flex;
 }
 
 /* ==========================
@@ -144,16 +90,18 @@ h1.main-title{
 
 .status-badge{
   display:inline-block;
-  background:var(--accent);
-  color:#000;
+  border: 1px solid var(--accent);
+  color:var(--accent);
   padding:.25rem .6rem;
-  font-size:1.2rem;
+  font-size:0.75rem;
   font-weight:800;
   margin-top:1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 /* ==========================
-   GRID
+   VECTORS GRID
    ========================== */
 .section-label{
   font-size:.9rem;
@@ -202,57 +150,39 @@ h1.main-title{
    NOTICE
    ========================== */
 .notice{
-  margin-top:6rem;
-  max-width:900px;
-  font-size:.85rem;
-  color:#999;
-  border-top:1px solid #222;
-  padding-top:1.5rem;
+  margin-top:4rem;
+  max-width:800px;
+  font-size:1.1rem;
+  line-height: 1.7;
+  color:#bbb;
+  border-left:2px solid var(--accent);
+  padding-left:1.5rem;
 }
 
 /* ==========================
    TERMINAL
    ========================== */
 .terminal{
-  margin-top:8rem;
+  margin-top:6rem;
   padding:3.5rem;
   border-radius:20px;
-  background:linear-gradient(
-    135deg,#2b1055,#1b3b6f,#0f4c5c,#3a5a40,#6a4c93
-  );
-  background-size:500% 500%;
-  animation:gradientFlow 20s ease infinite;
-  box-shadow:0 30px 80px rgba(0,0,0,.5);
-}
-
-@keyframes gradientFlow{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  background:#0a0a0a;
+  border: 1px solid var(--border-gray);
 }
 
 #terminal-output{
   white-space:pre-wrap;
-  font-size:1.25rem;
+  font-size:1.1rem;
   line-height:1.8;
   color:#f4f4f4;
 }
 
-.soft-line{opacity:.75}
+.soft-line{opacity:.6}
 .final-line{
-  font-size:1.8rem;
+  font-size:1.5rem;
   font-weight:800;
   margin-top:1.2rem;
-  background:linear-gradient(90deg,#ff9a9e,#fad0c4,#fbc2eb,#a1c4fd,#c2e9fb);
-  background-size:300% 300%;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:shimmer 6s linear infinite;
-}
-
-@keyframes shimmer{
-  0%{background-position:0% 50%}
-  100%{background-position:200% 50%}
+  color: var(--accent);
 }
 
 .glitch-footer{
@@ -268,112 +198,56 @@ h1.main-title{
 
 <nav>
   <a href="index.html" class="nav-brand">Project 7xBUS</a>
-
   <div class="nav-links">
-  
     <a href="About.html">Mission Statement</a>
-
-      </div>
-    </div>
-
-   
   </div>
 </nav>
 
 <div class="page">
 <div class="container">
 
-<span class="header-meta">Structural Audit // Project 7xBUS</span>
-<h1 class="main-title">MARKED</h1>
-<div class="status-badge">AUTHORITY: VOID</div>
+<span class="header-meta">Strategic Framework // Project 7xBUS</span>
+<h1 class="main-title">VECTORS</h1>
+<div class="status-badge">DIRECTION: SOVEREIGN</div>
 
-<span id="public" class="section-label">Public Corporations</span>
+<span class="section-label">Research Verticals</span>
 
 <div class="marked-grid">
   <div class="marked-item">
-    <span class="tag">Extractive Infrastructure</span>
-    <h3 class="entity-name">Apple Inc.</h3>
-    <p class="entity-desc">Closed-loop data ecosystems optimized for permissioned access and interface rent extraction.</p>
+    <span class="tag">Digital Sovereignty</span>
+    <h3 class="entity-name">Personal Data Assets</h3>
+    <p class="entity-desc">Transitioning from closed-loop ecosystems to user-owned, portable data architectures that eliminate interface rent.</p>
   </div>
 
   <div class="marked-item">
-    <span class="tag">Extractive Infrastructure</span>
-    <h3 class="entity-name">Mastercard Inc.</h3>
-    <p class="entity-desc">Transaction authority preserved through identity tethering and settlement friction.</p>
+    <span class="tag">Financial Autonomy</span>
+    <h3 class="entity-name">Settlement Layers</h3>
+    <p class="entity-desc">Replacing identity-tethered friction with streamlined, sovereign value exchange protocols.</p>
   </div>
 
   <div class="marked-item">
-    <span class="tag">Labor Abstraction Layer</span>
-    <h3 class="entity-name">Uber Technologies Inc.</h3>
-    <p class="entity-desc">Physical labor compressed into algorithmic yield surfaces.</p>
+    <span class="tag">Labor Equity</span>
+    <h3 class="entity-name">Physical Networks</h3>
+    <p class="entity-desc">Optimizing human labor by removing extractive algorithmic abstractions and restoring direct agency.</p>
   </div>
 
   <div class="marked-item">
-    <span class="tag">Public Infrastructure Arbitrage</span>
-    <h3 class="entity-name">Via Transportation</h3>
-    <p class="entity-desc">Fragmentation of civic transport into privatized efficiency slices.</p>
+    <span class="tag">Civic Commons</span>
+    <h3 class="entity-name">Transit Infrastructure</h3>
+    <p class="entity-desc">Reunifying fragmented civic transport into resilient, open systems for the public benefit.</p>
   </div>
 </div>
 
 <div class="notice">
-Project 7xBUS does not partner with, accept funding from, or conduct commercial relationships with the entities listed on this page.
+  <strong>The Sovereignty Mandate:</strong> Project 7xBUS is an independent research initiative. We choose to build outside of legacy institutional frameworks to ensure that the systems of tomorrow remain open, resilient, and entirely under the authority of the individual.
 </div>
-<svg width="820" height="120" viewBox="0 0 820 120"
-     xmlns="http://www.w3.org/2000/svg"
-     role="img"
-     aria-label="MARKED × Project 7xBUS — Structural Classification Only">
-
-  <style>
-    .p7xbus_mono__a9f3c7e2 { font-family: "JetBrains Mono", monospace; }
-    .p7xbus_inter__a9f3c7e2 { font-family: Inter, system-ui, sans-serif; }
-  </style>
-
-  <!-- MARKED -->
-  <text x="0" y="64"
-        class="p7xbus_mono__a9f3c7e2"
-        font-size="64"
-        font-weight="800"
-        fill="#ff5a5a"
-        letter-spacing="2">
-    MARKED
-  </text>
-
-  <!-- × divider -->
-  <text x="310" y="64"
-        class="p7xbus_mono__a9f3c7e2"
-        font-size="48"
-        font-weight="800"
-        fill="#ff5a5a"
-        opacity="0.9">
-    ×
-  </text>
-
-  <!-- Project name -->
-  <text x="350" y="64"
-        class="p7xbus_mono__a9f3c7e2"
-        font-size="36"
-        font-weight="800"
-        fill="#ffffff"
-        letter-spacing="1">
-    PROJECT 7×BUS
-  </text>
-
-  <!-- Definition line -->
-  <text x="0" y="104"
-        class="p7xbus_inter__a9f3c7e2"
-        font-size="14"
-        font-weight="700"
-        fill="#B0B0B0">
-    Structural classification only — systems analyzed and excluded from partnership, funding, or commercial alignment.
-  </text>
-</svg>
 
 <div class="terminal">
   <div id="terminal-output"></div>
 </div>
 
 <div class="glitch-footer">
-Project 7xBUS // Structural Analysis // Post-Extractive Design
+Project 7xBUS // Independent Analysis // 2026
 </div>
 
 </div>
@@ -381,13 +255,13 @@ Project 7xBUS // Structural Analysis // Post-Extractive Design
 
 <script>
 const lines=[
-{text:"checking assumptions…",class:"soft-line"},
-{text:"updating models…",class:"soft-line"},
-{text:"aligning incentives…",class:"soft-line"},
-{text:"zooming out a little…",class:"soft-line"},
+{text:"analyzing system dependencies…",class:"soft-line"},
+{text:"decoupling extractive loops…",class:"soft-line"},
+{text:"reclaiming architectural agency…",class:"soft-line"},
+{text:"broadening the horizon…",class:"soft-line"},
 {text:"",class:""},
 {text:"status:",class:"soft-line"},
-{text:"get it together 💛",class:"final-line"}
+{text:"systems aligned 🕊️",class:"final-line"}
 ];
 
 const output=document.getElementById("terminal-output");
@@ -401,8 +275,8 @@ function typeNext(){
  let j=0;
  const t=lines[i].text;
  (function type(){
-  if(j<t.length){d.textContent+=t[j++];setTimeout(type,35);}
-  else{i++;setTimeout(typeNext,500);}
+  if(j<t.length){d.textContent+=t[j++];setTimeout(type,30);}
+  else{i++;setTimeout(typeNext,400);}
  })();
 }
 setTimeout(()=>{output.innerHTML="";typeNext();},800);
@@ -410,6 +284,3 @@ setTimeout(()=>{output.innerHTML="";typeNext();},800);
 
 </body>
 </html>
-
-
-
