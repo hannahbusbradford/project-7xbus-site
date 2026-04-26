@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project7xBUS - The Reckoning</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap');
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #020608;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .soundstage {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #06151c 0%, #010304 90%);
+        }
+        
+        .camera-rig {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            /* Lengthened dolly push for the longer sequence */
+            animation: dolly-push 20s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+        
+        /* FIRST REVEAL GROUP */
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+            font-size: 2.8vw;
+            letter-spacing: 1.2vw;
+            text-transform: uppercase;
+            color: #f5e8d3;
+            margin: 0 0 1.5vh 0;
+            white-space: nowrap;
+            opacity: 0;
+            filter: blur(28px);
+            animation: rack-focus-fade 12s cubic-bezier(0.4, 0, 0.2, 1) 1s forwards;
+        }
+        
+        .targets {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 1.1vw;
+            letter-spacing: 0.4vw;
+            text-transform: uppercase;
+            color: #a8c0d0;
+            opacity: 0;
+            margin-bottom: 1vh;
+            animation: mission-reveal-fade 10s cubic-bezier(0.4, 0, 0.2, 1) 3s forwards;
+        }
+
+        /* SECOND REVEAL (The Punchline) */
+        .ultimate-message {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 3.5vw;
+            letter-spacing: 2vw;
+            text-transform: uppercase;
+            color: #ffffff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            opacity: 0;
+            filter: blur(20px);
+            /* Starts after the first group has been visible for a few seconds */
+            animation: final-impact 8s cubic-bezier(0.19, 1, 0.22, 1) 9s forwards;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            z-index: 5;
+        }
+        
+        .warning {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 1.4vw;
+            letter-spacing: 0.6vw;
+            text-transform: uppercase;
+            color: #f5e8d3;
+            opacity: 0;
+            margin-top: 4vh;
+            animation: mission-reveal 8s cubic-bezier(0.4, 0, 0.2, 1) 11s forwards;
+        }
+        
+        .domain {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1vw;
+            letter-spacing: 0.8vw;
+            color: rgba(245, 232, 211, 0.4);
+            opacity: 0;
+            margin-top: 2vh;
+            animation: domain-reveal 6s cubic-bezier(0.4, 0, 0.2, 1) 14s forwards;
+        }
+        
+        /* ANIMATIONS */
+        @keyframes rack-focus-fade {
+            0%   { opacity: 0; filter: blur(28px); }
+            20%  { opacity: 1; filter: blur(0px); }
+            70%  { opacity: 1; filter: blur(0px); transform: scale(1); }
+            100% { opacity: 0.2; filter: blur(4px); transform: scale(0.95); }
+        }
+
+        @keyframes mission-reveal-fade {
+            0%   { opacity: 0; filter: blur(15px); transform: translateY(20px); }
+            30%  { opacity: 1; filter: blur(0px); transform: translateY(0); }
+            70%  { opacity: 1; filter: blur(0px); }
+            100% { opacity: 0.1; filter: blur(8px); }
+        }
+
+        @keyframes final-impact {
+            0%   { opacity: 0; filter: blur(30px); transform: translate(-50%, -50%) scale(1.2); }
+            40%  { opacity: 1; filter: blur(0px); transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 1; filter: blur(0px); transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        @keyframes domain-reveal {
+            0%   { opacity: 0; filter: blur(12px); }
+            100% { opacity: 0.6; filter: blur(0px); }
+        }
+
+        @keyframes dolly-push {
+            0%   { transform: scale(0.9); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Elements from original for texture */
+        .anamorphic-streak {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0%;
+            height: 1px;
+            background: rgba(100, 180, 255, 0.4);
+            box-shadow: 0 0 18px 3px rgba(120, 190, 255, 0.2);
+            opacity: 0;
+            z-index: 3;
+            animation: soft-flare 12s cubic-bezier(0.4, 0, 0.2, 1) 2s forwards;
+        }
+
+        .film-grain {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0.08;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @keyframes soft-flare {
+            0%   { width: 0%; opacity: 0; }
+            30%  { width: 100%; opacity: 0.6; }
+            100% { width: 150%; opacity: 0; }
+        }
+
+        @keyframes mission-reveal {
+            0%   { opacity: 0; filter: blur(15px); transform: translateY(20px); }
+            100% { opacity: 0.88; filter: blur(0px); transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="film-grain"></div>
+    <div class="soundstage">
+        <div class="anamorphic-streak"></div>
+        <div class="camera-rig">
+            <h1>Project7xBUS Against Wallstreet</h1>
+            <div class="targets">Every Market Maker. Every High Volatility Player.</div>
+            
+            <div class="ultimate-message">GOD VS WALLSTREET</div>
+            
+            <div class="warning">We are coming after all of you.</div>
+            <div class="domain">PROJECT7XBUS.COM</div>
+        </div>
+    </div>
+</body>
+</html>
