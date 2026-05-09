@@ -2320,7 +2320,76 @@ renderResults("ES_F (E-MINI)");
   
 
 
+<!-- ====================== STRATEGY EXECUTION PLOT - ULTRA UNIQUE ====================== -->
+<section id="staircaseplot-widget-1192837465" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
+  
+  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg, rgba(0,255,65,0.06), rgba(255,0,0,0.04)); background-size: 100% 2px, 3px 100%; z-index: 1; pointer-events: none; opacity: 0.35;"></div>
 
+  <style>
+    #staircaseplot-widget-1192837465 .terminal-container-6628374 { 
+      position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; 
+    }
+    #staircaseplot-widget-1192837465 .eyebrow-9928374 { 
+      font-family: 'JetBrains Mono', monospace; 
+      color: #00ff41; 
+      letter-spacing: 0.3em; 
+      font-size: 0.85rem; 
+      text-transform: uppercase; 
+      margin-bottom: 0.5rem; 
+      display: inline-block; 
+      border: 1px solid rgba(0,255,65,0.4); 
+      padding: 4px 12px; 
+      border-radius: 2px; 
+      background: rgba(0,255,65,0.05); 
+    }
+    #staircaseplot-widget-1192837465 h2 { 
+      font-family: 'Syne', sans-serif; 
+      font-size: clamp(2.1rem, 5vw, 2.9rem); 
+      letter-spacing: 2px; 
+      text-transform: uppercase; 
+      color: #ffffff; 
+      margin: 1rem 0 1.5rem; 
+    }
+    .plot-container-837462 { 
+      background: #0a0a0a; 
+      border: 1px solid #1a1a1a; 
+      padding: 25px; 
+      border-radius: 12px; 
+      margin: 25px 0; 
+      text-align: center; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .plot-container-837462 img { 
+      max-width: 100%; 
+      height: auto; 
+      border-radius: 8px; 
+      border: 1px solid #333; 
+    }
+  </style>
+
+  <div class="terminal-container-6628374">
+    <div style="text-align: left; margin-bottom: 3rem;">
+      <div class="eyebrow-9928374">SYS.ENGINE.v0.9 • EXECUTION PROOF</div>
+      <h2>STRATEGY IN MOTION</h2>
+      <p style="color:#888; max-width: 800px; line-height: 1.6; font-family: 'Inter', sans-serif;">
+        VWAP Institutional Anchor + Wavelet Bone (Top)<br>
+        Real Equity Curve (Bottom) — Direct output from the engine
+      </p>
+    </div>
+
+    <div class="plot-container-837462">
+      <img src="staircaseplot.png" alt="AAPL Strategy Backtest - VWAP + Wavelet Bone + Equity Curve">
+      <p style="margin-top: 18px; color: #00ff41; font-family: monospace; font-size: 1rem;">
+        Green staircase = Compounding equity curve • Clean structural edge visible
+      </p>
+    </div>
+
+    <div style="margin-top: 2.5rem; padding: 1.5rem; background: rgba(0,255,65,0.08); border: 1px solid #00ff41; border-radius: 8px; color: #88ffaa; font-size: 0.95rem; text-align: center; font-family: monospace;">
+      This is a direct backtest output from the Predator / Ghost logic on real AAPL data.<br>
+      You can see the actual performance step-by-step.
+    </div>
+  </div>
+</section>
 
 
 
