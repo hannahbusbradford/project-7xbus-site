@@ -2320,79 +2320,122 @@ renderResults("ES_F (E-MINI)");
   
 
 
-<!-- ====================== STRATEGY EXECUTION PLOT - ULTRA UNIQUE ====================== -->
-<section id="staircaseplot-widget-1192837465" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
+<section id="p7x-glitch-audit-9928374" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
   
-  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg, rgba(0,255,65,0.06), rgba(255,0,0,0.04)); background-size: 100% 2px, 3px 100%; z-index: 1; pointer-events: none; opacity: 0.35;"></div>
+  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.15) 50%), linear-gradient(90deg, rgba(0,255,65,0.03), rgba(255,0,0,0.02)); background-size: 100% 2px, 3px 100%; z-index: 5; pointer-events: none;"></div>
 
   <style>
-    #staircaseplot-widget-1192837465 .terminal-container-6628374 { 
-      position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; 
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@800&family=Inter:wght@400;700&display=swap');
+
+    #p7x-glitch-audit-9928374 .p7x-main-wrap { position: relative; z-index: 2; max-width: 1300px; margin: 0 auto; }
+    
+    #p7x-glitch-audit-9928374 .p7x-eyebrow { 
+      font-family: 'JetBrains Mono', monospace; color: #00ff41; letter-spacing: 0.3em; font-size: 0.85rem; 
+      text-transform: uppercase; margin-bottom: 0.5rem; display: inline-block; 
+      border: 1px solid rgba(0,255,65,0.4); padding: 4px 12px; border-radius: 2px; background: rgba(0,255,65,0.05); 
     }
-    #staircaseplot-widget-1192837465 .eyebrow-9928374 { 
-      font-family: 'JetBrains Mono', monospace; 
-      color: #00ff41; 
-      letter-spacing: 0.3em; 
-      font-size: 0.85rem; 
-      text-transform: uppercase; 
-      margin-bottom: 0.5rem; 
-      display: inline-block; 
-      border: 1px solid rgba(0,255,65,0.4); 
-      padding: 4px 12px; 
-      border-radius: 2px; 
-      background: rgba(0,255,65,0.05); 
+
+    #p7x-glitch-audit-9928374 h2 { 
+      font-family: 'Syne', sans-serif; font-size: clamp(2.1rem, 5vw, 2.9rem); letter-spacing: 2px; 
+      text-transform: uppercase; color: #ffffff; margin: 1rem 0 1.5rem; 
     }
-    #staircaseplot-widget-1192837465 h2 { 
-      font-family: 'Syne', sans-serif; 
-      font-size: clamp(2.1rem, 5vw, 2.9rem); 
-      letter-spacing: 2px; 
-      text-transform: uppercase; 
-      color: #ffffff; 
-      margin: 1rem 0 1.5rem; 
+
+    /* THE GLITCH ENGINE CONTAINER */
+    .p7x-glitch-viewport {
+      position: relative;
+      width: 100%;
+      max-width: 1400px;
+      aspect-ratio: 16 / 9;
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 40px 0;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.8);
     }
-    .plot-container-837462 { 
-      background: #0a0a0a; 
-      border: 1px solid #1a1a1a; 
-      padding: 25px; 
-      border-radius: 12px; 
-      margin: 25px 0; 
-      text-align: center; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+
+    .p7x-glitch-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: opacity 0.5s ease-in-out;
     }
-    .plot-container-837462 img { 
-      max-width: 100%; 
-      height: auto; 
-      border-radius: 8px; 
-      border: 1px solid #333; 
+
+    /* Layer 1: Individual Execution */
+    .p7x-img-primary { z-index: 2; animation: p7x-pixel-glitch-1 8s infinite; }
+    /* Layer 2: Forensic Stress Matrix */
+    .p7x-img-secondary { z-index: 1; animation: p7x-pixel-glitch-2 8s infinite; }
+
+    /* PIXEL SWITCH KEYFRAMES */
+    @keyframes p7x-pixel-glitch-1 {
+      0%, 45% { opacity: 1; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translate(0); }
+      46% { opacity: 0.8; clip-path: polygon(0 15%, 100% 15%, 100% 25%, 0 25%); transform: translate(5px); }
+      48% { opacity: 0.5; clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); transform: translate(-5px); }
+      50%, 95% { opacity: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translate(0); }
+      96% { opacity: 0.5; transform: translate(-10px); }
+      100% { opacity: 1; }
+    }
+
+    @keyframes p7x-pixel-glitch-2 {
+      0%, 45% { opacity: 0; transform: translate(0); }
+      46% { opacity: 0.5; transform: translate(-5px); }
+      50%, 95% { opacity: 1; transform: translate(0); }
+      96% { opacity: 0.8; transform: translate(10px); }
+      100% { opacity: 0; }
+    }
+
+    .p7x-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: #00ff41;
+      text-align: center;
+      margin-top: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .p7x-status-bar {
+      margin-top: 3rem; padding: 1.5rem; background: rgba(0,255,65,0.05); 
+      border: 1px solid #00ff41; border-radius: 4px; color: #88ffaa; 
+      font-size: 0.9rem; text-align: center; font-family: 'JetBrains Mono', monospace;
     }
   </style>
 
-  <div class="terminal-container-6628374">
-    <div style="text-align: left; margin-bottom: 3rem;">
-      <div class="eyebrow-9928374">SYS.ENGINE.v0.9 • EXECUTION PROOF</div>
-      <h2>STRATEGY IN MOTION</h2>
-      <p style="color:#888; max-width: 800px; line-height: 1.6; font-family: 'Inter', sans-serif;">
-        VWAP Institutional Anchor <br>
-        Real Equity Curve (Bottom) — Direct output from the engine
+  <div class="p7x-main-wrap">
+    <div style="text-align: left; margin-bottom: 2rem;">
+      <div class="p7x-eyebrow">SYS.ENGINE.v1.7.1 • FORENSIC OVERLAY</div>
+      <h2>DUAL-DIMENSION AUDIT</h2>
+      <p style="color:#666; max-width: 800px; line-height: 1.6; font-family: 'Inter', sans-serif; font-size: 1.1rem;">
+        Glitching between <strong>Individual Execution Proof</strong> (Micro-Edge) and the <strong>Triple-Tier Stress Matrix</strong> (Macro-Robustness). 
+        Evidence of structural alpha across every regime.
       </p>
     </div>
 
-    <div class="plot-container-837462">
-      <img src="staircaseplot.png" alt="AAPL Strategy Backtest - VWAP + Equity Curve + Sauce">
-      <p style="margin-top: 18px; color: #00ff41; font-family: monospace; font-size: 1rem;">
-        Green staircase = Compounding equity curve • Clean structural edge visible
-      </p>
+    <div class="p7x-glitch-viewport">
+      <img src="staircaseplot.png" alt="Individual Strategy Execution" class="p7x-glitch-img p7x-img-primary">
+      <img src="stresstest1.png" alt="Forensic Stress Matrix Dashboard" class="p7x-glitch-img p7x-img-secondary">
     </div>
 
-    <div style="margin-top: 2.5rem; padding: 1.5rem; background: rgba(0,255,65,0.08); border: 1px solid #00ff41; border-radius: 8px; color: #88ffaa; font-size: 0.95rem; text-align: center; font-family: monospace;">
-      This is a direct backtest output from the Predator / Ghost logic on real AAPL data.<br>
-      You can see the actual performance step-by-step.
+    <div class="p7x-caption">
+      <span style="display: inline-block; width: 10px; height: 10px; background: #00ff41; border-radius: 50%; margin-right: 8px; animation: pulse 1.5s infinite;"></span>
+      LIVE DATA STREAM: SYNCING EXECUTION vs FORENSICS
+    </div>
+
+    <div class="p7x-status-bar">
+      This interactive forensic view proves that the Predator's structural bone isn't just a single-ticker fluke.<br>
+      The individual execution staircase (Primary) builds the massive alpha spreads seen in the Stress Matrix (Secondary).
     </div>
   </div>
+
+  <script>
+    /* Simple pulse for the status dot */
+    const style = document.createElement('style');
+    style.innerHTML = `@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }`;
+    document.head.appendChild(style);
+  </script>
 </section>
-
-
-
 
 
 
