@@ -1931,7 +1931,26 @@ renderResults("ES_F (E-MINI)");
 
 
 
-<!-- SOVEREIGN MATH ENGINE — INTRADAY VWAP PREDATOR WIDGET (GAP PROTECTED) -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- SOVEREIGN MATH ENGINE — INTRADAY VWAP PREDATOR WIDGET (GAP PROTECTED) -->
 <section id="intraday-widget" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
   
   <!-- Subtle CRT Scanline Overlay -->
@@ -1941,7 +1960,7 @@ renderResults("ES_F (E-MINI)");
     /* =========================================
        TERMINAL WIDGET STYLES
        ========================================= */
-    #intraday-widget .terminal-container { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
+    #intraday-widget .terminal-container { position: relative; z-index: 2; max-width: 1000px; margin: 0 auto; }
     
     #intraday-widget .eyebrow {
       font-family: 'JetBrains Mono', monospace;
@@ -1959,7 +1978,7 @@ renderResults("ES_F (E-MINI)");
     
     #intraday-widget h2 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 5vw, 3rem);
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #ffffff;
@@ -2012,10 +2031,10 @@ renderResults("ES_F (E-MINI)");
     .terminal-window {
       background: linear-gradient(180deg, #070707 0%, #030303 100%);
       border: 1px solid #1a1a1a;
+      border-top: none;
       box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
       position: relative;
       overflow: hidden;
-      margin-top: -1px; /* Overlap the border */
     }
     
     #intraday-widget table {
@@ -2064,7 +2083,10 @@ renderResults("ES_F (E-MINI)");
   <div class="terminal-container">
     <div style="text-align: left; margin-bottom: 3rem;">
       <div class="eyebrow">SYS.ENGINE.v0.9 • INTRADAY</div>
-      <h2>INTRADAY MATRIX</h2>
+      <h2>VWAP PREDATOR<br>INTRADAY MATRIX</h2>
+      <p style="color:#888; max-width: 600px; line-height: 1.6; font-family: 'Inter', sans-serif;">
+        Gap-protected 5m & 1h structural alpha. <br>Wavelet Bone • SVR Forecast • VWAP Anchor. No overnight risk.
+      </p>
     </div>
 
     <!-- Ticker Tabs -->
@@ -2085,9 +2107,8 @@ renderResults("ES_F (E-MINI)");
 
   <script>
   // =============== GAP-PROTECTED DATA MATRIX ===============
-  // Returns adjusted down 12-15% to account for Globex slippage and forced opens.
-  // Bias reflects the 2H Anchored EMA Structural Alpha filter.
-  const intradayEngineData = {
+  // Variables strictly namespaced to prevent cross-widget collision
+  const intradayEngineData_v09 = {
     "ES_F (E-MINI)": [
       { tf: "5m", ret: 61.35, sharpe: 2.21, pf: 2.41, trades: 1650, bias: "68% BULL" },
       { tf: "1h", ret: 100.47, sharpe: 2.65, pf: 2.72, trades: 1240, bias: "71% BULL" },
@@ -2111,15 +2132,15 @@ renderResults("ES_F (E-MINI)");
   };
 
   // =============== RENDER LOGIC ===============
-  function renderIntradayResults(ticker) {
-    const container = document.getElementById('intraday-results-table');
-    const data = intradayEngineData[ticker] || intradayEngineData["ES_F (E-MINI)"];
+  function renderIntradayMatrix(tickerTarget) {
+    const tableDOM_v09 = document.getElementById('intraday-results-table');
+    const selectedData_v09 = intradayEngineData_v09[tickerTarget] || intradayEngineData_v09["ES_F (E-MINI)"];
 
-    container.classList.remove('render-anim');
-    void container.offsetWidth; // Trigger reflow for animation restart
-    container.classList.add('render-anim');
+    tableDOM_v09.classList.remove('render-anim');
+    void tableDOM_v09.offsetWidth; 
+    tableDOM_v09.classList.add('render-anim');
 
-    let html = `
+    let outputHTML_v09 = `
       <table>
         <thead>
           <tr>
@@ -2133,58 +2154,58 @@ renderResults("ES_F (E-MINI)");
         </thead>
         <tbody>`;
 
-    data.forEach(row => {
-      const retStr = row.ret > 0 ? `+${row.ret.toFixed(2)}` : row.ret.toFixed(2);
-      const biasClass = row.bias.includes("BULL") ? "bias-bull" : "bias-bear";
+    selectedData_v09.forEach(row => {
+      const retString = row.ret > 0 ? `+${row.ret.toFixed(2)}` : row.ret.toFixed(2);
+      const biasColorClass = row.bias.includes("BULL") ? "bias-bull" : "bias-bear";
       
-      html += `
+      outputHTML_v09 += `
         <tr>
           <td class="data-tf">T :: ${row.tf.toUpperCase()}</td>
-          <td style="text-align:right;" class="data-positive">${retStr}</td>
+          <td style="text-align:right;" class="data-positive">${retString}</td>
           <td style="text-align:right;" class="data-neutral">${row.sharpe.toFixed(2)}</td>
           <td style="text-align:right;">${row.pf.toFixed(2)}</td>
-          <td style="text-align:right;" class="${biasClass}">${row.bias}</td>
+          <td style="text-align:right;" class="${biasColorClass}">${row.bias}</td>
           <td style="text-align:right;" class="data-faded">[ ${row.trades} ]</td>
         </tr>`;
     });
 
-    html += `</tbody></table>`;
-    container.innerHTML = html;
+    outputHTML_v09 += `</tbody></table>`;
+    tableDOM_v09.innerHTML = outputHTML_v09;
   }
 
   // =============== INIT TABS ===============
-  const tabsContainer = document.getElementById('intraday-ticker-tabs');
-  Object.keys(intradayEngineData).forEach((ticker, index) => {
-    const btn = document.createElement('button');
-    btn.textContent = ticker;
-    btn.className = 'intraday-tab';
-    if (index === 0) btn.classList.add('active');
+  const uniqueIntradayTabsContainer = document.getElementById('intraday-ticker-tabs');
+  
+  Object.keys(intradayEngineData_v09).forEach((targetName, index) => {
+    const tabBtn_v09 = document.createElement('button');
+    tabBtn_v09.textContent = targetName;
+    tabBtn_v09.className = 'intraday-tab';
+    if (index === 0) tabBtn_v09.classList.add('active');
 
-    btn.onclick = () => {
+    tabBtn_v09.onclick = () => {
       document.querySelectorAll('#intraday-ticker-tabs .intraday-tab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderIntradayResults(ticker);
+      tabBtn_v09.classList.add('active');
+      renderIntradayMatrix(targetName);
     };
 
-    tabsContainer.appendChild(btn);
+    uniqueIntradayTabsContainer.appendChild(tabBtn_v09);
   });
 
   // =============== LIVE CLOCK INIT ===============
-  function updateClock() {
-    const now = new Date();
-    const formatted = now.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) + 
+  function fireIntradayClockUpdate() {
+    const nowTime = new Date();
+    const formattedTime = nowTime.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) + 
                       ' :: ' + 
-                      now.toLocaleTimeString('en-US', { hour12: false });
-    document.getElementById('intraday-live-clock').textContent = formatted;
+                      nowTime.toLocaleTimeString('en-US', { hour12: false });
+    document.getElementById('intraday-live-clock').textContent = formattedTime;
   }
-  setInterval(updateClock, 1000);
-  updateClock();
+  setInterval(fireIntradayClockUpdate, 1000);
+  fireIntradayClockUpdate();
 
-  // Initial render (ES_F first to highlight the main target)
-  renderIntradayResults("ES_F (E-MINI)");
+  // Initial render 
+  renderIntradayMatrix("ES_F (E-MINI)");
   </script>
 </section>
-
 
 
 
