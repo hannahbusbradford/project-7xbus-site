@@ -2703,32 +2703,241 @@ renderResults("ES_F (E-MINI)");
   </script>
 </section>
 
-<section id="forensic-audit" style="padding: 140px 5%; background: #0a0a0a; text-align: center; color: white;">
-  
-  <h1 style="font-size: 3.6rem; margin-bottom: 20px; background: linear-gradient(90deg, #00ff9d, #00cc77); 
-             -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-    FORENSIC DASHBOARD v2.0
-  </h1>
-  
-  <p style="font-size: 1.55rem; max-width: 1100px; margin: 0 auto 60px; opacity: 0.95;">
-    Causal T+1 Execution • Zero Look-Ahead Bias • Real Slippage Tested<br>
-    <strong>Predator (v1.7.1) vs Retail Mean Reversion Benchmark</strong>
-  </p>
 
-  <div style="max-width: 1480px; margin: 0 auto; border: 2px solid #00ff9d; border-radius: 20px; overflow: hidden; box-shadow: 0 0 50px rgba(0, 255, 157, 0.2);">
-    <img src="stresstest1.png" 
-         alt="PROJECT 7xBUS Forensic Dashboard v2.0 — Triple-Tier Stress Audit" 
-         style="width: 100%; display: block;">
+
+
+  <section id="p7x-forensic-lab-v3" class="p7x-lab-scope">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+    #p7x-forensic-lab-v3.p7x-lab-scope {
+      padding: 100px 2.5%;
+      background: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      isolation: isolate;
+    }
+
+    .p7x-command-grid {
+      max-width: 1900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* LEFT SIDE: TERMINAL */
+    .p7x-terminal { display: flex; flex-direction: column; gap: 20px; }
+
+    .p7x-title-block { margin-bottom: 20px; }
+    .p7x-lab-id { 
+      font-family: 'JetBrains Mono'; 
+      color: #00ff9d; 
+      font-size: 0.75rem; 
+      letter-spacing: 4px; 
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+    .p7x-main-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 0.85;
+      background: linear-gradient(180deg, #fff 0%, #555 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 10px 0;
+    }
+
+    /* BYPASS NOTICE */
+    .p7x-bypass-box {
+      border: 1px solid #ff3366;
+      background: rgba(255, 51, 102, 0.03);
+      padding: 25px;
+      position: relative;
+    }
+    .p7x-bypass-box::before {
+      content: "BYPASS_ACTIVE";
+      position: absolute;
+      top: -10px; right: 15px;
+      background: #ff3366;
+      color: #000;
+      font-family: 'JetBrains Mono';
+      font-size: 0.65rem;
+      font-weight: 900;
+      padding: 2px 8px;
+    }
+    .p7x-bypass-box p {
+      font-family: 'JetBrains Mono';
+      font-size: 0.8rem;
+      color: #ff3366;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* CONTROLS & LOGS */
+    .p7x-panel {
+      background: #080808;
+      border: 1px solid #151515;
+      padding: 30px;
+    }
+    .p7x-panel h4 {
+      font-family: 'JetBrains Mono';
+      color: #00ff9d;
+      font-size: 0.75rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .p7x-select-dark {
+      background: #000;
+      color: #00ff9d;
+      border: 1px solid #222;
+      padding: 14px;
+      font-family: 'JetBrains Mono';
+      font-size: 0.85rem;
+      width: 100%;
+      margin-bottom: 15px;
+      cursor: pointer;
+      outline: none;
+    }
+    .p7x-select-dark:hover { border-color: #00ff9d; }
+
+    .p7x-log-table {
+      width: 100%;
+      font-family: 'JetBrains Mono';
+      font-size: 0.7rem;
+      border-collapse: collapse;
+    }
+    .p7x-log-table td { padding: 12px 0; border-bottom: 1px solid #111; color: #666; }
+    .p7x-val-pos { color: #00ff9d; font-weight: bold; }
+
+    /* RIGHT SIDE: OBSERVATION DECK */
+    .p7x-observation-deck {
+      background: #050505;
+      border: 1px solid #111;
+      padding: 40px;
+      min-height: 850px;
+      box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+      position: relative;
+    }
+    .p7x-deck-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #111;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .p7x-status-indicator { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #444; }
+
+    .p7x-chart-viewport { width: 100%; height: 650px; background: #000; }
+
+    /* MOBILE OPTIMIZATION */
+    @media (max-width: 1100px) {
+      .p7x-command-grid { grid-template-columns: 1fr; }
+      .p7x-terminal { order: 2; }
+      .p7x-observation-deck { order: 1; padding: 20px; min-height: auto; }
+      .p7x-chart-viewport { height: 450px; }
+      .p7x-main-title { font-size: 2.8rem; text-align: center; }
+    }
+  </style>
+
+  <div class="p7x-command-grid">
+    
+    <aside class="p7x-terminal">
+      <div class="p7x-title-block">
+        <span class="p7x-lab-id">SYS.ENGINE::PREDATOR_v1.7.1</span>
+        <h1 class="p7x-main-title">FORENSIC<br>AUDIT.v3</h1>
+      </div>
+
+      <div class="p7x-bypass-box">
+        <p><strong>CRITICAL:</strong> Chaos-Indicator Safety bypassed for this audit. Engine forced through 15bps slippage + stochastic noise. No look-ahead leakage verified.</p>
+      </div>
+
+      <div class="p7x-panel">
+        <h4>System configuration</h4>
+        <label style="font-size: 0.6rem; color: #444; text-transform: uppercase; margin-bottom: 5px; display: block;">Identifier</label>
+        <select id="p7x-v3-asset" class="p7x-select-dark">
+          <option value="AAPL">AAPL (APPLE)</option>
+          <option value="TSLA">TSLA (TESLA)</option>
+          <option value="NVDA">NVDA (NVIDIA)</option>
+          <option value="AMD">AMD (RADEON)</option>
+          <option value="MSFT">MSFT (AZURE)</option>
+        </select>
+
+        <label style="font-size: 0.6rem; color: #444; text-transform: uppercase; margin-bottom: 5px; display: block;">Stress_Regime</label>
+        <select id="p7x-v3-stress" class="p7x-select-dark">
+          <option value="Minimum">MINIMUM (2bps SLIP)</option>
+          <option value="Medium">MEDIUM (6bps SLIP)</option>
+          <option value="Maximum">MAXIMUM (15bps CHAOS)</option>
+        </select>
+      </div>
+
+      <div class="p7x-panel">
+        <h4>Live performance logs</h4>
+        <table class="p7x-log-table">
+          <tr><td>AAPL_FILTERED</td><td style="text-align: right;" class="p7x-val-pos">+7.40%</td></tr>
+          <tr><td>TSLA_FILTERED</td><td style="text-align: right;" class="p7x-val-pos">+33.15%</td></tr>
+          <tr><td>NVDA_FILTERED</td><td style="text-align: right;" class="p7x-val-pos">+26.68%</td></tr>
+          <tr><td>MSFT_FILTERED</td><td style="text-align: right;" class="p7x-val-pos">+13.92%</td></tr>
+        </table>
+      </div>
+    </aside>
+
+    <main class="p7x-observation-deck">
+      <div class="p7x-deck-header">
+        <div class="p7x-status-indicator">[ SYNCING_REALITY_STREAM_T+1 ]</div>
+        <div class="p7x-status-indicator">VIEWPORT: 60D_EQUITY_LOG</div>
+      </div>
+
+      <div id="p7x-v3-viewport" class="p7x-chart-viewport"></div>
+
+      <div style="margin-top: 40px; padding: 25px; border-left: 2px solid #00ff9d; background: rgba(255,255,255,0.02); color: #888; font-size: 0.85rem; line-height: 1.6;">
+        <strong style="color: #fff;">Validation Proof:</strong> The solid green line tracks the 7xBUS Predator's structural alpha. The dashed red line represents the Retail Mean-Reversion benchmark. While indicators fail under noise, the structural bone maintains positive expectancy.
+      </div>
+    </main>
+
   </div>
 
-  <div style="margin-top: 60px; max-width: 1000px; margin-left: auto; margin-right: auto; font-size: 1.3rem; line-height: 1.7; opacity: 0.9;">
-    The Predator maintains positive expectancy across all stress levels.<br>
-    Retail mean-reversion collapses under the same conditions.
-  </div>
+  <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        let masterData = null;
+        try {
+            const response = await fetch('7xbus_stress_data.json');
+            const json = await response.json();
+            masterData = json.results;
+        } catch (e) { console.error("Forensic link offline."); return; }
 
-  <p style="margin-top: 70px; font-size: 1.25rem; color: #aaa;">
-    This is what transparent, bias-free structural alpha looks like.
-  </p>
+        const container = document.getElementById('p7x-v3-viewport');
+        const chart = LightweightCharts.createChart(container, {
+            layout: { background: { color: '#000' }, textColor: '#444', fontFamily: 'JetBrains Mono' },
+            grid: { vertLines: { color: '#0a0a0a' }, horzLines: { color: '#0a0a0a' } },
+            timeScale: { borderColor: '#111' },
+        });
+
+        const pLine = chart.addLineSeries({ color: '#00ff9d', lineWidth: 3, title: 'Predator' });
+        const rLine = chart.addLineSeries({ color: '#ff3366', lineWidth: 1, lineStyle: 2, title: 'Retail' });
+
+        function updateV3() {
+            const t = document.getElementById('p7x-v3-asset').value;
+            const s = document.getElementById('p7x-v3-stress').value;
+            
+            // Map JSON arrays to Chart format
+            const pData = masterData[s][t].predator_equity.map((v, i) => ({ time: 1715200000 + (i * 300), value: v }));
+            const rData = masterData[s][t].retail_equity.map((v, i) => ({ time: 1715200000 + (i * 300), value: v }));
+            
+            pLine.setData(pData); rLine.setData(rData);
+            chart.timeScale().fitContent();
+        }
+
+        document.getElementById('p7x-v3-asset').addEventListener('change', updateV3);
+        document.getElementById('p7x-v3-stress').addEventListener('change', updateV3);
+        updateV3();
+        window.addEventListener('resize', () => chart.applyOptions({ width: container.clientWidth }));
+    });
+  </script>
 </section>
 
 
