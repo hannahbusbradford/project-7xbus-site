@@ -1,0 +1,16 @@
+Stress_Level,Ticker,Predator_Return,Retail_Return,Outperformance
+Minimum,AAPL,5.28,-22.12,27.4
+Minimum,TSLA,2.57,-29.16,31.73
+Minimum,NVDA,-1.06,-23.26,22.2
+Minimum,AMD,2.56,-46.21,48.77
+Minimum,MSFT,3.59,-24.64,28.23
+Medium,AAPL,4.99,-18.11,23.1
+Medium,TSLA,2.82,-24.07,26.89
+Medium,NVDA,0.13,-19.07,19.2
+Medium,AMD,0.0,-39.0,39.0
+Medium,MSFT,2.74,-20.24,22.98
+Maximum,AAPL,2.46,-11.73,14.19
+Maximum,TSLA,0.77,-15.79,16.56
+Maximum,NVDA,-0.55,-12.37,11.82
+Maximum,AMD,1.95,-26.45,28.4
+Maximum,MSFT,0.51,-13.16,13.67
