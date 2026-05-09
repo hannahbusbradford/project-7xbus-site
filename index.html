@@ -2255,14 +2255,15 @@ renderResults("ES_F (E-MINI)");
   </div>
 
   <script>
-    // Make sure the data actually loaded before trying to build the chart
     document.addEventListener("DOMContentLoaded", () => {
+        // 1. Safety Check: Did the JS file load?
         if (typeof chartData === 'undefined' || typeof markerData === 'undefined') {
-            console.error("ERROR: AAPL_web_data.js did not load correctly. Check the file path.");
-            document.getElementById('tv-chart-container').innerHTML = "<p style='color:red; text-align:center; padding-top: 250px; font-family: monospace;'>SYSTEM ERROR: DATA STREAM DISCONNECTED.<br>Verify AAPL_web_data.js is in the same folder as index.html.</p>";
+            console.error("ERROR: AAPL_web_data.js did not load correctly.");
+            document.getElementById('tv-chart-container').innerHTML = "<p style='color:red; text-align:center; padding-top: 250px; font-family: monospace;'>SYSTEM ERROR: DATA STREAM DISCONNECTED.<br>Verify AAPL_web_data.js is linked correctly.</p>";
             return;
         }
 
+        // 2. Build the Chart Layout
         const chartOptions = {
           layout: { background: { color: '#0a0a0a' }, textColor: '#888', fontFamily: 'JetBrains Mono' },
           grid: { vertLines: { color: '#1a1a1a' }, horzLines: { color: '#1a1a1a' } },
@@ -2278,22 +2279,20 @@ renderResults("ES_F (E-MINI)");
           wickUpColor: '#00ff41', wickDownColor: '#ff003c',
         });
 
-        // Inject the data from the AAPL_web_data.js file
+        // 3. Inject the data directly from the external JS file
         candleSeries.setData(chartData);
         candleSeries.setMarkers(markerData);
         
-        // Auto-fit the chart to show the most recent action
+        // 4. Auto-fit to screen
         chart.timeScale().fitContent();
 
-        // Handle window resizing smoothly
+        // 5. Handle resizing
         window.addEventListener('resize', () => {
           chart.applyOptions({ width: container.clientWidth });
         });
     });
   </script>
 </section>
-
-
 
 
 
