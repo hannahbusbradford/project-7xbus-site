@@ -2224,6 +2224,114 @@ renderResults("ES_F (E-MINI)");
 
 
 
+<section id="px7-interactive-map" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
+  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg, rgba(0,255,65,0.06), rgba(255,0,0,0.04)); background-size: 100% 2px, 3px 100%; z-index: 1; pointer-events: none; opacity: 0.35;"></div>
+
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+  
+  <script src="AAPL_web_data.js"></script>
+
+  <style>
+    #px7-interactive-map .px7-container { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
+    #px7-interactive-map .px7-eyebrow { font-family: 'JetBrains Mono', monospace; color: #00ff41; letter-spacing: 0.3em; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem; display: inline-block; border: 1px solid rgba(0,255,65,0.4); padding: 4px 12px; border-radius: 2px; background: rgba(0,255,65,0.05); }
+    #px7-interactive-map h2 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 2.8rem); letter-spacing: 2px; text-transform: uppercase; color: #ffffff; margin: 1rem 0 1.5rem; }
+    .px7-tv-container { width: 100%; height: 600px; border: 1px solid #222; border-radius: 8px; overflow: hidden; background: #0a0a0a; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
+  </style>
+
+  <div class="px7-container">
+    <div style="text-align: left; margin-bottom: 3rem;">
+      <div class="px7-eyebrow">SYS.ENGINE.v0.9 • LIVE SIGNAL MAP</div>
+      <h2>TRADING VIEW VALIDATION</h2>
+      <p style="color:#888; max-width: 700px; font-family: 'Inter', sans-serif;">
+        Predator Engine signals mapped with <strong>Profit Bubbles</strong>. Every entry and exit verified against institutional VWAP. Scroll to zoom, drag to pan.
+      </p>
+    </div>
+
+    <div id="tv-chart-container" class="px7-tv-container"></div>
+
+    <div style="margin-top: 2rem; padding: 1rem; background: rgba(0,255,65,0.05); border: 1px solid #00ff41; border-radius: 6px; color: #00ff41; font-size: 0.85rem; text-align: center; font-family: 'JetBrains Mono', monospace;">
+      STRATEGY: VWAP-ANCHORED PREDATOR • TIMEFRAME: 5M • TICKER: AAPL
+    </div>
+  </div>
+
+  <script>
+    // Make sure the data actually loaded before trying to build the chart
+    document.addEventListener("DOMContentLoaded", () => {
+        if (typeof chartData === 'undefined' || typeof markerData === 'undefined') {
+            console.error("ERROR: AAPL_web_data.js did not load correctly. Check the file path.");
+            document.getElementById('tv-chart-container').innerHTML = "<p style='color:red; text-align:center; padding-top: 250px; font-family: monospace;'>SYSTEM ERROR: DATA STREAM DISCONNECTED.<br>Verify AAPL_web_data.js is in the same folder as index.html.</p>";
+            return;
+        }
+
+        const chartOptions = {
+          layout: { background: { color: '#0a0a0a' }, textColor: '#888', fontFamily: 'JetBrains Mono' },
+          grid: { vertLines: { color: '#1a1a1a' }, horzLines: { color: '#1a1a1a' } },
+          timeScale: { borderColor: '#333', timeVisible: true, secondsVisible: false },
+          crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+        };
+
+        const container = document.getElementById('tv-chart-container');
+        const chart = LightweightCharts.createChart(container, chartOptions);
+        
+        const candleSeries = chart.addCandlestickSeries({
+          upColor: '#00ff41', downColor: '#ff003c', borderVisible: false,
+          wickUpColor: '#00ff41', wickDownColor: '#ff003c',
+        });
+
+        // Inject the data from the AAPL_web_data.js file
+        candleSeries.setData(chartData);
+        candleSeries.setMarkers(markerData);
+        
+        // Auto-fit the chart to show the most recent action
+        chart.timeScale().fitContent();
+
+        // Handle window resizing smoothly
+        window.addEventListener('resize', () => {
+          chart.applyOptions({ width: container.clientWidth });
+        });
+    });
+  </script>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
 
 
 
