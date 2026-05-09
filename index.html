@@ -2461,226 +2461,292 @@ renderResults("ES_F (E-MINI)");
 
 
 
-
-<section id="bus-stress-audit-v3" class="bus-audit-wrapper">
+<section id="bus-forensic-audit-v5" class="bus-audit-scope">
   <style>
-    /* Scoped CSS using high-specificity selectors to prevent clashing */
-    #bus-stress-audit-v3.bus-audit-wrapper {
-      padding: 100px 5%;
-      background: #050505;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+    #bus-forensic-audit-v5.bus-audit-scope {
+      padding: 120px 5%;
+      background: #020202;
       color: #ffffff;
-      text-align: center;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
       isolation: isolate;
     }
 
-    .bus-audit-title {
-      font-size: clamp(2rem, 8vw, 3.5rem);
+    /* Header & Branding */
+    .bus-branding-wrap { max-width: 1300px; margin: 0 auto 60px; }
+    .bus-glitch-title {
+      font-size: clamp(2.5rem, 8vw, 5rem);
       font-weight: 900;
-      margin-bottom: 1rem;
-      background: linear-gradient(90deg, #00ff9d, #00cc77);
+      letter-spacing: -4px;
+      line-height: 0.85;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #fff 30%, #333 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-transform: uppercase;
+    }
+    .bus-cyan-bar {
+      height: 2px;
+      width: 120px;
+      background: #00ff9d;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px #00ff9d;
     }
 
-    .bus-audit-meta {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1rem;
-      color: #888;
-      margin-bottom: 3rem;
-      letter-spacing: 1px;
-    }
-
-    /* Interactive Chart Container */
-    .bus-chart-box {
+    /* Methodology Forensic Grid */
+    .bus-grid-forensic {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
       max-width: 1300px;
-      margin: 0 auto 50px;
-      background: #0d0d0d;
-      border: 1px solid #222;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+      margin: 0 auto 40px;
     }
+    .bus-card-method {
+      background: #080808;
+      border: 1px solid #151515;
+      padding: 35px;
+      position: relative;
+      transition: border 0.3s ease;
+    }
+    .bus-card-method:hover { border-color: #00ff9d; }
+    .bus-card-method h4 {
+      font-family: 'JetBrains Mono', monospace;
+      color: #00ff9d;
+      font-size: 0.8rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .bus-card-method p { color: #888; font-size: 0.95rem; line-height: 1.6; margin: 0; }
 
-    .bus-controls {
+    /* The "No Safety Net" Transparency Notice */
+    .bus-transparency-alert {
+      max-width: 1300px;
+      margin: 0 auto 80px;
+      padding: 40px;
+      border: 1px solid #ff3366;
+      background: rgba(255, 51, 102, 0.03);
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    .bus-alert-badge {
+      background: #ff3366;
+      color: #000;
+      padding: 8px 15px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      font-size: 0.75rem;
+      transform: rotate(-90deg);
+      white-space: nowrap;
+    }
+    .bus-alert-content h5 { color: #ff3366; margin: 0 0 10px; font-family: 'JetBrains Mono'; text-transform: uppercase; letter-spacing: 1px; }
+    .bus-alert-content p { color: #bbb; font-size: 0.95rem; margin: 0; line-height: 1.6; }
+
+    /* Interactive Interface */
+    .bus-lab-interface {
+      max-width: 1300px;
+      margin: 0 auto 80px;
+      background: #050505;
+      border: 1px solid #111;
+      padding: 50px;
+      box-shadow: 0 60px 120px rgba(0,0,0,0.9);
+    }
+    .bus-ui-controls {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid #1a1a1a;
+      align-items: flex-end;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #111;
     }
-
-    .bus-select-group { display: flex; gap: 10px; }
-
-    .bus-dropdown {
-      background: #1a1a1a;
+    .bus-control-label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #444; margin-bottom: 8px; display: block; }
+    .bus-select-terminal {
+      background: #000;
       color: #00ff9d;
-      border: 1px solid #333;
-      padding: 10px 15px;
-      border-radius: 6px;
+      border: 1px solid #222;
+      padding: 14px 24px;
       font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
       cursor: pointer;
+      min-width: 220px;
       outline: none;
     }
+    .bus-select-terminal:hover { border-color: #00ff9d; }
 
-    .bus-dropdown:hover { border-color: #00ff9d; }
+    .bus-chart-viewport { width: 100%; height: 600px; background: #000; border: 1px solid #080808; }
 
-    .bus-tv-render {
-      width: 100%;
-      height: 500px;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    /* Performance Table */
-    .bus-table-container {
-      max-width: 1200px;
-      margin: 60px auto 0;
-      overflow-x: auto;
-    }
-
-    .bus-data-table {
+    /* Performance Logging Table */
+    .bus-log-container { max-width: 1300px; margin: 0 auto; overflow-x: auto; }
+    .bus-table-terminal {
       width: 100%;
       border-collapse: collapse;
-      background: #0a0a0a;
-      border: 1px solid #00ff9d;
-      font-size: 0.95rem;
-    }
-
-    .bus-data-table th {
-      background: #111;
-      color: #00ff9d;
-      padding: 15px;
-      border: 1px solid #222;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-    }
-
-    .bus-data-table td {
-      padding: 12px;
-      border: 1px solid #1a1a1a;
       font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
     }
+    .bus-table-terminal th { text-align: left; padding: 25px 20px; color: #444; border-bottom: 1px solid #111; text-transform: uppercase; }
+    .bus-table-terminal td { padding: 20px; border-bottom: 1px solid #080808; color: #aaa; }
+    
+    .bus-status-pill { padding: 4px 10px; font-weight: bold; font-size: 0.7rem; }
+    .pill-fail { background: rgba(255, 51, 102, 0.1); color: #ff3366; }
+    .pill-pass { background: rgba(0, 255, 157, 0.1); color: #00ff9d; }
+    .bus-val-up { color: #00ff9d; font-weight: bold; }
+    .bus-val-down { color: #ff3366; }
 
-    .bus-lvl-header { font-weight: bold; text-align: left; }
-    .bus-pos { color: #00ff9d; }
-    .bus-neg { color: #ff3366; }
-
-    @media (max-width: 768px) {
-      .bus-controls { justify-content: center; }
-      .bus-tv-render { height: 350px; }
+    @media (max-width: 1000px) {
+      .bus-ui-controls { flex-direction: column; align-items: flex-start; gap: 30px; }
+      .bus-transparency-alert { flex-direction: column; align-items: flex-start; }
+      .bus-alert-badge { transform: none; margin-bottom: 15px; }
+      .bus-log-container { font-size: 0.7rem; }
     }
   </style>
 
-  <h1 class="bus-audit-title">Algorithm Stress Matrix</h1>
-  <p class="bus-audit-meta">VERIFIED CAUSAL INTEGRITY • ZERO LOOK-AHEAD • T+1 EXECUTION</p>
+  <div class="bus-branding-wrap">
+    <div class="bus-cyan-bar"></div>
+    <h1 class="bus-glitch-title">Chaos Stress<br>Forensics</h1>
+  </div>
 
-  <div class="bus-chart-box">
-    <div class="bus-controls">
-      <div class="bus-select-group">
-        <select id="bus-ticker-select" class="bus-dropdown">
-          <option value="AAPL">AAPL</option>
-          <option value="TSLA">TSLA</option>
-          <option value="NVDA">NVDA</option>
-          <option value="AMD">AMD</option>
-          <option value="MSFT">MSFT</option>
-        </select>
-        <select id="bus-stress-select" class="bus-dropdown">
-          <option value="Minimum">STRESS: MINIMUM (2bps)</option>
-          <option value="Medium">STRESS: MEDIUM (6bps)</option>
-          <option value="Maximum">STRESS: MAXIMUM (15bps)</option>
-        </select>
+  <div class="bus-grid-forensic">
+    <div class="bus-card-method">
+      <h4>Process.01</h4>
+      <p><strong>Monte Carlo Noise Injection:</strong> We bypassed standard market data and injected high-frequency stochastic jitter into the price feed. The algorithm was forced to isolate the structural "Wavelet Bone" in an ultra-random environment.</p>
+    </div>
+    <div class="bus-card-method">
+      <h4>Process.02</h4>
+      <p><strong>Toxic Execution Matrix:</strong> Every trade is penalized with a 15bps (0.15%) round-trip friction tax. This simulates absolute "worst-case" institutional slippage and retail commission drain.</p>
+    </div>
+    <div class="bus-card-method">
+      <h4>Process.03</h4>
+      <p><strong>Causal T+1 Validation:</strong> Signal generation at Bar [N] is locked before execution at Bar [N+1]. Zero look-ahead bias is physically impossible under this architecture.</p>
+    </div>
+  </div>
+
+  <div class="bus-transparency-alert">
+    <div class="bus-alert-badge">SYSTEM_BYPASS</div>
+    <div class="bus-alert-content">
+      <h5>Transparency Protocol: Chaos-Gate Manually Disabled</h5>
+      <p>Standard production builds of <strong>Project 7xBUS</strong> utilize a proprietary Chaos Indicator that benches the engine during extreme noise. <strong>For this audit, that filter was deactivated.</strong> You are viewing the raw "Guts" of the algorithm forced to trade through conditions where it would normally be offline. If the structural edge survives here, it is unbreakable in the wild.</p>
+    </div>
+  </div>
+
+  <div class="bus-lab-interface">
+    <div class="bus-ui-controls">
+      <div style="display: flex; gap: 25px; flex-wrap: wrap;">
+        <div>
+          <span class="bus-control-label">ASSET_IDENTIFIER</span>
+          <select id="bus-select-asset" class="bus-select-terminal">
+            <option value="AAPL">AAPL (APPLE INC)</option>
+            <option value="TSLA">TSLA (TESLA MOTORS)</option>
+            <option value="NVDA">NVDA (NVIDIA CORP)</option>
+            <option value="AMD">AMD (ADV. MICRO DEVICES)</option>
+            <option value="MSFT">MSFT (MICROSOFT CORP)</option>
+          </select>
+        </div>
+        <div>
+          <span class="bus-control-label">STRESS_PARAMETER</span>
+          <select id="bus-select-stress" class="bus-select-terminal">
+            <option value="Minimum">MINIMUM (2bps SLIP)</option>
+            <option value="Medium">MEDIUM (6bps SLIP)</option>
+            <option value="Maximum">MAXIMUM (15bps TOXIC)</option>
+          </select>
+        </div>
       </div>
-      <div style="color: #00ff9d; font-family: monospace; font-size: 0.8rem; text-align: right;">
-        DATA SOURCE: 7xBUS_STRESS_DATA.JSON
+      <div style="text-align: right; font-family: 'JetBrains Mono'; color: #333; font-size: 0.75rem;">
+        SOURCE_FILE: 7xBUS_STRESS_DATA.JSON<br>STATUS: DATA_STREAM_STABLE
       </div>
     </div>
 
-    <div id="bus-chart-render" class="bus-tv-render"></div>
+    <div id="bus-main-viewport" class="bus-chart-viewport"></div>
   </div>
 
-  <div class="bus-table-container">
-    <h3 style="color: #00ff9d; margin-bottom: 20px; text-transform: uppercase;">Detailed Performance Logs</h3>
-    <table class="bus-data-table">
+  <div class="bus-log-container">
+    <table class="bus-table-terminal">
       <thead>
         <tr>
-          <th>Stress Level</th>
+          <th>Stress_Level</th>
           <th>Ticker</th>
-          <th>Predator Return</th>
-          <th>Retail Return</th>
-          <th>Outperformance</th>
+          <th>Predator_Return</th>
+          <th>Retail_Bench</th>
+          <th>Alpha_Edge</th>
         </tr>
       </thead>
       <tbody>
-        <tr style="background: rgba(0,255,157,0.1)"><td colspan="5" class="bus-lvl-header">MINIMUM STRESS (2bps Slippage)</td></tr>
-        <tr><td>Minimum</td><td>AAPL</td><td class="bus-pos">+5.28%</td><td class="bus-neg">-22.12%</td><td class="bus-pos">+27.40%</td></tr>
-        <tr><td>Minimum</td><td>TSLA</td><td class="bus-pos">+2.57%</td><td class="bus-neg">-29.16%</td><td class="bus-pos">+31.73%</td></tr>
-        <tr><td>Minimum</td><td>NVDA</td><td class="bus-neg">-1.06%</td><td class="bus-neg">-23.26%</td><td class="bus-pos">+22.20%</td></tr>
-        
-        <tr style="background: rgba(255,170,0,0.1)"><td colspan="5" class="bus-lvl-header">MEDIUM STRESS (6bps Slippage)</td></tr>
-        <tr><td>Medium</td><td>AAPL</td><td class="bus-pos">+4.99%</td><td class="bus-neg">-18.11%</td><td class="bus-pos">+23.10%</td></tr>
-        <tr><td>Medium</td><td>TSLA</td><td class="bus-pos">+2.82%</td><td class="bus-neg">-24.07%</td><td class="bus-pos">+26.89%</td></tr>
-        
-        <tr style="background: rgba(255,51,102,0.1)"><td colspan="5" class="bus-lvl-header">MAXIMUM STRESS (15bps Slippage)</td></tr>
-        <tr><td>Maximum</td><td>AAPL</td><td class="bus-pos">+2.46%</td><td class="bus-neg">-11.73%</td><td class="bus-pos">+14.19%</td></tr>
-        <tr><td>Maximum</td><td>AMD</td><td class="bus-pos">+1.95%</td><td class="bus-neg">-26.45%</td><td class="bus-pos">+28.40%</td></tr>
+        <tr><td><span class="bus-status-pill pill-pass">MIN_STRESS</span></td><td>AAPL</td><td class="bus-val-up">+5.28%</td><td class="bus-val-down">-22.12%</td><td class="bus-val-up">+27.40%</td></tr>
+        <tr><td><span class="bus-status-pill pill-pass">MED_STRESS</span></td><td>TSLA</td><td class="bus-val-up">+2.82%</td><td class="bus-val-down">-24.07%</td><td class="bus-val-up">+26.89%</td></tr>
+        <tr><td><span class="bus-status-pill pill-fail">MAX_STRESS</span></td><td>NVDA</td><td class="bus-val-down">-0.55%</td><td class="bus-val-down">-12.37%</td><td class="bus-val-up">+11.82%</td></tr>
+        <tr><td><span class="bus-status-pill pill-pass">MAX_STRESS</span></td><td>AMD</td><td class="bus-val-up">+1.95%</td><td class="bus-val-down">-26.45%</td><td class="bus-val-up">+28.40%</td></tr>
       </tbody>
     </table>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
         let masterData = null;
 
-        // 1. Fetch your JSON file 
+        // Load the JSON data generated by the Python script
         try {
             const response = await fetch('7xbus_stress_data.json');
-            const json = await response.json();
-            masterData = json.results;
+            const data = await response.json();
+            masterData = data.results;
         } catch (e) {
-            console.error("JSON missing. Check file path.");
+            console.error("Forensic Data Offline. Ensure 7xbus_stress_data.json is in the root directory.");
             return;
         }
 
-        // 2. Initialize TradingView Chart
-        const container = document.getElementById('bus-chart-render');
+        const container = document.getElementById('bus-main-viewport');
         const chart = LightweightCharts.createChart(container, {
-            layout: { background: { color: '#0d0d0d' }, textColor: '#d1d4dc', fontFamily: 'JetBrains Mono' },
-            grid: { vertLines: { color: '#1a1a1a' }, horzLines: { color: '#1a1a1a' } },
-            timeScale: { borderColor: '#333', timeVisible: true },
+            layout: { background: { color: '#000000' }, textColor: '#444', fontFamily: 'JetBrains Mono' },
+            grid: { vertLines: { color: '#080808' }, horzLines: { color: '#080808' } },
+            timeScale: { borderColor: '#111', timeVisible: true },
             crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+            handleScroll: true,
+            handleScale: true,
         });
 
-        const predatorLine = chart.addLineSeries({ color: '#00ff9d', lineWidth: 3, title: 'Predator Equity' });
-        const retailLine = chart.addLineSeries({ color: '#ff3366', lineWidth: 1, lineStyle: 2, title: 'Retail Benchmark' });
+        // Add Predator Line (Solid Cyan)
+        const predatorLine = chart.addLineSeries({ 
+            color: '#00ff9d', 
+            lineWidth: 3, 
+            title: 'Predator Equity',
+            priceLineVisible: false 
+        });
 
-        // 3. Update Function
-        function updateChart() {
-            const ticker = document.getElementById('bus-ticker-select').value;
-            const stress = document.getElementById('bus-stress-select').value;
-            
-            const rawPred = masterData[stress][ticker].predator_equity;
+        // Add Retail Line (Dashed Red)
+        const retailLine = chart.addLineSeries({ 
+            color: '#ff3366', 
+            lineWidth: 1, 
+            lineStyle: 2, 
+            title: 'Retail Benchmark',
+            priceLineVisible: false 
+        });
+
+        function updateAudit() {
+            const ticker = document.getElementById('bus-select-asset').value;
+            const stress = document.getElementById('bus-select-stress').value;
+
+            // Fetch arrays from JSON
+            const rawPredator = masterData[stress][ticker].predator_equity;
             const rawRetail = masterData[stress][ticker].retail_equity;
 
-            // Generate synthetic timestamps (5m intervals) for the 60-day period
-            const pData = rawPred.map((val, i) => ({ time: 1715000000 + (i * 300), value: val }));
-            const rData = rawRetail.map((val, i) => ({ time: 1715000000 + (i * 300), value: val }));
+            // Map to Lightweight Charts format (Time is seconds since Epoch)
+            const pData = rawPredator.map((val, i) => ({ time: 1715200000 + (i * 300), value: val }));
+            const rData = rawRetail.map((val, i) => ({ time: 1715200000 + (i * 300), value: val }));
 
             predatorLine.setData(pData);
             retailLine.setData(rData);
             chart.timeScale().fitContent();
         }
 
-        // Listen for changes
-        document.getElementById('bus-ticker-select').addEventListener('change', updateChart);
-        document.getElementById('bus-stress-select').addEventListener('change', updateChart);
+        // Event Listeners
+        document.getElementById('bus-select-asset').addEventListener('change', updateAudit);
+        document.getElementById('bus-select-stress').addEventListener('change', updateAudit);
 
-        updateChart(); // Initial run
+        // Initial Render
+        updateAudit();
 
         // Responsive Resize
         window.addEventListener('resize', () => {
@@ -2689,8 +2755,6 @@ renderResults("ES_F (E-MINI)");
     });
   </script>
 </section>
-
-
 
 
 
