@@ -1932,22 +1932,45 @@ renderResults("ES_F (E-MINI)");
 
 
 
-<section id="algo-widget" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="bus7x_sov_widget_section" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
   
   <div style="position: absolute; inset: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); background-size: 100% 2px, 3px 100%; z-index: 1; pointer-events: none; opacity: 0.4;"></div>
 
   <style>
     /* =========================================
-       TERMINAL WIDGET STYLES
+       UNIQUE SANDBOXED STYLES
        ========================================= */
-    #algo-widget .terminal-container {
+    #bus7x_sov_widget_section .bus7x_sov_container_box {
       position: relative;
       z-index: 2;
       max-width: 1000px;
       margin: 0 auto;
     }
 
-    #algo-widget .eyebrow { 
+    #bus7x_sov_widget_section .bus7x_sov_top_eyebrow { 
       font-family: 'JetBrains Mono', monospace;
       color: #ff0000; 
       letter-spacing: 0.3em; 
@@ -1961,7 +1984,7 @@ renderResults("ES_F (E-MINI)");
       background: rgba(255, 0, 0, 0.05);
     }
 
-    #algo-widget h2 {
+    #bus7x_sov_widget_section h2 {
       font-family: 'Syne', sans-serif;
       font-size: clamp(2rem, 5vw, 3rem);
       letter-spacing: 2px;
@@ -1972,7 +1995,7 @@ renderResults("ES_F (E-MINI)");
     }
 
     /* Terminal Tabs */
-    #ticker-tabs {
+    #bus7x_sov_ticker_nav_tabs {
       display: flex;
       justify-content: flex-start;
       gap: 15px;
@@ -1982,9 +2005,9 @@ renderResults("ES_F (E-MINI)");
       overflow-x: auto;
       scrollbar-width: none; /* Firefox */
     }
-    #ticker-tabs::-webkit-scrollbar { display: none; } /* Chrome */
+    #bus7x_sov_ticker_nav_tabs::-webkit-scrollbar { display: none; } /* Chrome */
 
-    .ticker-tab {
+    #bus7x_sov_widget_section .bus7x_sov_nav_btn {
       background: transparent;
       border: none;
       color: #555;
@@ -1998,7 +2021,7 @@ renderResults("ES_F (E-MINI)");
       position: relative;
     }
 
-    .ticker-tab::after {
+    #bus7x_sov_widget_section .bus7x_sov_nav_btn::after {
       content: '';
       position: absolute;
       bottom: -16px;
@@ -2010,12 +2033,12 @@ renderResults("ES_F (E-MINI)");
       box-shadow: 0 0 10px #ff0000;
     }
 
-    .ticker-tab:hover { color: #aaa; }
-    .ticker-tab.active { color: #ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.4); }
-    .ticker-tab.active::after { width: 100%; }
+    #bus7x_sov_widget_section .bus7x_sov_nav_btn:hover { color: #aaa; }
+    #bus7x_sov_widget_section .bus7x_sov_nav_btn_active { color: #ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.4); }
+    #bus7x_sov_widget_section .bus7x_sov_nav_btn_active::after { width: 100%; }
 
     /* The Matrix Table */
-    .terminal-window {
+    #bus7x_sov_widget_section .bus7x_sov_matrix_window {
       background: linear-gradient(180deg, #070707 0%, #030303 100%);
       border: 1px solid #1a1a1a;
       border-top: none;
@@ -2024,7 +2047,7 @@ renderResults("ES_F (E-MINI)");
       overflow: hidden;
     }
 
-    .terminal-window::before {
+    #bus7x_sov_widget_section .bus7x_sov_matrix_window::before {
       content: '';
       position: absolute;
       top: 0; left: 0; width: 100%; height: 1px;
@@ -2032,13 +2055,13 @@ renderResults("ES_F (E-MINI)");
       opacity: 0.5;
     }
 
-    #algo-widget table {
+    #bus7x_sov_widget_section table {
       width: 100%;
       border-collapse: collapse;
       font-family: 'JetBrains Mono', monospace;
     }
 
-    #algo-widget th {
+    #bus7x_sov_widget_section th {
       text-align: right;
       padding: 20px 24px;
       color: #666;
@@ -2048,10 +2071,10 @@ renderResults("ES_F (E-MINI)");
       border-bottom: 1px solid #1a1a1a;
       background: rgba(255,255,255,0.01);
     }
-    #algo-widget th:first-child,
-    #algo-widget th:nth-child(2) { text-align: left; }
+    #bus7x_sov_widget_section th:first-child,
+    #bus7x_sov_widget_section th:nth-child(2) { text-align: left; }
 
-    #algo-widget td {
+    #bus7x_sov_widget_section td {
       padding: 20px 24px;
       color: #d0d0d0;
       font-size: 0.95rem;
@@ -2059,41 +2082,41 @@ renderResults("ES_F (E-MINI)");
       transition: background 0.2s ease;
     }
     
-    #algo-widget tr:hover td {
+    #bus7x_sov_widget_section tr:hover td {
       background: rgba(255, 0, 0, 0.03);
     }
 
     /* Glows & Data Formatting */
-    .data-tf { font-weight: 700; color: #fff; }
-    .data-positive { color: #00ff41; text-shadow: 0 0 10px rgba(0, 255, 65, 0.3); }
-    .data-negative { color: #ff3333; }
-    .data-neutral { color: #d4af37; }
-    .data-faded { color: #555; }
-    .env-base { color: #00ff41; font-size: 0.8rem; letter-spacing: 1px;}
-    .env-toxic { color: #ff0000; font-size: 0.8rem; letter-spacing: 1px;}
+    #bus7x_sov_widget_section .bus7x_sov_cell_tf { font-weight: 700; color: #fff; }
+    #bus7x_sov_widget_section .bus7x_sov_cell_pos { color: #00ff41; text-shadow: 0 0 10px rgba(0, 255, 65, 0.3); }
+    #bus7x_sov_widget_section .bus7x_sov_cell_neg { color: #ff3333; }
+    #bus7x_sov_widget_section .bus7x_sov_cell_neu { color: #d4af37; }
+    #bus7x_sov_widget_section .bus7x_sov_cell_dim { color: #555; }
+    #bus7x_sov_widget_section .bus7x_sov_env_baseline { color: #00ff41; font-size: 0.8rem; letter-spacing: 1px;}
+    #bus7x_sov_widget_section .bus7x_sov_env_toxic { color: #ff0000; font-size: 0.8rem; letter-spacing: 1px;}
 
-    /* Animation for table rendering */
-    @keyframes bootUp {
+    /* Unique Animation */
+    @keyframes bus7x_sov_kf_boot {
       0% { opacity: 0; transform: translateY(10px); filter: blur(4px); }
       100% { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
-    .render-anim { animation: bootUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    #bus7x_sov_widget_section .bus7x_sov_boot_animation { animation: bus7x_sov_kf_boot 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
   </style>
 
-  <div class="terminal-container">
+  <div class="bus7x_sov_container_box">
     <div style="text-align: left; margin-bottom: 3rem;">
-      <div class="eyebrow">AUDIT.ENGINE.v2.8</div>
+      <div class="bus7x_sov_top_eyebrow">AUDIT.ENGINE.v2.8</div>
       <h2>Forensic Stress<br>Matrix</h2>
       <p style="color:#888; max-width: 700px; line-height: 1.6; font-family: 'Inter', sans-serif;">
         Triple-resolution structural edge mapped against hostile execution environments. Convergence of Baseline (2bps) and Toxic (10bps) metrics mathematically proves sovereignty over market maker slippage.
       </p>
     </div>
 
-    <div id="ticker-tabs">
+    <div id="bus7x_sov_ticker_nav_tabs">
       </div>
 
-    <div class="terminal-window">
-      <div id="results-table">
+    <div class="bus7x_sov_matrix_window">
+      <div id="bus7x_sov_data_render_target">
         </div>
     </div>
 
@@ -2105,9 +2128,8 @@ renderResults("ES_F (E-MINI)");
   </div>
 
 <script>
-// =============== DATA MATRIX v2.8 ===============
-// Structured directly from the Forensic Python Audit
-const engineData = {
+// =============== UNIQUE ISOLATED JS ===============
+const bus7x_sov_matrix_payload = {
   "ES=F": [
     { env: "Baseline", tf: "5m", ret: 1.95, sharpe: 4.37, pf: 1.73, wr: 43.5, trades: 255 },
     { env: "Baseline", tf: "1h", ret: 0.24, sharpe: 1.34, pf: 3.74, wr: 40.0, trades: 5 },
@@ -2146,17 +2168,15 @@ const engineData = {
   ]
 };
 
-// =============== RENDER LOGIC ===============
-function renderResults(ticker) {
-  const tableContainer = document.getElementById('results-table');
-  const data = engineData[ticker];
+function bus7x_sov_trigger_render(bus7x_sov_ticker_key) {
+  const bus7x_sov_dom_target = document.getElementById('bus7x_sov_data_render_target');
+  const bus7x_sov_active_dataset = bus7x_sov_matrix_payload[bus7x_sov_ticker_key];
   
-  // Reset animation
-  tableContainer.classList.remove('render-anim');
-  void tableContainer.offsetWidth; // trigger reflow
-  tableContainer.classList.add('render-anim');
+  bus7x_sov_dom_target.classList.remove('bus7x_sov_boot_animation');
+  void bus7x_sov_dom_target.offsetWidth; 
+  bus7x_sov_dom_target.classList.add('bus7x_sov_boot_animation');
 
-  let html = `
+  let bus7x_sov_html_buffer = `
     <table>
       <thead>
         <tr>
@@ -2171,72 +2191,48 @@ function renderResults(ticker) {
       </thead>
       <tbody>`;
 
-  data.forEach(row => {
-    // Formatting logic
-    const retStr = row.ret > 0 ? `+${row.ret.toFixed(2)}` : row.ret.toFixed(2);
-    const retClass = row.ret > 0 ? 'data-positive' : (row.ret < 0 ? 'data-negative' : '');
-    const envClass = row.env === 'Baseline' ? 'env-base' : 'env-toxic';
+  bus7x_sov_active_dataset.forEach(bus7x_sov_row_obj => {
+    const bus7x_sov_str_return = bus7x_sov_row_obj.ret > 0 ? `+${bus7x_sov_row_obj.ret.toFixed(2)}` : bus7x_sov_row_obj.ret.toFixed(2);
+    const bus7x_sov_css_return = bus7x_sov_row_obj.ret > 0 ? 'bus7x_sov_cell_pos' : (bus7x_sov_row_obj.ret < 0 ? 'bus7x_sov_cell_neg' : '');
+    const bus7x_sov_css_env = bus7x_sov_row_obj.env === 'Baseline' ? 'bus7x_sov_env_baseline' : 'bus7x_sov_env_toxic';
     
-    html += `
+    bus7x_sov_html_buffer += `
       <tr>
-        <td class="${envClass}">[ ${row.env.toUpperCase()} ]</td>
-        <td class="data-tf">${row.tf}</td>
-        <td style="text-align:right;" class="${retClass}">${retStr}</td>
-        <td style="text-align:right;" class="data-neutral">${row.sharpe.toFixed(2)}</td>
-        <td style="text-align:right;">${row.pf.toFixed(2)}</td>
-        <td style="text-align:right; color: #eee;">${row.wr.toFixed(1)}%</td>
-        <td style="text-align:right;" class="data-faded">[ ${row.trades} ]</td>
+        <td class="${bus7x_sov_css_env}">[ ${bus7x_sov_row_obj.env.toUpperCase()} ]</td>
+        <td class="bus7x_sov_cell_tf">${bus7x_sov_row_obj.tf}</td>
+        <td style="text-align:right;" class="${bus7x_sov_css_return}">${bus7x_sov_str_return}</td>
+        <td style="text-align:right;" class="bus7x_sov_cell_neu">${bus7x_sov_row_obj.sharpe.toFixed(2)}</td>
+        <td style="text-align:right;">${bus7x_sov_row_obj.pf.toFixed(2)}</td>
+        <td style="text-align:right; color: #eee;">${bus7x_sov_row_obj.wr.toFixed(1)}%</td>
+        <td style="text-align:right;" class="bus7x_sov_cell_dim">[ ${bus7x_sov_row_obj.trades} ]</td>
       </tr>`;
   });
 
-  html += `</tbody></table>`;
-  tableContainer.innerHTML = html;
+  bus7x_sov_html_buffer += `</tbody></table>`;
+  bus7x_sov_dom_target.innerHTML = bus7x_sov_html_buffer;
 }
 
-// =============== INIT TABS ===============
-const tabsContainer = document.getElementById('ticker-tabs');
+const bus7x_sov_dom_tabs = document.getElementById('bus7x_sov_ticker_nav_tabs');
 
-Object.keys(engineData).forEach((ticker, index) => {
-  const btn = document.createElement('button');
-  btn.textContent = ticker;
-  btn.className = 'ticker-tab';
-  if (index === 0) btn.classList.add('active');
+Object.keys(bus7x_sov_matrix_payload).forEach((bus7x_sov_ticker_key, bus7x_sov_loop_idx) => {
+  const bus7x_sov_dom_btn = document.createElement('button');
+  bus7x_sov_dom_btn.textContent = bus7x_sov_ticker_key;
+  bus7x_sov_dom_btn.className = 'bus7x_sov_nav_btn';
+  if (bus7x_sov_loop_idx === 0) bus7x_sov_dom_btn.classList.add('bus7x_sov_nav_btn_active');
   
-  btn.onclick = () => {
-    document.querySelectorAll('#ticker-tabs .ticker-tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderResults(ticker);
+  bus7x_sov_dom_btn.onclick = () => {
+    document.querySelectorAll('#bus7x_sov_ticker_nav_tabs .bus7x_sov_nav_btn').forEach(b => b.classList.remove('bus7x_sov_nav_btn_active'));
+    bus7x_sov_dom_btn.classList.add('bus7x_sov_nav_btn_active');
+    bus7x_sov_trigger_render(bus7x_sov_ticker_key);
   };
   
-  tabsContainer.appendChild(btn);
+  bus7x_sov_dom_tabs.appendChild(bus7x_sov_dom_btn);
 });
 
-// Initial payload render
-renderResults("ES=F");
+// Boot the matrix payload
+bus7x_sov_trigger_render("ES=F");
 </script>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
