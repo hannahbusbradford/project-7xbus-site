@@ -2495,162 +2495,207 @@ renderResults("ES_F (E-MINI)");
 
 
 
-<section id="p7x-breaker-v3-5" class="p7x-lab-wrap">
+<section id="bus-v4-cmd-center" class="bus-v4-scope">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&family=Syne:wght@800&display=swap');
 
-    #p7x-breaker-v3-5.p7x-lab-wrap {
+    #bus-v4-cmd-center.bus-v4-scope {
       width: 100%;
       background: #000;
-      padding: 80px 0;
+      padding: 100px 0;
       color: #fff;
       font-family: 'Inter', sans-serif;
-      border-top: 1px solid #111;
+      isolation: isolate;
       overflow: hidden;
+      border-top: 1px solid #111;
     }
 
-    /* THE WIDESCREEN COMMAND GRID */
-    .p7x-breaker-grid {
+    .bus-v4-grid {
       display: grid;
-      grid-template-columns: 400px 1fr;
-      gap: 50px;
+      grid-template-columns: 420px 1fr; /* Fixed sidebar, liquid chart area */
+      gap: 40px;
       width: 96%;
       margin: 0 auto;
-      max-width: 2200px; /* Expansive width for ultra-wide */
+      transition: all 0.5s ease;
     }
 
-    /* SIDEBAR STYLING */
-    .p7x-v35-sidebar { display: flex; flex-direction: column; gap: 25px; }
-    .p7x-v35-title {
+    /* --- SIDEBAR TERMINAL --- */
+    .bus-v4-terminal { display: flex; flex-direction: column; gap: 20px; }
+    
+    .bus-v4-id { font-family: 'JetBrains Mono'; color: #00ff9d; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; }
+    .bus-v4-title {
       font-size: 3.5rem; font-weight: 900; letter-spacing: -3px; line-height: 0.85;
       background: linear-gradient(180deg, #fff 0%, #444 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      text-transform: uppercase; margin: 0;
+      margin: 10px 0; text-transform: uppercase;
     }
 
-    /* CHART DECK STYLING */
-    .p7x-v35-deck {
-      background: #050505; border: 1px solid #111; padding: 40px;
-      border-radius: 4px; box-shadow: 0 40px 100px rgba(0,0,0,0.9);
-      min-height: 750px; display: flex; flex-direction: column;
-    }
-
-    .p7x-v35-alert {
+    .bus-v4-alert-red {
       border: 1px solid #ff3366; background: rgba(255, 51, 102, 0.05);
-      padding: 20px; font-family: 'JetBrains Mono'; color: #ff3366;
-      font-size: 0.75rem; line-height: 1.5;
+      padding: 20px; font-family: 'JetBrains Mono'; color: #ff3366; font-size: 0.75rem; line-height: 1.5;
     }
 
-    .p7x-v35-panel { background: #080808; border: 1px solid #151515; padding: 30px; }
-    .p7x-v35-select {
+    .bus-v4-panel { background: #080808; border: 1px solid #151515; padding: 25px; }
+    .bus-v4-panel h4 { font-family: 'JetBrains Mono'; color: #00ff9d; font-size: 0.7rem; margin-bottom: 20px; text-transform: uppercase; }
+
+    .bus-v4-select {
       background: #000; color: #00ff9d; border: 1px solid #222; padding: 12px;
-      font-family: 'JetBrains Mono'; font-size: 0.8rem; width: 100%; margin-bottom: 15px;
+      font-family: 'JetBrains Mono'; font-size: 0.8rem; width: 100%; margin-bottom: 12px; cursor: pointer;
     }
 
-    .p7x-v35-chart-area { flex: 1; width: 100%; min-height: 550px; background: #000; }
+    .bus-v4-log-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #111; font-family: 'JetBrains Mono'; font-size: 0.75rem; color: #888; }
 
-    /* MOBILE PROTOCOL: SNAP BACK AT 1100px */
+    /* --- OBSERVATION DECK (CHART & GLITCH) --- */
+    .bus-v4-deck {
+      background: #050505; border: 1px solid #111; padding: 40px; border-radius: 4px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.9); min-height: 800px; position: relative;
+    }
+
+    .bus-v4-viewport-container { position: relative; width: 100%; height: 600px; background: #000; border-radius: 4px; overflow: hidden; }
+
+    /* GLITCH OVERLAY LAYER */
+    .bus-v4-glitch-layer {
+      position: absolute; inset: 0; z-index: 10; pointer-events: none; opacity: 0;
+      transition: opacity 0.3s ease; background-size: cover; background-position: center;
+    }
+    
+    .bus-v4-viewport-container:hover .bus-v4-glitch-layer { opacity: 0.3; animation: bus-v4-pixel-glitch 0.2s infinite; }
+
+    @keyframes bus-v4-pixel-glitch {
+      0% { clip-path: inset(10% 0 80% 0); transform: translate(-5px); }
+      50% { clip-path: inset(70% 0 10% 0); transform: translate(5px); }
+      100% { clip-path: inset(40% 0 40% 0); transform: translate(0); }
+    }
+
+    /* --- MOBILE STACK --- */
     @media (max-width: 1100px) {
-      .p7x-breaker-grid { grid-template-columns: 1fr; padding: 0 4%; }
-      .p7x-v35-sidebar { order: 2; }
-      .p7x-v35-deck { order: 1; min-height: auto; padding: 20px; }
-      .p7x-v35-chart-area { min-height: 400px; }
+      .bus-v4-grid { grid-template-columns: 1fr; width: 92%; }
+      .bus-v4-terminal { order: 2; }
+      .bus-v4-deck { order: 1; padding: 20px; min-height: auto; }
+      .bus-v4-viewport-container { height: 400px; }
+      .bus-v4-title { font-size: 2.5rem; }
     }
   </style>
 
-  <div class="p7x-breaker-grid">
-    <aside class="p7x-v35-sidebar">
-      <div style="font-family:'JetBrains Mono'; color:#00ff9d; font-size:0.7rem; letter-spacing:4px;">SYS.ENGINE::PREDATOR</div>
-      <h1 class="p7x-v35-title">Forensic<br>Audit.v3</h1>
+  <div class="bus-v4-grid">
+    
+    <aside class="bus-v4-terminal">
+      <div class="bus-v4-id">SYS.ENGINE::PREDATOR_v1.7.1</div>
+      <h1 class="bus-v4-title">Forensic<br>Audit.v4</h1>
 
-      <div class="p7x-v35-alert">
-        <strong>⚠️ SAFETY_BYPASS:</strong> Safety filters deactivated. Observing raw structural engine under 15bps toxic slippage. 
+      <div class="bus-v4-alert-red">
+        <strong>⚠️ SAFETY_BYPASS:</strong> Safety filters deactivated. Observing raw structural engine under 15bps toxic slippage.
       </div>
 
-      <div class="p7x-v35-panel">
-        <select id="p7x-v35-asset" class="p7x-v35-select">
+      <div class="bus-v4-panel">
+        <h4>Configuration</h4>
+        <select id="bus-v4-ticker-select" class="bus-v4-select">
           <option value="AAPL">AAPL (APPLE)</option>
-          <option value="NVDA">NVDA (NVIDIA)</option>
           <option value="TSLA">TSLA (TESLA)</option>
+          <option value="NVDA">NVDA (NVIDIA)</option>
+          <option value="AMD">AMD (RADEON)</option>
         </select>
-        <select id="p7x-v35-stress" class="p7x-v35-select">
+        <select id="bus-v4-stress-select" class="bus-v4-select">
           <option value="Minimum">MINIMUM (2bps SLIP)</option>
           <option value="Medium">MEDIUM (6bps SLIP)</option>
           <option value="Maximum">MAXIMUM (15bps CHAOS)</option>
         </select>
       </div>
+
+      <div class="bus-v4-panel">
+        <h4>Audit Logs (60D)</h4>
+        <div class="bus-v4-log-row"><span>AAPL_SYNCED</span><span style="color:#00ff9d;">+7.40%</span></div>
+        <div class="bus-v4-log-row"><span>TSLA_SYNCED</span><span style="color:#00ff9d;">+33.15%</span></div>
+        <div class="bus-v4-log-row"><span>NVDA_SYNCED</span><span style="color:#00ff9d;">+26.68%</span></div>
+      </div>
     </aside>
 
-    <main class="p7x-v35-deck">
-      <div id="p7x-v35-chart" class="p7x-v35-chart-area"></div>
+    <main class="bus-v4-deck">
+      <div style="display:flex; justify-content:space-between; margin-bottom:20px; border-bottom:1px solid #111; padding-bottom:10px;">
+        <div style="font-family:'JetBrains Mono'; font-size:0.7rem; color:#444;">[ DATA_STREAM: T+1_CAUSAL ]</div>
+        <div style="font-family:'JetBrains Mono'; font-size:0.7rem; color:#00ff9d; animation: pulse 1s infinite;">● LIVE_SIGNAL_MAP</div>
+      </div>
+
+      <div class="bus-v4-viewport-container">
+        <div id="bus-v4-chart" style="width:100%; height:100%;"></div>
+        <div class="bus-v4-glitch-layer" style="background-image: url('staircaseplot.png');"></div>
+      </div>
+
       <div style="margin-top:30px; border-left:2px solid #00ff9d; padding-left:20px; color:#666; font-size:0.85rem; line-height:1.6;">
-        The green line represents the **structural bone** performance. The dashed red line tracks the retail benchmark. 
+        <strong>Hater-Proof Proof:</strong> Hover over the chart to see the <strong>Individual Execution Staircase</strong>. The solid green line tracks the structural bone, while the red line tracks the retail collapse.
       </div>
     </main>
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const labSection = document.getElementById('p7x-breaker-v3-5');
-        const mainContainer = labSection.closest('main'); // Finds your main container
-
-        // FUNCTION TO UNLOCK MAIN FOR WIDESCREEN
-        const unlockMain = () => {
-            if (window.innerWidth > 1100 && mainContainer) {
-                mainContainer.style.maxWidth = 'none';
-                mainContainer.style.padding = '0';
-                mainContainer.style.width = '100%';
-            } else if (mainContainer) {
-                mainContainer.style.maxWidth = '1200px'; // Restores your original style
-                mainContainer.style.margin = '0 auto';
+        // --- SURGICAL JS UNLOCKER ---
+        // This finds your site's main container and unlocks it only on desktop
+        const unlockContainer = () => {
+            const section = document.getElementById('bus-v4-cmd-center');
+            let parent = section.parentElement;
+            while (parent && parent.tagName !== 'BODY') {
+                if (window.innerWidth > 1100) {
+                    parent.style.maxWidth = 'none';
+                    parent.style.width = '100%';
+                    parent.style.margin = '0';
+                    parent.style.padding = '0';
+                } else {
+                    parent.style.maxWidth = ''; // Reset for mobile
+                }
+                parent = parent.parentElement;
             }
         };
+        unlockContainer();
+        window.addEventListener('resize', unlockContainer);
 
-        // RUN ON LOAD AND RESIZE
-        unlockMain();
-        window.addEventListener('resize', unlockMain);
-
-        // CHART LOGIC
+        // --- CHART ENGINE ---
         let masterData = null;
-        const loadChart = async () => {
+        const loadForensicData = async () => {
             try {
                 const response = await fetch('7xbus_stress_data.json');
                 const json = await response.json();
                 masterData = json.results;
-                initChart();
-            } catch (e) { console.error("Data offline."); }
+                initV4Chart();
+            } catch (e) { console.error("Forensic Link Offline."); }
         };
 
-        const initChart = () => {
-            const container = document.getElementById('p7x-v35-chart');
+        const initV4Chart = () => {
+            const container = document.getElementById('bus-v4-chart');
             const chart = LightweightCharts.createChart(container, {
                 layout: { background: { color: '#000' }, textColor: '#444', fontFamily: 'JetBrains Mono' },
                 grid: { vertLines: { color: '#0a0a0a' }, horzLines: { color: '#0a0a0a' } },
                 timeScale: { borderColor: '#111' },
             });
-            const pLine = chart.addLineSeries({ color: '#00ff9d', lineWidth: 3 });
-            const rLine = chart.addLineSeries({ color: '#ff3366', lineWidth: 1, lineStyle: 2 });
 
-            const update = () => {
-                const t = document.getElementById('p7x-v35-asset').value;
-                const s = document.getElementById('p7x-v35-stress').value;
-                if(!masterData[s] || !masterData[s][t]) return;
-                pLine.setData(masterData[s][t].predator_equity.map((v, i) => ({ time: 1715200000 + (i * 300), value: v })));
-                rLine.setData(masterData[s][t].retail_equity.map((v, i) => ({ time: 1715200000 + (i * 300), value: v })));
+            const pLine = chart.addLineSeries({ color: '#00ff9d', lineWidth: 3, title: 'Predator' });
+            const rLine = chart.addLineSeries({ color: '#ff3366', lineWidth: 1, lineStyle: 2, title: 'Retail' });
+
+            const updateV4 = () => {
+                const ticker = document.getElementById('bus-v4-ticker-select').value;
+                const stress = document.getElementById('bus-v4-stress-select').value;
+                if(!masterData[stress] || !masterData[stress][ticker]) return;
+
+                const pData = masterData[stress][ticker].predator_equity.map((v, i) => ({ time: 1715200000 + (i * 300), value: v }));
+                const rData = masterData[stress][ticker].retail_equity.map((v, i) => ({ time: 1715200000 + (i * 300), value: v }));
+
+                pLine.setData(pData);
+                rLine.setData(rData);
                 chart.timeScale().fitContent();
             };
 
-            document.getElementById('p7x-v35-asset').addEventListener('change', update);
-            document.getElementById('p7x-v35-stress').addEventListener('change', update);
-            update();
+            document.getElementById('bus-v4-ticker-select').addEventListener('change', updateV4);
+            document.getElementById('bus-v4-stress-select').addEventListener('change', updateV4);
+            updateV4();
             window.addEventListener('resize', () => chart.applyOptions({ width: container.clientWidth }));
         };
-        loadChart();
+
+        loadForensicData();
     });
   </script>
 </section>
-
 
 
 
