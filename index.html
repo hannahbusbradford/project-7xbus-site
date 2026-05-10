@@ -2491,6 +2491,19 @@ renderResults("ES_F (E-MINI)");
 
 
 
+
+
+
+
+
+
+
+
+
+  
+
+
+
 <section id="p7x-v5-forensic-lab" class="p7x-v5-wrapper">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&family=Syne:wght@800&display=swap');
@@ -2513,7 +2526,6 @@ renderResults("ES_F (E-MINI)");
       width: 96%;
       margin: 0 auto;
       max-width: 2400px;
-      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* --- SIDEBAR TERMINAL --- */
@@ -2536,7 +2548,7 @@ renderResults("ES_F (E-MINI)");
 
     .p7x-v5-select {
       background: #000; color: #00ff9d; border: 1px solid #222; padding: 12px;
-      font-family: 'JetBrains Mono'; font-size: 0.85rem; width: 100%; margin-bottom: 15px; cursor: pointer;
+      font-family: 'JetBrains Mono'; font-size: 0.85rem; width: 100%; margin-bottom: 15px; cursor: pointer; outline: none;
     }
 
     /* --- OBSERVATION DECK (CHART + LEDGER) --- */
@@ -2545,8 +2557,11 @@ renderResults("ES_F (E-MINI)");
       box-shadow: 0 40px 100px rgba(0,0,0,0.9); display: flex; flex-direction: column; gap: 30px;
     }
 
-    /* Cleaned up chart box with NO glitch overlays */
-    .p7x-v5-viewport-box { position: relative; width: 100%; height: 500px; background: #000; border-radius: 4px; overflow: hidden; border: 1px solid #1a1a1a; }
+    /* Strict bounding box for the chart to prevent layout thrashing */
+    .p7x-v5-viewport-box { 
+      position: relative; width: 100%; height: 500px; background: #000; 
+      border-radius: 4px; border: 1px solid #1a1a1a; 
+    }
 
     /* --- FULL FORENSIC LEDGER --- */
     .p7x-v5-ledger-wrapper { overflow-x: auto; width: 100%; }
@@ -2601,7 +2616,7 @@ renderResults("ES_F (E-MINI)");
       </div>
 
       <div style="color: #666; font-size: 0.85rem; line-height: 1.6; padding: 10px;">
-        <strong style="color: #fff;">Interactive Verification:</strong> The detailed ledger validates the systemic outperformance.
+        <strong style="color: #fff;">Interactive Verification:</strong> Select an asset and stress regime above. The detailed ledger validates the systemic outperformance.
       </div>
     </aside>
 
@@ -2611,9 +2626,7 @@ renderResults("ES_F (E-MINI)");
         <div style="font-family:'JetBrains Mono'; font-size:0.7rem; color:#00ff9d;">● SYNCING_REALITY_LOG</div>
       </div>
 
-      <div class="p7x-v5-viewport-box">
-        <div id="p7x-v5-chart" style="width:100%; height:100%;"></div>
-      </div>
+      <div class="p7x-v5-viewport-box" id="p7x-v5-chart-container"></div>
 
       <div class="p7x-v5-ledger-wrapper">
         <table class="p7x-v5-ledger">
@@ -2684,29 +2697,18 @@ renderResults("ES_F (E-MINI)");
   <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
   
   <script>
-    // Wrapped in an IIFE so the website builder doesn't print any return values
     (function() {
         document.addEventListener("DOMContentLoaded", function() {
-            // --- 1. THE MAIN-BREAKER PROTOCOL ---
+            // 1. ONE-TIME SURGICAL UNLOCK (No infinite resize loops)
             var mainContainer = document.querySelector('main');
-            function applyBreakout() {
-                if (window.innerWidth > 1100 && mainContainer) {
-                    mainContainer.style.maxWidth = 'none';
-                    mainContainer.style.width = '100%';
-                    mainContainer.style.margin = '0';
-                    mainContainer.style.padding = '0';
-                } else if (mainContainer) {
-                    mainContainer.style.maxWidth = '1200px';
-                    mainContainer.style.margin = '0 auto';
-                    mainContainer.style.padding = '0 20px';
-                }
+            if (mainContainer && window.innerWidth > 1100) {
+                mainContainer.style.maxWidth = '100%';
+                mainContainer.style.padding = '0';
             }
-            applyBreakout();
-            window.addEventListener('resize', applyBreakout);
 
-            // --- 2. BULLETPROOF CHART ENGINE ---
+            // 2. CHART ENGINE WITH ANTI-FLASH PROTOCOL
             var masterData = null;
-            var container = document.getElementById('p7x-v5-chart');
+            var container = document.getElementById('p7x-v5-chart-container');
             var chart = null;
             var pLine = null;
             var rLine = null;
@@ -2716,18 +2718,34 @@ renderResults("ES_F (E-MINI)");
                     layout: { background: { color: '#000' }, textColor: '#444', fontFamily: 'JetBrains Mono' },
                     grid: { vertLines: { color: '#0a0a0a' }, horzLines: { color: '#0a0a0a' } },
                     timeScale: { borderColor: '#111', timeVisible: true },
+                    crosshair: {
+                        mode: LightweightCharts.CrosshairMode.Normal,
+                        vertLine: { color: '#222', style: 0 },
+                        horzLine: { color: '#222', style: 0 }
+                    }
                 });
 
-                pLine = chart.addLineSeries({ color: '#00ff9d', lineWidth: 3, title: '7xBUS Predator' });
-                rLine = chart.addLineSeries({ color: '#ff3366', lineWidth: 1, lineStyle: 2, title: 'Retail' });
+                // Disabled lastPriceAnimation and priceLineVisible to kill flashing lines
+                pLine = chart.addLineSeries({ 
+                    color: '#00ff9d', lineWidth: 3, title: 'Predator', 
+                    lastPriceAnimation: 0, priceLineVisible: false 
+                });
+                rLine = chart.addLineSeries({ 
+                    color: '#ff3366', lineWidth: 1, lineStyle: 2, title: 'Retail', 
+                    lastPriceAnimation: 0, priceLineVisible: false 
+                });
 
                 document.getElementById('p7x-v5-asset-toggle').addEventListener('change', updateData);
                 document.getElementById('p7x-v5-stress-toggle').addEventListener('change', updateData);
                 
                 updateData();
-                window.addEventListener('resize', function() {
-                    chart.applyOptions({ width: container.clientWidth });
-                });
+
+                // Safe ResizeObserver (Prevents layout thrashing)
+                new ResizeObserver(function(entries) {
+                    if (entries.length === 0 || entries[0].target !== container) { return; }
+                    var newRect = entries[0].contentRect;
+                    chart.applyOptions({ width: newRect.width, height: newRect.height });
+                }).observe(container);
             }
 
             function updateData() {
@@ -2748,10 +2766,10 @@ renderResults("ES_F (E-MINI)");
                 chart.timeScale().fitContent();
             }
 
-            // FETCH DATA USING VOID OPERATOR TO PREVENT PRINTING PROMISE TO SCREEN
+            // SAFE FETCH (No Promises printed to screen)
             void fetch('7xbus_stress_data.json')
                 .then(function(response) {
-                    if (!response.ok) { throw new Error("JSON file missing or CORS blocked."); }
+                    if (!response.ok) { throw new Error("File missing."); }
                     return response.json();
                 })
                 .then(function(json) {
@@ -2760,29 +2778,12 @@ renderResults("ES_F (E-MINI)");
                 })
                 .catch(function(error) {
                     console.error("Forensic stream offline: ", error);
-                    container.innerHTML = '<div style="color:#ff3366; padding:30px; font-family:monospace; font-size:0.9rem; text-align:center;">[ SYSTEM ERROR ]<br><br>Unable to locate "7xbus_stress_data.json".<br>Verify the file is uploaded to your root directory.</div>';
+                    container.innerHTML = '<div style="color:#ff3366; padding:30px; font-family:monospace; text-align:center; height:100%; display:flex; align-items:center; justify-content:center;">[ SYSTEM ERROR ]<br>Missing 7xbus_stress_data.json</div>';
                 });
         });
     })();
   </script>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
 
 
 
