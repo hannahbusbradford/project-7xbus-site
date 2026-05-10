@@ -2499,143 +2499,97 @@ renderResults("ES_F (E-MINI)");
   
 
 
-
-
-
-  <section id="p7x-forensic-lab-v3" class="p7x-lab-scope">
+<section id="p7x-forensic-lab-v3" class="p7x-lab-scope">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
 
     #p7x-forensic-lab-v3.p7x-lab-scope {
-      padding: 100px 2.5%;
+      padding: 80px 2%; /* Reduced horizontal padding for edge-to-edge feel */
       background: #000;
       color: #fff;
       font-family: 'Inter', sans-serif;
       isolation: isolate;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
     }
 
     .p7x-command-grid {
-      max-width: 1900px;
+      width: 96%; /* Unlocked to full-width */
+      max-width: 2400px; /* High ceiling for ultra-wide monitors */
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 420px 1fr;
-      gap: 40px;
+      grid-template-columns: 420px 1fr; /* Fixed sidebar, expansive chart */
+      gap: 50px;
       align-items: start;
     }
 
-    /* LEFT SIDE: TERMINAL */
+    /* TERMINAL SIDEBAR */
     .p7x-terminal { display: flex; flex-direction: column; gap: 20px; }
-
     .p7x-title-block { margin-bottom: 20px; }
     .p7x-lab-id { 
-      font-family: 'JetBrains Mono'; 
-      color: #00ff9d; 
-      font-size: 0.75rem; 
-      letter-spacing: 4px; 
-      text-transform: uppercase;
-      opacity: 0.8;
+      font-family: 'JetBrains Mono'; color: #00ff9d; font-size: 0.75rem; 
+      letter-spacing: 4px; text-transform: uppercase; opacity: 0.8;
     }
     .p7x-main-title {
-      font-size: 3.5rem;
-      font-weight: 900;
-      letter-spacing: -3px;
-      line-height: 0.85;
+      font-size: 3.5rem; font-weight: 900; letter-spacing: -3px; line-height: 0.85;
       background: linear-gradient(180deg, #fff 0%, #555 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       margin: 10px 0;
     }
 
     /* BYPASS NOTICE */
     .p7x-bypass-box {
-      border: 1px solid #ff3366;
-      background: rgba(255, 51, 102, 0.03);
-      padding: 25px;
-      position: relative;
+      border: 1px solid #ff3366; background: rgba(255, 51, 102, 0.03);
+      padding: 25px; position: relative;
     }
     .p7x-bypass-box::before {
-      content: "BYPASS_ACTIVE";
-      position: absolute;
-      top: -10px; right: 15px;
-      background: #ff3366;
-      color: #000;
-      font-family: 'JetBrains Mono';
-      font-size: 0.65rem;
-      font-weight: 900;
-      padding: 2px 8px;
+      content: "BYPASS_ACTIVE"; position: absolute; top: -10px; right: 15px;
+      background: #ff3366; color: #000; font-family: 'JetBrains Mono';
+      font-size: 0.65rem; font-weight: 900; padding: 2px 8px;
     }
     .p7x-bypass-box p {
-      font-family: 'JetBrains Mono';
-      font-size: 0.8rem;
-      color: #ff3366;
-      line-height: 1.5;
-      margin: 0;
+      font-family: 'JetBrains Mono'; font-size: 0.8rem; color: #ff3366;
+      line-height: 1.5; margin: 0;
     }
 
-    /* CONTROLS & LOGS */
-    .p7x-panel {
-      background: #080808;
-      border: 1px solid #151515;
-      padding: 30px;
-    }
-    .p7x-panel h4 {
-      font-family: 'JetBrains Mono';
-      color: #00ff9d;
-      font-size: 0.75rem;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-    }
+    /* PANELS */
+    .p7x-panel { background: #080808; border: 1px solid #151515; padding: 30px; }
+    .p7x-panel h4 { font-family: 'JetBrains Mono'; color: #00ff9d; font-size: 0.75rem; margin-bottom: 20px; text-transform: uppercase; }
 
     .p7x-select-dark {
-      background: #000;
-      color: #00ff9d;
-      border: 1px solid #222;
-      padding: 14px;
-      font-family: 'JetBrains Mono';
-      font-size: 0.85rem;
-      width: 100%;
-      margin-bottom: 15px;
-      cursor: pointer;
-      outline: none;
+      background: #000; color: #00ff9d; border: 1px solid #222; padding: 14px;
+      font-family: 'JetBrains Mono'; font-size: 0.85rem; width: 100%;
+      margin-bottom: 15px; cursor: pointer; outline: none;
     }
     .p7x-select-dark:hover { border-color: #00ff9d; }
 
-    .p7x-log-table {
-      width: 100%;
-      font-family: 'JetBrains Mono';
-      font-size: 0.7rem;
-      border-collapse: collapse;
-    }
+    .p7x-log-table { width: 100%; font-family: 'JetBrains Mono'; font-size: 0.7rem; border-collapse: collapse; }
     .p7x-log-table td { padding: 12px 0; border-bottom: 1px solid #111; color: #666; }
     .p7x-val-pos { color: #00ff9d; font-weight: bold; }
 
-    /* RIGHT SIDE: OBSERVATION DECK */
+    /* OBSERVATION DECK (CHART AREA) */
     .p7x-observation-deck {
-      background: #050505;
-      border: 1px solid #111;
-      padding: 40px;
-      min-height: 850px;
-      box-shadow: 0 50px 100px rgba(0,0,0,0.8);
-      position: relative;
+      background: #050505; border: 1px solid #111; padding: 40px;
+      min-height: 800px; box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+      position: relative; height: 100%;
     }
     .p7x-deck-header {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #111;
-      padding-bottom: 20px;
-      margin-bottom: 30px;
+      display: flex; justify-content: space-between; border-bottom: 1px solid #111;
+      padding-bottom: 20px; margin-bottom: 30px;
     }
     .p7x-status-indicator { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #444; }
 
-    .p7x-chart-viewport { width: 100%; height: 650px; background: #000; }
+    .p7x-chart-viewport { width: 100%; height: 600px; background: #000; }
 
     /* MOBILE OPTIMIZATION */
-    @media (max-width: 1100px) {
-      .p7x-command-grid { grid-template-columns: 1fr; }
+    @media (max-width: 1200px) {
+      #p7x-forensic-lab-v3.p7x-lab-scope { padding: 60px 5%; align-items: flex-start; }
+      .p7x-command-grid { grid-template-columns: 1fr; width: 100%; gap: 30px; }
       .p7x-terminal { order: 2; }
       .p7x-observation-deck { order: 1; padding: 20px; min-height: auto; }
-      .p7x-chart-viewport { height: 450px; }
-      .p7x-main-title { font-size: 2.8rem; text-align: center; }
+      .p7x-chart-viewport { height: 400px; }
+      .p7x-main-title { font-size: 2.8rem; text-align: left; }
     }
   </style>
 
@@ -2720,7 +2674,6 @@ renderResults("ES_F (E-MINI)");
             const t = document.getElementById('p7x-v3-asset').value;
             const s = document.getElementById('p7x-v3-stress').value;
             
-            // Map JSON arrays to Chart format
             const pData = masterData[s][t].predator_equity.map((v, i) => ({ time: 1715200000 + (i * 300), value: v }));
             const rData = masterData[s][t].retail_equity.map((v, i) => ({ time: 1715200000 + (i * 300), value: v }));
             
@@ -2735,8 +2688,6 @@ renderResults("ES_F (E-MINI)");
     });
   </script>
 </section>
-
-
 
 
 
