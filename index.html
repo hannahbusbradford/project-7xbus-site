@@ -1950,17 +1950,12 @@ renderResults("ES_F (E-MINI)");
 
 
 
-  <!-- SOVEREIGN MATH ENGINE — INTRADAY VWAP PREDATOR WIDGET (GAP PROTECTED) -->
-<section id="intraday-widget" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
+ <section id="intraday-widget" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
   
-  <!-- Subtle CRT Scanline Overlay -->
   <div style="position: absolute; inset: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); background-size: 100% 2px, 3px 100%; z-index: 1; pointer-events: none; opacity: 0.4;"></div>
 
   <style>
-    /* =========================================
-       TERMINAL WIDGET STYLES
-       ========================================= */
-    #intraday-widget .terminal-container { position: relative; z-index: 2; max-width: 1000px; margin: 0 auto; }
+    #intraday-widget .terminal-container { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; }
     
     #intraday-widget .eyebrow {
       font-family: 'JetBrains Mono', monospace;
@@ -2003,13 +1998,14 @@ renderResults("ES_F (E-MINI)");
       border: none;
       color: #555;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       cursor: pointer;
       padding: 8px 12px;
       transition: all 0.3s ease;
       position: relative;
+      white-space: nowrap;
     }
     
     .intraday-tab::after {
@@ -2047,7 +2043,7 @@ renderResults("ES_F (E-MINI)");
       text-align: right;
       padding: 20px 24px;
       color: #666;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       border-bottom: 1px solid #1a1a1a;
@@ -2056,9 +2052,9 @@ renderResults("ES_F (E-MINI)");
     #intraday-widget th:first-child { text-align: left; }
     
     #intraday-widget td {
-      padding: 20px 24px;
+      padding: 22px 24px;
       color: #d0d0d0;
-      font-size: 1rem;
+      font-size: 0.95rem;
       border-bottom: 1px solid #111;
       transition: background 0.2s ease;
     }
@@ -2069,9 +2065,7 @@ renderResults("ES_F (E-MINI)");
     .data-positive { color: #00ff41; text-shadow: 0 0 10px rgba(0, 255, 65, 0.3); }
     .data-neutral { color: #d4af37; }
     .data-faded { color: #555; }
-    .bias-bull { color: #00ff41; font-size: 0.9rem; }
-    .bias-bear { color: #ff003c; font-size: 0.9rem; }
-    .gap-protected { color: #00ff41; font-size: 0.85rem; letter-spacing: 1px; }
+    .win-rate-high { color: #00ff41; font-weight: 700; }
 
     @keyframes bootUp {
       0% { opacity: 0; transform: translateY(10px); filter: blur(4px); }
@@ -2082,131 +2076,135 @@ renderResults("ES_F (E-MINI)");
 
   <div class="terminal-container">
     <div style="text-align: left; margin-bottom: 3rem;">
-      <div class="eyebrow">SYS.ENGINE.v0.9 • INTRADAY</div>
-      <h2>VWAP PREDATOR<br>INTRADAY MATRIX</h2>
-      <p style="color:#888; max-width: 600px; line-height: 1.6; font-family: 'Inter', sans-serif;">
-        Gap-protected 5m & 1h structural alpha. <br> SVR Forecast • VWAP Anchor. No overnight risk.
+      <div class="eyebrow">APEX.ENGINE.v2.6 • BIAS_CORRECTED</div>
+      <h2>MASTER STRESS<br>MATRIX LEDGER</h2>
+      <p style="color:#888; max-width: 700px; line-height: 1.6; font-family: 'Inter', sans-serif;">
+        Ultra-short timeframe 5m structural alpha. Entropy-gated (Hurst < EMA). 
+        <br>Zero lookahead bias. Verified structural outperformance across high-beta regimes.
       </p>
     </div>
 
-    <!-- Ticker Tabs -->
     <div id="intraday-ticker-tabs"></div>
 
-    <!-- Results Table -->
     <div class="terminal-window">
       <div id="intraday-results-table"></div>
     </div>
 
-    <!-- Footer Status -->
     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #444; text-transform: uppercase;">
-      <div>STATUS: <span style="color: #00ff41;">LIVE_INTRADAY</span> <span class="gap-protected">[GAP PROTECTED]</span></div>
+      <div>ENGINE STATUS: <span style="color: #00ff41;">REGIME_DOMINANT</span></div>
       <div>LAST TICK: <span id="intraday-live-clock" style="color: #888;">--</span></div>
-      <div>ALLOCATION: 50% • SESSION ONLY</div>
+      <div>MODE: <span style="color: #00ff41;">Sucker_Punch_v2.6</span></div>
     </div>
   </div>
 
   <script>
-  // =============== GAP-PROTECTED DATA MATRIX ===============
-  // Variables strictly namespaced to prevent cross-widget collision
-  const intradayEngineData_v09 = {
-    "ES_F (E-MINI)": [
-      { tf: "5m", ret: 61.35, sharpe: 2.21, pf: 2.41, trades: 1650, bias: "68% BULL" },
-      { tf: "1h", ret: 100.47, sharpe: 2.65, pf: 2.72, trades: 1240, bias: "71% BULL" },
-      { tf: "Session", ret: 55.80, sharpe: 2.01, pf: 2.31, trades: 3780, bias: "64% BULL" }
+  // =============== BIAS-CORRECTED MASTER DATA (v2.6) ===============
+  const v26_MasterData = {
+    "HIGH_BETA": [
+      { asset: "MSTR", ret: 8.80, sharpe: 7.32, pf: 2.44, wr: 42.1, trades: 121 },
+      { asset: "COIN", ret: 6.18, sharpe: 5.36, pf: 1.61, wr: 37.0, trades: 146 },
+      { asset: "NVDA", ret: 2.24, sharpe: 6.18, pf: 1.79, wr: 45.5, trades: 112 },
+      { asset: "AMD",  ret: 2.90, sharpe: 5.31, pf: 1.52, wr: 40.0, trades: 115 }
     ],
-    "MES_F (MICRO)": [
-      { tf: "5m", ret: 58.90, sharpe: 2.18, pf: 2.38, trades: 1670, bias: "68% BULL" },
-      { tf: "1h", ret: 97.55, sharpe: 2.58, pf: 2.68, trades: 1260, bias: "70% BULL" },
-      { tf: "Session", ret: 53.25, sharpe: 1.95, pf: 2.28, trades: 3410, bias: "64% BULL" }
+    "LEGACY_TECH": [
+      { asset: "GOOGL", ret: 2.39, sharpe: 5.12, pf: 2.11, wr: 37.5, trades: 88 },
+      { asset: "AAPL",  ret: 1.33, sharpe: 3.57, pf: 1.42, wr: 37.8, trades: 143 },
+      { asset: "MSFT",  ret: 1.15, sharpe: 2.99, pf: 1.29, wr: 38.7, trades: 137 },
+      { asset: "TSLA",  ret: 3.04, sharpe: 4.56, pf: 2.04, wr: 44.7, trades: 94 }
     ],
-    "NVDA": [
-      { tf: "5m", ret: 182.40, sharpe: 2.65, pf: 2.85, trades: 1180, bias: "78% BULL" },
-      { tf: "1h", ret: 236.65, sharpe: 2.92, pf: 3.12, trades: 910, bias: "82% BULL" },
-      { tf: "Session", ret: 161.20, sharpe: 2.45, pf: 2.71, trades: 2980, bias: "75% BULL" }
+    "INDICES": [
+      { asset: "SPY", ret: 1.13, sharpe: 3.92, pf: 1.76, wr: 36.7, trades: 98 },
+      { asset: "QQQ", ret: 0.21, sharpe: 1.08, pf: 1.11, wr: 39.2, trades: 97 }
     ],
-    "AAPL": [
-      { tf: "5m", ret: 83.95, sharpe: 1.88, pf: 2.41, trades: 1240, bias: "54% BEAR" },
-      { tf: "1h", ret: 129.50, sharpe: 2.21, pf: 2.65, trades: 980, bias: "51% BEAR" },
-      { tf: "Session", ret: 74.20, sharpe: 1.81, pf: 2.32, trades: 3120, bias: "55% BEAR" }
+    "CRYPTO_24/7": [
+      { asset: "BTC-USD", ret: 4.20, sharpe: 3.34, pf: 1.39, wr: 44.6, trades: 810 },
+      { asset: "ETH-USD", ret: 3.85, sharpe: 2.95, pf: 1.28, wr: 41.2, trades: 760 }
     ]
   };
 
   // =============== RENDER LOGIC ===============
-  function renderIntradayMatrix(tickerTarget) {
-    const tableDOM_v09 = document.getElementById('intraday-results-table');
-    const selectedData_v09 = intradayEngineData_v09[tickerTarget] || intradayEngineData_v09["ES_F (E-MINI)"];
+  function renderV26Matrix(categoryTarget) {
+    const tableDOM = document.getElementById('intraday-results-table');
+    const selectedData = v26_MasterData[categoryTarget];
 
-    tableDOM_v09.classList.remove('render-anim');
-    void tableDOM_v09.offsetWidth; 
-    tableDOM_v09.classList.add('render-anim');
+    tableDOM.classList.remove('render-anim');
+    void tableDOM.offsetWidth; 
+    tableDOM.classList.add('render-anim');
 
-    let outputHTML_v09 = `
+    let outputHTML = `
       <table>
         <thead>
           <tr>
-            <th>Timeframe</th>
-            <th>CUM_RET (%)</th>
-            <th>SHARPE</th>
-            <th>PRFT_FCTR</th>
-            <th>STRUCTURAL_BIAS</th>
-            <th>TRADES_EXEC</th>
+            <th>Asset ID</th>
+            <th>Return (%)</th>
+            <th>Sharpe</th>
+            <th>Profit Factor</th>
+            <th>Win Rate</th>
+            <th>Trades</th>
           </tr>
         </thead>
         <tbody>`;
 
-    selectedData_v09.forEach(row => {
-      const retString = row.ret > 0 ? `+${row.ret.toFixed(2)}` : row.ret.toFixed(2);
-      const biasColorClass = row.bias.includes("BULL") ? "bias-bull" : "bias-bear";
-      
-      outputHTML_v09 += `
+    selectedData.forEach(row => {
+      outputHTML += `
         <tr>
-          <td class="data-tf">T :: ${row.tf.toUpperCase()}</td>
-          <td style="text-align:right;" class="data-positive">${retString}</td>
+          <td class="data-tf">${row.asset}</td>
+          <td style="text-align:right;" class="data-positive">+${row.ret.toFixed(2)}%</td>
           <td style="text-align:right;" class="data-neutral">${row.sharpe.toFixed(2)}</td>
           <td style="text-align:right;">${row.pf.toFixed(2)}</td>
-          <td style="text-align:right;" class="${biasColorClass}">${row.bias}</td>
+          <td style="text-align:right;" class="win-rate-high">${row.wr.toFixed(1)}%</td>
           <td style="text-align:right;" class="data-faded">[ ${row.trades} ]</td>
         </tr>`;
     });
 
-    outputHTML_v09 += `</tbody></table>`;
-    tableDOM_v09.innerHTML = outputHTML_v09;
+    outputHTML += `</tbody></table>`;
+    tableDOM.innerHTML = outputHTML;
   }
 
-  // =============== INIT TABS ===============
-  const uniqueIntradayTabsContainer = document.getElementById('intraday-ticker-tabs');
+  // =============== INIT CATEGORY TABS ===============
+  const tabsContainer = document.getElementById('intraday-ticker-tabs');
   
-  Object.keys(intradayEngineData_v09).forEach((targetName, index) => {
-    const tabBtn_v09 = document.createElement('button');
-    tabBtn_v09.textContent = targetName;
-    tabBtn_v09.className = 'intraday-tab';
-    if (index === 0) tabBtn_v09.classList.add('active');
+  Object.keys(v26_MasterData).forEach((catName, index) => {
+    const tabBtn = document.createElement('button');
+    tabBtn.textContent = catName.replace("_", " ");
+    tabBtn.className = 'intraday-tab';
+    if (index === 0) tabBtn.classList.add('active');
 
-    tabBtn_v09.onclick = () => {
-      document.querySelectorAll('#intraday-ticker-tabs .intraday-tab').forEach(b => b.classList.remove('active'));
-      tabBtn_v09.classList.add('active');
-      renderIntradayMatrix(targetName);
+    tabBtn.onclick = () => {
+      document.querySelectorAll('.intraday-tab').forEach(b => b.classList.remove('active'));
+      tabBtn.classList.add('active');
+      renderV26Matrix(catName);
     };
 
-    uniqueIntradayTabsContainer.appendChild(tabBtn_v09);
+    tabsContainer.appendChild(tabBtn);
   });
 
-  // =============== LIVE CLOCK INIT ===============
-  function fireIntradayClockUpdate() {
-    const nowTime = new Date();
-    const formattedTime = nowTime.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) + 
-                      ' :: ' + 
-                      nowTime.toLocaleTimeString('en-US', { hour12: false });
-    document.getElementById('intraday-live-clock').textContent = formattedTime;
+  // =============== LIVE CLOCK ===============
+  function updateMatrixClock() {
+    const now = new Date();
+    document.getElementById('intraday-live-clock').textContent = 
+      now.toLocaleDateString('en-US') + ' :: ' + now.toLocaleTimeString('en-US', { hour12: false });
   }
-  setInterval(fireIntradayClockUpdate, 1000);
-  fireIntradayClockUpdate();
+  setInterval(updateMatrixClock, 1000);
+  updateMatrixClock();
 
   // Initial render 
-  renderIntradayMatrix("ES_F (E-MINI)");
+  renderV26Matrix("HIGH_BETA");
   </script>
 </section>
 
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
