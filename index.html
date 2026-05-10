@@ -2496,42 +2496,39 @@ renderResults("ES_F (E-MINI)");
 
 
   
-  <section id="p7x-forensic-v3-2" class="p7x-full-bleed">
+<section id="p7x-ironclad-v3-3" class="p7x-lab-wrapper">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
 
-    /* Section Wrapper: Forces full width even inside a container */
-    #p7x-forensic-v3-2.p7x-full-bleed {
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
+    /* Section Wrapper: Uses 100% of available width safely */
+    #p7x-ironclad-v3-3.p7x-lab-wrapper {
+      width: 100%;
       background: #000;
       padding: 100px 0;
       color: #fff;
       font-family: 'Inter', sans-serif;
       overflow: hidden;
+      border-top: 1px solid #111;
     }
 
-    .p7x-command-center {
-      display: flex;
-      max-width: 1800px; /* Room for 4K and Ultra-Wide */
-      margin: 0 auto;
+    .p7x-container-fluid {
+      display: grid;
+      /* Fixed sidebar (400px) + Expansive chart area */
+      grid-template-columns: 400px 1fr;
       gap: 40px;
-      padding: 0 40px;
+      width: 96%;
+      max-width: 2000px; /* Massive breathing room for ultra-wide */
+      margin: 0 auto;
     }
 
-    /* THE TERMINAL (Left Side) */
-    .p7x-terminal-v2 {
-      flex: 0 0 380px; /* Locked width sidebar */
+    /* THE TERMINAL (Sidebar) */
+    .p7x-sidebar-v3 {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 25px;
     }
 
-    .p7x-main-heading {
+    .p7x-glitch-header {
       font-size: 3.5rem;
       font-weight: 900;
       letter-spacing: -3px;
@@ -2539,135 +2536,131 @@ renderResults("ES_F (E-MINI)");
       background: linear-gradient(180deg, #fff 0%, #444 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin: 10px 0;
       text-transform: uppercase;
+      margin: 0;
     }
 
-    /* THE DECK (Right Side / Chart Area) */
-    .p7x-observation-deck {
-      flex: 1; /* Takes up all remaining space */
+    /* THE DECK (Observation Area) */
+    .p7x-deck-v3 {
       background: #050505;
       border: 1px solid #111;
       padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-      min-height: 750px;
+      border-radius: 4px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+      min-height: 700px; /* Height for the chart to live in */
+      display: flex;
+      flex-direction: column;
     }
 
-    .p7x-bypass-alert {
+    .p7x-alert-red {
       border: 1px solid #ff3366;
       background: rgba(255, 51, 102, 0.05);
       padding: 20px;
       font-family: 'JetBrains Mono', monospace;
       color: #ff3366;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       line-height: 1.5;
     }
 
-    .p7x-glass-panel {
-      background: #0a0a0a;
+    .p7x-panel-dark {
+      background: #080808;
       border: 1px solid #151515;
-      padding: 25px;
+      padding: 30px;
     }
 
-    .p7x-glass-panel h4 {
+    .p7x-panel-dark h4 {
       font-family: 'JetBrains Mono';
       color: #00ff9d;
       font-size: 0.7rem;
       margin-bottom: 20px;
       text-transform: uppercase;
-      letter-spacing: 2px;
     }
 
-    .p7x-input-glow {
+    .p7x-select-custom {
       background: #000;
       color: #00ff9d;
       border: 1px solid #222;
-      padding: 14px;
+      padding: 12px;
       font-family: 'JetBrains Mono';
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       width: 100%;
       margin-bottom: 15px;
       cursor: pointer;
+      outline: none;
     }
 
-    .p7x-input-glow:hover { border-color: #00ff9d; }
-
-    .p7x-chart-box {
+    .p7x-chart-render-area {
+      flex: 1;
       width: 100%;
-      height: 600px;
+      min-height: 550px;
       background: #000;
-      border-radius: 4px;
     }
 
-    /* MOBILE PROTOCOL: Snaps back at 1100px */
-    @media (max-width: 1100px) {
-      .p7x-command-center {
-        flex-direction: column;
-        padding: 0 20px;
+    /* PERFORMANCE PILLS */
+    .p7x-log-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #111;
+      font-family: 'JetBrains Mono';
+      font-size: 0.75rem;
+    }
+
+    /* RESPONSIVE FLIP: Below 1200px, we stack it */
+    @media (max-width: 1200px) {
+      .p7x-container-fluid {
+        grid-template-columns: 1fr;
+        padding: 0 5%;
       }
-      .p7x-terminal-v2 {
-        flex: none;
-        width: 100%;
-        order: 2; /* Sidebar goes below chart on mobile */
-      }
-      .p7x-observation-deck {
-        width: 100%;
-        order: 1;
-        padding: 20px;
-        min-height: auto;
-      }
-      .p7x-chart-box { height: 400px; }
-      .p7x-main-heading { font-size: 2.8rem; }
+      .p7x-sidebar-v3 { order: 2; }
+      .p7x-deck-v3 { order: 1; min-height: auto; padding: 20px; }
+      .p7x-chart-render-area { min-height: 400px; }
+      .p7x-glitch-header { font-size: 2.5rem; text-align: left; }
     }
   </style>
 
-  <div class="p7x-command-center">
+  <div class="p7x-container-fluid">
     
-    <aside class="p7x-terminal-v2">
-      <div style="font-family:'JetBrains Mono'; color:#00ff9d; font-size:0.7rem; letter-spacing:3px;">SYS.ENGINE::v1.7.1</div>
-      <h1 class="p7x-main-heading">Forensic<br>Audit.v3</h1>
+    <aside class="p7x-sidebar-v3">
+      <div style="font-family:'JetBrains Mono'; color:#00ff9d; font-size:0.7rem; letter-spacing:4px;">SYS.ENGINE::PREDATOR</div>
+      <h1 class="p7x-glitch-header">Forensic<br>Audit.v3</h1>
 
-      <div class="p7x-bypass-alert">
-        <strong>⚠️ SAFETY_BYPASS:</strong> Chaos indicator manually disabled. Logic forced through 15bps slippage + stochastic noise. No look-ahead bias verified.
+      <div class="p7x-alert-red">
+        <strong>⚠️ BYPASS_MODE:</strong> Safety filters deactivated. Observing raw structural engine under 15bps toxic slippage. 
       </div>
 
-      <div class="p7x-glass-panel">
-        <h4>Configuration</h4>
-        <select id="p7x-v32-asset" class="p7x-input-glow">
+      <div class="p7x-panel-dark">
+        <h4>Input Stream</h4>
+        <select id="p7x-v33-asset" class="p7x-select-custom">
           <option value="AAPL">AAPL (APPLE)</option>
-          <option value="TSLA">TSLA (TESLA)</option>
           <option value="NVDA">NVDA (NVIDIA)</option>
-          <option value="AMD">AMD (RADEON)</option>
-          <option value="MSFT">MSFT (AZURE)</option>
+          <option value="TSLA">TSLA (TESLA)</option>
         </select>
-        <select id="p7x-v32-stress" class="p7x-input-glow">
+        <select id="p7x-v33-stress" class="p7x-select-custom">
           <option value="Minimum">MINIMUM (2bps SLIP)</option>
           <option value="Medium">MEDIUM (6bps SLIP)</option>
           <option value="Maximum">MAXIMUM (15bps CHAOS)</option>
         </select>
       </div>
 
-      <div class="p7x-glass-panel">
-        <h4>Audit Logs</h4>
-        <table style="width:100%; font-family:'JetBrains Mono'; font-size:0.7rem; border-collapse:collapse;">
-          <tr style="border-bottom:1px solid #111;"><td style="padding:10px 0;">AAPL_FILTERED</td><td style="text-align:right; color:#00ff9d;">+7.40%</td></tr>
-          <tr style="border-bottom:1px solid #111;"><td style="padding:10px 0;">TSLA_FILTERED</td><td style="text-align:right; color:#00ff9d;">+33.15%</td></tr>
-          <tr style="border-bottom:1px solid #111;"><td style="padding:10px 0;">NVDA_FILTERED</td><td style="text-align:right; color:#00ff9d;">+26.68%</td></tr>
-        </table>
+      <div class="p7x-panel-dark">
+        <h4>Forensic Logs</h4>
+        <div class="p7x-log-row"><span>AAPL_SYNCED</span><span style="color:#00ff9d;">+7.40%</span></div>
+        <div class="p7x-log-row"><span>TSLA_SYNCED</span><span style="color:#00ff9d;">+33.15%</span></div>
+        <div class="p7x-log-row"><span>NVDA_SYNCED</span><span style="color:#00ff9d;">+26.68%</span></div>
       </div>
     </aside>
 
-    <main class="p7x-observation-deck">
-      <div style="display:flex; justify-content:space-between; border-bottom:1px solid #111; padding-bottom:15px; margin-bottom:25px;">
-        <div style="font-family:'JetBrains Mono'; font-size:0.7rem; color:#444;">[ DATA_STREAM: T+1_CAUSAL ]</div>
-        <div style="font-family:'JetBrains Mono'; font-size:0.7rem; color:#444;">AXIS: 60D_EQUITY_LOG</div>
+    <main class="p7x-deck-v3">
+      <div style="display:flex; justify-content:space-between; margin-bottom:20px; border-bottom:1px solid #111; padding-bottom:10px;">
+        <div style="font-family:'JetBrains Mono'; font-size:0.7rem; color:#444;">[ DATA_AUDIT: T+1_CAUSAL ]</div>
+        <div style="font-family:'JetBrains Mono'; font-size:0.7rem; color:#444;">60D_EQUITY_STREAM</div>
       </div>
 
-      <div id="p7x-v32-viewport" class="p7x-chart-box"></div>
+      <div id="p7x-v33-chart" class="p7x-chart-render-area"></div>
 
-      <div style="margin-top:30px; padding:20px; border-left:2px solid #00ff9d; background:rgba(0,255,157,0.02); color:#888; font-size:0.85rem; line-height:1.6;">
-        <strong style="color:#fff;">Hater-Proof Proof:</strong> The green line (Predator Structural Bone) maintains positive expectancy even when the safety filters are off. The dashed red line is the standard retail benchmark.
+      <div style="margin-top:30px; border-left:2px solid #00ff9d; padding-left:20px; color:#666; font-size:0.85rem; line-height:1.6;">
+        The green line represents the **structural bone** performance. The dashed red line tracks the retail benchmark. In high-chaos regimes, the Predator's structural laws prevent the decay seen in classical models.
       </div>
     </main>
 
@@ -2678,12 +2671,13 @@ renderResults("ES_F (E-MINI)");
     document.addEventListener("DOMContentLoaded", async () => {
         let masterData = null;
         try {
+            // Updated to fetch your forensic v1.7.1 data
             const response = await fetch('7xbus_stress_data.json');
             const json = await response.json();
             masterData = json.results;
-        } catch (e) { console.error("Forensic link offline."); return; }
+        } catch (e) { console.error("Forensic data offline."); return; }
 
-        const container = document.getElementById('p7x-v32-viewport');
+        const container = document.getElementById('p7x-v33-chart');
         const chart = LightweightCharts.createChart(container, {
             layout: { background: { color: '#000' }, textColor: '#444', fontFamily: 'JetBrains Mono' },
             grid: { vertLines: { color: '#0a0a0a' }, horzLines: { color: '#0a0a0a' } },
@@ -2693,19 +2687,27 @@ renderResults("ES_F (E-MINI)");
         const pLine = chart.addLineSeries({ color: '#00ff9d', lineWidth: 3, title: 'Predator' });
         const rLine = chart.addLineSeries({ color: '#ff3366', lineWidth: 1, lineStyle: 2, title: 'Retail' });
 
-        function updateV32() {
-            const t = document.getElementById('p7x-v32-asset').value;
-            const s = document.getElementById('p7x-v32-stress').value;
+        function updateV33() {
+            const t = document.getElementById('p7x-v33-asset').value;
+            const s = document.getElementById('p7x-v33-stress').value;
+            
+            if(!masterData[s] || !masterData[s][t]) return;
+
             const pData = masterData[s][t].predator_equity.map((v, i) => ({ time: 1715200000 + (i * 300), value: v }));
             const rData = masterData[s][t].retail_equity.map((v, i) => ({ time: 1715200000 + (i * 300), value: v }));
-            pLine.setData(pData); rLine.setData(rData);
+            
+            pLine.setData(pData);
+            rLine.setData(rData);
             chart.timeScale().fitContent();
         }
 
-        document.getElementById('p7x-v32-asset').addEventListener('change', updateV32);
-        document.getElementById('p7x-v32-stress').addEventListener('change', updateV32);
-        updateV32();
-        window.addEventListener('resize', () => chart.applyOptions({ width: container.clientWidth }));
+        document.getElementById('p7x-v33-asset').addEventListener('change', updateV33);
+        document.getElementById('p7x-v33-stress').addEventListener('change', updateV33);
+        
+        updateV33();
+        window.addEventListener('resize', () => {
+            chart.applyOptions({ width: container.clientWidth });
+        });
     });
   </script>
 </section>
