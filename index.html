@@ -2491,10 +2491,6 @@ renderResults("ES_F (E-MINI)");
 
 
 
-
-
-
-
 <section id="p7x-v5-forensic-lab" class="p7x-v5-wrapper">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&family=Syne:wght@800&display=swap');
@@ -2699,11 +2695,12 @@ renderResults("ES_F (E-MINI)");
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+  
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", function() {
         // --- 1. THE MAIN-BREAKER PROTOCOL ---
-        const mainContainer = document.querySelector('main');
-        const applyBreakout = () => {
+        var mainContainer = document.querySelector('main');
+        function applyBreakout() {
             if (window.innerWidth > 1100 && mainContainer) {
                 mainContainer.style.maxWidth = 'none';
                 mainContainer.style.width = '100%';
@@ -2714,58 +2711,71 @@ renderResults("ES_F (E-MINI)");
                 mainContainer.style.margin = '0 auto';
                 mainContainer.style.padding = '0 20px';
             }
-        };
+        }
         applyBreakout();
         window.addEventListener('resize', applyBreakout);
 
-        // --- 2. THE CHART ENGINE ---
-        let masterData = null;
-        const loadForensicData = async () => {
-            try {
-                const response = await fetch('7xbus_stress_data.json');
-                const json = await response.json();
-                masterData = json.results;
-                initV5Chart();
-            } catch (e) { console.error("Forensic stream offline."); }
-        };
+        // --- 2. BULLETPROOF CHART ENGINE ---
+        var masterData = null;
+        var container = document.getElementById('p7x-v5-chart');
+        var chart = null;
+        var pLine = null;
+        var rLine = null;
 
-        const initV5Chart = () => {
-            const container = document.getElementById('p7x-v5-chart');
-            const chart = LightweightCharts.createChart(container, {
+        function initV5Chart() {
+            chart = LightweightCharts.createChart(container, {
                 layout: { background: { color: '#000' }, textColor: '#444', fontFamily: 'JetBrains Mono' },
                 grid: { vertLines: { color: '#0a0a0a' }, horzLines: { color: '#0a0a0a' } },
                 timeScale: { borderColor: '#111', timeVisible: true },
             });
 
-            const pLine = chart.addLineSeries({ color: '#00ff9d', lineWidth: 3, title: '7xBUS Predator' });
-            const rLine = chart.addLineSeries({ color: '#ff3366', lineWidth: 1, lineStyle: 2, title: 'Retail' });
+            pLine = chart.addLineSeries({ color: '#00ff9d', lineWidth: 3, title: '7xBUS Predator' });
+            rLine = chart.addLineSeries({ color: '#ff3366', lineWidth: 1, lineStyle: 2, title: 'Retail' });
 
-            const update = () => {
-                const t = document.getElementById('p7x-v5-asset-toggle').value;
-                const s = document.getElementById('p7x-v5-stress-toggle').value;
-                if(!masterData[s] || !masterData[s][t]) return;
+            document.getElementById('p7x-v5-asset-toggle').addEventListener('change', updateData);
+            document.getElementById('p7x-v5-stress-toggle').addEventListener('change', updateData);
+            
+            updateData();
+            window.addEventListener('resize', function() {
+                chart.applyOptions({ width: container.clientWidth });
+            });
+        }
 
-                const pData = masterData[s][t].predator_equity.map((v, i) => ({ time: 1715200000 + (i * 300), value: v }));
-                const rData = masterData[s][t].retail_equity.map((v, i) => ({ time: 1715200000 + (i * 300), value: v }));
+        function updateData() {
+            var t = document.getElementById('p7x-v5-asset-toggle').value;
+            var s = document.getElementById('p7x-v5-stress-toggle').value;
+            
+            if(!masterData || !masterData[s] || !masterData[s][t]) return;
 
-                pLine.setData(pData);
-                rLine.setData(rData);
-                chart.timeScale().fitContent();
-            };
+            var pData = masterData[s][t].predator_equity.map(function(v, i) { 
+                return { time: 1715200000 + (i * 300), value: v }; 
+            });
+            var rData = masterData[s][t].retail_equity.map(function(v, i) { 
+                return { time: 1715200000 + (i * 300), value: v }; 
+            });
 
-            document.getElementById('p7x-v5-asset-toggle').addEventListener('change', update);
-            document.getElementById('p7x-v5-stress-toggle').addEventListener('change', update);
-            update();
-            window.addEventListener('resize', () => chart.applyOptions({ width: container.clientWidth }));
-        };
+            pLine.setData(pData);
+            rLine.setData(rData);
+            chart.timeScale().fitContent();
+        }
 
-        loadForensicData();
+        // FETCH DATA USING STRICT PROMISES (NO ASYNC/AWAIT TO BREAK BUILDERS)
+        fetch('7xbus_stress_data.json')
+            .then(function(response) {
+                if (!response.ok) { throw new Error("JSON file missing or CORS blocked."); }
+                return response.json();
+            })
+            .then(function(json) {
+                masterData = json.results;
+                initV5Chart();
+            })
+            .catch(function(error) {
+                console.error("Forensic stream offline: ", error);
+                container.innerHTML = '<div style="color:#ff3366; padding:30px; font-family:monospace; font-size:0.9rem; text-align:center;">[ SYSTEM ERROR ]<br><br>Unable to locate "7xbus_stress_data.json".<br>Verify the file is uploaded to your root directory.</div>';
+            });
     });
   </script>
 </section>
-
-
-
 
 
 
