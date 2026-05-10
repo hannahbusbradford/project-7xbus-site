@@ -2239,13 +2239,138 @@ bus7x_sov_trigger_render("ES=F");
 
 
 
-
-
   
 
 
 
 
+
+
+  <section id="bus7x_dash_section" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
+  
+  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); background-size: 100% 2px, 3px 100%; z-index: 1; pointer-events: none; opacity: 0.4;"></div>
+
+  <style>
+    /* =========================================
+       UNIQUE SANDBOXED STYLES FOR DASHBOARD
+       ========================================= */
+    #bus7x_dash_section .bus7x_dash_container {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* Typography */
+    #bus7x_dash_section .bus7x_dash_eyebrow { 
+      font-family: 'JetBrains Mono', monospace;
+      color: #ff0000; 
+      letter-spacing: 0.3em; 
+      font-size: 0.85rem; 
+      text-transform: uppercase; 
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      padding: 4px 12px;
+      border-radius: 2px;
+      background: rgba(255, 0, 0, 0.05);
+    }
+
+    #bus7x_dash_section .bus7x_dash_h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 1rem 0 0.5rem;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      line-height: 1.1;
+    }
+
+    #bus7x_dash_section .bus7x_dash_specs {
+      font-family: 'JetBrains Mono', monospace;
+      color: #888;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+    }
+
+    #bus7x_dash_section .bus7x_dash_specs span {
+      color: #d4af37; /* Neutral gold accent */
+    }
+
+    /* Image Wrapper - Terminal Aesthetic */
+    #bus7x_dash_section .bus7x_dash_img_wrapper {
+      background: linear-gradient(180deg, #070707 0%, #030303 100%);
+      border: 1px solid #1a1a1a;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+      padding: 10px; /* Acts like a bezel */
+    }
+
+    #bus7x_dash_section .bus7x_dash_img_wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, #ff0000, transparent);
+      opacity: 0.5;
+    }
+
+    #bus7x_dash_section .bus7x_dash_img_wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #111;
+      opacity: 0.95; /* Slight dimming to fit the dark theme */
+      transition: opacity 0.3s ease;
+    }
+    
+    #bus7x_dash_section .bus7x_dash_img_wrapper img:hover {
+      opacity: 1;
+    }
+
+    /* Forensic Summary Text Block */
+    #bus7x_dash_section .bus7x_dash_summary {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #aaa;
+      margin-top: 3.5rem;
+      padding-left: 1.5rem;
+      border-left: 2px solid #ff0000;
+      background: linear-gradient(90deg, rgba(255,0,0,0.03) 0%, transparent 100%);
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    #bus7x_dash_section .bus7x_dash_summary strong {
+      color: #fff;
+      font-weight: 600;
+    }
+  </style>
+
+  <div class="bus7x_dash_container">
+    
+    <div style="text-align: left;">
+      <div class="bus7x_dash_eyebrow">VISUALIZATION // OUT-OF-SAMPLE</div>
+      <h2 class="bus7x_dash_h2">Forensic Dashboard v2.1</h2>
+      <p class="bus7x_dash_specs">
+        <span>Causal T+1 Exec</span> // Zero Look-Ahead Bias // Real Slippage Tested
+      </p>
+    </div>
+
+    <div class="bus7x_dash_img_wrapper">
+      <img src="stresstest1.png" alt="PROJECT 7xBUS Forensic Dashboard v2.1">
+    </div>
+
+    <div class="bus7x_dash_summary">
+      This Forensic Dashboard was generated from <strong>strict walk-forward validation on truly out-of-sample data</strong> with zero look-ahead bias. Every signal was executed on a T+1 causal basis using purely random future price paths and subjected to worst-case market conditions (Monte Carlo noise injection, 2–15bps slippage, and reduced allocation). The Predator maintained positive expectancy across all regimes while the retail benchmark collapsed.
+    </div>
+
+  </div>
+</section>
 
 
 
