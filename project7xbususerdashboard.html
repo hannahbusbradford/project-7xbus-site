@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 7xBUS | Command Terminal</title>
+    <style>
+        :root {
+            --bg-color: #050505;
+            --panel-bg: #0a0a0a;
+            --text-main: #e5e7eb;
+            --text-muted: #888;
+            --accent: #ffffff;
+            --success: #00ffcc;
+            --warning: #ffcc00;
+            --border: #1a1a1a;
+            --card-bg: #111;
+        }
+
+        body {
+            margin: 0;
+            padding: 0; /* Removed padding here to handle full screen loader */
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* --- SECURITY LOADER STYLES --- */
+        #auth-loader {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: monospace;
+            color: var(--success);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-color: var(--bg-color);
+        }
+
+        /* Hide the dashboard initially */
+        #app-content {
+            display: none; 
+            padding: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .full-width { grid-column: 1 / -1; }
+
+        h2 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-top: 0;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-text { font-size: 1.1rem; line-height: 1.7; color: var(--text-muted); }
+        .highlight { color: var(--success); font-weight: bold; }
+
+        /* Metrics */
+        .metrics-container { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .metric-box { background: var(--card-bg); padding: 1.5rem; border-radius: 6px; border: 1px solid #222; }
+        .metric-title { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .metric-value { font-size: 2.5rem; font-weight: 800; color: var(--success); font-family: monospace; }
+
+        /* Sector Matrix */
+        .sector-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+        .sector-item { background: #0f0f0f; border-left: 3px solid var(--success); padding: 1rem; border-radius: 0 4px 4px 0; }
+        .sector-title { font-weight: bold; font-size: 1.05rem; margin-bottom: 0.25rem; color: #fff; }
+        .sector-desc { font-size: 0.85rem; color: #999; line-height: 1.4; }
+        .sector-tags { margin-top: 0.5rem; font-size: 0.75rem; color: var(--success); font-family: monospace; }
+
+        /* Bounties */
+        .bounty-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .bounty-card { background: var(--card-bg); border: 1px solid #222; border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; }
+        .bounty-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+        .bounty-title { font-size: 1.05rem; font-weight: 600; color: var(--accent); margin: 0; line-height: 1.3; }
+        .bounty-reward { background: rgba(0, 255, 204, 0.1); color: var(--success); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: bold; font-family: monospace; white-space: nowrap; margin-left: 1rem; }
+        .bounty-reward.funding { background: rgba(255, 204, 0, 0.1); color: var(--warning); }
+        .bounty-reward.equity { background: rgba(200, 200, 255, 0.1); color: #c8c8ff; }
+        .bounty-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem; }
+        .btn-claim { background: transparent; color: var(--accent); border: 1px solid #444; padding: 0.6rem; width: 100%; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 0.8rem; font-weight: bold; transition: all 0.2s; }
+        .btn-claim:hover { background: var(--accent); color: var(--bg-color); }
+    </style>
+</head>
+<body>
+
+    <div id="auth-loader">
+        > Verifying Clearance...
+    </div>
+
+    <div id="app-content">
+        <div class="dashboard-grid">
+            <div class="panel full-width">
+                <h2>Primary Directive</h2>
+                <div class="mission-text">
+                    Project 7xBUS operates on a singular mandate: engineering <span class="highlight">structural stability</span> in an era of failing legacy systems. This terminal is the command center for our multi-disciplinary conglomerate. We are actively deploying capital and research across agricultural technology, advanced biotech, quantitative finance, and heavy engineering. The board is set. Find your sector, claim a contract, and build with us.
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>System Telemetry</h2>
+                <div class="metrics-container">
+                    <div class="metric-box">
+                        <div class="metric-title">Gross Revenue Generated</div>
+                        <div class="metric-value">$0.00</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-title">Active Syndicate Members</div>
+                        <div class="metric-value" id="user-display">---</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Operational Sectors</h2>
+                <div class="sector-grid">
+                    <div class="sector-item">
+                        <div class="sector-title">Ag-Tech & Sovereign Ecology</div>
+                        <div class="sector-desc">Deploying integrated hardware and biology for sustainable ecosystems.</div>
+                        <div class="sector-tags">[ AI Bee Hives ] [ OK Land Acquisition ]</div>
+                    </div>
+                    <div class="sector-item">
+                        <div class="sector-title">Biotech & Chemical Formulations</div>
+                        <div class="sector-desc">Advancing proprietary compounds for consumer and industrial application.</div>
+                        <div class="sector-tags">[ Rosehill Cosmetics ] [ Yeast Flavor Gum ]</div>
+                    </div>
+                    <div class="sector-item">
+                        <div class="sector-title">Fin-Tech & Systems Engineering</div>
+                        <div class="sector-desc">Modeling market mechanics and building decentralized operational software.</div>
+                        <div class="sector-tags">[ Reverse PID Autel ] [ Quant Variance Models ]</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel full-width">
+                <h2>Open Contracts & Field Operations</h2>
+                <div class="bounty-grid">
+                    
+                    <div class="bounty-card">
+                        <div>
+                            <div class="bounty-header">
+                                <h3 class="bounty-title">Wild Phenotype Sampling (US Nationwide)</h3>
+                                <span class="bounty-reward funding">Funded Research</span>
+                            </div>
+                            <p class="bounty-desc">We need field operatives to source and mail physical samples of wild berries and regional flora from deep woods locations across the US for our biotech extraction research.</p>
+                        </div>
+                        <button class="btn-claim" onclick="alert('Initiate Field Operations protocol. Awaiting sample mailing instructions.')">Request Kit</button>
+                    </div>
+
+                    <div class="bounty-card">
+                        <div>
+                            <div class="bounty-header">
+                                <h3 class="bounty-title">Quantitative Model Stress-Testing</h3>
+                                <span class="bounty-reward equity">System Access</span>
+                            </div>
+                            <p class="bounty-desc">Looking for data scientists to backtest our binomial phase transition models against legacy S&P 500 tick data. Help refine the algorithm, gain early access to the signals.</p>
+                        </div>
+                        <button class="btn-claim" onclick="alert('Data vault access requested.')">Claim Data Set</button>
+                    </div>
+
+                    <div class="bounty-card">
+                        <div>
+                            <div class="bounty-header">
+                                <h3 class="bounty-title">Engine Rebuild & Mechanical Retrofitting</h3>
+                                <span class="bounty-reward">$500+ Bounty</span>
+                            </div>
+                            <p class="bounty-desc">Seeking experienced mechanical engineers/technicians for engine tear-downs, semi-rebuilds, and hardware retrofitting for our physical fleet operations.</p>
+                        </div>
+                        <button class="btn-claim" onclick="alert('Submit mechanical portfolio to initiate contract.')">Claim Contract</button>
+                    </div>
+
+                    <div class="bounty-card">
+                        <div>
+                            <div class="bounty-header">
+                                <h3 class="bounty-title">Reverse PID Autel System Mapping</h3>
+                                <span class="bounty-reward">$300 Bounty</span>
+                            </div>
+                            <p class="bounty-desc">Need a software architect to assist in mapping the logic flow for the online Reverse PID interface before we push to production.</p>
+                        </div>
+                        <button class="btn-claim" onclick="alert('Submit GitHub profile to claim.')">Claim Contract</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        // Import the state change listener
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA6BtSwFku_EoTKBJ7JebBIkvl_I1VYNQE",
+            authDomain: "project7xbus.firebaseapp.com",
+            projectId: "project7xbus",
+            storageBucket: "project7xbus.firebasestorage.app",
+            messagingSenderId: "827078709212",
+            appId: "1:827078709212:web:f4340c6d029d2badd40919"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Listen for user state
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is authenticated! Show the dashboard.
+                document.getElementById('auth-loader').style.display = 'none';
+                document.getElementById('app-content').style.display = 'block';
+                
+                // Optional: Show their email or name dynamically in the dashboard
+                document.getElementById('user-display').innerText = user.displayName || user.email.split('@')[0];
+            } else {
+                // Not authenticated. Redirect immediately.
+                // Using replace() so they can't use the back button to return here
+                window.location.replace("https://project7xbus.com/userlogin");
+            }
+        });
+    </script>
+</body>
+</html>
