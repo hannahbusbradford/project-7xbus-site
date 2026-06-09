@@ -1,184 +1,39 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Project 7xBUS | Command Terminal</title>
+		<title>Project 7xBUS | System Entry</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
         <style>
-            /* Custom Security Loader matching the theme's aesthetics */
-            #auth-loader {
-                height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-family: "Source Sans Pro", Helvetica, sans-serif;
-                color: #43d9b8; 
-                font-size: 1.2rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 0.2em;
-                background-color: #ffffff;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                z-index: 99999;
-            }
-            #wrapper {
-                display: none; /* Hidden until Firebase clears the token */
-            }
-            .bounty-reward {
+            /* Custom terminal styling for the Auth messages */
+            .status-message {
+                margin-top: 1.5rem;
                 font-family: "Courier New", monospace;
+                font-size: 0.9rem;
                 font-weight: bold;
-                padding: 0.25rem 0.5rem;
-                background: rgba(144, 144, 144, 0.1);
-                border-radius: 4px;
-            }
-            /* Custom metric boxes to fit the clean aesthetic */
-            .telemetry-grid {
-                display: flex;
-                gap: 2rem;
-                flex-wrap: wrap;
-            }
-            .telemetry-box {
-                background: rgba(144, 144, 144, 0.05);
-                border: 2px solid rgba(144, 144, 144, 0.25);
-                border-radius: 0.325rem;
-                padding: 2rem;
-                flex: 1;
-                min-width: 200px;
-            }
-            .telemetry-value {
-                font-size: 2.5rem;
-                font-weight: 700;
-                color: #43d9b8;
-                font-family: "Source Sans Pro", Helvetica, sans-serif;
-                margin-top: 0.5rem;
+                color: #43d9b8; /* Paradigm Shift primary accent */
+                display: none;
             }
         </style>
 	</head>
 	<body class="is-preload">
-
-        <div id="auth-loader">
-            > Verifying Clearance...
-        </div>
 
 		<div id="wrapper">
 
 				<section class="intro">
 						<header>
 							<h1>Project 7xBUS</h1>
-							<p>Command Terminal // Operator: <strong id="user-display" style="color: #43d9b8;">---</strong></p>
+							<p>Authentication required for system entry.<br/>Sign in with your Google account to request initialization.</p>
 							<ul class="actions">
-                                <li><button id="logout-btn" class="button">Sever Connection</button></li>
-								<li><a href="#first" class="arrow scrolly"><span class="label">Next</span></a></li>
+								<li><button id="login-btn" class="button primary large">Initialize Google Auth</button></li>
 							</ul>
+                            <div id="status" class="status-message"></div>
 						</header>
 						<div class="content">
-                            <span class="image fill" data-position="center"><img src="images/image_1c02bc.jpg" alt="Terminal Hero" /></span>
+                            <span class="image fill" data-position="center"><img src="images/image_1c02bc.jpg" alt="Gateway" /></span>
 						</div>
 					</section>
-
-				<section id="first">
-						<header>
-							<h2>Primary Directive</h2>
-						</header>
-						<div class="content">
-							<p><strong>Structural Stability.</strong> Project 7xBUS operates on a singular mandate: engineering stability in an era of failing legacy systems. As traditional institutions fracture, this community serves as the architectural foundation for decentralized business intelligence, sovereign agriculture, and resilient capital velocity.</p>
-							<span class="image main"><img src="images/image_1c02a2.jpg" alt="Directive Intel" /></span>
-						</div>
-					</section>
-
-                <section>
-						<header>
-							<h2>System Telemetry</h2>
-						</header>
-						<div class="content">
-							<p><strong>Live Diagnostics.</strong> The current operational output and syndicate mass of the collective network.</p>
-                            <div class="telemetry-grid">
-                                <div class="telemetry-box">
-                                    <h3>Gross Revenue</h3>
-                                    <div class="telemetry-value">$0.00</div>
-                                </div>
-                                <div class="telemetry-box">
-                                    <h3>Syndicate Mass</h3>
-                                    <div class="telemetry-value">001</div>
-                                </div>
-                            </div>
-						</div>
-					</section>
-
-				<section>
-						<header>
-							<h2>Operational Sectors</h2>
-						</header>
-						<div class="content">
-							<p><strong>The board is set.</strong> We are actively deploying capital and research across agricultural technology, advanced biotech, quantitative finance, and heavy engineering. Find your sector and build with us.</p>
-							<ul class="feature-icons">
-								<li class="icon solid fa-leaf"><strong>Ag-Tech & Ecology</strong><br/><span style="font-size: 0.8rem;">[ AI Bee Hives ] [ OK Land Acquisition ]</span></li>
-								<li class="icon solid fa-flask"><strong>Biotech & Formulations</strong><br/><span style="font-size: 0.8rem;">[ Rosehill Cosmetics ] [ Yeast Flavor Gum ]</span></li>
-								<li class="icon solid fa-network-wired"><strong>Fin-Tech & Systems</strong><br/><span style="font-size: 0.8rem;">[ Reverse PID Autel ] [ Quant Variance Models ]</span></li>
-								<li class="icon solid fa-cogs"><strong>Heavy Engineering</strong><br/><span style="font-size: 0.8rem;">[ Engine Retrofitting ] [ Hardware Deployment ]</span></li>
-							</ul>
-						</div>
-					</section>
-
-				<section>
-						<header>
-							<h2>Field Operations</h2>
-						</header>
-						<div class="content">
-							<p><strong>Active Bounties.</strong> Claim a contract below to initiate operations. Funding and system access are dispersed upon verifiable completion.</p>
-
-							<section>
-									<header>
-										<h3>Wild Phenotype Sampling</h3>
-										<p><span class="bounty-reward" style="color: #ff9900;">Funded Research</span></p>
-									</header>
-									<div class="content">
-                                        <p>We need field operatives to source and mail physical samples of wild berries and regional flora from deep woods locations across the US for our biotech extraction research.</p>
-                                        <button class="button primary small" onclick="alert('Initiate Field Operations protocol. Awaiting sample mailing instructions.')">Request Kit</button>
-									</div>
-								</section>
-
-							<section>
-									<header>
-										<h3>Quant Model Stress-Testing</h3>
-										<p><span class="bounty-reward" style="color: #43d9b8;">System Access</span></p>
-									</header>
-									<div class="content">
-                                        <p>Looking for data scientists to backtest our binomial phase transition models against legacy S&P 500 tick data. Help refine the algorithm, gain early access to the signals.</p>
-                                        <button class="button primary small" onclick="alert('Data vault access requested.')">Claim Data Set</button>
-									</div>
-								</section>
-
-							<section>
-									<header>
-										<h3>Engine Rebuild & Retrofit</h3>
-										<p><span class="bounty-reward">$500+ Bounty</span></p>
-									</header>
-									<div class="content">
-                                        <p>Seeking experienced mechanical engineers/technicians for engine tear-downs, semi-rebuilds, and hardware retrofitting for our physical fleet operations.</p>
-                                        <button class="button primary small" onclick="alert('Submit mechanical portfolio to initiate contract.')">Claim Contract</button>
-									</div>
-								</section>
-                                
-                            <section>
-									<header>
-										<h3>Reverse PID System Mapping</h3>
-										<p><span class="bounty-reward">$300 Bounty</span></p>
-									</header>
-									<div class="content">
-                                        <p>Need a software architect to assist in mapping the logic flow for the online Reverse PID interface before we push to production.</p>
-                                        <button class="button primary small" onclick="alert('Submit GitHub profile to claim.')">Claim Contract</button>
-									</div>
-								</section>
-
-						</div>
-					</section>
-
-				<div class="copyright">&copy; Project 7xBUS. All rights reserved. Design: HTML5 UP.</div>
 
 			</div>
 
@@ -191,7 +46,7 @@
 
         <script type="module">
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-            import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+            import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
             const firebaseConfig = {
                 apiKey: "AIzaSyA6BtSwFku_EoTKBJ7JebBIkvl_I1VYNQE",
@@ -204,30 +59,35 @@
 
             const app = initializeApp(firebaseConfig);
             const auth = getAuth(app);
+            const provider = new GoogleAuthProvider();
 
-            // LOGOUT EVENT LISTENER
-            const logoutBtn = document.getElementById('logout-btn');
-            logoutBtn.addEventListener('click', () => {
-                signOut(auth).catch((error) => {
-                    console.error("Logout Error:", error);
-                });
-            });
+            const loginBtn = document.getElementById('login-btn');
+            const statusDiv = document.getElementById('status');
 
-            // ROUTE GUARD & USER INJECTION
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    // Authorized: Hide loader, show the theme wrapper
-                    document.getElementById('auth-loader').style.display = 'none';
-                    document.getElementById('wrapper').style.display = 'block';
-                    
-                    // Inject the user's name into the operator slot
-                    document.getElementById('user-display').innerText = user.displayName || user.email.split('@')[0];
-                } else {
-                    // Unauthorized: Kick back to login
-                    window.location.replace("https://project7xbus.com/userlogin");
-                }
+            loginBtn.addEventListener('click', () => {
+                statusDiv.style.color = '#888';
+                statusDiv.innerText = "> Awaiting Google handshake...";
+                statusDiv.style.display = 'block';
+
+                signInWithPopup(auth, provider)
+                    .then((result) => {
+                        const user = result.user;
+                        
+                        loginBtn.style.display = 'none';
+                        statusDiv.style.color = '#43d9b8';
+                        statusDiv.innerText = `> Access Granted. Welcome, ${user.displayName || user.email}.`;
+
+                        // REDIRECT LOGIC TO THE DASHBOARD
+                        setTimeout(() => {
+                            window.location.href = "https://project7xbus.com/userdashboard";
+                        }, 1500); 
+                    })
+                    .catch((error) => {
+                        console.error("Auth Error:", error);
+                        statusDiv.style.color = '#ff3333';
+                        statusDiv.innerText = `> Error: ${error.message}`;
+                    });
             });
         </script>
-
 	</body>
 </html>
