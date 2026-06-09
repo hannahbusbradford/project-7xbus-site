@@ -3,244 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 7xBUS | Command Terminal</title>
+    <title>7xBUS | Command Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #050505;
-            --panel-bg: #0a0a0a;
-            --text-main: #e5e7eb;
-            --text-muted: #888;
-            --accent: #ffffff;
-            --success: #00ffcc;
-            --warning: #ffcc00;
-            --danger: #ff3333;
-            --border: #1a1a1a;
-            --card-bg: #111;
-        }
-
         body {
-            margin: 0;
-            padding: 0; 
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
         }
-
-        /* --- SECURITY LOADER STYLES --- */
-        #auth-loader {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: monospace;
-            color: var(--success);
-            font-size: 1.2rem;
+        .navbar {
+            background-color: #0a0a0a;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -1px;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            color: white;
+            padding: 4rem 0;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            background-color: var(--bg-color);
         }
-
-        /* Hide the dashboard initially */
-        #app-content {
-            display: none; 
-            padding: 2rem;
+        .metric-value {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #00c48c;
         }
-
-        /* --- TOP NAVIGATION --- */
-        .top-nav {
-            max-width: 1200px;
-            margin: 0 auto 1.5rem auto;
-            display: flex;
-            justify-content: flex-end;
+        .sector-card {
+            border-left: 5px solid #00c48c;
         }
-
-        .btn-logout {
-            background: transparent;
-            color: var(--danger);
-            border: 1px solid var(--danger);
-            padding: 0.5rem 1.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            font-weight: bold;
-            letter-spacing: 0.05em;
-            transition: all 0.2s;
+        .bounty-card {
+            height: 100%;
         }
-
-        .btn-logout:hover {
-            background: var(--danger);
-            color: var(--bg-color);
+        .btn-claim {
+            font-weight: 600;
         }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .panel {
-            background: var(--panel-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .full-width { grid-column: 1 / -1; }
-
-        h2 {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent);
-            margin-top: 0;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .mission-text { font-size: 1.1rem; line-height: 1.7; color: var(--text-muted); }
-        .highlight { color: var(--success); font-weight: bold; }
-
-        /* Metrics */
-        .metrics-container { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .metric-box { background: var(--card-bg); padding: 1.5rem; border-radius: 6px; border: 1px solid #222; }
-        .metric-title { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
-        .metric-value { font-size: 2.5rem; font-weight: 800; color: var(--success); font-family: monospace; }
-
-        /* Sector Matrix */
-        .sector-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-        .sector-item { background: #0f0f0f; border-left: 3px solid var(--success); padding: 1rem; border-radius: 0 4px 4px 0; }
-        .sector-title { font-weight: bold; font-size: 1.05rem; margin-bottom: 0.25rem; color: #fff; }
-        .sector-desc { font-size: 0.85rem; color: #999; line-height: 1.4; }
-        .sector-tags { margin-top: 0.5rem; font-size: 0.75rem; color: var(--success); font-family: monospace; }
-
-        /* Bounties */
-        .bounty-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .bounty-card { background: var(--card-bg); border: 1px solid #222; border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; }
-        .bounty-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-        .bounty-title { font-size: 1.05rem; font-weight: 600; color: var(--accent); margin: 0; line-height: 1.3; }
-        .bounty-reward { background: rgba(0, 255, 204, 0.1); color: var(--success); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: bold; font-family: monospace; white-space: nowrap; margin-left: 1rem; }
-        .bounty-reward.funding { background: rgba(255, 204, 0, 0.1); color: var(--warning); }
-        .bounty-reward.equity { background: rgba(200, 200, 255, 0.1); color: #c8c8ff; }
-        .bounty-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem; }
-        .btn-claim { background: transparent; color: var(--accent); border: 1px solid #444; padding: 0.6rem; width: 100%; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 0.8rem; font-weight: bold; transition: all 0.2s; }
-        .btn-claim:hover { background: var(--accent); color: var(--bg-color); }
     </style>
 </head>
 <body>
 
-    <div id="auth-loader">
-        > Verifying Clearance...
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <div class="logo">7xBUS</div>
+            <button id="logout-btn" class="btn btn-outline-light">Sign Out</button>
+        </div>
+    </nav>
+
+    <div id="auth-loader" class="d-flex align-items-center justify-content-center" style="height: 100vh; background:#0a0a0a; color:#00c48c; font-size:1.3rem;">
+        Verifying Clearance...
     </div>
 
-    <div id="app-content">
-        <div class="top-nav">
-            <button id="logout-btn" class="btn-logout">Sever Connection</button>
-        </div>
-
-        <div class="dashboard-grid">
-            <div class="panel full-width">
-                <h2>Primary Directive</h2>
-                <div class="mission-text">
-                    Project 7xBUS operates on a singular mandate: engineering <span class="highlight">structural stability</span> in an era of failing legacy systems. This terminal is the command center for our multi-disciplinary conglomerate. We are actively deploying capital and research across agricultural technology, advanced biotech, quantitative finance, and heavy engineering. The board is set. Find your sector, claim a contract, and build with us.
-                </div>
+    <div id="app-content" class="d-none">
+        <!-- Hero / Mission -->
+        <section class="hero-section text-center">
+            <div class="container">
+                <h1 class="display-5 fw-bold mb-3">Structural Stability for the Next Era</h1>
+                <p class="lead col-lg-8 mx-auto">
+                    Project 7xBUS deploys capital and expertise across agricultural technology, advanced biotech, 
+                    quantitative finance, and heavy engineering.
+                </p>
             </div>
+        </section>
 
-            <div class="panel">
-                <h2>System Telemetry</h2>
-                <div class="metrics-container">
-                    <div class="metric-box">
-                        <div class="metric-title">Gross Revenue Generated</div>
-                        <div class="metric-value">$0.00</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-title">Active Syndicate Members</div>
-                        <div class="metric-value" id="user-display">---</div>
+        <div class="container py-5">
+            <!-- Telemetry -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="section-title mb-4 text-muted">System Telemetry</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted">Gross Revenue Generated</h5>
+                            <div class="metric-value">$0.00</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="panel">
-                <h2>Operational Sectors</h2>
-                <div class="sector-grid">
-                    <div class="sector-item">
-                        <div class="sector-title">Ag-Tech & Sovereign Ecology</div>
-                        <div class="sector-desc">Deploying integrated hardware and biology for sustainable ecosystems.</div>
-                        <div class="sector-tags">[ AI Bee Hives ] [ OK Land Acquisition ]</div>
-                    </div>
-                    <div class="sector-item">
-                        <div class="sector-title">Biotech & Chemical Formulations</div>
-                        <div class="sector-desc">Advancing proprietary compounds for consumer and industrial application.</div>
-                        <div class="sector-tags">[ Rosehill Cosmetics ] [ Yeast Flavor Gum ]</div>
-                    </div>
-                    <div class="sector-item">
-                        <div class="sector-title">Fin-Tech & Systems Engineering</div>
-                        <div class="sector-desc">Modeling market mechanics and building decentralized operational software.</div>
-                        <div class="sector-tags">[ Reverse PID Autel ] [ Quant Variance Models ]</div>
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted">Active Syndicate Members</h5>
+                            <div class="metric-value" id="user-display">—</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="panel full-width">
-                <h2>Open Contracts & Field Operations</h2>
-                <div class="bounty-grid">
-                    
-                    <div class="bounty-card">
-                        <div>
-                            <div class="bounty-header">
-                                <h3 class="bounty-title">Wild Phenotype Sampling (US Nationwide)</h3>
-                                <span class="bounty-reward funding">Funded Research</span>
+            <!-- Operational Sectors -->
+            <div class="mb-5">
+                <h2 class="section-title mb-4 text-muted">Operational Sectors</h2>
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div class="card sector-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Ag-Tech & Sovereign Ecology</h5>
+                                <p class="card-text text-muted">Integrated hardware and biology for sustainable, resilient ecosystems.</p>
+                                <small class="text-success">AI Bee Hives • Land Acquisition</small>
                             </div>
-                            <p class="bounty-desc">We need field operatives to source and mail physical samples of wild berries and regional flora from deep woods locations across the US for our biotech extraction research.</p>
                         </div>
-                        <button class="btn-claim" onclick="alert('Initiate Field Operations protocol. Awaiting sample mailing instructions.')">Request Kit</button>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card sector-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Biotech & Chemical Formulations</h5>
+                                <p class="card-text text-muted">Proprietary compounds for consumer and industrial applications.</p>
+                                <small class="text-success">Rosehill Cosmetics • Yeast Flavor Projects</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card sector-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Fin-Tech & Systems Engineering</h5>
+                                <p class="card-text text-muted">Market modeling and decentralized operational infrastructure.</p>
+                                <small class="text-success">Reverse PID Autel • Quant Models</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Open Contracts -->
+            <div>
+                <h2 class="section-title mb-4 text-muted">Open Contracts & Opportunities</h2>
+                <div class="row g-4">
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="card bounty-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h5 class="card-title">Wild Phenotype Sampling (US Nationwide)</h5>
+                                    <span class="badge bg-success fs-6">Funded</span>
+                                </div>
+                                <p class="card-text text-muted">Field operatives needed to collect and ship wild berries and regional flora for biotech research.</p>
+                                <button class="btn btn-primary w-100 btn-claim" onclick="alert('Field kit request initiated. Instructions incoming.')">
+                                    Request Kit
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="bounty-card">
-                        <div>
-                            <div class="bounty-header">
-                                <h3 class="bounty-title">Quantitative Model Stress-Testing</h3>
-                                <span class="bounty-reward equity">System Access</span>
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="card bounty-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h5 class="card-title">Quantitative Model Stress-Testing</h5>
+                                    <span class="badge bg-warning text-dark fs-6">Access</span>
+                                </div>
+                                <p class="card-text text-muted">Backtest binomial phase transition models against historical S&P 500 data.</p>
+                                <button class="btn btn-primary w-100 btn-claim" onclick="alert('Data vault access requested.')">
+                                    Claim Dataset
+                                </button>
                             </div>
-                            <p class="bounty-desc">Looking for data scientists to backtest our binomial phase transition models against legacy S&P 500 tick data. Help refine the algorithm, gain early access to the signals.</p>
                         </div>
-                        <button class="btn-claim" onclick="alert('Data vault access requested.')">Claim Data Set</button>
                     </div>
 
-                    <div class="bounty-card">
-                        <div>
-                            <div class="bounty-header">
-                                <h3 class="bounty-title">Engine Rebuild & Mechanical Retrofitting</h3>
-                                <span class="bounty-reward">$500+ Bounty</span>
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="card bounty-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h5 class="card-title">Engine Rebuild & Retrofitting</h5>
+                                    <span class="badge bg-success fs-6">$500+</span>
+                                </div>
+                                <p class="card-text text-muted">Mechanical engineers for engine tear-downs, rebuilds, and fleet hardware work.</p>
+                                <button class="btn btn-primary w-100 btn-claim" onclick="alert('Contract submission portal opened.')">
+                                    Claim Contract
+                                </button>
                             </div>
-                            <p class="bounty-desc">Seeking experienced mechanical engineers/technicians for engine tear-downs, semi-rebuilds, and hardware retrofitting for our physical fleet operations.</p>
                         </div>
-                        <button class="btn-claim" onclick="alert('Submit mechanical portfolio to initiate contract.')">Claim Contract</button>
                     </div>
-
-                    <div class="bounty-card">
-                        <div>
-                            <div class="bounty-header">
-                                <h3 class="bounty-title">Reverse PID Autel System Mapping</h3>
-                                <span class="bounty-reward">$300 Bounty</span>
-                            </div>
-                            <p class="bounty-desc">Need a software architect to assist in mapping the logic flow for the online Reverse PID interface before we push to production.</p>
-                        </div>
-                        <button class="btn-claim" onclick="alert('Submit GitHub profile to claim.')">Claim Contract</button>
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        // IMPORT SIGN OUT METHOD
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -255,24 +209,16 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // LOGOUT EVENT LISTENER
-        const logoutBtn = document.getElementById('logout-btn');
-        logoutBtn.addEventListener('click', () => {
-            signOut(auth).catch((error) => {
-                console.error("Logout Error:", error);
-            });
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            signOut(auth);
         });
 
-        // Listen for user state
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                document.getElementById('auth-loader').style.display = 'none';
-                document.getElementById('app-content').style.display = 'block';
-                
-                document.getElementById('user-display').innerText = user.displayName || user.email.split('@')[0];
+                document.getElementById('auth-loader').classList.add('d-none');
+                document.getElementById('app-content').classList.remove('d-none');
+                document.getElementById('user-display').innerText = user.displayName || user.email?.split('@')[0] || "Operator";
             } else {
-                // When signOut(auth) is called above, this listener instantly fires 
-                // with user = null, automatically kicking them back to the login URL.
                 window.location.replace("https://project7xbus.com/userlogin");
             }
         });
