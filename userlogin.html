@@ -139,9 +139,9 @@
                     statusDiv.style.color = 'var(--success-color)';
                     statusDiv.innerText = `> Access Granted. Welcome, ${user.displayName || user.email}.`;
 
-                    // --- REDIRECT LOGIC ADDED HERE ---
+                    // --- REDIRECT LOGIC UPDATED TO PRODUCTION URL ---
                     setTimeout(() => {
-                        window.location.href = "dashboard.html";
+                        window.location.href = "https://project7xbus.com/userdashboard";
                     }, 1500); 
                 })
                 .catch((error) => {
