@@ -6,13 +6,13 @@
     <title>Project 7xBUS | System Entry</title>
     <style>
         :root {
-            --bg-color: #050505; /* Deep black */
+            --bg-color: #050505;
             --text-color: #e5e7eb;
             --accent-color: #ffffff;
             --button-bg: #111827;
             --button-hover: #1f2937;
             --button-border: #374151;
-            --success-color: #00ffcc; /* High-contrast cyan/green */
+            --success-color: #00ffcc;
         }
 
         body {
@@ -54,17 +54,17 @@
             line-height: 1.6;
         }
 
-        .btn-github {
+        .btn-google {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--button-bg);
-            color: var(--text-color);
+            background-color: var(--accent-color);
+            color: var(--bg-color);
             text-decoration: none;
             padding: 0.85rem 1.5rem;
             border-radius: 4px;
-            font-weight: 600;
-            border: 1px solid var(--button-border);
+            font-weight: 700;
+            border: none;
             cursor: pointer;
             transition: all 0.2s ease;
             width: 100%;
@@ -74,12 +74,12 @@
             font-size: 0.9rem;
         }
 
-        .btn-github:hover {
-            background-color: var(--button-hover);
-            border-color: #555;
+        .btn-google:hover {
+            background-color: #e5e5e5;
+            transform: translateY(-1px);
         }
 
-        .btn-github:active {
+        .btn-google:active {
             transform: translateY(1px);
         }
 
@@ -96,10 +96,10 @@
 
     <div class="container">
         <h1>Project 7xBUS</h1>
-        <p>Authentication required for system entry. Sign in with your GitHub account to request initialization.</p>
+        <p>Authentication required for system entry. Sign in with your Google account to request initialization.</p>
         
-        <button id="login-btn" class="btn-github">
-            Initialize GitHub Auth
+        <button id="login-btn" class="btn-google">
+            Initialize Google Auth
         </button>
 
         <div id="status" class="status-message"></div>
@@ -107,9 +107,9 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithPopup, GithubAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        // Notice we are now importing GoogleAuthProvider instead of GithubAuthProvider
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        // Your specific Project 7xBUS Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyA6BtSwFku_EoTKBJ7JebBIkvl_I1VYNQE",
             authDomain: "project7xbus.firebaseapp.com",
@@ -119,33 +119,31 @@
             appId: "1:827078709212:web:f4340c6d029d2badd40919"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-        const provider = new GithubAuthProvider();
+        
+        // Switched to Google Provider
+        const provider = new GoogleAuthProvider();
 
         const loginBtn = document.getElementById('login-btn');
         const statusDiv = document.getElementById('status');
 
         loginBtn.addEventListener('click', () => {
             statusDiv.style.color = '#888';
-            statusDiv.innerText = "> Awaiting GitHub handshake...";
+            statusDiv.innerText = "> Awaiting Google handshake...";
             statusDiv.style.display = 'block';
 
             signInWithPopup(auth, provider)
                 .then((result) => {
                     const user = result.user;
                     
-                    // Update UI on success
                     loginBtn.style.display = 'none';
                     statusDiv.style.color = 'var(--success-color)';
                     statusDiv.innerText = `> Access Granted. Welcome, ${user.displayName || user.email}.`;
-                    
-                    // Here is where we will eventually redirect them to the dashboard
                 })
                 .catch((error) => {
                     console.error("Auth Error:", error);
-                    statusDiv.style.color = '#ff3333'; // Error red
+                    statusDiv.style.color = '#ff3333';
                     statusDiv.innerText = `> Error: ${error.message}`;
                 });
         });
