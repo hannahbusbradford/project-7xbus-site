@@ -1,93 +1,227 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Project 7xBUS | System Entry</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-        <style>
-            /* Custom terminal styling for the Auth messages */
-            .status-message {
-                margin-top: 1.5rem;
-                font-family: "Courier New", monospace;
-                font-size: 0.9rem;
-                font-weight: bold;
-                color: #43d9b8; /* Paradigm Shift primary accent */
-                display: none;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7xBUS | Command Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        }
+        .navbar {
+            background-color: #0a0a0a;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -1px;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            color: white;
+            padding: 4rem 0;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .metric-value {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #00c48c;
+        }
+        .sector-card {
+            border-left: 5px solid #00c48c;
+        }
+        .bounty-card {
+            height: 100%;
+        }
+        .btn-claim {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <div class="logo">7xBUS</div>
+            <button id="logout-btn" class="btn btn-outline-light">Sign Out</button>
+        </div>
+    </nav>
+
+    <div id="auth-loader" class="d-flex align-items-center justify-content-center" style="height: 100vh; background:#0a0a0a; color:#00c48c; font-size:1.3rem;">
+        Verifying Clearance...
+    </div>
+
+    <div id="app-content" class="d-none">
+        <!-- Hero / Mission -->
+        <section class="hero-section text-center">
+            <div class="container">
+                <h1 class="display-5 fw-bold mb-3">Structural Stability for the Next Era</h1>
+                <p class="lead col-lg-8 mx-auto">
+                    Project 7xBUS deploys capital and expertise across agricultural technology, advanced biotech, 
+                    quantitative finance, and heavy engineering.
+                </p>
+            </div>
+        </section>
+
+        <div class="container py-5">
+            <!-- Telemetry -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="section-title mb-4 text-muted">System Telemetry</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted">Gross Revenue Generated</h5>
+                            <div class="metric-value">$0.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted">Active Syndicate Members</h5>
+                            <div class="metric-value" id="user-display">—</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operational Sectors -->
+            <div class="mb-5">
+                <h2 class="section-title mb-4 text-muted">Operational Sectors</h2>
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div class="card sector-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Ag-Tech & Sovereign Ecology</h5>
+                                <p class="card-text text-muted">Integrated hardware and biology for sustainable, resilient ecosystems.</p>
+                                <small class="text-success">AI Bee Hives • Land Acquisition</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card sector-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Biotech & Chemical Formulations</h5>
+                                <p class="card-text text-muted">Proprietary compounds for consumer and industrial applications.</p>
+                                <small class="text-success">Rosehill Cosmetics • Yeast Flavor Projects</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card sector-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Fin-Tech & Systems Engineering</h5>
+                                <p class="card-text text-muted">Market modeling and decentralized operational infrastructure.</p>
+                                <small class="text-success">Reverse PID Autel • Quant Models</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Open Contracts -->
+            <div>
+                <h2 class="section-title mb-4 text-muted">Open Contracts & Opportunities</h2>
+                <div class="row g-4">
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="card bounty-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h5 class="card-title">Wild Phenotype Sampling (US Nationwide)</h5>
+                                    <span class="badge bg-success fs-6">Funded</span>
+                                </div>
+                                <p class="card-text text-muted">Field operatives needed to collect and ship wild berries and regional flora for biotech research.</p>
+                                <button class="btn btn-primary w-100 btn-claim" onclick="alert('Field kit request initiated. Instructions incoming.')">
+                                    Request Kit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="card bounty-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h5 class="card-title">Quantitative Model Stress-Testing</h5>
+                                    <span class="badge bg-warning text-dark fs-6">Access</span>
+                                </div>
+                                <p class="card-text text-muted">Backtest binomial phase transition models against historical S&P 500 data.</p>
+                                <button class="btn btn-primary w-100 btn-claim" onclick="alert('Data vault access requested.')">
+                                    Claim Dataset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="card bounty-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h5 class="card-title">Engine Rebuild & Retrofitting</h5>
+                                    <span class="badge bg-success fs-6">$500+</span>
+                                </div>
+                                <p class="card-text text-muted">Mechanical engineers for engine tear-downs, rebuilds, and fleet hardware work.</p>
+                                <button class="btn btn-primary w-100 btn-claim" onclick="alert('Contract submission portal opened.')">
+                                    Claim Contract
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA6BtSwFku_EoTKBJ7JebBIkvl_I1VYNQE",
+            authDomain: "project7xbus.firebaseapp.com",
+            projectId: "project7xbus",
+            storageBucket: "project7xbus.firebasestorage.app",
+            messagingSenderId: "827078709212",
+            appId: "1:827078709212:web:f4340c6d029d2badd40919"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            signOut(auth);
+        });
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('auth-loader').classList.add('d-none');
+                document.getElementById('app-content').classList.remove('d-none');
+                document.getElementById('user-display').innerText = user.displayName || user.email?.split('@')[0] || "Operator";
+            } else {
+                window.location.replace("https://project7xbus.com/userlogin");
             }
-        </style>
-	</head>
-	<body class="is-preload">
-
-		<div id="wrapper">
-
-				<section class="intro">
-						<header>
-							<h1>Project 7xBUS</h1>
-							<p>Authentication required for system entry.<br/>Sign in with your Google account to request initialization.</p>
-							<ul class="actions">
-								<li><button id="login-btn" class="button primary large">Initialize Google Auth</button></li>
-							</ul>
-                            <div id="status" class="status-message"></div>
-						</header>
-						<div class="content">
-                            <span class="image fill" data-position="center"><img src="images/image_1c02bc.jpg" alt="Gateway" /></span>
-						</div>
-					</section>
-
-			</div>
-
-		<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-        <script type="module">
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-            import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-            const firebaseConfig = {
-                apiKey: "AIzaSyA6BtSwFku_EoTKBJ7JebBIkvl_I1VYNQE",
-                authDomain: "project7xbus.firebaseapp.com",
-                projectId: "project7xbus",
-                storageBucket: "project7xbus.firebasestorage.app",
-                messagingSenderId: "827078709212",
-                appId: "1:827078709212:web:f4340c6d029d2badd40919"
-            };
-
-            const app = initializeApp(firebaseConfig);
-            const auth = getAuth(app);
-            const provider = new GoogleAuthProvider();
-
-            const loginBtn = document.getElementById('login-btn');
-            const statusDiv = document.getElementById('status');
-
-            loginBtn.addEventListener('click', () => {
-                statusDiv.style.color = '#888';
-                statusDiv.innerText = "> Awaiting Google handshake...";
-                statusDiv.style.display = 'block';
-
-                signInWithPopup(auth, provider)
-                    .then((result) => {
-                        const user = result.user;
-                        
-                        loginBtn.style.display = 'none';
-                        statusDiv.style.color = '#43d9b8';
-                        statusDiv.innerText = `> Access Granted. Welcome, ${user.displayName || user.email}.`;
-
-                        // REDIRECT LOGIC TO THE DASHBOARD
-                        setTimeout(() => {
-                            window.location.href = "https://project7xbus.com/userdashboard";
-                        }, 1500); 
-                    })
-                    .catch((error) => {
-                        console.error("Auth Error:", error);
-                        statusDiv.style.color = '#ff3333';
-                        statusDiv.innerText = `> Error: ${error.message}`;
-                    });
-            });
-        </script>
-	</body>
+        });
+    </script>
+</body>
 </html>
