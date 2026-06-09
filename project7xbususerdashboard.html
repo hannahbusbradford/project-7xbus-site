@@ -13,13 +13,14 @@
             --accent: #ffffff;
             --success: #00ffcc;
             --warning: #ffcc00;
+            --danger: #ff3333;
             --border: #1a1a1a;
             --card-bg: #111;
         }
 
         body {
             margin: 0;
-            padding: 0; /* Removed padding here to handle full screen loader */
+            padding: 0; 
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -43,6 +44,33 @@
         #app-content {
             display: none; 
             padding: 2rem;
+        }
+
+        /* --- TOP NAVIGATION --- */
+        .top-nav {
+            max-width: 1200px;
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn-logout {
+            background: transparent;
+            color: var(--danger);
+            border: 1px solid var(--danger);
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+        }
+
+        .btn-logout:hover {
+            background: var(--danger);
+            color: var(--bg-color);
         }
 
         .dashboard-grid {
@@ -110,6 +138,10 @@
     </div>
 
     <div id="app-content">
+        <div class="top-nav">
+            <button id="logout-btn" class="btn-logout">Sever Connection</button>
+        </div>
+
         <div class="dashboard-grid">
             <div class="panel full-width">
                 <h2>Primary Directive</h2>
@@ -208,8 +240,8 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        // Import the state change listener
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        // IMPORT SIGN OUT METHOD
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyA6BtSwFku_EoTKBJ7JebBIkvl_I1VYNQE",
@@ -223,18 +255,24 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
+        // LOGOUT EVENT LISTENER
+        const logoutBtn = document.getElementById('logout-btn');
+        logoutBtn.addEventListener('click', () => {
+            signOut(auth).catch((error) => {
+                console.error("Logout Error:", error);
+            });
+        });
+
         // Listen for user state
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // User is authenticated! Show the dashboard.
                 document.getElementById('auth-loader').style.display = 'none';
                 document.getElementById('app-content').style.display = 'block';
                 
-                // Optional: Show their email or name dynamically in the dashboard
                 document.getElementById('user-display').innerText = user.displayName || user.email.split('@')[0];
             } else {
-                // Not authenticated. Redirect immediately.
-                // Using replace() so they can't use the back button to return here
+                // When signOut(auth) is called above, this listener instantly fires 
+                // with user = null, automatically kicking them back to the login URL.
                 window.location.replace("https://project7xbus.com/userlogin");
             }
         });
