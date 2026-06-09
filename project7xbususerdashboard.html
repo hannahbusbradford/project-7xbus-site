@@ -11,47 +11,53 @@
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
         }
         .navbar {
-            background-color: #0a0a0a;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: #111;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
         }
         .logo {
-            font-size: 1.75rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: white;
             letter-spacing: -1px;
         }
         .hero-section {
-            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            background: #111;
             color: white;
-            padding: 4rem 0;
+            padding: 3.5rem 0;
+        }
+        .section-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #555;
         }
         .card {
             border: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: all 0.2s;
         }
         .card:hover {
-            transform: translateY(-4px);
-        }
-        .section-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        .metric-value {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #00c48c;
-        }
-        .sector-card {
-            border-left: 5px solid #00c48c;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
         }
         .bounty-card {
             height: 100%;
+            background: white;
         }
+        .badge-funded { background-color: #198754; }
+        .badge-access { background-color: #ffc107; color: #212529; }
+        .badge-bounty { background-color: #198754; }
         .btn-claim {
-            font-weight: 600;
+            background-color: #0d6efd;
+            border: none;
+            font-weight: 500;
+            padding: 12px;
+        }
+        .metric-value {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: #00c48c;
         }
     </style>
 </head>
@@ -59,18 +65,18 @@
 
     <!-- Top Navigation -->
     <nav class="navbar navbar-dark">
-        <div class="container-fluid">
+        <div class="container-fluid px-4">
             <div class="logo">7xBUS</div>
             <button id="logout-btn" class="btn btn-outline-light">Sign Out</button>
         </div>
     </nav>
 
-    <div id="auth-loader" class="d-flex align-items-center justify-content-center" style="height: 100vh; background:#0a0a0a; color:#00c48c; font-size:1.3rem;">
+    <div id="auth-loader" class="d-flex align-items-center justify-content-center" style="height: 100vh; background:#111; color:#00c48c; font-size:1.25rem;">
         Verifying Clearance...
     </div>
 
     <div id="app-content" class="d-none">
-        <!-- Hero / Mission -->
+        <!-- Hero -->
         <section class="hero-section text-center">
             <div class="container">
                 <h1 class="display-5 fw-bold mb-3">Building the Future Together</h1>
@@ -85,11 +91,11 @@
             <!-- Telemetry -->
             <div class="row mb-5">
                 <div class="col-12">
-                    <h2 class="section-title mb-4 text-muted">System Overview</h2>
+                    <h2 class="section-title mb-4">System Overview</h2>
                 </div>
                 <div class="col-md-6">
                     <div class="card h-100">
-                        <div class="card-body">
+                        <div class="card-body p-4">
                             <h5 class="card-title text-muted">Total Value Generated</h5>
                             <div class="metric-value">$0.00</div>
                         </div>
@@ -97,7 +103,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card h-100">
-                        <div class="card-body">
+                        <div class="card-body p-4">
                             <h5 class="card-title text-muted">Active Members</h5>
                             <div class="metric-value" id="user-display">—</div>
                         </div>
@@ -105,13 +111,13 @@
                 </div>
             </div>
 
-            <!-- Operational Sectors -->
+            <!-- Sectors -->
             <div class="mb-5">
-                <h2 class="section-title mb-4 text-muted">Our Focus Areas</h2>
+                <h2 class="section-title mb-4">Our Focus Areas</h2>
                 <div class="row g-4">
                     <div class="col-lg-4">
-                        <div class="card sector-card h-100">
-                            <div class="card-body">
+                        <div class="card h-100">
+                            <div class="card-body p-4">
                                 <h5 class="card-title">Agriculture &amp; Food Systems</h5>
                                 <p class="card-text text-muted">Modern solutions for sustainable farming and food production.</p>
                                 <small class="text-success">Smart Equipment • Land Development</small>
@@ -119,8 +125,8 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="card sector-card h-100">
-                            <div class="card-body">
+                        <div class="card h-100">
+                            <div class="card-body p-4">
                                 <h5 class="card-title">Biotechnology &amp; Health</h5>
                                 <p class="card-text text-muted">Innovative compounds and products for everyday and industrial use.</p>
                                 <small class="text-success">Consumer Products • Research &amp; Development</small>
@@ -128,8 +134,8 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="card sector-card h-100">
-                            <div class="card-body">
+                        <div class="card h-100">
+                            <div class="card-body p-4">
                                 <h5 class="card-title">Finance &amp; Technology</h5>
                                 <p class="card-text text-muted">Advanced tools and systems for financial operations and efficiency.</p>
                                 <small class="text-success">Trading Systems • Software Platforms</small>
@@ -139,19 +145,19 @@
                 </div>
             </div>
 
-            <!-- Open Contracts -->
-            <div>
-                <h2 class="section-title mb-4 text-muted">Open Opportunities</h2>
+            <!-- Open Opportunities -->
+            <div class="mb-5">
+                <h2 class="section-title mb-4">Open Opportunities</h2>
                 <div class="row g-4">
                     <div class="col-lg-6 col-xl-4">
                         <div class="card bounty-card">
-                            <div class="card-body">
+                            <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-start mb-3">
-                                    <h5 class="card-title">Field Research Collection (US Nationwide)</h5>
-                                    <span class="badge bg-success fs-6">Funded</span>
+                                    <h5 class="card-title mb-0">Field Research Collection (US Nationwide)</h5>
+                                    <span class="badge badge-funded px-3 py-2">Funded</span>
                                 </div>
                                 <p class="card-text text-muted">Help collect plant and berry samples from across the country for our research programs.</p>
-                                <button class="btn btn-primary w-100 btn-claim" onclick="alert('Field kit request initiated. Instructions incoming.')">
+                                <button class="btn btn-claim w-100 mt-3" onclick="alert('Field kit request initiated. Instructions incoming.')">
                                     Request Kit
                                 </button>
                             </div>
@@ -160,13 +166,13 @@
 
                     <div class="col-lg-6 col-xl-4">
                         <div class="card bounty-card">
-                            <div class="card-body">
+                            <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-start mb-3">
-                                    <h5 class="card-title">Data Analysis &amp; Model Testing</h5>
-                                    <span class="badge bg-warning text-dark fs-6">Access</span>
+                                    <h5 class="card-title mb-0">Data Analysis &amp; Model Testing</h5>
+                                    <span class="badge badge-access px-3 py-2">Access</span>
                                 </div>
                                 <p class="card-text text-muted">Test and improve our financial modeling tools using market data.</p>
-                                <button class="btn btn-primary w-100 btn-claim" onclick="alert('Data vault access requested.')">
+                                <button class="btn btn-claim w-100 mt-3" onclick="alert('Data vault access requested.')">
                                     Get Access
                                 </button>
                             </div>
@@ -175,13 +181,13 @@
 
                     <div class="col-lg-6 col-xl-4">
                         <div class="card bounty-card">
-                            <div class="card-body">
+                            <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-start mb-3">
-                                    <h5 class="card-title">Mechanical Engineering Projects</h5>
-                                    <span class="badge bg-success fs-6">$500+</span>
+                                    <h5 class="card-title mb-0">Mechanical Engineering Projects</h5>
+                                    <span class="badge badge-bounty px-3 py-2">$500+</span>
                                 </div>
                                 <p class="card-text text-muted">Engine repairs, rebuilds, and equipment maintenance for our operations fleet.</p>
-                                <button class="btn btn-primary w-100 btn-claim" onclick="alert('Contract submission portal opened.')">
+                                <button class="btn btn-claim w-100 mt-3" onclick="alert('Contract submission portal opened.')">
                                     Apply Now
                                 </button>
                             </div>
@@ -209,9 +215,7 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        document.getElementById('logout-btn').addEventListener('click', () => {
-            signOut(auth);
-        });
+        document.getElementById('logout-btn').addEventListener('click', () => signOut(auth));
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
