@@ -1052,25 +1052,47 @@
 </nav>
 
   <!-- BREAKTHROUGH ALERT OVERLAY -->
-  <div id="alert-overlay">
-    <div id="breakthrough-alert">
-      <div class="alert-header">
-        <span class="alert-dot"></span>
-        <span class="alert-title">BREAKTHROUGH CONFIRMED</span>
-        <button class="alert-close" onclick="dismissBanner()">✕</button>
-      </div>
-      <div class="alert-body">
-        <p class="alert-date">December 30, 2025</p>
-        <p class="alert-message">
-          Multidimensional statistical structure has been resolved at a
-          <strong>first-principle level</strong>.
-        </p>
-        <p class="alert-subtext">
-          Structural proof verified. Entry into a new analytical phase is now open.
-        </p>
-      </div>
+
+<!-- RELEASE THE BEAST OVERLAY -->
+<div id="alert-overlay">
+  <div id="breakthrough-alert" style="position:relative;">
+
+    <button class="alert-close"
+            onclick="dismissBanner()"
+            aria-label="Close"
+            style="position:absolute;top:14px;right:14px;z-index:2;">
+      ✕
+    </button>
+
+    <div class="alert-body"
+         style="padding:85px 20px 75px;text-align:center;">
+
+      <h2 style="
+        color:#ffffff;
+        font-size:clamp(1.8rem,5vw,3rem);
+        font-weight:900;
+        letter-spacing:0.06em;
+        line-height:1.15;
+        margin:0 0 22px;
+        text-transform:uppercase;
+      ">
+        RELEASE THE BEAST.
+      </h2>
+
+      <p style="
+        color:#ff0000;
+        font-size:0.95rem;
+        font-weight:800;
+        letter-spacing:0.3em;
+        margin:0;
+      ">
+        PROJECT7XBUS
+      </p>
+
     </div>
   </div>
+</div>
+
 
   <!-- AUTONOMOUS STROBE OVERLAY -->
   <div id="strobe" class="strobe-overlay" aria-hidden="true">
