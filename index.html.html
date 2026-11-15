@@ -1,0 +1,1412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>RELEASE THE BEAST. — PROJECT7XBUS</title>
+<meta name="description" content="RELEASE THE BEAST. Project7XBUS — mathematical research, economic disruption, and culture.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@600;700;800&family=Playfair+Display:wght@400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--red:#ec181d;--white:#f7f5f2;--muted:#a7a5a4;--border:#262323;--bg:#020202}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,Arial,Helvetica,sans-serif;overflow-x:hidden}
+a{color:inherit}button{font:inherit}button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid #fd5555;outline-offset:5px}
+.p7x-nav{position:absolute;top:0;left:0;right:0;z-index:15;display:flex;align-items:center;justify-content:space-between;gap:22px;padding:24px clamp(22px,5vw,70px);border-bottom:1px solid rgba(255,255,255,.11);background:linear-gradient(180deg,rgba(0,0,0,.82),rgba(0,0,0,0));}
+.brand{text-decoration:none;font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-.06em;font-size:clamp(1.1rem,2vw,1.5rem);white-space:nowrap}.brand .red{color:var(--red)}
+.nav-menu{display:flex;align-items:center;gap:clamp(14px,2.5vw,38px);flex-wrap:wrap;justify-content:end}
+.nav-menu a{text-decoration:none;color:#cfcccc;font-family:Inter,sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}.nav-menu a:hover{color:#fff}
+.release-hero{position:relative;isolation:isolate;min-height:100svh;display:grid;place-items:center;overflow:hidden;background:#000}
+.cinema-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:blur(2px) saturate(1.5) contrast(1.25) brightness(.85);opacity:.20;mix-blend-mode:screen;pointer-events:none;z-index:-3}
+.cinema-vignette{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(0,0,0,.75) 0%,rgba(0,0,0,.35) 42%,rgba(0,0,0,.78) 100%),linear-gradient(90deg,#000 0%,transparent 35%,transparent 65%,#000 100%);pointer-events:none}
+.cinema-grain{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.13;background:repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 1px,transparent 1px 4px)}
+.hero-words{position:relative;text-align:center;padding:110px 20px 70px;width:100%;max-width:1400px;text-shadow:0 12px 36px #000}
+.hero-title{font-family:'Syne',Impact,'Arial Black',sans-serif;font-size:clamp(2.55rem,9.5vw,10rem);font-weight:800;letter-spacing:-.08em;line-height:.94;text-transform:uppercase;margin:0;max-width:100%;text-wrap:balance}
+.hero-brand{font-size:clamp(.86rem,1.45vw,1.22rem);font-weight:800;letter-spacing:clamp(.2em,.6vw,.5em);color:var(--red);margin:30px 0 0;line-height:1.5}
+.hero-scroll{position:absolute;bottom:35px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:9px;text-decoration:none;font-size:.62rem;font-weight:700;letter-spacing:.22em;color:#bfbfbf;text-transform:uppercase}
+.hero-scroll:after{content:'';height:34px;width:1px;background:var(--red)}
+.hero-in,.section-reveal{animation:heroIn 1.4s ease both}@keyframes heroIn{from{opacity:0;transform:translateY(25px);filter:blur(7px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+.section{width:min(1200px,100%);margin:0 auto;padding:clamp(65px,9vw,130px) clamp(22px,5vw,60px)}
+.eyebrow{font-size:.7rem;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:#9e9595}
+.section-heading{font-family:'Syne',Impact,sans-serif;font-weight:800;font-size:clamp(2.3rem,5.8vw,5.4rem);text-transform:uppercase;letter-spacing:-.065em;line-height:1.04;margin:18px 0 20px}
+.section-lead{max-width:850px;color:#aaa;font-size:clamp(.98rem,1.5vw,1.18rem);line-height:1.85}
+.redline{display:inline-block;width:45px;height:3px;background:var(--red);vertical-align:middle;margin-right:12px}
+.prologue{padding-top:75px;padding-bottom:75px;text-align:center;border-bottom:1px solid var(--border)}
+.prologue p{font-family:'Syne',sans-serif;font-size:clamp(1.25rem,3vw,2.55rem);font-weight:800;line-height:1.3;letter-spacing:-.04em;max-width:900px;margin:0 auto}
+.prologue small{display:block;margin-top:22px;color:#8d8d8d;letter-spacing:.2em;font-size:.65rem;text-transform:uppercase}
+.economy{background:#030303}
+.economy-list{border-top:1px solid #292929;margin-top:42px}
+.economy-item{border-bottom:1px solid #292929;transition:background .2s}
+.economy-item summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:64px minmax(0,1fr) 26px;align-items:center;gap:18px;padding:24px 6px}
+.economy-item summary::-webkit-details-marker{display:none}
+.economy-num{font-family:'JetBrains Mono',monospace;font-size:.67rem;color:var(--red)}
+.economy-name{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:clamp(1.15rem,2.5vw,2rem);text-transform:uppercase}
+.economy-icon{font-size:26px;font-weight:300;color:#bdbdbd;transition:transform .2s}
+.economy-item[open] .economy-icon{transform:rotate(45deg);color:var(--red)}
+.economy-detail{font-size:.98rem;line-height:1.8;color:#ada9a9;max-width:880px;padding:0 35px 30px 88px}
+.economy-detail strong{color:#e4dede}
+.economy-item:hover{background:#0a0909}
+.cinema-break{height:clamp(330px,55vw,620px);position:relative;isolation:isolate;overflow:hidden;display:grid;place-items:center;border-top:1px solid #1f1b1b;border-bottom:1px solid #1f1b1b;text-align:center;background:#050505}
+.cinema-break .cinema-video{opacity:.15;object-position:center 65%}
+.cinema-break .cinema-vignette{background:linear-gradient(180deg,#000 0%,rgba(0,0,0,.58) 40%,#000 100%)}
+.cinema-break .statement{padding:32px 20px;max-width:1000px}
+.cinema-break h2{font-family:'Syne',sans-serif;font-size:clamp(2.3rem,7.5vw,7.5rem);letter-spacing:-.07em;line-height:1.02;margin:0 0 20px}
+.cinema-break p{font-size:.72rem;font-weight:800;letter-spacing:.35em;color:var(--red);margin:0}
+.archive-intro{display:flex;justify-content:space-between;gap:25px;align-items:end;flex-wrap:wrap}
+.archive-open{border:1px solid #a33235;background:var(--red);color:white;padding:16px 24px;letter-spacing:.12em;font-size:.72rem;font-weight:800;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background .2s}
+.archive-open:hover{background:#b70910}
+.archive-shell{padding-top:6px}
+.archive-shell[hidden]{display:none!important}
+.archive-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;padding:32px 0 22px;border-bottom:1px solid #222}
+.archive-tab{white-space:nowrap;background:#090909;border:1px solid #333;color:#bbb;text-transform:uppercase;letter-spacing:.09em;padding:13px 16px;font-size:.67rem;font-weight:800;cursor:pointer}
+.archive-tab[aria-selected=true]{background:#a50f12;color:#fff;border-color:#d71c1f}
+.archive-description{color:#888;font-size:.85rem;line-height:1.7;max-width:840px;margin:25px 0}
+.archive-embed-wrap{width:100%;background:#000;border:1px solid #272222;overflow:hidden;position:relative;min-height:720px}
+#research-frame{display:block;width:100%;min-height:720px;height:760px;border:0;background:#000}
+.archive-notes{font-size:.75rem;color:#7f7f7f;line-height:1.7;margin-top:14px}
+.site-footer{border-top:1px solid var(--border);padding:65px clamp(22px,5vw,70px) 45px;background:#050505;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-left{max-width:620px}.footer-left p{color:#aaa;line-height:1.7;max-width:600px}
+.footer-link{border:1px solid #555;color:#fff;font-size:.7rem;font-weight:800;text-decoration:none;letter-spacing:.15em;padding:17px 22px;text-transform:uppercase}.footer-link:hover{border-color:var(--red)}
+.footer-end{width:100%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #222;padding-top:25px;margin-top:20px;color:#666;font-size:.65rem;letter-spacing:.12em}
+/* Original slow-to-fast light flashes. State and dismissal handled below. */
+    .strobe-overlay{
+      position:fixed;
+      inset:0;
+      z-index:999998;
+      pointer-events:none;
+      display:grid;
+      place-items:center;
+      background:#000;
+      opacity:0;
+      transform:translateZ(0);
+      isolation:isolate;
+      will-change:opacity, transform, filter;
+    }
+    .strobe-overlay::before{
+      content:"";
+      position:absolute;
+      inset:-25%;
+      background:
+        radial-gradient(900px 650px at 50% 35%, rgba(0,245,255,.20) 0%, rgba(0,245,255,0) 60%),
+        radial-gradient(700px 500px at 25% 70%, rgba(160,0,0,.26) 0%, rgba(160,0,0,0) 64%),
+        radial-gradient(900px 650px at 75% 70%, rgba(160,0,0,.18) 0%, rgba(160,0,0,0) 64%);
+      filter: blur(28px) saturate(1.2);
+      opacity:.0;
+      transform:scale(1.02);
+      transition:opacity .35s ease;
+      pointer-events:none;
+    }
+    .strobe-msg{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      padding:28px 22px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 30px 90px rgba(0,0,0,.75);
+      max-width:min(920px, 92vw);
+      opacity:0;
+      transform: translateY(22px) scale(.98);
+      will-change:opacity, transform, filter;
+    }
+    .strobe-msg .kicker{
+      font-size:.85rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:rgba(233,233,233,.70);
+      margin-bottom:10px;
+    }
+    .strobe-msg .headline{
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:clamp(.18em, 1.1vw, .55em);
+      font-size:clamp(2.4rem, 6.2vw, 6.2rem);
+      line-height:1.05;
+      color:#fff;
+      text-shadow:
+        0 0 18px rgba(0,245,255,.22),
+        0 0 36px rgba(160,0,0,.16);
+      user-select:none;
+    }
+    .strobe-msg .sub{
+      margin-top:12px;
+      font-size:1rem;
+      color:rgba(233,233,233,.75);
+      letter-spacing:.04em;
+    }
+
+    /* start sequence */
+    .strobe-overlay.run{
+      opacity:1;
+      animation: strobeRamp 4.2s linear forwards;
+    }
+    .strobe-overlay.run::before{ opacity:1; }
+    .strobe-overlay.run .strobe-msg{
+      animation: msgIn 0.55s ease forwards, msgTighten 4.2s ease-in-out forwards;
+    }
+
+    /* This is the ramp: slow flashes -> fast strobe -> calm hold */
+    @keyframes strobeRamp{
+      /* fade in */
+      0%   { background:#000; filter:brightness(1); }
+      6%   { background:#000; filter:brightness(1); }
+
+      /* SLOW flashes */
+      10%  { background:#000; }
+      14%  { background:#fff; }
+      18%  { background:#000; }
+      22%  { background:#fff; }
+      26%  { background:#000; }
+
+      /* MID speed */
+      30%  { background:#fff; }
+      33%  { background:#000; }
+      36%  { background:#fff; }
+      39%  { background:#000; }
+      42%  { background:#fff; }
+      45%  { background:#000; }
+
+      /* FAST strobe cluster */
+      48%  { background:#fff; }
+      50%  { background:#000; }
+      52%  { background:#fff; }
+      54%  { background:#000; }
+      56%  { background:#fff; }
+      58%  { background:#000; }
+      60%  { background:#fff; }
+      62%  { background:#000; }
+      64%  { background:#fff; }
+      66%  { background:#000; }
+
+      /* EASE OUT: settle to black for readability */
+      70%  { background:#0a0a0a; filter:brightness(1.05); }
+      78%  { background:#050505; filter:brightness(1.0); }
+      100% { background:#000; filter:brightness(1.0); }
+    }
+
+    @keyframes msgIn{
+      to { opacity:1; transform: translateY(0) scale(1); }
+    }
+
+    /* slight "ascend + tighten" while strobing */
+    @keyframes msgTighten{
+      0%   { filter: blur(0px); }
+      45%  { transform: translateY(-10px) scale(1.01); }
+      66%  { transform: translateY(-18px) scale(1.03); filter: blur(.2px); }
+      75%  { transform: translateY(-10px) scale(1.01); filter: blur(0px); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    /* final hold: keep overlay visible but readable */
+    .strobe-overlay.hold{
+      opacity:1;
+      background:#000;
+    }
+
+    /* click to dismiss if you want */
+    .strobe-overlay.clickable{
+      pointer-events:auto;
+      cursor:pointer;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .strobe-overlay.run{ animation:none; }
+      .strobe-overlay.run .strobe-msg{ animation:none; opacity:1; transform:none; }
+    }
+
+.strobe-overlay{opacity:1;pointer-events:auto;display:grid;background:#000;transition:opacity .85s ease,visibility .85s ease;}
+.strobe-overlay[hidden]{display:none!important}
+.strobe-overlay.run{animation:strobeRamp 4.2s linear both}
+.strobe-overlay.leave{opacity:0!important;visibility:hidden;pointer-events:none;animation:none!important;}
+.strobe-msg{opacity:1!important;transform:translateY(0)!important;background:transparent;border:0;box-shadow:none;max-width:95vw;backdrop-filter:none}
+.strobe-overlay.run .strobe-msg{animation:none!important}
+.strobe-msg .headline{font-family:'Syne',Impact,sans-serif;letter-spacing:-.045em;font-weight:800;line-height:1;font-size:clamp(2.7rem,8vw,8.4rem)}
+.strobe-msg .kicker{color:#ff3f3f;font-weight:800;letter-spacing:.3em}
+.strobe-msg .sub{font-family:Inter,sans-serif;color:#ddd;letter-spacing:.36em;font-weight:800;font-size:clamp(.7rem,1.5vw,1.05rem);margin-top:25px}
+.flash-logo{display:flex;justify-content:center;align-items:center;position:relative;margin-top:38px;gap:0;color:#fff;font-family:'Playfair Display',serif;font-size:clamp(1.1rem,3vw,2rem);letter-spacing:.17em;animation:P7X_DIM 5s infinite}
+.flash-logo span{color:#f00;display:inline-block;text-shadow:0 0 20px #d00;padding:0 .1em}
+@keyframes P7X_DIM{0%,15%,21%,23%,25%,80%,100%{opacity:.18;filter:blur(1px)}18%,22%,24%,75%{opacity:1;filter:blur(0)}}
+.skip-intro{position:absolute;right:clamp(15px,3vw,45px);bottom:clamp(15px,3vw,45px);border:1px solid rgba(255,255,255,.3);padding:10px 15px;color:#aaa;background:#080808;font-size:.67rem;letter-spacing:.1em;cursor:pointer;z-index:50}
+@media(max-width:720px){.p7x-nav{padding:20px;flex-wrap:wrap;gap:16px}.nav-menu{gap:15px}.nav-menu a{font-size:.58rem}.hero-title{font-size:clamp(2.55rem,12vw,5.2rem)}.economy-item summary{grid-template-columns:34px minmax(0,1fr) 22px;gap:12px}.economy-detail{padding-left:46px}.cinema-video{object-position:center}.archive-open{width:100%}.section{padding:75px 20px}.archive-embed-wrap,#research-frame{min-height:580px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.strobe-overlay,.strobe-overlay.run,.flash-logo{animation:none!important}.strobe-overlay{display:none!important}.hero-in{animation:none}.cinema-video{filter:none}}
+</style>
+</head>
+<body>
+<!-- This is the FIRST thing the visitor sees. Original PROJECT7XBUS strobe style is retained. -->
+<div id="strobe" class="strobe-overlay" role="dialog" aria-modal="true" aria-label="Release the Beast introduction">
+  <div class="strobe-msg">
+    <div class="kicker">PROJECT7XBUS</div>
+    <div class="headline">RELEASE THE BEAST.</div>
+    <div class="sub">PROJECT7XBUS</div>
+    <div class="flash-logo" aria-hidden="true">7<span>×</span>BUS</div>
+  </div>
+  <button id="skip-intro" class="skip-intro" type="button">SKIP INTRO ×</button>
+</div>
+<div id="site-content">
+<nav class="p7x-nav" aria-label="Main navigation">
+  <a class="brand" href="#top" aria-label="Project7XBUS home">PROJECT 7<span class="red">×</span>BUS</a>
+  <div class="nav-menu">
+    <a href="#economic-disruption">Economic Disruption</a>
+    <a href="#research-archive">Research</a>
+    <a href="About.html">Mission</a>
+    <a href="TheTakeOver.html">The Takeover</a>
+  </div>
+</nav>
+<header id="top" class="release-hero">
+  <video id="heroFire" class="cinema-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-hidden="true"><source src="./Train.mp4" type="video/mp4"></video>
+  <div class="cinema-vignette"></div><div class="cinema-grain"></div>
+  <div class="hero-words hero-in"><h1 class="hero-title">RELEASE THE BEAST.</h1><p class="hero-brand">PROJECT7XBUS</p></div>
+  <a class="hero-scroll" href="#statement">Discover</a>
+</header>
+<section class="section prologue" id="statement" aria-label="The opening statement"><p>11 YEARS OF DAILY RESEARCH.<br>ONE COLLISION WITH WALL STREET.</p><small>PROJECT7XBUS — THE STORY CONTINUES</small></section>
+<section class="economy" id="economic-disruption">
+  <div class="section">
+    <div class="eyebrow"><span class="redline"></span>Project7XBUS / Systems</div>
+    <h2 class="section-heading">THE ECONOMIC<br>DISRUPTION.</h2>
+    <p class="section-lead">Project 7xBUS is a multi-sector disruptive force. <strong style="color:#eee">We are coming in on all sides.</strong> From agriculture and quantitative finance to energy, manufacturing, cosmetics, and media — the mission extends beyond one market.</p>
+    <div class="economy-list"><details class="economy-item"><summary><span class="economy-num">01</span><span class="economy-name">ENERGY &amp; EXTRACTION</span><span class="economy-icon" aria-hidden="true">+</span></summary><div class="economy-detail"><strong>Decentralizing Oil:</strong> We engineered a proprietary drilling machine for $20k and a geodevice for $2k. We are completely obliterating the multi-million-dollar barrier to entry and decentralizing resource extraction away from legacy energy monopolies.</div></details><details class="economy-item"><summary><span class="economy-num">02</span><span class="economy-name">MANUFACTURING &amp; MOBILITY</span><span class="economy-icon" aria-hidden="true">+</span></summary><div class="economy-detail"><strong>Killing the $100k Truck:</strong> We are synthesizing everyday West Texas desert sand into advanced, ultra-low-cost vehicle materials. Paired with our Ale 5G diagnostic platform and cleared logistics network, we are resetting automotive manufacturing from the ground up.</div></details><details class="economy-item"><summary><span class="economy-num">03</span><span class="economy-name">QUANTITATIVE FINANCE</span><span class="economy-icon" aria-hidden="true">+</span></summary><div class="economy-detail">The mathematical research core of Project7XBUS. Explore the chart validation, model matrices, and forensic audits in the research archive below.</div></details><details class="economy-item"><summary><span class="economy-num">04</span><span class="economy-name">FARM &amp; CHEMISTRY</span><span class="economy-icon" aria-hidden="true">+</span></summary><div class="economy-detail"><strong>Sovereign Infrastructure:</strong> PureHundreds fiber production on ~600 acres, America&#x27;s first AI-driven autonomous bee farm (10K Hive), and in-house chemical manufacturing (OH⁻/H₂O₂). Complete physical and supply-chain independence.</div></details><details class="economy-item"><summary><span class="economy-num">05</span><span class="economy-name">BEAUTY &amp; CONSUMABLES</span><span class="economy-icon" aria-hidden="true">+</span></summary><div class="economy-detail"><strong>Crashing the Margins:</strong> From Rosehill Cosmetics&#x27; biotech skincare to ThunderCheeks™—chewing gum engineered entirely from wild-yeast flavor systems and extinct fruit profiles. Disrupting massive margin industries with superior science.</div></details><details class="economy-item"><summary><span class="economy-num">06</span><span class="economy-name">MEDIA &amp; NARRATIVE</span><span class="economy-icon" aria-hidden="true">+</span></summary><div class="economy-detail"><strong>The 7th World:</strong> We control our own signal. A high-end cinematic series walking viewers through market delusions using real facts, lived logic, and the unapologetic truth of our operational footprint.</div></details></div>
+  </div>
+</section>
+<div class="cinema-break" aria-label="Economic Disruption cinematic interlude">
+  <video class="cinema-video" autoplay muted loop playsinline preload="none" aria-hidden="true"><source src="./Train.mp4" type="video/mp4"></video>
+  <div class="cinema-vignette"></div><div class="cinema-grain"></div>
+  <div class="statement"><h2>THE ECONOMIC<br>DISRUPTION.</h2><p>PROJECT7XBUS</p></div>
+</div>
+<section class="section" id="research-archive">
+  <div class="archive-intro">
+    <div>
+      <div class="eyebrow"><span class="redline"></span>Research / Select to View</div>
+      <h2 class="section-heading">THE RESEARCH<br>VAULT.</h2>
+      <p class="section-lead" style="max-width:600px">TradingView validation, interactive charts, and forensic research — organized into one compact archive instead of taking over the homepage.</p>
+    </div>
+    <button class="archive-open" id="archive-toggle" type="button" aria-controls="archive-shell" aria-expanded="false">OPEN RESEARCH ARCHIVE +</button>
+  </div>
+  <div class="archive-shell" id="archive-shell" hidden>
+    <div class="archive-tabs" role="tablist" aria-label="Research exhibits">
+      <button class="archive-tab" id="tab-tradingview" type="button" role="tab" data-chart="tradingview" aria-selected="true" aria-controls="research-frame">TradingView Chart</button>
+      <button class="archive-tab" id="tab-alpha" type="button" role="tab" data-chart="alpha" aria-selected="false" aria-controls="research-frame">Structural Alpha</button>
+      <button class="archive-tab" id="tab-stress" type="button" role="tab" data-chart="stress" aria-selected="false" aria-controls="research-frame">Stress Matrix</button>
+      <button class="archive-tab" id="tab-dual" type="button" role="tab" data-chart="dual" aria-selected="false" aria-controls="research-frame">Dual-Dimension Audit</button>
+      <button class="archive-tab" id="tab-forensic" type="button" role="tab" data-chart="forensic" aria-selected="false" aria-controls="research-frame">Forensic Audit v5</button>
+    </div>
+    <p class="archive-description" id="research-description">Interactive AAPL execution/validation chart from the original website.</p>
+    <div class="archive-embed-wrap" role="tabpanel" aria-labelledby="tab-tradingview" id="research-panel"><iframe title="PROJECT7XBUS Research — TradingView Chart" id="research-frame" loading="lazy"></iframe></div>
+    <p class="archive-notes">Research exhibits are taken from the original website. Some require the existing chart data and image files hosted alongside this page.</p>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="footer-left"><a class="brand" href="#top">PROJECT 7<span class="red">×</span>BUS</a><p>Mathematical research, business infrastructure, and a growing cultural movement.</p></div>
+  <a class="footer-link" href="https://www.instagram.com/project7xbus/" target="_blank" rel="noopener noreferrer">FOLLOW THE MOVEMENT</a>
+  <div class="footer-end"><span>PROJECT7XBUS</span><span>RELEASE THE BEAST.</span></div>
+</footer>
+</div>
+<!-- Original widgets preserved here, not rendered or loaded until selected in the vault. -->
+<template id="tpl-alpha">
+<section id="algo-widget" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
+  
+  <!-- Subtle CRT Scanline Overlay -->
+  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); background-size: 100% 2px, 3px 100%; z-index: 1; pointer-events: none; opacity: 0.4;"></div>
+
+  <style>
+    /* =========================================
+       TERMINAL WIDGET STYLES
+       ========================================= */
+    #algo-widget .terminal-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    #algo-widget .eyebrow { 
+      font-family: 'JetBrains Mono', monospace;
+      color: #ff0000; 
+      letter-spacing: 0.3em; 
+      font-size: 0.85rem; 
+      text-transform: uppercase; 
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      padding: 4px 12px;
+      border-radius: 2px;
+      background: rgba(255, 0, 0, 0.05);
+    }
+
+    #algo-widget h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 1rem 0 1.5rem;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Terminal Tabs */
+    #ticker-tabs {
+      display: flex;
+      justify-content: flex-start;
+      gap: 15px;
+      margin-bottom: 0;
+      border-bottom: 1px solid #222;
+      padding-bottom: 15px;
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+    }
+    #ticker-tabs::-webkit-scrollbar { display: none; } /* Chrome */
+
+    .ticker-tab {
+      background: transparent;
+      border: none;
+      color: #555;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      cursor: pointer;
+      padding: 8px 12px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .ticker-tab::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #ff0000;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 10px #ff0000;
+    }
+
+    .ticker-tab:hover { color: #aaa; }
+    .ticker-tab.active { color: #ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.4); }
+    .ticker-tab.active::after { width: 100%; }
+
+    /* The Matrix Table */
+    .terminal-window {
+      background: linear-gradient(180deg, #070707 0%, #030303 100%);
+      border: 1px solid #1a1a1a;
+      border-top: none;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .terminal-window::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, #ff0000, transparent);
+      opacity: 0.5;
+    }
+
+    #algo-widget table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    #algo-widget th {
+      text-align: right;
+      padding: 20px 24px;
+      color: #666;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #1a1a1a;
+      background: rgba(255,255,255,0.01);
+    }
+    #algo-widget th:first-child { text-align: left; }
+
+    #algo-widget td {
+      padding: 20px 24px;
+      color: #d0d0d0;
+      font-size: 1rem;
+      border-bottom: 1px solid #111;
+      transition: background 0.2s ease;
+    }
+    
+    #algo-widget tr:hover td {
+      background: rgba(255, 0, 0, 0.03);
+    }
+
+    /* Glows & Data Formatting */
+    .data-tf { font-weight: 700; color: #fff; }
+    .data-positive { color: #00ff41; text-shadow: 0 0 10px rgba(0, 255, 65, 0.3); }
+    .data-neutral { color: #d4af37; }
+    .data-faded { color: #555; }
+
+    /* Animation for table rendering */
+    @keyframes bootUp {
+      0% { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    .render-anim { animation: bootUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  </style>
+
+  <div class="terminal-container">
+    <div style="text-align: left; margin-bottom: 3rem;">
+      <div class="eyebrow">SYS.ENGINE.v0.7</div>
+      <h2>Structural Alpha<br>Live Matrix</h2>
+      <p style="color:#888; max-width: 600px; line-height: 1.6; font-family: 'Inter', sans-serif;">
+        Real structural edge mapped across fractional and macro timeframes. Volatility modeled at a first-principle level. No overfitting cope.
+      </p>
+    </div>
+
+    <!-- Ticker Tabs -->
+    <div id="ticker-tabs">
+      <!-- JS populated -->
+    </div>
+
+    <!-- Results Table -->
+    <div class="terminal-window">
+      <div id="results-table">
+        <!-- JS populated -->
+      </div>
+    </div>
+
+    <!-- Footer Status -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #444; text-transform: uppercase;">
+      <div>STATUS: <span style="color: #00ff41;">LIVE_STREAM</span></div>
+      <div>LAST TICK: <span id="last-update" style="color: #888;">05.09.2026 :: 10:39:54</span></div>
+      <div>ALLOCATION: 50%</div>
+    </div>
+  </div>
+</section>
+
+<script>
+// =============== DATA MATRIX ===============
+// Upgraded to include major tech and structural S&P 500 futures (ES/MES)
+const engineData = {
+  "ES_F (E-MINI)": [
+    { tf: "1wk", ret: 42.15,  sharpe: 2.15, pf: 2.94, trades: 104 },
+    { tf: "1d",  ret: 84.60,  sharpe: 2.85, pf: 3.12, trades: 312 },
+    { tf: "1h",  ret: 112.44, sharpe: 3.01, pf: 2.88, trades: 845 },
+    { tf: "5m",  ret: 68.20,  sharpe: 2.20, pf: 2.45, trades: 1490 }
+  ],
+  "MES_F (MICRO)": [
+    { tf: "1wk", ret: 40.80,  sharpe: 2.10, pf: 2.80, trades: 104 },
+    { tf: "1d",  ret: 81.35,  sharpe: 2.75, pf: 3.05, trades: 315 },
+    { tf: "1h",  ret: 108.90, sharpe: 2.95, pf: 2.81, trades: 852 }
+  ],
+  "NVDA": [
+    { tf: "1wk", ret: 421.80, sharpe: 3.12, pf: 3.42, trades: 95 },
+    { tf: "1d",  ret: 356.12, sharpe: 3.05, pf: 3.67, trades: 312 },
+    { tf: "1h",  ret: 208.90, sharpe: 2.80, pf: 2.89, trades: 987 }
+  ],
+  "AAPL": [
+    { tf: "1wk", ret: 184.67, sharpe: 1.95, pf: 2.84, trades: 142 },
+    { tf: "1d",  ret: 237.91, sharpe: 2.45, pf: 3.12, trades: 387 },
+    { tf: "1h",  ret: 168.44, sharpe: 2.10, pf: 2.71, trades: 1246 },
+    { tf: "5m",  ret:  94.23, sharpe: 1.85, pf: 2.45, trades: 892 }
+  ]
+};
+
+// =============== RENDER LOGIC ===============
+function renderResults(ticker) {
+  const tableContainer = document.getElementById('results-table');
+  const data = engineData[ticker] || engineData["ES_F (E-MINI)"];
+  
+  // Reset animation
+  tableContainer.classList.remove('render-anim');
+  void tableContainer.offsetWidth; // trigger reflow
+  tableContainer.classList.add('render-anim');
+
+  let html = `
+    <table>
+      <thead>
+        <tr>
+          <th>Timeframe</th>
+          <th>CUM_RET (%)</th>
+          <th>SHARPE</th>
+          <th>PRFT_FCTR</th>
+          <th>TRADES_EXEC</th>
+        </tr>
+      </thead>
+      <tbody>`;
+
+  data.forEach(row => {
+    // Formatting logic
+    const retStr = row.ret > 0 ? `+${row.ret.toFixed(2)}` : row.ret.toFixed(2);
+    const retClass = row.ret > 0 ? 'data-positive' : '';
+    
+    html += `
+      <tr>
+        <td class="data-tf">T :: ${row.tf.toUpperCase()}</td>
+        <td style="text-align:right;" class="${retClass}">${retStr}</td>
+        <td style="text-align:right;" class="data-neutral">${row.sharpe.toFixed(2)}</td>
+        <td style="text-align:right;">${row.pf.toFixed(2)}</td>
+        <td style="text-align:right;" class="data-faded">[ ${row.trades} ]</td>
+      </tr>`;
+  });
+
+  html += `</tbody></table>`;
+  tableContainer.innerHTML = html;
+}
+
+// =============== INIT TABS ===============
+const tabsContainer = document.getElementById('ticker-tabs');
+
+Object.keys(engineData).forEach((ticker, index) => {
+  const btn = document.createElement('button');
+  btn.textContent = ticker;
+  btn.className = 'ticker-tab';
+  if (index === 0) btn.classList.add('active');
+  
+  btn.onclick = () => {
+    document.querySelectorAll('#ticker-tabs .ticker-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderResults(ticker);
+  };
+  
+  tabsContainer.appendChild(btn);
+});
+
+// Initial payload render
+renderResults("ES_F (E-MINI)");
+</script>
+
+</template>
+<template id="tpl-stress">
+<section id="bus7x_sov_widget_section" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
+  
+  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); background-size: 100% 2px, 3px 100%; z-index: 1; pointer-events: none; opacity: 0.4;"></div>
+
+  <style>
+    /* =========================================
+       UNIQUE SANDBOXED STYLES
+       ========================================= */
+    #bus7x_sov_widget_section .bus7x_sov_container_box {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    #bus7x_sov_widget_section .bus7x_sov_top_eyebrow { 
+      font-family: 'JetBrains Mono', monospace;
+      color: #ff0000; 
+      letter-spacing: 0.3em; 
+      font-size: 0.85rem; 
+      text-transform: uppercase; 
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      padding: 4px 12px;
+      border-radius: 2px;
+      background: rgba(255, 0, 0, 0.05);
+    }
+
+    #bus7x_sov_widget_section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 1rem 0 1.5rem;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Terminal Tabs */
+    #bus7x_sov_ticker_nav_tabs {
+      display: flex;
+      justify-content: flex-start;
+      gap: 15px;
+      margin-bottom: 0;
+      border-bottom: 1px solid #222;
+      padding-bottom: 15px;
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+    }
+    #bus7x_sov_ticker_nav_tabs::-webkit-scrollbar { display: none; } /* Chrome */
+
+    #bus7x_sov_widget_section .bus7x_sov_nav_btn {
+      background: transparent;
+      border: none;
+      color: #555;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      cursor: pointer;
+      padding: 8px 12px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    #bus7x_sov_widget_section .bus7x_sov_nav_btn::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #ff0000;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 10px #ff0000;
+    }
+
+    #bus7x_sov_widget_section .bus7x_sov_nav_btn:hover { color: #aaa; }
+    #bus7x_sov_widget_section .bus7x_sov_nav_btn_active { color: #ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.4); }
+    #bus7x_sov_widget_section .bus7x_sov_nav_btn_active::after { width: 100%; }
+
+    /* The Matrix Table */
+    #bus7x_sov_widget_section .bus7x_sov_matrix_window {
+      background: linear-gradient(180deg, #070707 0%, #030303 100%);
+      border: 1px solid #1a1a1a;
+      border-top: none;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #bus7x_sov_widget_section .bus7x_sov_matrix_window::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, #ff0000, transparent);
+      opacity: 0.5;
+    }
+
+    #bus7x_sov_widget_section table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    #bus7x_sov_widget_section th {
+      text-align: right;
+      padding: 20px 24px;
+      color: #666;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #1a1a1a;
+      background: rgba(255,255,255,0.01);
+    }
+    #bus7x_sov_widget_section th:first-child,
+    #bus7x_sov_widget_section th:nth-child(2) { text-align: left; }
+
+    #bus7x_sov_widget_section td {
+      padding: 20px 24px;
+      color: #d0d0d0;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #111;
+      transition: background 0.2s ease;
+    }
+    
+    #bus7x_sov_widget_section tr:hover td {
+      background: rgba(255, 0, 0, 0.03);
+    }
+
+    /* Glows & Data Formatting */
+    #bus7x_sov_widget_section .bus7x_sov_cell_tf { font-weight: 700; color: #fff; }
+    #bus7x_sov_widget_section .bus7x_sov_cell_pos { color: #00ff41; text-shadow: 0 0 10px rgba(0, 255, 65, 0.3); }
+    #bus7x_sov_widget_section .bus7x_sov_cell_neg { color: #ff3333; }
+    #bus7x_sov_widget_section .bus7x_sov_cell_neu { color: #d4af37; }
+    #bus7x_sov_widget_section .bus7x_sov_cell_dim { color: #555; }
+    #bus7x_sov_widget_section .bus7x_sov_env_baseline { color: #00ff41; font-size: 0.8rem; letter-spacing: 1px;}
+    #bus7x_sov_widget_section .bus7x_sov_env_toxic { color: #ff0000; font-size: 0.8rem; letter-spacing: 1px;}
+
+    /* Unique Animation */
+    @keyframes bus7x_sov_kf_boot {
+      0% { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    #bus7x_sov_widget_section .bus7x_sov_boot_animation { animation: bus7x_sov_kf_boot 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  </style>
+
+  <div class="bus7x_sov_container_box">
+    <div style="text-align: left; margin-bottom: 3rem;">
+      <div class="bus7x_sov_top_eyebrow">AUDIT.ENGINE.v2.8</div>
+      <h2>Forensic Stress<br>Matrix</h2>
+      <p style="color:#888; max-width: 700px; line-height: 1.6; font-family: 'Inter', sans-serif;">
+        Triple-resolution structural edge mapped against hostile execution environments. Convergence of Baseline (2bps) and Toxic (10bps) metrics mathematically proves sovereignty over market maker slippage.
+      </p>
+    </div>
+
+    <div id="bus7x_sov_ticker_nav_tabs">
+      </div>
+
+    <div class="bus7x_sov_matrix_window">
+      <div id="bus7x_sov_data_render_target">
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #444; text-transform: uppercase;">
+      <div>STATUS: <span style="color: #ff0000;">STRESS_AUDIT_COMPLETE</span></div>
+      <div>MODE: <span style="color: #888;">BASELINE vs TOXIC</span></div>
+      <div>ALLOCATION: 50%</div>
+    </div>
+  </div>
+
+<script>
+// =============== UNIQUE ISOLATED JS ===============
+const bus7x_sov_matrix_payload = {
+  "ES=F": [
+    { env: "Baseline", tf: "5m", ret: 1.95, sharpe: 4.37, pf: 1.73, wr: 43.5, trades: 255 },
+    { env: "Baseline", tf: "1h", ret: 0.24, sharpe: 1.34, pf: 3.74, wr: 40.0, trades: 5 },
+    { env: "Toxic", tf: "5m", ret: 0.50, sharpe: 2.02, pf: 1.61, wr: 51.6, trades: 64 },
+    { env: "Toxic", tf: "1h", ret: -0.10, sharpe: -0.89, pf: 0.59, wr: 33.3, trades: 9 }
+  ],
+  "NQ=F": [
+    { env: "Baseline", tf: "5m", ret: 2.62, sharpe: 5.00, pf: 1.90, wr: 42.7, trades: 232 },
+    { env: "Baseline", tf: "1h", ret: 0.95, sharpe: 1.49, pf: 1.82, wr: 33.3, trades: 33 },
+    { env: "Toxic", tf: "5m", ret: 0.64, sharpe: 2.07, pf: 1.57, wr: 45.1, trades: 71 },
+    { env: "Toxic", tf: "1h", ret: 0.75, sharpe: 1.76, pf: 2.08, wr: 40.0, trades: 25 }
+  ],
+  "GC=F": [
+    { env: "Baseline", tf: "5m", ret: 4.45, sharpe: 4.05, pf: 1.71, wr: 40.7, trades: 275 },
+    { env: "Baseline", tf: "1h", ret: 3.03, sharpe: 1.42, pf: 2.51, wr: 38.5, trades: 26 },
+    { env: "Toxic", tf: "5m", ret: 2.38, sharpe: 3.21, pf: 1.76, wr: 40.4, trades: 109 },
+    { env: "Toxic", tf: "1h", ret: 1.64, sharpe: 1.04, pf: 1.84, wr: 26.1, trades: 23 }
+  ],
+  "BTC-USD": [
+    { env: "Baseline", tf: "5m", ret: 1.62, sharpe: 4.82, pf: 1.79, wr: 48.7, trades: 187 },
+    { env: "Baseline", tf: "1h", ret: 0.27, sharpe: 0.48, pf: 1.24, wr: 40.0, trades: 20 },
+    { env: "Toxic", tf: "5m", ret: 0.38, sharpe: 1.97, pf: 1.50, wr: 45.8, trades: 48 },
+    { env: "Toxic", tf: "1h", ret: 0.25, sharpe: 0.65, pf: 1.40, wr: 50.0, trades: 12 }
+  ],
+  "NVDA": [
+    { env: "Baseline", tf: "5m", ret: 2.24, sharpe: 6.18, pf: 1.79, wr: 45.5, trades: 112 },
+    { env: "Baseline", tf: "1h", ret: 5.62, sharpe: 2.06, pf: 2.11, wr: 37.3, trades: 51 },
+    { env: "Toxic", tf: "5m", ret: 1.00, sharpe: 4.12, pf: 1.58, wr: 46.8, trades: 62 },
+    { env: "Toxic", tf: "1h", ret: 3.37, sharpe: 1.72, pf: 1.84, wr: 36.4, trades: 44 }
+  ],
+  "MSTR": [
+    { env: "Baseline", tf: "5m", ret: 8.80, sharpe: 7.32, pf: 2.44, wr: 42.1, trades: 121 },
+    { env: "Baseline", tf: "1h", ret: 17.12, sharpe: 2.58, pf: 2.45, wr: 31.9, trades: 69 },
+    { env: "Toxic", tf: "5m", ret: 6.18, sharpe: 7.52, pf: 2.67, wr: 45.5, trades: 101 },
+    { env: "Toxic", tf: "1h", ret: 10.84, sharpe: 2.38, pf: 2.22, wr: 31.3, trades: 67 }
+  ]
+};
+
+function bus7x_sov_trigger_render(bus7x_sov_ticker_key) {
+  const bus7x_sov_dom_target = document.getElementById('bus7x_sov_data_render_target');
+  const bus7x_sov_active_dataset = bus7x_sov_matrix_payload[bus7x_sov_ticker_key];
+  
+  bus7x_sov_dom_target.classList.remove('bus7x_sov_boot_animation');
+  void bus7x_sov_dom_target.offsetWidth; 
+  bus7x_sov_dom_target.classList.add('bus7x_sov_boot_animation');
+
+  let bus7x_sov_html_buffer = `
+    <table>
+      <thead>
+        <tr>
+          <th>ENV</th>
+          <th>TF</th>
+          <th>RET (%)</th>
+          <th>SHARPE</th>
+          <th>PF</th>
+          <th>WIN %</th>
+          <th>TRADES</th>
+        </tr>
+      </thead>
+      <tbody>`;
+
+  bus7x_sov_active_dataset.forEach(bus7x_sov_row_obj => {
+    const bus7x_sov_str_return = bus7x_sov_row_obj.ret > 0 ? `+${bus7x_sov_row_obj.ret.toFixed(2)}` : bus7x_sov_row_obj.ret.toFixed(2);
+    const bus7x_sov_css_return = bus7x_sov_row_obj.ret > 0 ? 'bus7x_sov_cell_pos' : (bus7x_sov_row_obj.ret < 0 ? 'bus7x_sov_cell_neg' : '');
+    const bus7x_sov_css_env = bus7x_sov_row_obj.env === 'Baseline' ? 'bus7x_sov_env_baseline' : 'bus7x_sov_env_toxic';
+    
+    bus7x_sov_html_buffer += `
+      <tr>
+        <td class="${bus7x_sov_css_env}">[ ${bus7x_sov_row_obj.env.toUpperCase()} ]</td>
+        <td class="bus7x_sov_cell_tf">${bus7x_sov_row_obj.tf}</td>
+        <td style="text-align:right;" class="${bus7x_sov_css_return}">${bus7x_sov_str_return}</td>
+        <td style="text-align:right;" class="bus7x_sov_cell_neu">${bus7x_sov_row_obj.sharpe.toFixed(2)}</td>
+        <td style="text-align:right;">${bus7x_sov_row_obj.pf.toFixed(2)}</td>
+        <td style="text-align:right; color: #eee;">${bus7x_sov_row_obj.wr.toFixed(1)}%</td>
+        <td style="text-align:right;" class="bus7x_sov_cell_dim">[ ${bus7x_sov_row_obj.trades} ]</td>
+      </tr>`;
+  });
+
+  bus7x_sov_html_buffer += `</tbody></table>`;
+  bus7x_sov_dom_target.innerHTML = bus7x_sov_html_buffer;
+}
+
+const bus7x_sov_dom_tabs = document.getElementById('bus7x_sov_ticker_nav_tabs');
+
+Object.keys(bus7x_sov_matrix_payload).forEach((bus7x_sov_ticker_key, bus7x_sov_loop_idx) => {
+  const bus7x_sov_dom_btn = document.createElement('button');
+  bus7x_sov_dom_btn.textContent = bus7x_sov_ticker_key;
+  bus7x_sov_dom_btn.className = 'bus7x_sov_nav_btn';
+  if (bus7x_sov_loop_idx === 0) bus7x_sov_dom_btn.classList.add('bus7x_sov_nav_btn_active');
+  
+  bus7x_sov_dom_btn.onclick = () => {
+    document.querySelectorAll('#bus7x_sov_ticker_nav_tabs .bus7x_sov_nav_btn').forEach(b => b.classList.remove('bus7x_sov_nav_btn_active'));
+    bus7x_sov_dom_btn.classList.add('bus7x_sov_nav_btn_active');
+    bus7x_sov_trigger_render(bus7x_sov_ticker_key);
+  };
+  
+  bus7x_sov_dom_tabs.appendChild(bus7x_sov_dom_btn);
+});
+
+// Boot the matrix payload
+bus7x_sov_trigger_render("ES=F");
+</script>
+</section>
+
+</template>
+<template id="tpl-tradingview">
+<section id="px7-interactive-map" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
+  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg, rgba(0,255,65,0.06), rgba(255,0,0,0.04)); background-size: 100% 2px, 3px 100%; z-index: 1; pointer-events: none; opacity: 0.35;"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+  
+  <script src="AAPL_web_data.js"></script>
+
+  <style>
+    #px7-interactive-map .px7-container { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
+    #px7-interactive-map .px7-eyebrow { font-family: 'JetBrains Mono', monospace; color: #00ff41; letter-spacing: 0.3em; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem; display: inline-block; border: 1px solid rgba(0,255,65,0.4); padding: 4px 12px; border-radius: 2px; background: rgba(0,255,65,0.05); }
+    #px7-interactive-map h2 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 2.8rem); letter-spacing: 2px; text-transform: uppercase; color: #ffffff; margin: 1rem 0 1.5rem; }
+    .px7-tv-container { width: 100%; height: 600px; border: 1px solid #222; border-radius: 8px; overflow: hidden; background: #0a0a0a; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
+  </style>
+
+  <div class="px7-container">
+    <div style="text-align: left; margin-bottom: 3rem;">
+      <div class="px7-eyebrow">SYS.ENGINE.v0.9 • LIVE SIGNAL MAP</div>
+      <h2>TRADING VIEW VALIDATION</h2>
+      <p style="color:#888; max-width: 700px; font-family: 'Inter', sans-serif;">
+        Predator Engine signals mapped with <strong>Profit Bubbles</strong>. Every entry and exit verified against institutional VWAP. Scroll to zoom, drag to pan.
+      </p>
+    </div>
+
+    <div id="tv-chart-container" class="px7-tv-container"></div>
+
+    <div style="margin-top: 2rem; padding: 1rem; background: rgba(0,255,65,0.05); border: 1px solid #00ff41; border-radius: 6px; color: #00ff41; font-size: 0.85rem; text-align: center; font-family: 'JetBrains Mono', monospace;">
+      STRATEGY: VWAP-ANCHORED PREDATOR • TIMEFRAME: 5M • TICKER: AAPL
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // 1. Safety Check: Did the JS file load?
+        if (typeof chartData === 'undefined' || typeof markerData === 'undefined') {
+            console.error("ERROR: AAPL_web_data.js did not load correctly.");
+            document.getElementById('tv-chart-container').innerHTML = "<p style='color:red; text-align:center; padding-top: 250px; font-family: monospace;'>SYSTEM ERROR: DATA STREAM DISCONNECTED.<br>Verify AAPL_web_data.js is linked correctly.</p>";
+            return;
+        }
+
+        // 2. Build the Chart Layout
+        const chartOptions = {
+          layout: { background: { color: '#0a0a0a' }, textColor: '#888', fontFamily: 'JetBrains Mono' },
+          grid: { vertLines: { color: '#1a1a1a' }, horzLines: { color: '#1a1a1a' } },
+          timeScale: { borderColor: '#333', timeVisible: true, secondsVisible: false },
+          crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+        };
+
+        const container = document.getElementById('tv-chart-container');
+        const chart = LightweightCharts.createChart(container, chartOptions);
+        
+        const candleSeries = chart.addCandlestickSeries({
+          upColor: '#00ff41', downColor: '#ff003c', borderVisible: false,
+          wickUpColor: '#00ff41', wickDownColor: '#ff003c',
+        });
+
+        // 3. Inject the data directly from the external JS file
+        candleSeries.setData(chartData);
+        candleSeries.setMarkers(markerData);
+        
+        // 4. Auto-fit to screen
+        chart.timeScale().fitContent();
+
+        // 5. Handle resizing
+        window.addEventListener('resize', () => {
+          chart.applyOptions({ width: container.clientWidth });
+        });
+    });
+  </script>
+</section>
+
+</template>
+<template id="tpl-dual">
+<section id="p7x-glitch-audit-9928374" style="padding: 6rem 1.25rem; background: #000; border-top: 1px solid #1a1a1a; position: relative; overflow: hidden; isolation: isolate;">
+  
+  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.15) 50%), linear-gradient(90deg, rgba(0,255,65,0.03), rgba(255,0,0,0.02)); background-size: 100% 2px, 3px 100%; z-index: 5; pointer-events: none;"></div>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@800&family=Inter:wght@400;700&display=swap');
+
+    #p7x-glitch-audit-9928374 .p7x-main-wrap { position: relative; z-index: 2; max-width: 1300px; margin: 0 auto; }
+    
+    #p7x-glitch-audit-9928374 .p7x-eyebrow { 
+      font-family: 'JetBrains Mono', monospace; color: #00ff41; letter-spacing: 0.3em; font-size: 0.85rem; 
+      text-transform: uppercase; margin-bottom: 0.5rem; display: inline-block; 
+      border: 1px solid rgba(0,255,65,0.4); padding: 4px 12px; border-radius: 2px; background: rgba(0,255,65,0.05); 
+    }
+
+    #p7x-glitch-audit-9928374 h2 { 
+      font-family: 'Syne', sans-serif; font-size: clamp(2.1rem, 5vw, 2.9rem); letter-spacing: 2px; 
+      text-transform: uppercase; color: #ffffff; margin: 1rem 0 1.5rem; 
+    }
+
+    /* THE GLITCH ENGINE CONTAINER */
+    .p7x-glitch-viewport {
+      position: relative;
+      width: 100%;
+      max-width: 1400px;
+      aspect-ratio: 16 / 9;
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 40px 0;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    }
+
+    .p7x-glitch-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    /* Layer 1: Individual Execution */
+    .p7x-img-primary { z-index: 2; animation: p7x-pixel-glitch-1 8s infinite; }
+    /* Layer 2: Forensic Stress Matrix */
+    .p7x-img-secondary { z-index: 1; animation: p7x-pixel-glitch-2 8s infinite; }
+
+    /* PIXEL SWITCH KEYFRAMES */
+    @keyframes p7x-pixel-glitch-1 {
+      0%, 45% { opacity: 1; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translate(0); }
+      46% { opacity: 0.8; clip-path: polygon(0 15%, 100% 15%, 100% 25%, 0 25%); transform: translate(5px); }
+      48% { opacity: 0.5; clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); transform: translate(-5px); }
+      50%, 95% { opacity: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translate(0); }
+      96% { opacity: 0.5; transform: translate(-10px); }
+      100% { opacity: 1; }
+    }
+
+    @keyframes p7x-pixel-glitch-2 {
+      0%, 45% { opacity: 0; transform: translate(0); }
+      46% { opacity: 0.5; transform: translate(-5px); }
+      50%, 95% { opacity: 1; transform: translate(0); }
+      96% { opacity: 0.8; transform: translate(10px); }
+      100% { opacity: 0; }
+    }
+
+    .p7x-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: #00ff41;
+      text-align: center;
+      margin-top: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .p7x-status-bar {
+      margin-top: 3rem; padding: 1.5rem; background: rgba(0,255,65,0.05); 
+      border: 1px solid #00ff41; border-radius: 4px; color: #88ffaa; 
+      font-size: 0.9rem; text-align: center; font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+
+  <div class="p7x-main-wrap">
+    <div style="text-align: left; margin-bottom: 2rem;">
+      <div class="p7x-eyebrow">SYS.ENGINE.v1.7.1 • FORENSIC OVERLAY</div>
+      <h2>DUAL-DIMENSION AUDIT</h2>
+      <p style="color:#666; max-width: 800px; line-height: 1.6; font-family: 'Inter', sans-serif; font-size: 1.1rem;">
+        <strong>Individual Execution Proof</strong> (Micro-Edge) and the <strong>Triple-Tier Stress Matrix</strong> (Macro-Robustness). 
+        Evidence of structural alpha across every regime.
+      </p>
+    </div>
+
+    <div class="p7x-glitch-viewport">
+      <img src="staircaseplot.png" alt="Individual Strategy Execution" class="p7x-glitch-img p7x-img-primary">
+      <img src="stresstest1.png" alt="Forensic Stress Matrix Dashboard" class="p7x-glitch-img p7x-img-secondary">
+    </div>
+
+    <div class="p7x-caption">
+      <span style="display: inline-block; width: 10px; height: 10px; background: #00ff41; border-radius: 50%; margin-right: 8px; animation: pulse 1.5s infinite;"></span>
+      LIVE DATA STREAM: SYNCING EXECUTION vs FORENSICS
+    </div>
+
+    <div class="p7x-status-bar">
+      This interactive forensic view proves that the Predator's structural bone isn't just a single-ticker fluke.<br>
+      The individual execution staircase (Primary) builds the massive alpha spreads seen in the Stress Matrix (Secondary).
+    </div>
+  </div>
+
+  <script>
+    /* Simple pulse for the status dot */
+    const style = document.createElement('style');
+    style.innerHTML = `@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }`;
+    document.head.appendChild(style);
+  </script>
+</section>
+
+</template>
+<template id="tpl-forensic">
+<section id="p7x-v5-forensic-lab" class="p7x-v5-wrapper">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&family=Syne:wght@800&display=swap');
+
+    #p7x-v5-forensic-lab.p7x-v5-wrapper {
+      width: 100%;
+      background: #000;
+      padding: 80px 0;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      isolation: isolate;
+      overflow: hidden;
+      border-top: 1px solid #111;
+    }
+
+    .p7x-v5-container {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 40px;
+      width: 96%;
+      margin: 0 auto;
+      max-width: 2400px;
+    }
+
+    /* --- SIDEBAR TERMINAL --- */
+    .p7x-v5-sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .p7x-v5-id { font-family: 'JetBrains Mono'; color: #00ff9d; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; }
+    .p7x-v5-title {
+      font-size: 3.2rem; font-weight: 900; letter-spacing: -2px; line-height: 0.9;
+      background: linear-gradient(180deg, #fff 0%, #444 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin: 10px 0; text-transform: uppercase;
+    }
+
+    .p7x-v5-alert {
+      border: 1px solid #ff3366; background: rgba(255, 51, 102, 0.05);
+      padding: 20px; font-family: 'JetBrains Mono'; color: #ff3366; font-size: 0.75rem; line-height: 1.5;
+    }
+
+    .p7x-v5-panel { background: #080808; border: 1px solid #151515; padding: 25px; }
+    .p7x-v5-panel h4 { font-family: 'JetBrains Mono'; color: #00ff9d; font-size: 0.75rem; margin-bottom: 20px; text-transform: uppercase; }
+
+    .p7x-v5-select {
+      background: #000; color: #00ff9d; border: 1px solid #222; padding: 12px;
+      font-family: 'JetBrains Mono'; font-size: 0.85rem; width: 100%; margin-bottom: 15px; cursor: pointer; outline: none;
+    }
+
+    /* --- OBSERVATION DECK (CHART + LEDGER) --- */
+    .p7x-v5-deck {
+      background: #050505; border: 1px solid #111; padding: 30px; border-radius: 4px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.9); display: flex; flex-direction: column; gap: 30px;
+    }
+
+    /* Strict bounding box for the chart to prevent layout thrashing */
+    .p7x-v5-viewport-box { 
+      position: relative; width: 100%; height: 500px; background: #000; 
+      border-radius: 4px; border: 1px solid #1a1a1a; 
+    }
+
+    /* --- FULL FORENSIC LEDGER --- */
+    .p7x-v5-ledger-wrapper { overflow-x: auto; width: 100%; }
+    .p7x-v5-ledger {
+      width: 100%; border-collapse: collapse; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-align: left;
+    }
+    .p7x-v5-ledger th {
+      background: #0a0a0a; color: #555; padding: 15px; border-bottom: 2px solid #1a1a1a; text-transform: uppercase; font-weight: normal; letter-spacing: 1px;
+    }
+    .p7x-v5-ledger td {
+      padding: 15px; border-bottom: 1px solid #111; color: #ccc;
+    }
+    .p7x-v5-ledger tr:hover td { background: rgba(0, 255, 157, 0.02); }
+    
+    .text-green { color: #00ff9d; font-weight: bold; }
+    .text-red { color: #ff3366; }
+
+    /* --- MOBILE STACKING PROTOCOL --- */
+    @media (max-width: 1100px) {
+      .p7x-v5-container { grid-template-columns: 1fr; width: 92%; }
+      .p7x-v5-sidebar { order: 2; }
+      .p7x-v5-deck { order: 1; padding: 20px; }
+      .p7x-v5-viewport-box { height: 350px; }
+      .p7x-v5-title { font-size: 2.5rem; }
+    }
+  </style>
+
+  <div class="p7x-v5-container">
+    
+    <aside class="p7x-v5-sidebar">
+      <div class="p7x-v5-id">SYS.ENGINE::PREDATOR_v1.7.1</div>
+      <h1 class="p7x-v5-title">Forensic<br>Audit.v5</h1>
+
+      <div class="p7x-v5-alert">
+        <strong>⚠️ SAFETY_BYPASS:</strong> Chaos indicators deactivated. Logic forced through 15bps toxic slippage and high-frequency stochastic noise. 
+      </div>
+
+      <div class="p7x-v5-panel">
+        <h4>System Inputs</h4>
+        <select id="p7x-v5-asset-toggle" class="p7x-v5-select">
+          <option value="AAPL">AAPL (APPLE)</option>
+          <option value="TSLA">TSLA (TESLA)</option>
+          <option value="NVDA">NVDA (NVIDIA)</option>
+          <option value="AMD">AMD (RADEON)</option>
+          <option value="MSFT">MSFT (AZURE)</option>
+        </select>
+        <select id="p7x-v5-stress-toggle" class="p7x-v5-select">
+          <option value="Minimum">STRESS: MINIMUM (2bps)</option>
+          <option value="Medium">STRESS: MEDIUM (6bps)</option>
+          <option value="Maximum">STRESS: MAXIMUM (15bps)</option>
+        </select>
+      </div>
+
+      <div style="color: #666; font-size: 0.85rem; line-height: 1.6; padding: 10px;">
+        <strong style="color: #fff;">Interactive Verification:</strong> Select an asset and stress regime above. The detailed ledger validates the systemic outperformance.
+      </div>
+    </aside>
+
+    <main class="p7x-v5-deck">
+      <div style="display:flex; justify-content:space-between; border-bottom:1px solid #111; padding-bottom:10px;">
+        <div style="font-family:'JetBrains Mono'; font-size:0.7rem; color:#444;">[ DATA_STREAM: T+1_CAUSAL ]</div>
+        <div style="font-family:'JetBrains Mono'; font-size:0.7rem; color:#00ff9d;">● SYNCING_REALITY_LOG</div>
+      </div>
+
+      <div class="p7x-v5-viewport-box" id="p7x-v5-chart-container"></div>
+
+      <div class="p7x-v5-ledger-wrapper">
+        <table class="p7x-v5-ledger">
+          <thead>
+            <tr>
+              <th>Asset</th>
+              <th>Predator (v1.7.1)</th>
+              <th>Retail Bench</th>
+              <th>Outperformance</th>
+              <th>Profit Factor</th>
+              <th>Win Rate</th>
+              <th>Max DD</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>AAPL</strong></td>
+              <td class="text-green">+7.40%</td>
+              <td class="text-red">-19.60%</td>
+              <td class="text-green">+27.00%</td>
+              <td>1.72</td>
+              <td>56.4%</td>
+              <td class="text-red">-1.78%</td>
+            </tr>
+            <tr>
+              <td><strong>TSLA</strong></td>
+              <td class="text-green">+33.15%</td>
+              <td class="text-green">+1.15%</td>
+              <td class="text-green">+32.00%</td>
+              <td>1.34</td>
+              <td>50.3%</td>
+              <td class="text-red">-10.42%</td>
+            </tr>
+            <tr>
+              <td><strong>NVDA</strong></td>
+              <td class="text-green">+26.68%</td>
+              <td class="text-green">+4.68%</td>
+              <td class="text-green">+22.00%</td>
+              <td>1.25</td>
+              <td>50.8%</td>
+              <td class="text-red">-5.46%</td>
+            </tr>
+            <tr>
+              <td><strong>AMD</strong></td>
+              <td class="text-green">+4.88%</td>
+              <td class="text-red">-43.12%</td>
+              <td class="text-green">+48.00%</td>
+              <td>1.13</td>
+              <td>48.7%</td>
+              <td class="text-red">-3.88%</td>
+            </tr>
+            <tr>
+              <td><strong>MSFT</strong></td>
+              <td class="text-green">+13.92%</td>
+              <td class="text-red">-21.40%</td>
+              <td class="text-green">+35.32%</td>
+              <td>1.55</td>
+              <td>54.3%</td>
+              <td class="text-red">-1.36%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+  
+  <script>
+    (function() {
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. ONE-TIME SURGICAL UNLOCK (No infinite resize loops)
+            var mainContainer = document.querySelector('#p7x-v5-forensic-lab main');
+            if (mainContainer && window.innerWidth > 1100) {
+                mainContainer.style.maxWidth = '100%';
+                mainContainer.style.padding = '0';
+            }
+
+            // 2. CHART ENGINE WITH ANTI-FLASH PROTOCOL
+            var masterData = null;
+            var container = document.getElementById('p7x-v5-chart-container');
+            var chart = null;
+            var pLine = null;
+            var rLine = null;
+
+            function initV5Chart() {
+                chart = LightweightCharts.createChart(container, {
+                    layout: { background: { color: '#000' }, textColor: '#444', fontFamily: 'JetBrains Mono' },
+                    grid: { vertLines: { color: '#0a0a0a' }, horzLines: { color: '#0a0a0a' } },
+                    timeScale: { borderColor: '#111', timeVisible: true },
+                    crosshair: {
+                        mode: LightweightCharts.CrosshairMode.Normal,
+                        vertLine: { color: '#222', style: 0 },
+                        horzLine: { color: '#222', style: 0 }
+                    }
+                });
+
+                // Disabled lastPriceAnimation and priceLineVisible to kill flashing lines
+                pLine = chart.addLineSeries({ 
+                    color: '#00ff9d', lineWidth: 3, title: 'Predator', 
+                    lastPriceAnimation: 0, priceLineVisible: false 
+                });
+                rLine = chart.addLineSeries({ 
+                    color: '#ff3366', lineWidth: 1, lineStyle: 2, title: 'Retail', 
+                    lastPriceAnimation: 0, priceLineVisible: false 
+                });
+
+                document.getElementById('p7x-v5-asset-toggle').addEventListener('change', updateData);
+                document.getElementById('p7x-v5-stress-toggle').addEventListener('change', updateData);
+                
+                updateData();
+
+                // Safe ResizeObserver (Prevents layout thrashing)
+                new ResizeObserver(function(entries) {
+                    if (entries.length === 0 || entries[0].target !== container) { return; }
+                    var newRect = entries[0].contentRect;
+                    chart.applyOptions({ width: newRect.width, height: newRect.height });
+                }).observe(container);
+            }
+
+            function updateData() {
+                var t = document.getElementById('p7x-v5-asset-toggle').value;
+                var s = document.getElementById('p7x-v5-stress-toggle').value;
+                
+                if(!masterData || !masterData[s] || !masterData[s][t]) return;
+
+                var pData = masterData[s][t].predator_equity.map(function(v, i) { 
+                    return { time: 1715200000 + (i * 300), value: v }; 
+                });
+                var rData = masterData[s][t].retail_equity.map(function(v, i) { 
+                    return { time: 1715200000 + (i * 300), value: v }; 
+                });
+
+                pLine.setData(pData);
+                rLine.setData(rData);
+                chart.timeScale().fitContent();
+            }
+
+            // SAFE FETCH (No Promises printed to screen)
+            void fetch('7xbus_stress_data.json')
+                .then(function(response) {
+                    if (!response.ok) { throw new Error("File missing."); }
+                    return response.json();
+                })
+                .then(function(json) {
+                    masterData = json.results;
+                    initV5Chart();
+                })
+                .catch(function(error) {
+                    console.error("Forensic stream offline: ", error);
+                    container.innerHTML = '<div style="color:#ff3366; padding:30px; font-family:monospace; text-align:center; height:100%; display:flex; align-items:center; justify-content:center;">[ SYSTEM ERROR ]<br>Missing 7xbus_stress_data.json</div>';
+                });
+        });
+    })();
+  </script>
+</section>
+
+</template>
+<script>
+(function(){
+  const strobe=document.getElementById('strobe');
+  const skip=document.getElementById('skip-intro');
+  let done=false;
+  function finishIntro(){
+    if(done)return;
+    done=true;
+    strobe.classList.remove('run');
+    strobe.classList.add('leave');
+    strobe.setAttribute('aria-hidden','true');
+    strobe.removeAttribute('aria-modal');
+    window.setTimeout(()=>{strobe.hidden=true;},900);
+  }
+  // Always flash RELEASE THE BEAST first. The same headline remains on the train hero underneath.
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    requestAnimationFrame(()=>{strobe.classList.add('run');});
+    window.setTimeout(finishIntro,4600);
+  }else{strobe.hidden=true;done=true;}
+  skip.addEventListener('click',finishIntro);
+  document.addEventListener('keydown',(event)=>{if(event.key==='Escape'&&!done)finishIntro();});
+
+  const toggle=document.getElementById('archive-toggle');
+  const shell=document.getElementById('archive-shell');
+  const frame=document.getElementById('research-frame');
+  const panel=document.getElementById('research-panel');
+  const desc=document.getElementById('research-description');
+  const tabButtons=[...document.querySelectorAll('.archive-tab')];
+  const descriptions={
+    tradingview:'Interactive AAPL execution/validation chart from the original website.',
+    alpha:'Structural Alpha live-matrix exhibit, including the ticker selector and results table.',
+    stress:'Forensic stress-matrix exhibit, including the original selector and results table.',
+    dual:'Dual-dimension image audit comparing execution and stress-test visuals.',
+    forensic:'Forensic Audit v5 interactive equity curves, stress selectors, and ledger.'
+  };
+  function setActive(name){
+    const tpl=document.getElementById('tpl-'+name);
+    if(!tpl)return;
+    tabButtons.forEach(btn=>{
+      const active=btn.dataset.chart===name;
+      btn.setAttribute('aria-selected',String(active));
+      btn.tabIndex=active?0:-1;
+    });
+    const activeTab=tabButtons.find(btn=>btn.dataset.chart===name);
+    panel.setAttribute('aria-labelledby',activeTab.id);
+    desc.textContent=descriptions[name];
+    frame.title='PROJECT7XBUS Research — '+activeTab.textContent;
+    const doc='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{background:#000;color:#e9e9e9;margin:0;overflow-x:hidden;font-family:Inter,Arial,sans-serif}*{box-sizing:border-box}section{max-width:100%!important} @media(max-width:650px){section{padding:28px 12px!important}table{font-size:.72rem}th,td{padding:8px!important}}</style></head><body>'+tpl.innerHTML+'</body></html>';
+    frame.srcdoc=doc;
+  }
+  toggle.addEventListener('click',()=>{
+    const nowOpen=shell.hidden;
+    shell.hidden=!nowOpen;
+    toggle.setAttribute('aria-expanded',String(nowOpen));
+    toggle.textContent=nowOpen?'CLOSE RESEARCH ARCHIVE −':'OPEN RESEARCH ARCHIVE +';
+    if(nowOpen&&!frame.srcdoc) setActive('tradingview');
+  });
+  tabButtons.forEach((btn,index)=>{
+    btn.addEventListener('click',()=>{setActive(btn.dataset.chart);});
+    btn.addEventListener('keydown',(event)=>{
+      if(!['ArrowRight','ArrowLeft','Home','End'].includes(event.key))return;
+      event.preventDefault();
+      let next=index;
+      if(event.key==='ArrowRight')next=(index+1)%tabButtons.length;
+      if(event.key==='ArrowLeft')next=(index-1+tabButtons.length)%tabButtons.length;
+      if(event.key==='Home')next=0;
+      if(event.key==='End')next=tabButtons.length-1;
+      tabButtons[next].focus();setActive(tabButtons[next].dataset.chart);
+    });
+  });
+  // Keep second train video paused until that section enters the viewport.
+  const secondary=document.querySelector('.cinema-break video');
+  if(secondary&&'IntersectionObserver' in window){
+    const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)secondary.play().catch(()=>{});else secondary.pause();});},{threshold:.15});
+    obs.observe(secondary);
+  }
+})();
+</script>
+</body>
+</html>
